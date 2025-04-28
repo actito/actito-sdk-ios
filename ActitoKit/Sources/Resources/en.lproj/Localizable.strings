@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  ActitoKit
+
+  Copyright (c) 2025 Actito. All rights reserved.
+*/
+
+"actito_ok_button" = "OK";
+"actito_cancel_button" = "Cancel";
+"actito_close_button" = "Close";
+"actito_send_button" = "Send";
+"actito_actions_button" = "Actions";
+
+"actito_push_default_category" = "Default category";
+
+"actito_actions_input_placeholder" = "Type something here";
+
+// Optional text
+// "notification_actions_share_image_text_placeholder" = "";
+
+"actito_rate_alert_yes_button" = "Yes, I'll rate now";
+"actito_rate_alert_no_button" = "No, thanks";
+
+"actito_map_unknown_title_marker" = "Unknown";
+
+"actito_action_mail_subject" = "Your subject";
+"actito_action_mail_body" = "Your message";

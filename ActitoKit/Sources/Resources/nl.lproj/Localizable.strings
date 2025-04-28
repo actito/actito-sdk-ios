@@ -1,0 +1,27 @@
+/*
+  Localizable.strings
+  ActitoKit
+
+  Copyright (c) 2025 Actito. All rights reserved.
+*/
+
+"actito_ok_button" = "Oke";
+"actito_cancel_button" = "Annuleren";
+"actito_close_button" = "Sluiten";
+"actito_send_button" = "Stuur";
+"actito_actions_button" = "Acties";
+
+"actito_push_default_category" = "Standaard categorie";
+
+"actito_actions_input_placeholder" = "Type een tekst";
+
+// Optional text
+// "notification_actions_share_image_text_placeholder" = "";
+
+"actito_rate_alert_yes_button" = "Ja, ik zal nu beoordelen";
+"actito_rate_alert_no_button" = "Nee, dank u wel";
+
+"actito_map_unknown_title_marker" = "Onbekend";
+
+"actito_action_mail_subject" = "Jouw onderwerp";
+"actito_action_mail_body" = "Jouw bericht";

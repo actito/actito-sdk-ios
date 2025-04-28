@@ -1,0 +1,720 @@
+//
+// Copyright (c) 2025 Actito. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import ActitoUtilitiesKit
+
+internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModule {
+
+    internal static let instance = ActitoDeviceModuleImpl()
+
+    internal private(set) var storedDevice: StoredDevice? {
+        get { LocalStorage.device }
+        set { LocalStorage.device = newValue }
+    }
+
+    private var hasPendingDeviceRegistrationEvent: Bool?
+
+    // MARK: - Actito Module
+
+    internal func configure() {
+        // Listen to timezone changes
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(updateDeviceTimezone),
+            name: UIApplication.significantTimeChangeNotification,
+            object: nil
+        )
+
+        // Listen to language changes
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(updateDeviceLanguage),
+            name: NSLocale.currentLocaleDidChangeNotification,
+            object: nil
+        )
+
+        // Listen to 'background refresh status' changes
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(updateDeviceBackgroundAppRefresh),
+            name: UIApplication.backgroundRefreshStatusDidChangeNotification,
+            object: nil
+        )
+    }
+
+    internal func launch() async throws {
+        try await upgradeToLongLivedDeviceWhenNeeded()
+
+        if let storedDevice {
+            let isApplicationUpgrade = storedDevice.appVersion != Bundle.main.applicationVersion
+
+            try await updateDevice()
+
+            // Ensure a session exists for the current device.
+            try await Actito.shared.session().launch()
+
+            if isApplicationUpgrade {
+                // It's not the same version, let's log it as an upgrade.
+                logger.debug("New version detected")
+                try? await Actito.shared.eventsImplementation().logApplicationUpgrade()
+            }
+        } else {
+            logger.debug("New install detected")
+
+            try await createDevice()
+            hasPendingDeviceRegistrationEvent = true
+
+            // Ensure a session exists for the current device.
+            try await Actito.shared.session().launch()
+
+            // We will log the Install & Registration events here since this will execute only one time at the start.
+            try? await Actito.shared.eventsImplementation().logApplicationInstall()
+            try? await Actito.shared.eventsImplementation().logApplicationRegistration()
+        }
+    }
+
+    internal func postLaunch() async throws {
+        if let storedDevice, hasPendingDeviceRegistrationEvent == true {
+            DispatchQueue.main.async {
+                Actito.shared.delegate?.actito(Actito.shared, didRegisterDevice: storedDevice.asPublic())
+            }
+        }
+    }
+
+    // MARK: - Actito Device Module
+
+    public var currentDevice: ActitoDevice? {
+        storedDevice?.asPublic()
+    }
+
+    public var preferredLanguage: String? {
+        guard let preferredLanguage = LocalStorage.preferredLanguage,
+              let preferredRegion = LocalStorage.preferredRegion
+        else {
+            return nil
+        }
+
+        return "\(preferredLanguage)-\(preferredRegion)"
+    }
+
+    public func register(userId: String?, userName: String?, _ completion: @escaping ActitoCallback<Void>) {
+        updateUser(userId: userId, userName: userName, completion)
+    }
+
+    public func register(userId: String?, userName: String?) async throws {
+        try await updateUser(userId: userId, userName: userName)
+    }
+
+    public func updateUser(userId: String?, userName: String?, _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await updateUser(userId: userId, userName: userName)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func updateUser(userId: String?, userName: String?) async throws {
+        // TODO: try checkPrerequisites()
+
+        guard Actito.shared.isReady else {
+            throw ActitoError.notReady
+        }
+
+        guard var device = storedDevice else {
+            throw ActitoError.deviceUnavailable
+        }
+
+        let payload = ActitoInternals.PushAPI.Payloads.UpdateDeviceUser(
+            userID: userId,
+            userName: userName
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)", body: payload)
+            .response()
+
+        device.userId = userId
+        device.userName = userName
+
+        self.storedDevice = device
+    }
+
+    public func updatePreferredLanguage(_ preferredLanguage: String?, _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await updatePreferredLanguage(preferredLanguage)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func updatePreferredLanguage(_ preferredLanguage: String?) async throws {
+        guard Actito.shared.isReady else {
+            throw ActitoError.notReady
+        }
+
+        if let preferredLanguage = preferredLanguage {
+            let parts = preferredLanguage.components(separatedBy: "-")
+
+            // TODO: improve language validator
+            guard parts.count == 2 else {
+                logger.error("Not a valid preferred language. Use a ISO 639-1 language code and a ISO 3166-2 region code (e.g. en-US).")
+                throw ActitoError.invalidArgument(message: "Invalid preferred language value '\(preferredLanguage)'.")
+            }
+
+            let language = parts[0]
+            let region = parts[1]
+
+            // Only update if the value is not the same.
+            guard language != LocalStorage.preferredLanguage, region != LocalStorage.preferredRegion else {
+                return
+            }
+
+            try await updateLanguage(language, region: region)
+
+            LocalStorage.preferredLanguage = language
+            LocalStorage.preferredRegion = region
+        } else {
+            let language = Locale.current.deviceLanguage()
+            let region = Locale.current.deviceRegion()
+
+            try await updateLanguage(language, region: region)
+
+            LocalStorage.preferredLanguage = nil
+            LocalStorage.preferredRegion = nil
+        }
+    }
+
+    public func fetchTags(_ completion: @escaping ActitoCallback<[String]>) {
+        Task {
+            do {
+                let result = try await fetchTags()
+                completion(.success(result))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func fetchTags() async throws -> [String] {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let response = try await ActitoRequest.Builder()
+            .get("/push/\(device.id)/tags")
+            .responseDecodable(ActitoInternals.PushAPI.Responses.Tags.self)
+
+        return response.tags
+    }
+
+    public func addTag(_ tag: String, _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await addTag(tag)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func addTag(_ tag: String) async throws {
+        try await addTags([tag])
+    }
+
+    public func addTags(_ tags: [String], _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await addTags(tags)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func addTags(_ tags: [String]) async throws {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let payload = ActitoInternals.PushAPI.Payloads.Device.Tags(
+            tags: tags
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)/addtags", body: payload)
+            .response()
+    }
+
+    public func removeTag(_ tag: String, _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await removeTag(tag)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func removeTag(_ tag: String) async throws {
+        try await removeTags([tag])
+    }
+
+    public func removeTags(_ tags: [String], _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await removeTags(tags)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func removeTags(_ tags: [String]) async throws {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let payload = ActitoInternals.PushAPI.Payloads.Device.Tags(
+            tags: tags
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)/removetags", body: payload)
+            .response()
+    }
+
+    public func clearTags(_ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await clearTags()
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func clearTags() async throws {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)/cleartags")
+            .response()
+    }
+
+    public func fetchDoNotDisturb(_ completion: @escaping ActitoCallback<ActitoDoNotDisturb?>) {
+        Task {
+            do {
+                let result = try await fetchDoNotDisturb()
+                completion(.success(result))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func fetchDoNotDisturb() async throws -> ActitoDoNotDisturb? {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let response = try await ActitoRequest.Builder()
+            .get("/push/\(device.id)/dnd")
+            .responseDecodable(ActitoInternals.PushAPI.Responses.DoNotDisturb.self)
+
+        // Update current device properties.
+        storedDevice?.dnd = response.dnd
+
+        return response.dnd
+    }
+
+    public func updateDoNotDisturb(_ dnd: ActitoDoNotDisturb, _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await updateDoNotDisturb(dnd)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func updateDoNotDisturb(_ dnd: ActitoDoNotDisturb) async throws {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let payload = ActitoInternals.PushAPI.Payloads.UpdateDeviceDoNotDisturb(
+            dnd: dnd
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)", body: payload)
+            .response()
+
+        // Update current device properties.
+        storedDevice?.dnd = dnd
+    }
+
+    public func clearDoNotDisturb(_ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await clearDoNotDisturb()
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func clearDoNotDisturb() async throws {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let payload = ActitoInternals.PushAPI.Payloads.UpdateDeviceDoNotDisturb(
+            dnd: nil
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)", body: payload)
+            .response()
+
+        // Update current device properties.
+        storedDevice?.dnd = nil
+    }
+
+    public func fetchUserData(_ completion: @escaping ActitoCallback<ActitoUserData>) {
+        Task {
+            do {
+                let result = try await fetchUserData()
+                completion(.success(result))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func fetchUserData() async throws -> ActitoUserData {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let response = try await ActitoRequest.Builder()
+            .get("/push/\(device.id)/userdata")
+            .responseDecodable(ActitoInternals.PushAPI.Responses.UserData.self)
+
+        let userData = response.userData?.compactMapValues { $0 } ?? [:]
+
+        // Update current device properties.
+        storedDevice?.userData = userData
+
+        return userData
+    }
+
+    public func updateUserData(_ userData: [String: String?], _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await updateUserData(userData)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
+    public func updateUserData(_ userData: [String: String?]) async throws {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let payload = ActitoInternals.PushAPI.Payloads.UpdateDeviceUserData(
+            userData: userData
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)", body: payload)
+            .response()
+
+        // Update current device properties.
+        storedDevice?.userData = userData.compactMapValues { $0 }
+    }
+
+    // MARK: - Internal API
+
+    // TODO: check prerequisites
+
+    private func createDevice() async throws {
+        let backgroundRefreshStatus = await UIApplication.shared.backgroundRefreshStatus
+
+        let payload = await ActitoInternals.PushAPI.Payloads.CreateDevice(
+            language: getDeviceLanguage(),
+            region: getDeviceRegion(),
+            platform: "iOS",
+            osVersion: UIDevice.current.osVersion,
+            sdkVersion: ACTITO_VERSION,
+            appVersion: Bundle.main.applicationVersion,
+            deviceString: UIDevice.current.deviceString,
+            timeZoneOffset: TimeZone.current.timeZoneOffset,
+            backgroundAppRefresh: backgroundRefreshStatus == .available
+        )
+
+        let response = try await ActitoRequest.Builder()
+            .post("/push", body: payload)
+            .responseDecodable(ActitoInternals.PushAPI.Responses.CreateDevice.self)
+
+        self.storedDevice = StoredDevice(
+            id: response.device.deviceID,
+            userId: nil,
+            userName: nil,
+            timeZoneOffset: payload.timeZoneOffset,
+            osVersion: payload.osVersion,
+            sdkVersion: payload.sdkVersion,
+            appVersion: payload.appVersion,
+            deviceString: payload.deviceString,
+            language: payload.language,
+            region: payload.region,
+            dnd: nil,
+            userData: [:],
+            backgroundAppRefresh: backgroundRefreshStatus == .available
+        )
+    }
+
+    private func updateDevice() async throws {
+        guard var device = storedDevice else {
+            throw ActitoError.deviceUnavailable
+        }
+
+        let backgroundRefreshStatus = await UIApplication.shared.backgroundRefreshStatus
+
+        let payload = await ActitoInternals.PushAPI.Payloads.UpdateDevice(
+            language: getDeviceLanguage(),
+            region: getDeviceRegion(),
+            platform: "iOS",
+            osVersion: UIDevice.current.osVersion,
+            sdkVersion: ACTITO_VERSION,
+            appVersion: Bundle.main.applicationVersion,
+            deviceString: UIDevice.current.deviceString,
+            timeZoneOffset: TimeZone.current.timeZoneOffset,
+            backgroundAppRefresh: backgroundRefreshStatus == .available
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)", body: payload)
+            .response()
+
+        device.language = payload.language
+        device.region = payload.region
+        device.osVersion = payload.osVersion
+        device.sdkVersion = payload.sdkVersion
+        device.appVersion = payload.appVersion
+        device.deviceString = payload.deviceString
+        device.timeZoneOffset = payload.timeZoneOffset
+        device.backgroundAppRefresh = payload.backgroundAppRefresh
+
+        self.storedDevice = device
+    }
+
+    private func upgradeToLongLivedDeviceWhenNeeded() async throws {
+        guard let device = LocalStorage.device, !device.isLongLived else {
+            return
+        }
+
+        logger.info("Upgrading current device from legacy format.")
+
+        let deviceId = device.id
+        let transport = device.transport!
+        let subscriptionId = transport != "Notificare" ? deviceId : nil
+
+        let payload = ActitoInternals.PushAPI.Payloads.UpgradeToLongLivedDevice(
+            deviceID: deviceId,
+            transport: transport,
+            subscriptionId: subscriptionId,
+            language: device.language,
+            region: device.region,
+            platform: "iOS",
+            osVersion: device.osVersion,
+            sdkVersion: device.sdkVersion,
+            appVersion: device.appVersion,
+            deviceString: device.deviceString,
+            timeZoneOffset: device.timeZoneOffset,
+            backgroundAppRefresh: device.backgroundAppRefresh
+        )
+
+        let (response, data) = try await ActitoRequest.Builder()
+            .post("/push", body: payload)
+            .response()
+
+        let generatedDeviceId: String
+
+        if response.statusCode == 201, let data {
+            logger.debug("New device identifier created.")
+
+            let decoder = JSONDecoder.actito
+            let decoded =  try decoder.decode(ActitoInternals.PushAPI.Responses.CreateDevice.self, from: data)
+
+            generatedDeviceId = decoded.device.deviceID
+        } else {
+            generatedDeviceId = device.id
+        }
+
+        self.storedDevice = StoredDevice(
+            id: generatedDeviceId,
+            userId: device.userId,
+            userName: device.userName,
+            timeZoneOffset: device.timeZoneOffset,
+            osVersion: device.osVersion,
+            sdkVersion: device.sdkVersion,
+            appVersion: device.appVersion,
+            deviceString: device.deviceString,
+            language: device.language,
+            region: device.region,
+            dnd: device.dnd,
+            userData: device.userData,
+            backgroundAppRefresh: device.backgroundAppRefresh
+        )
+    }
+
+    internal func delete() async throws {
+        // TODO: checkPrerequisites()
+
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        try await ActitoRequest.Builder()
+            .delete("/push/\(device.id)")
+            .response()
+
+        // Remove current device.
+        storedDevice = nil
+    }
+
+    internal func updateTimezone() async throws {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let payload = ActitoInternals.PushAPI.Payloads.Device.UpdateTimeZone(
+            language: getDeviceLanguage(),
+            region: getDeviceRegion(),
+            timeZoneOffset: TimeZone.current.timeZoneOffset
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)", body: payload)
+            .response()
+
+        // Update current device properties.
+        storedDevice?.timeZoneOffset = payload.timeZoneOffset
+    }
+
+    internal func updateLanguage(_ language: String, region: String) async throws {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let payload = ActitoInternals.PushAPI.Payloads.Device.UpdateLanguage(
+            language: language,
+            region: region
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)", body: payload)
+            .response()
+
+        // Update current device properties.
+        storedDevice?.language = payload.language
+        storedDevice?.region = payload.region
+    }
+
+    internal func updateBackgroundAppRefresh() async throws {
+        guard Actito.shared.isReady, let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let backgroundRefreshStatus = await UIApplication.shared.backgroundRefreshStatus
+
+        let payload = ActitoInternals.PushAPI.Payloads.Device.UpdateBackgroundAppRefresh(
+            language: getDeviceLanguage(),
+            region: getDeviceRegion(),
+            backgroundAppRefresh: backgroundRefreshStatus == .available
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/push/\(device.id)", body: payload)
+            .response()
+
+        // Update current device properties.
+        storedDevice?.backgroundAppRefresh = payload.backgroundAppRefresh
+    }
+
+    internal func registerTestDevice(nonce: String) async throws {
+        guard let device = storedDevice else {
+            throw ActitoError.notReady
+        }
+
+        let payload = ActitoInternals.PushAPI.Payloads.TestDeviceRegistration(
+            deviceID: device.id
+        )
+
+        try await ActitoRequest.Builder()
+            .put("/support/testdevice/\(nonce)", body: payload)
+            .response()
+    }
+
+    private func getDeviceLanguage() -> String {
+        LocalStorage.preferredLanguage ?? Locale.current.deviceLanguage()
+    }
+
+    private func getDeviceRegion() -> String {
+        LocalStorage.preferredRegion ?? Locale.current.deviceRegion()
+    }
+
+    // MARK: - Notification Center listeners
+
+    @objc private func updateDeviceTimezone() {
+        logger.info("Device timezone changed.")
+
+        Task {
+            try? await updateTimezone()
+            logger.info("Device timezone updated.")
+        }
+    }
+
+    @objc private func updateDeviceLanguage() {
+        logger.info("Device language changed.")
+
+        let language = getDeviceLanguage()
+        let region = getDeviceRegion()
+
+        Task {
+            try? await updateLanguage(language, region: region)
+            logger.info("Device language updated.")
+        }
+    }
+
+    @objc private func updateDeviceBackgroundAppRefresh() {
+        logger.info("Device background app refresh status changed.")
+
+        Task {
+            try? await updateBackgroundAppRefresh()
+            logger.info("Device background app refresh status updated.")
+        }
+    }
+}
