@@ -74,7 +74,7 @@ internal struct UIColorsHexTesting {
 
         #expect(hexString == "#ff5733")
     }
-    
+
     @Test
     internal func testHexToUIColorAndBack() {
         let hexString = "#ff5733"
