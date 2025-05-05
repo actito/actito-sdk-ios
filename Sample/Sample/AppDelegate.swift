@@ -3,6 +3,7 @@
 //
 
 import ActitoKit
+import ActitoScannablesKit
 import ActivityKit
 import CoreLocation
 import Foundation
@@ -21,6 +22,7 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
         // Atlantis.start()
 
         Actito.shared.delegate = self
+        Actito.shared.scannables().delegate = self
 
         Task {
             do {
@@ -95,5 +97,20 @@ extension AppDelegate: ActitoDelegate {
                 Logger.main.error("Failed to registered device: \(error)")
             }
         }
+    }
+}
+
+extension AppDelegate: ActitoScannablesDelegate {
+    internal func actito(_: ActitoScannables, didDetectScannable scannable: ActitoScannable) {
+        guard let notification = scannable.notification else {
+            Logger.main.info("Cannot present a scannable without a notification.")
+            return
+        }
+
+//        UIApplication.shared.present(notification)
+    }
+
+    internal func actito(_: ActitoScannables, didInvalidateScannerSession error: Error) {
+        Logger.main.error("Scannable session invalidated: \(error)")
     }
 }
