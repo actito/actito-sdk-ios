@@ -2,8 +2,8 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import Foundation
 import ActitoKit
+import Foundation
 import OSLog
 import SwiftUI
 

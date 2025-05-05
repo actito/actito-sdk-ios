@@ -37,6 +37,13 @@
 		E5E5249D2DBA743A0086A403 /* ActitoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5249A2DBA743A0086A403 /* ActitoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E5E5249E2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5249B2DBA743A0086A403 /* ActitoUtilitiesKit.framework */; };
 		E5E5249F2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5249B2DBA743A0086A403 /* ActitoUtilitiesKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5E5EB542DC1093100B00B6A /* ActitoAssetsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB532DC1093100B00B6A /* ActitoAssetsKit.framework */; };
+		E5E5EB552DC1093100B00B6A /* ActitoAssetsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB532DC1093100B00B6A /* ActitoAssetsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5E5EB5B2DC10A9E00B00B6A /* AssetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB592DC10A9E00B00B6A /* AssetDetailsView.swift */; };
+		E5E5EB5C2DC10A9E00B00B6A /* AssetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB582DC10A9E00B00B6A /* AssetItemView.swift */; };
+		E5E5EB5D2DC10A9E00B00B6A /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB562DC10A9E00B00B6A /* AssetsView.swift */; };
+		E5E5EB5E2DC10A9E00B00B6A /* AssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB572DC10A9E00B00B6A /* AssetsViewModel.swift */; };
+		E5E5EB602DC10B8A00B00B6A /* OtherFeaturesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB5F2DC10B8A00B00B6A /* OtherFeaturesSection.swift */; };
 		F267DA4A273E7CA900448A8F /* NotificareOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F267DA49273E7CA900448A8F /* NotificareOptions.plist */; };
 		F27C2FCB2B04DA3F005564F4 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C2FCA2B04DA3F005564F4 /* BannerView.swift */; };
 		F27C2FD22B0518A5005564F4 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C2FD12B0518A5005564F4 /* BannerModifier.swift */; };
@@ -53,6 +60,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E5E5249F2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Embed Frameworks */,
+				E5E5EB552DC1093100B00B6A /* ActitoAssetsKit.framework in Embed Frameworks */,
 				E5E5249D2DBA743A0086A403 /* ActitoKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -99,6 +107,12 @@
 		E5C78F0C29BF4970006BF1F6 /* DoNotDisturbSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoNotDisturbSection.swift; sourceTree = "<group>"; };
 		E5E5249A2DBA743A0086A403 /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5E5249B2DBA743A0086A403 /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5E5EB532DC1093100B00B6A /* ActitoAssetsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoAssetsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5E5EB562DC10A9E00B00B6A /* AssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsView.swift; sourceTree = "<group>"; };
+		E5E5EB572DC10A9E00B00B6A /* AssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsViewModel.swift; sourceTree = "<group>"; };
+		E5E5EB582DC10A9E00B00B6A /* AssetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetItemView.swift; sourceTree = "<group>"; };
+		E5E5EB592DC10A9E00B00B6A /* AssetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailsView.swift; sourceTree = "<group>"; };
+		E5E5EB5F2DC10B8A00B00B6A /* OtherFeaturesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFeaturesSection.swift; sourceTree = "<group>"; };
 		F22443D3286CBAFE0015CBD6 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		F22443D4286CBBBE0015CBD6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F236118E2C77581C0063C446 /* NotificareServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NotificareServices.plist; sourceTree = "<group>"; };
@@ -127,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5E5249E2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Frameworks */,
+				E5E5EB542DC1093100B00B6A /* ActitoAssetsKit.framework in Frameworks */,
 				E5E5249C2DBA743A0086A403 /* ActitoKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,6 +198,7 @@
 		E5C78EFA29BB6D71006BF1F6 /* HomeSectionViews */ = {
 			isa = PBXGroup;
 			children = (
+				E5E5EB5F2DC10B8A00B00B6A /* OtherFeaturesSection.swift */,
 				E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */,
 				E5C78F0C29BF4970006BF1F6 /* DoNotDisturbSection.swift */,
 				E5B26D9F29C076F300B47C6D /* DeviceRegistrationSection.swift */,
@@ -199,6 +215,17 @@
 				E5C78F0429BB9A37006BF1F6 /* HomeViewModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		E5E5EB5A2DC10A9E00B00B6A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				E5E5EB562DC10A9E00B00B6A /* AssetsView.swift */,
+				E5E5EB572DC10A9E00B00B6A /* AssetsViewModel.swift */,
+				E5E5EB582DC10A9E00B00B6A /* AssetItemView.swift */,
+				E5E5EB592DC10A9E00B00B6A /* AssetDetailsView.swift */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		F236118F2C77581C0063C446 /* Production */ = {
@@ -263,6 +290,7 @@
 		F251694324D4077D0025B51F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5E5EB532DC1093100B00B6A /* ActitoAssetsKit.framework */,
 				E5E5249A2DBA743A0086A403 /* ActitoKit.framework */,
 				E5E5249B2DBA743A0086A403 /* ActitoUtilitiesKit.framework */,
 				F22443D4286CBBBE0015CBD6 /* StoreKit.framework */,
@@ -275,6 +303,7 @@
 		F25B6DC125CABDBF007BC2C8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E5E5EB5A2DC10A9E00B00B6A /* Assets */,
 				F29F82A32A0E5D8B00B327D8 /* Components */,
 				E5590E3129C474B5006E593B /* Events */,
 				E5590DF429C21EF2006E593B /* Tags */,
@@ -465,6 +494,10 @@
 				E5C78F0529BB9A37006BF1F6 /* HomeViewModel.swift in Sources */,
 				E5590DF629C21F59006E593B /* TagsView.swift in Sources */,
 				E5B26DA029C076F300B47C6D /* DeviceRegistrationSection.swift in Sources */,
+				E5E5EB5B2DC10A9E00B00B6A /* AssetDetailsView.swift in Sources */,
+				E5E5EB5C2DC10A9E00B00B6A /* AssetItemView.swift in Sources */,
+				E5E5EB5D2DC10A9E00B00B6A /* AssetsView.swift in Sources */,
+				E5E5EB5E2DC10A9E00B00B6A /* AssetsViewModel.swift in Sources */,
 				E534D10E2B03810800A6EF62 /* ListIconView.swift in Sources */,
 				E5C78EF929BB57D7006BF1F6 /* HomeView.swift in Sources */,
 				1A8C31102BFF20DA0000BFA6 /* SampleUser.swift in Sources */,
@@ -473,6 +506,7 @@
 				E5590E0E29C335BA006E593B /* AsyncImageCompat+ImageCache.swift in Sources */,
 				E59CFC0F29CB6D330024057A /* DetermineSize.swift in Sources */,
 				1A8B59F62B72304F00ED46B1 /* ApplicationInfoSection.swift in Sources */,
+				E5E5EB602DC10B8A00B00B6A /* OtherFeaturesSection.swift in Sources */,
 				1A8B59F92B72843800ED46B1 /* ApplicationInfo.swift in Sources */,
 				E5590E0629C33389006E593B /* Date+Utilities.swift in Sources */,
 				F29FD1F824CB1FE1004B166D /* AppDelegate.swift in Sources */,

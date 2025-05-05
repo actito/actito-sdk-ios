@@ -32,6 +32,8 @@ internal struct HomeView: View {
                 registerDevice: { viewModel.registerDevice() }
             )
 
+            OtherFeaturesSection()
+
             if let applicationInfo = viewModel.applicationInfo {
                 ApplicationInfoSection(
                     applicationName: applicationInfo.name,
