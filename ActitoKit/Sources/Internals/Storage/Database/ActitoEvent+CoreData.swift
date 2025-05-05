@@ -1,0 +1,58 @@
+//
+// Copyright (c) 2025 Actito. All rights reserved.
+//
+
+import ActitoUtilitiesKit
+import CoreData
+import Foundation
+
+extension ActitoEvent {
+    internal func toManaged(context: NSManagedObjectContext) -> NotificareCoreDataEvent {
+        let event = NotificareCoreDataEvent(context: context)
+
+        event.type = type
+        event.timestamp = timestamp
+        event.deviceId = deviceId
+        event.sessionId = sessionId
+        event.notificationId = notificationId
+        event.userId = userId
+        event.ttl = 24 * 60 * 60 // 24 hours
+        event.retries = 0
+
+        if let data = data {
+            event.data = try? JSONEncoder.actito.encode(ActitoAnyCodable(data))
+        } else {
+            event.data = nil
+        }
+
+        return event
+    }
+
+    internal init(from managed: NotificareCoreDataEvent) throws {
+        var eventData: ActitoEventData?
+        if
+            let data = managed.data,
+            let decoded = try? JSONDecoder.actito.decode(ActitoAnyCodable.self, from: data)
+        {
+            eventData = decoded.value as? ActitoEventData
+        }
+
+        guard let type = managed.type else {
+            throw ActitoError.invalidArgument(message: "Event entity is missing the 'type' attribute.")
+        }
+
+        guard let deviceId = managed.deviceId else {
+            throw ActitoError.invalidArgument(message: "Event entity is missing the 'deviceId' attribute.")
+        }
+
+        self.init(
+            type: type,
+            timestamp: managed.timestamp,
+            deviceId: deviceId,
+            sessionId: managed.sessionId,
+            notificationId: managed.notificationId,
+            userId: managed.userId,
+            data: eventData
+        )
+    }
+}
