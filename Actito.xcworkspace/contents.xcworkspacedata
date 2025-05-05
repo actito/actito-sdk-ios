@@ -5,6 +5,9 @@
       location = "group:ActitoKit/ActitoKit.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:ActitoAssetsKit/ActitoAssetsKit.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ActitoUtilitiesKit/ActitoUtilitiesKit.xcodeproj">
    </FileRef>
    <FileRef
