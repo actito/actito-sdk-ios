@@ -2,8 +2,8 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import UIKit
 @testable import ActitoUtilitiesKit
+import UIKit
 import Testing
 
 internal struct UIColorsHexTesting {

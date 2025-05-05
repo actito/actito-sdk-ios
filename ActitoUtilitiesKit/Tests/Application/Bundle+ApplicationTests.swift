@@ -2,8 +2,8 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import Testing
 @testable import ActitoUtilitiesKit
+import Testing
 
 private class MockBundle: Bundle, @unchecked Sendable {
     var mockInfoDictionary: [String: Any] = [:]

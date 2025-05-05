@@ -2,9 +2,9 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+import ActitoUtilitiesKit
 import Foundation
 import UIKit
-import ActitoUtilitiesKit
 
 internal class ActitoCrashReporterModuleImpl: NSObject, ActitoModule {
     // MARK: - Actito Module

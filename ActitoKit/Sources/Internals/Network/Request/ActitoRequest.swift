@@ -2,8 +2,8 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import UIKit
 import ActitoUtilitiesKit
+import UIKit
 
 public struct ActitoRequest {
     private static let session: URLSession = {

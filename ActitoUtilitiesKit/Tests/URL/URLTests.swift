@@ -2,8 +2,8 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import Foundation
 @testable import ActitoUtilitiesKit
+import Foundation
 import Testing
 
 internal struct URLTests {

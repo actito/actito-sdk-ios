@@ -1,6 +1,7 @@
 //
 // Copyright (c) 2025 Actito. All rights reserved.
 //
+
 import ActitoUtilitiesKit
 
 public struct ActitoApplication: Codable, Equatable {

@@ -2,8 +2,8 @@
 // Copyright (c) 2024 Actito. All rights reserved.
 //
 
-import Foundation
 import ActitoUtilitiesKit
+import Foundation
 
 internal var logger: ActitoLogger = {
     var logger = ActitoLogger(

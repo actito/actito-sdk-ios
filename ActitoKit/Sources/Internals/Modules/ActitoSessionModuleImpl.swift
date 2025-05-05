@@ -2,9 +2,9 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+import ActitoUtilitiesKit
 import Foundation
 import UIKit
-import ActitoUtilitiesKit
 
 private let SESSION_CLOSE_TASK_NAME = "re.notifica.tasks.session.Close"
 

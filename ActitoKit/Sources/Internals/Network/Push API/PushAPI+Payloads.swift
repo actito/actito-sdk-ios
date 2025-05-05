@@ -2,8 +2,8 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import Foundation
 import ActitoUtilitiesKit
+import Foundation
 
 extension ActitoInternals.PushAPI.Payloads {
     internal struct CreateDevice: Encodable {

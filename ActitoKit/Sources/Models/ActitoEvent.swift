@@ -2,8 +2,8 @@
 // Copyright (c) 2020 Actito. All rights reserved.
 //
 
-import Foundation
 import ActitoUtilitiesKit
+import Foundation
 
 public typealias ActitoEventData = [String: Any]
 

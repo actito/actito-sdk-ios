@@ -2,8 +2,8 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import Foundation
 import ActitoUtilitiesKit
+import Foundation
 
 extension ActitoInternals.PushAPI.Models {
     public struct Application: Decodable, Equatable {

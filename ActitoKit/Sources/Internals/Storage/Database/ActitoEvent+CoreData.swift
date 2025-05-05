@@ -2,9 +2,9 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+import ActitoUtilitiesKit
 import CoreData
 import Foundation
-import ActitoUtilitiesKit
 
 extension ActitoEvent {
     internal func toManaged(context: NSManagedObjectContext) -> NotificareCoreDataEvent {

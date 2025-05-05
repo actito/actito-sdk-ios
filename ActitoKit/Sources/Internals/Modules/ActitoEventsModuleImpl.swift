@@ -2,8 +2,8 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import UIKit
 import ActitoUtilitiesKit
+import UIKit
 
 private let MAX_RETRIES = 5
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
