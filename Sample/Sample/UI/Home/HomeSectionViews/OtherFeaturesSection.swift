@@ -8,6 +8,20 @@ internal struct OtherFeaturesSection: View {
     internal var body: some View {
         Section {
             NavigationLink {
+                ScannablesView()
+            } label: {
+                Label {
+                    Text(String(localized: "home_scannables"))
+                } icon: {
+                    ListIconView(
+                        icon: "qrcode.viewfinder",
+                        foregroundColor: .white,
+                        backgroundColor: .blue
+                    )
+                }
+            }
+
+            NavigationLink {
                 AssetsView()
             } label: {
                 Label {

@@ -26,6 +26,9 @@
 		E59CFC0D29CB6CC70024057A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59CFC0C29CB6CC70024057A /* BadgeView.swift */; };
 		E59CFC0F29CB6D330024057A /* DetermineSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59CFC0E29CB6D330024057A /* DetermineSize.swift */; };
 		E5B26DA029C076F300B47C6D /* DeviceRegistrationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B26D9F29C076F300B47C6D /* DeviceRegistrationSection.swift */; };
+		E5BF89E92DC918C4008FD3DE /* ActitoScannablesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF89E82DC918C4008FD3DE /* ActitoScannablesKit.framework */; };
+		E5BF89EA2DC918C4008FD3DE /* ActitoScannablesKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF89E82DC918C4008FD3DE /* ActitoScannablesKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5BF89ED2DC918D8008FD3DE /* ScannablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF89EB2DC918D8008FD3DE /* ScannablesView.swift */; };
 		E5C78EF729BB5015006BF1F6 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF629BB5015006BF1F6 /* Main.swift */; };
 		E5C78EF929BB57D7006BF1F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF829BB57D7006BF1F6 /* HomeView.swift */; };
 		E5C78EFC29BB6DC5006BF1F6 /* LaunchFlowSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */; };
@@ -62,6 +65,7 @@
 				E5E5249F2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Embed Frameworks */,
 				E5E5EB552DC1093100B00B6A /* ActitoAssetsKit.framework in Embed Frameworks */,
 				E5E5249D2DBA743A0086A403 /* ActitoKit.framework in Embed Frameworks */,
+				E5BF89EA2DC918C4008FD3DE /* ActitoScannablesKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +102,8 @@
 		E59CFC0C29CB6CC70024057A /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		E59CFC0E29CB6D330024057A /* DetermineSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetermineSize.swift; sourceTree = "<group>"; };
 		E5B26D9F29C076F300B47C6D /* DeviceRegistrationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRegistrationSection.swift; sourceTree = "<group>"; };
+		E5BF89E82DC918C4008FD3DE /* ActitoScannablesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoScannablesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5BF89EB2DC918D8008FD3DE /* ScannablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannablesView.swift; sourceTree = "<group>"; };
 		E5C78EF629BB5015006BF1F6 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		E5C78EF829BB57D7006BF1F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowSection.swift; sourceTree = "<group>"; };
@@ -143,6 +149,7 @@
 				E5E5249E2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Frameworks */,
 				E5E5EB542DC1093100B00B6A /* ActitoAssetsKit.framework in Frameworks */,
 				E5E5249C2DBA743A0086A403 /* ActitoKit.framework in Frameworks */,
+				E5BF89E92DC918C4008FD3DE /* ActitoScannablesKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +200,14 @@
 				E5590E0D29C335BA006E593B /* AsyncImageCompat+ImageCache.swift */,
 			);
 			path = AsyncImageCompat;
+			sourceTree = "<group>";
+		};
+		E5BF89EC2DC918D8008FD3DE /* Scannables */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF89EB2DC918D8008FD3DE /* ScannablesView.swift */,
+			);
+			path = Scannables;
 			sourceTree = "<group>";
 		};
 		E5C78EFA29BB6D71006BF1F6 /* HomeSectionViews */ = {
@@ -290,6 +305,7 @@
 		F251694324D4077D0025B51F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF89E82DC918C4008FD3DE /* ActitoScannablesKit.framework */,
 				E5E5EB532DC1093100B00B6A /* ActitoAssetsKit.framework */,
 				E5E5249A2DBA743A0086A403 /* ActitoKit.framework */,
 				E5E5249B2DBA743A0086A403 /* ActitoUtilitiesKit.framework */,
@@ -303,6 +319,7 @@
 		F25B6DC125CABDBF007BC2C8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF89EC2DC918D8008FD3DE /* Scannables */,
 				E5E5EB5A2DC10A9E00B00B6A /* Assets */,
 				F29F82A32A0E5D8B00B327D8 /* Components */,
 				E5590E3129C474B5006E593B /* Events */,
@@ -510,6 +527,7 @@
 				1A8B59F92B72843800ED46B1 /* ApplicationInfo.swift in Sources */,
 				E5590E0629C33389006E593B /* Date+Utilities.swift in Sources */,
 				F29FD1F824CB1FE1004B166D /* AppDelegate.swift in Sources */,
+				E5BF89ED2DC918D8008FD3DE /* ScannablesView.swift in Sources */,
 				E514687829C9CC41005E057D /* String+Localization.swift in Sources */,
 				E5C78EFC29BB6DC5006BF1F6 /* LaunchFlowSection.swift in Sources */,
 				F27C2FCB2B04DA3F005564F4 /* BannerView.swift in Sources */,
