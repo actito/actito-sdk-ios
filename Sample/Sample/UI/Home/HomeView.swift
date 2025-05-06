@@ -24,6 +24,12 @@ internal struct HomeView: View {
                 updateDndTime: { viewModel.updateDndTime() }
             )
 
+            InAppMessagingSection(
+                hasEvaluateContextOn: $viewModel.hasEvaluateContextOn,
+                hasSuppressedOn: $viewModel.hasSuppressedOn,
+                updateSuppressedIamStatus: { enabled in viewModel.updateSuppressedIamStatus(enabled: enabled) }
+            )
+
             DeviceRegistrationSection(
                 userId: $viewModel.userId,
                 userName: $viewModel.userName,
