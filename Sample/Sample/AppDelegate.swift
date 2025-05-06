@@ -2,6 +2,7 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+import ActitoInAppMessagingKit
 import ActitoKit
 import ActitoScannablesKit
 import ActivityKit
@@ -22,6 +23,7 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
         // Atlantis.start()
 
         Actito.shared.delegate = self
+        Actito.shared.inAppMessaging().delegate = self
         Actito.shared.scannables().delegate = self
 
         Task {
@@ -97,6 +99,30 @@ extension AppDelegate: ActitoDelegate {
                 Logger.main.error("Failed to registered device: \(error)")
             }
         }
+    }
+}
+
+extension AppDelegate: ActitoInAppMessagingDelegate {
+    internal func actito(_: ActitoInAppMessaging, didPresentMessage message: ActitoInAppMessage) {
+        Logger.main.info("in-app message presented = \(String(describing: message))")
+    }
+
+    internal func actito(_: ActitoInAppMessaging, didFinishPresentingMessage message: ActitoInAppMessage) {
+        Logger.main.info("in-app message finished presenting = \(String(describing: message))")
+    }
+
+    internal func actito(_: ActitoInAppMessaging, didFailToPresentMessage message: ActitoInAppMessage) {
+        Logger.main.error("in-app message failed to present = \(String(describing: message))")
+    }
+
+    internal func actito(_: ActitoInAppMessaging, didExecuteAction action: ActitoInAppMessage.Action, for message: ActitoInAppMessage) {
+        Logger.main.info("in-app message action executed = \(String(describing: action))")
+        Logger.main.info("for message = \(String(describing: message))")
+    }
+
+    internal func actito(_: ActitoInAppMessaging, didFailToExecuteAction action: ActitoInAppMessage.Action, for message: ActitoInAppMessage, error _: Error?) {
+        Logger.main.error("in-app message action failed to execute = \(String(describing: action))")
+        Logger.main.error("for message = \(String(describing: message))")
     }
 }
 

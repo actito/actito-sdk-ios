@@ -2,6 +2,7 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+import ActitoInAppMessagingKit
 import ActitoKit
 import ActivityKit
 import Combine
@@ -27,6 +28,11 @@ internal class HomeViewModel: NSObject, ObservableObject {
     @Published internal var hasDndEnabled = false
     @Published internal var startTime = ActitoTime.defaultStart.date
     @Published internal var endTime = ActitoTime.defaultEnd.date
+
+    // In app messaging
+
+    @Published internal var hasEvaluateContextOn = false
+    @Published internal var hasSuppressedOn = false
 
     // Device registration
 
@@ -143,6 +149,14 @@ extension HomeViewModel {
                 )
             }
         }
+    }
+}
+
+// In App Messaging
+
+extension HomeViewModel {
+    internal func updateSuppressedIamStatus(enabled: Bool) {
+        Actito.shared.inAppMessaging().setMessagesSuppressed(enabled, evaluateContext: hasEvaluateContextOn)
     }
 }
 
