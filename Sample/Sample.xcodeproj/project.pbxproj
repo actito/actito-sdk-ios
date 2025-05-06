@@ -32,6 +32,9 @@
 		E5BF89EF2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF89EE2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework */; };
 		E5BF89F02DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF89EE2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E5BF89F22DC9FCA3008FD3DE /* InAppMessagingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF89F12DC9FCA3008FD3DE /* InAppMessagingSection.swift */; };
+		E5BF89F42DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF89F32DCA3AFD008FD3DE /* ActitoPushUIKit.framework */; };
+		E5BF89F52DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF89F32DCA3AFD008FD3DE /* ActitoPushUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5BF89F72DCA3C79008FD3DE /* UIApplication+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF89F62DCA3C79008FD3DE /* UIApplication+Notifications.swift */; };
 		E5C78EF729BB5015006BF1F6 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF629BB5015006BF1F6 /* Main.swift */; };
 		E5C78EF929BB57D7006BF1F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF829BB57D7006BF1F6 /* HomeView.swift */; };
 		E5C78EFC29BB6DC5006BF1F6 /* LaunchFlowSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */; };
@@ -66,6 +69,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E5E5249F2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Embed Frameworks */,
+				E5BF89F52DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Embed Frameworks */,
 				E5E5EB552DC1093100B00B6A /* ActitoAssetsKit.framework in Embed Frameworks */,
 				E5E5249D2DBA743A0086A403 /* ActitoKit.framework in Embed Frameworks */,
 				E5BF89F02DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Embed Frameworks */,
@@ -110,6 +114,8 @@
 		E5BF89EB2DC918D8008FD3DE /* ScannablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannablesView.swift; sourceTree = "<group>"; };
 		E5BF89EE2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoInAppMessagingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5BF89F12DC9FCA3008FD3DE /* InAppMessagingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppMessagingSection.swift; sourceTree = "<group>"; };
+		E5BF89F32DCA3AFD008FD3DE /* ActitoPushUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoPushUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5BF89F62DCA3C79008FD3DE /* UIApplication+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Notifications.swift"; sourceTree = "<group>"; };
 		E5C78EF629BB5015006BF1F6 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		E5C78EF829BB57D7006BF1F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowSection.swift; sourceTree = "<group>"; };
@@ -153,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5E5249E2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Frameworks */,
+				E5BF89F42DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Frameworks */,
 				E5E5EB542DC1093100B00B6A /* ActitoAssetsKit.framework in Frameworks */,
 				E5E5249C2DBA743A0086A403 /* ActitoKit.framework in Frameworks */,
 				E5BF89EF2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Frameworks */,
@@ -313,6 +320,7 @@
 		F251694324D4077D0025B51F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF89F32DCA3AFD008FD3DE /* ActitoPushUIKit.framework */,
 				E5BF89EE2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework */,
 				E5BF89E82DC918C4008FD3DE /* ActitoScannablesKit.framework */,
 				E5E5EB532DC1093100B00B6A /* ActitoAssetsKit.framework */,
@@ -343,6 +351,7 @@
 		F25B6DC825CAC58C007BC2C8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF89F62DCA3C79008FD3DE /* UIApplication+Notifications.swift */,
 				E5C78F0829BBA15B006BF1F6 /* Logger.swift */,
 				E5590E0529C33389006E593B /* Date+Utilities.swift */,
 				E5590E1329C359B9006E593B /* Notification.Name+Custom.swift */,
@@ -531,6 +540,7 @@
 				E5590E1429C359B9006E593B /* Notification.Name+Custom.swift in Sources */,
 				E5590E0E29C335BA006E593B /* AsyncImageCompat+ImageCache.swift in Sources */,
 				E59CFC0F29CB6D330024057A /* DetermineSize.swift in Sources */,
+				E5BF89F72DCA3C79008FD3DE /* UIApplication+Notifications.swift in Sources */,
 				1A8B59F62B72304F00ED46B1 /* ApplicationInfoSection.swift in Sources */,
 				E5E5EB602DC10B8A00B00B6A /* OtherFeaturesSection.swift in Sources */,
 				1A8B59F92B72843800ED46B1 /* ApplicationInfo.swift in Sources */,
