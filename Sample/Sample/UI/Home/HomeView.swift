@@ -16,6 +16,16 @@ internal struct HomeView: View {
                 unlaunch: { viewModel.actitoUnlaunch() }
             )
 
+            NotificationsSection(
+                hasNotificationsAndPermission: $viewModel.hasNotificationsAndPermission,
+                hasNotificationsEnabled: viewModel.hasNotificationsEnabled,
+                allowedUi: viewModel.allowedUi,
+                subscriptionToken: viewModel.subscription?.token,
+                notificationsPermission: viewModel.notificationsPermission,
+                badge: viewModel.badge,
+                updateNotificationsStatus: { enable in viewModel.updateNotificationsStatus(enabled: enable) }
+            )
+
             DoNotDisturbSection(
                 hasDndEnabled: $viewModel.hasDndEnabled,
                 startTime: $viewModel.startTime,
@@ -23,6 +33,10 @@ internal struct HomeView: View {
                 updateDndStatus: { enabled in viewModel.updateDndStatus(enabled: enabled) },
                 updateDndTime: { viewModel.updateDndTime() }
             )
+
+            if #available(iOS 16.1, *), LiveActivitiesController.shared.hasLiveActivityCapabilities {
+                LiveActivitiesSection(coffeeBrewerLiveActivityState: viewModel.coffeeBrewerLiveActivityState)
+            }
 
             InAppMessagingSection(
                 hasEvaluateContextOn: $viewModel.hasEvaluateContextOn,
