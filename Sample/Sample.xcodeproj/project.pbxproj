@@ -35,6 +35,25 @@
 		E5BF89F42DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF89F32DCA3AFD008FD3DE /* ActitoPushUIKit.framework */; };
 		E5BF89F52DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF89F32DCA3AFD008FD3DE /* ActitoPushUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E5BF89F72DCA3C79008FD3DE /* UIApplication+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF89F62DCA3C79008FD3DE /* UIApplication+Notifications.swift */; };
+		E5BF8A642DCA5F02008FD3DE /* CoffeeBrewerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8A612DCA5F02008FD3DE /* CoffeeBrewerActivityAttributes.swift */; };
+		E5BF8A652DCA5F02008FD3DE /* LiveActivitiesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8A622DCA5F02008FD3DE /* LiveActivitiesController.swift */; };
+		E5BF8A6B2DCA5FC3008FD3DE /* NotificationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8A6A2DCA5FC3008FD3DE /* NotificationsSection.swift */; };
+		E5BF8A712DCA6056008FD3DE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2EB43242935044D00AFDBD3 /* WidgetKit.framework */; };
+		E5BF8A722DCA6056008FD3DE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2EB43262935044D00AFDBD3 /* SwiftUI.framework */; };
+		E5BF8A7F2DCA6058008FD3DE /* WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E5BF8A702DCA6056008FD3DE /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E5BF8AE62DCA657F008FD3DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BF8ADF2DCA657F008FD3DE /* Assets.xcassets */; };
+		E5BF8AE82DCA657F008FD3DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5BF8AE22DCA657F008FD3DE /* Localizable.strings */; };
+		E5BF8AE92DCA657F008FD3DE /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E5BF8AE32DCA657F008FD3DE /* Localizable.stringsdict */; };
+		E5BF8AEA2DCA657F008FD3DE /* CoffeeBrewerHeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8AD92DCA657F008FD3DE /* CoffeeBrewerHeadlineView.swift */; };
+		E5BF8AEB2DCA657F008FD3DE /* CoffeeBrewerLockScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8ADA2DCA657F008FD3DE /* CoffeeBrewerLockScreenView.swift */; };
+		E5BF8AEC2DCA657F008FD3DE /* CoffeeBrewerStatusTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8ADB2DCA657F008FD3DE /* CoffeeBrewerStatusTrackerView.swift */; };
+		E5BF8AED2DCA657F008FD3DE /* CoffeeBrewer+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8ADD2DCA657F008FD3DE /* CoffeeBrewer+Utilities.swift */; };
+		E5BF8AEE2DCA657F008FD3DE /* CoffeeBrewerLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8AE02DCA657F008FD3DE /* CoffeeBrewerLiveActivity.swift */; };
+		E5BF8AEF2DCA657F008FD3DE /* WidgetExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8AE42DCA657F008FD3DE /* WidgetExtensionBundle.swift */; };
+		E5BF8AF02DCA66C0008FD3DE /* CoffeeBrewerActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8A612DCA5F02008FD3DE /* CoffeeBrewerActivityAttributes.swift */; };
+		E5BF8AF42DCA676C008FD3DE /* LiveActivitiesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8AF32DCA676C008FD3DE /* LiveActivitiesSection.swift */; };
+		E5BF8AF62DCA6A38008FD3DE /* ActitoPushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF8AF52DCA6A38008FD3DE /* ActitoPushKit.framework */; };
+		E5BF8AF72DCA6A38008FD3DE /* ActitoPushKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF8AF52DCA6A38008FD3DE /* ActitoPushKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E5C78EF729BB5015006BF1F6 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF629BB5015006BF1F6 /* Main.swift */; };
 		E5C78EF929BB57D7006BF1F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF829BB57D7006BF1F6 /* HomeView.swift */; };
 		E5C78EFC29BB6DC5006BF1F6 /* LaunchFlowSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */; };
@@ -61,6 +80,16 @@
 		F29FD20124CB1FE3004B166D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29FD20024CB1FE3004B166D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E5BF8A7D2DCA6058008FD3DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F29FD1EC24CB1FE1004B166D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5BF8A6F2DCA6056008FD3DE;
+			remoteInfo = WidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		F22650C8258B6E890004F833 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -71,6 +100,7 @@
 				E5E5249F2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Embed Frameworks */,
 				E5BF89F52DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Embed Frameworks */,
 				E5E5EB552DC1093100B00B6A /* ActitoAssetsKit.framework in Embed Frameworks */,
+				E5BF8AF72DCA6A38008FD3DE /* ActitoPushKit.framework in Embed Frameworks */,
 				E5E5249D2DBA743A0086A403 /* ActitoKit.framework in Embed Frameworks */,
 				E5BF89F02DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Embed Frameworks */,
 				E5BF89EA2DC918C4008FD3DE /* ActitoScannablesKit.framework in Embed Frameworks */,
@@ -84,6 +114,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				E5BF8A7F2DCA6058008FD3DE /* WidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +147,22 @@
 		E5BF89F12DC9FCA3008FD3DE /* InAppMessagingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppMessagingSection.swift; sourceTree = "<group>"; };
 		E5BF89F32DCA3AFD008FD3DE /* ActitoPushUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoPushUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5BF89F62DCA3C79008FD3DE /* UIApplication+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Notifications.swift"; sourceTree = "<group>"; };
+		E5BF8A612DCA5F02008FD3DE /* CoffeeBrewerActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeBrewerActivityAttributes.swift; sourceTree = "<group>"; };
+		E5BF8A622DCA5F02008FD3DE /* LiveActivitiesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesController.swift; sourceTree = "<group>"; };
+		E5BF8A6A2DCA5FC3008FD3DE /* NotificationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSection.swift; sourceTree = "<group>"; };
+		E5BF8A702DCA6056008FD3DE /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5BF8AD92DCA657F008FD3DE /* CoffeeBrewerHeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeBrewerHeadlineView.swift; sourceTree = "<group>"; };
+		E5BF8ADA2DCA657F008FD3DE /* CoffeeBrewerLockScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeBrewerLockScreenView.swift; sourceTree = "<group>"; };
+		E5BF8ADB2DCA657F008FD3DE /* CoffeeBrewerStatusTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeBrewerStatusTrackerView.swift; sourceTree = "<group>"; };
+		E5BF8ADD2DCA657F008FD3DE /* CoffeeBrewer+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoffeeBrewer+Utilities.swift"; sourceTree = "<group>"; };
+		E5BF8ADF2DCA657F008FD3DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5BF8AE02DCA657F008FD3DE /* CoffeeBrewerLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeBrewerLiveActivity.swift; sourceTree = "<group>"; };
+		E5BF8AE12DCA657F008FD3DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5BF8AE22DCA657F008FD3DE /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		E5BF8AE32DCA657F008FD3DE /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		E5BF8AE42DCA657F008FD3DE /* WidgetExtensionBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtensionBundle.swift; sourceTree = "<group>"; };
+		E5BF8AF32DCA676C008FD3DE /* LiveActivitiesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesSection.swift; sourceTree = "<group>"; };
+		E5BF8AF52DCA6A38008FD3DE /* ActitoPushKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoPushKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5C78EF629BB5015006BF1F6 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		E5C78EF829BB57D7006BF1F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowSection.swift; sourceTree = "<group>"; };
@@ -154,6 +201,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E5BF8A6D2DCA6056008FD3DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5BF8A722DCA6056008FD3DE /* SwiftUI.framework in Frameworks */,
+				E5BF8A712DCA6056008FD3DE /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F29FD1F124CB1FE1004B166D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -161,6 +217,7 @@
 				E5E5249E2DBA743A0086A403 /* ActitoUtilitiesKit.framework in Frameworks */,
 				E5BF89F42DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Frameworks */,
 				E5E5EB542DC1093100B00B6A /* ActitoAssetsKit.framework in Frameworks */,
+				E5BF8AF62DCA6A38008FD3DE /* ActitoPushKit.framework in Frameworks */,
 				E5E5249C2DBA743A0086A403 /* ActitoKit.framework in Frameworks */,
 				E5BF89EF2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Frameworks */,
 				E5BF89E92DC918C4008FD3DE /* ActitoScannablesKit.framework in Frameworks */,
@@ -224,9 +281,53 @@
 			path = Scannables;
 			sourceTree = "<group>";
 		};
+		E5BF8A632DCA5F02008FD3DE /* Live Activities */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF8A612DCA5F02008FD3DE /* CoffeeBrewerActivityAttributes.swift */,
+				E5BF8A622DCA5F02008FD3DE /* LiveActivitiesController.swift */,
+			);
+			path = "Live Activities";
+			sourceTree = "<group>";
+		};
+		E5BF8ADC2DCA657F008FD3DE /* Coffee Brewer */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF8AD92DCA657F008FD3DE /* CoffeeBrewerHeadlineView.swift */,
+				E5BF8ADA2DCA657F008FD3DE /* CoffeeBrewerLockScreenView.swift */,
+				E5BF8ADB2DCA657F008FD3DE /* CoffeeBrewerStatusTrackerView.swift */,
+			);
+			path = "Coffee Brewer";
+			sourceTree = "<group>";
+		};
+		E5BF8ADE2DCA657F008FD3DE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF8ADD2DCA657F008FD3DE /* CoffeeBrewer+Utilities.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E5BF8AE52DCA657F008FD3DE /* WidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF8ADC2DCA657F008FD3DE /* Coffee Brewer */,
+				E5BF8ADE2DCA657F008FD3DE /* Extensions */,
+				E5BF8ADF2DCA657F008FD3DE /* Assets.xcassets */,
+				E5BF8AE02DCA657F008FD3DE /* CoffeeBrewerLiveActivity.swift */,
+				E5BF8AE12DCA657F008FD3DE /* Info.plist */,
+				E5BF8AE22DCA657F008FD3DE /* Localizable.strings */,
+				E5BF8AE32DCA657F008FD3DE /* Localizable.stringsdict */,
+				E5BF8AE42DCA657F008FD3DE /* WidgetExtensionBundle.swift */,
+			);
+			path = WidgetExtension;
+			sourceTree = "<group>";
+		};
 		E5C78EFA29BB6D71006BF1F6 /* HomeSectionViews */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF8AF32DCA676C008FD3DE /* LiveActivitiesSection.swift */,
+				E5BF8A6A2DCA5FC3008FD3DE /* NotificationsSection.swift */,
 				E5BF89F12DC9FCA3008FD3DE /* InAppMessagingSection.swift */,
 				E5E5EB5F2DC10B8A00B00B6A /* OtherFeaturesSection.swift */,
 				E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */,
@@ -320,6 +421,7 @@
 		F251694324D4077D0025B51F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF8AF52DCA6A38008FD3DE /* ActitoPushKit.framework */,
 				E5BF89F32DCA3AFD008FD3DE /* ActitoPushUIKit.framework */,
 				E5BF89EE2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework */,
 				E5BF89E82DC918C4008FD3DE /* ActitoScannablesKit.framework */,
@@ -386,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				F29FD1F624CB1FE1004B166D /* Sample */,
+				E5BF8AE52DCA657F008FD3DE /* WidgetExtension */,
 				F29FD1F524CB1FE1004B166D /* Products */,
 				F251694324D4077D0025B51F /* Frameworks */,
 			);
@@ -395,6 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				F29FD1F424CB1FE1004B166D /* Sample.app */,
+				E5BF8A702DCA6056008FD3DE /* WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -402,6 +506,7 @@
 		F29FD1F624CB1FE1004B166D /* Sample */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF8A632DCA5F02008FD3DE /* Live Activities */,
 				F23611982C77581C0063C446 /* Configuration */,
 				1A8B59F72B72842000ED46B1 /* Models */,
 				F25B6DC825CAC58C007BC2C8 /* Extensions */,
@@ -423,6 +528,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E5BF8A6F2DCA6056008FD3DE /* WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5BF8A812DCA6058008FD3DE /* Build configuration list for PBXNativeTarget "WidgetExtension" */;
+			buildPhases = (
+				E5BF8A6C2DCA6056008FD3DE /* Sources */,
+				E5BF8A6D2DCA6056008FD3DE /* Frameworks */,
+				E5BF8A6E2DCA6056008FD3DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = WidgetExtension;
+			productReference = E5BF8A702DCA6056008FD3DE /* WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F29FD1F324CB1FE1004B166D /* Sample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F29FD20824CB1FE3004B166D /* Build configuration list for PBXNativeTarget "Sample" */;
@@ -437,6 +561,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E5BF8A7E2DCA6058008FD3DE /* PBXTargetDependency */,
 			);
 			name = Sample;
 			packageProductDependencies = (
@@ -452,10 +577,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1540;
 				ORGANIZATIONNAME = Actito;
 				TargetAttributes = {
+					E5BF8A6F2DCA6056008FD3DE = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					F29FD1F324CB1FE1004B166D = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -478,11 +606,22 @@
 			projectRoot = "";
 			targets = (
 				F29FD1F324CB1FE1004B166D /* Sample */,
+				E5BF8A6F2DCA6056008FD3DE /* WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E5BF8A6E2DCA6056008FD3DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5BF8AE62DCA657F008FD3DE /* Assets.xcassets in Resources */,
+				E5BF8AE82DCA657F008FD3DE /* Localizable.strings in Resources */,
+				E5BF8AE92DCA657F008FD3DE /* Localizable.stringsdict in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F29FD1F224CB1FE1004B166D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -519,6 +658,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E5BF8A6C2DCA6056008FD3DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5BF8AEA2DCA657F008FD3DE /* CoffeeBrewerHeadlineView.swift in Sources */,
+				E5BF8AEB2DCA657F008FD3DE /* CoffeeBrewerLockScreenView.swift in Sources */,
+				E5BF8AEC2DCA657F008FD3DE /* CoffeeBrewerStatusTrackerView.swift in Sources */,
+				E5BF8AF02DCA66C0008FD3DE /* CoffeeBrewerActivityAttributes.swift in Sources */,
+				E5BF8AED2DCA657F008FD3DE /* CoffeeBrewer+Utilities.swift in Sources */,
+				E5BF8AEE2DCA657F008FD3DE /* CoffeeBrewerLiveActivity.swift in Sources */,
+				E5BF8AEF2DCA657F008FD3DE /* WidgetExtensionBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F29FD1F024CB1FE1004B166D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -529,6 +682,7 @@
 				E5C78F0529BB9A37006BF1F6 /* HomeViewModel.swift in Sources */,
 				E5590DF629C21F59006E593B /* TagsView.swift in Sources */,
 				E5B26DA029C076F300B47C6D /* DeviceRegistrationSection.swift in Sources */,
+				E5BF8A6B2DCA5FC3008FD3DE /* NotificationsSection.swift in Sources */,
 				E5E5EB5B2DC10A9E00B00B6A /* AssetDetailsView.swift in Sources */,
 				E5E5EB5C2DC10A9E00B00B6A /* AssetItemView.swift in Sources */,
 				E5E5EB5D2DC10A9E00B00B6A /* AssetsView.swift in Sources */,
@@ -538,6 +692,8 @@
 				1A8C31102BFF20DA0000BFA6 /* SampleUser.swift in Sources */,
 				E5590E0C29C33586006E593B /* AsyncImageCompat+ImageLoader.swift in Sources */,
 				E5590E1429C359B9006E593B /* Notification.Name+Custom.swift in Sources */,
+				E5BF8A642DCA5F02008FD3DE /* CoffeeBrewerActivityAttributes.swift in Sources */,
+				E5BF8A652DCA5F02008FD3DE /* LiveActivitiesController.swift in Sources */,
 				E5590E0E29C335BA006E593B /* AsyncImageCompat+ImageCache.swift in Sources */,
 				E59CFC0F29CB6D330024057A /* DetermineSize.swift in Sources */,
 				E5BF89F72DCA3C79008FD3DE /* UIApplication+Notifications.swift in Sources */,
@@ -552,6 +708,7 @@
 				F27C2FCB2B04DA3F005564F4 /* BannerView.swift in Sources */,
 				E5C78EF729BB5015006BF1F6 /* Main.swift in Sources */,
 				E5590E3329C47524006E593B /* EventsView.swift in Sources */,
+				E5BF8AF42DCA676C008FD3DE /* LiveActivitiesSection.swift in Sources */,
 				F27C2FD42B051DA0005564F4 /* Identifiables.swift in Sources */,
 				E5590DFE29C2310F006E593B /* SelectableChipView.swift in Sources */,
 				E59CFC0D29CB6CC70024057A /* BadgeView.swift in Sources */,
@@ -563,6 +720,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E5BF8A7E2DCA6058008FD3DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5BF8A6F2DCA6056008FD3DE /* WidgetExtension */;
+			targetProxy = E5BF8A7D2DCA6058008FD3DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E51FD38A29D6F2D2000897D9 /* Localizable.strings */ = {
@@ -584,6 +749,328 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E5BF8A822DCA6058008FD3DE /* Debug-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = E3J9DDFVP4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Actito. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 3.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.actito.sample.app.dev.widget-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Production";
+		};
+		E5BF8A832DCA6058008FD3DE /* Debug-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = E3J9DDFVP4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Actito. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 3.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.actito.sample.app.test.dev.widget-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Test";
+		};
+		E5BF8A842DCA6058008FD3DE /* Release-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = E3J9DDFVP4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Actito. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 3.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.actito.sample.app.widget-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-Production";
+		};
+		E5BF8A852DCA6058008FD3DE /* Release-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 6;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = E3J9DDFVP4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WidgetExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Actito. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 3.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.actito.sample.app.test.widget-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-Test";
+		};
 		F29FD20624CB1FE3004B166D /* Debug-Production */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -715,6 +1202,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Sample/Sample.dev.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = E3J9DDFVP4;
 				INFOPLIST_FILE = Sample/Info.plist;
 				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
@@ -926,6 +1414,17 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E5BF8A812DCA6058008FD3DE /* Build configuration list for PBXNativeTarget "WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5BF8A822DCA6058008FD3DE /* Debug-Production */,
+				E5BF8A832DCA6058008FD3DE /* Debug-Test */,
+				E5BF8A842DCA6058008FD3DE /* Release-Production */,
+				E5BF8A852DCA6058008FD3DE /* Release-Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release-Production";
+		};
 		F29FD1EF24CB1FE1004B166D /* Build configuration list for PBXProject "Sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

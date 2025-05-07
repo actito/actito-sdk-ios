@@ -4,6 +4,7 @@
 
 import ActitoInAppMessagingKit
 import ActitoKit
+import ActitoPushKit
 import ActitoPushUIKit
 import ActitoScannablesKit
 import ActivityKit
@@ -23,7 +24,14 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
         // Enable Proxyman debugging.
         // Atlantis.start()
 
+        if #available(iOS 14.0, *) {
+            Actito.shared.push().presentationOptions = [.banner, .badge, .sound]
+        } else {
+            Actito.shared.push().presentationOptions = [.alert, .badge, .sound]
+        }
+
         Actito.shared.delegate = self
+        Actito.shared.push().delegate = self
         Actito.shared.pushUI().delegate = self
         Actito.shared.inAppMessaging().delegate = self
         Actito.shared.scannables().delegate = self
@@ -34,6 +42,10 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
             } catch {
                 Logger.main.error("Failed to launch Actito. \(error)")
             }
+        }
+
+        if #available(iOS 16.1, *) {
+            LiveActivitiesController.shared.startMonitoring()
         }
 
         if Actito.shared.canEvaluateDeferredLink {
@@ -101,6 +113,57 @@ extension AppDelegate: ActitoDelegate {
                 Logger.main.error("Failed to registered device: \(error)")
             }
         }
+    }
+}
+
+extension AppDelegate: ActitoPushDelegate {
+    internal func actito(_: ActitoPush, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Logger.main.error("Actito: failed to register for remote notifications: \(error)")
+    }
+
+    internal func actito(_ ActitoPush: any ActitoPush, didChangeSubscription subscription: ActitoPushSubscription?) {
+        Logger.main.info("Notification center subscription changed: \(String(describing: subscription))")
+    }
+
+    internal func actito(_: ActitoPush, didChangeNotificationSettings allowedUI: Bool) {
+        Logger.main.info("Notification center allowedUI changed: \(allowedUI)")
+    }
+
+    internal func actito(_: ActitoPush, didReceiveSystemNotification notification: ActitoSystemNotification) {
+        Logger.main.info("Actito: received a system notification: \(String(describing: notification))")
+    }
+
+    internal func actito(_: ActitoPush, didReceiveNotification notification: ActitoNotification, deliveryMechanism: ActitoNotificationDeliveryMechanism) {
+        Logger.main.info("Actito: received a notification: \(String(describing: notification))")
+        Logger.main.info("Actito: received notification delivery mechanism: \(deliveryMechanism.rawValue)")
+    }
+
+    internal func actito(_: ActitoPush, didReceiveUnknownNotification userInfo: [AnyHashable: Any]) {
+        Logger.main.info("Actito: received an unknown notification: \(userInfo)")
+    }
+
+    internal func actito(_: ActitoPush, shouldOpenSettings _: ActitoNotification?) {
+        Logger.main.info("Actito: should open notification settings")
+    }
+
+    internal func actito(_: ActitoPush, didOpenNotification notification: ActitoNotification) {
+        UIApplication.shared.present(notification)
+    }
+
+    internal func actito(_: ActitoPush, didOpenAction action: ActitoNotification.Action, for notification: ActitoNotification) {
+        guard let rootViewController = window?.rootViewController else {
+            return
+        }
+
+        Actito.shared.pushUI().presentAction(action, for: notification, in: rootViewController)
+    }
+
+    internal func actito(_: ActitoPush, didOpenUnknownNotification _: [AnyHashable: Any]) {
+        Logger.main.info("Actito: opened unknown notification")
+    }
+
+    internal func actito(_: ActitoPush, didOpenUnknownAction _: String, for _: [AnyHashable: Any], responseText _: String?) {
+        Logger.main.info("Actito: opened unknown action")
     }
 }
 

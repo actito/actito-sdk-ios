@@ -4,6 +4,7 @@
 
 import ActitoInAppMessagingKit
 import ActitoKit
+import ActitoPushKit
 import ActivityKit
 import Combine
 import CoreLocation
@@ -17,11 +18,20 @@ internal class HomeViewModel: NSObject, ObservableObject {
 
     @Published internal  private(set) var viewState: ViewState = .isNotReady
     @Published internal private(set) var userMessages: [UserMessage] = []
+    @Published internal private(set) var badge = 0
 
     // Launch Flow
 
     @Published internal private(set) var isConfigured = Actito.shared.isConfigured
     @Published internal private(set) var isReady = Actito.shared.isReady
+
+    // Notifications
+
+    @Published internal var hasNotificationsAndPermission = Actito.shared.push().allowedUI && Actito.shared.push().hasRemoteNotificationsEnabled
+    @Published internal private(set) var hasNotificationsEnabled = Actito.shared.push().hasRemoteNotificationsEnabled
+    @Published internal private(set) var allowedUi = Actito.shared.push().allowedUI
+    @Published internal private(set) var subscription = Actito.shared.push().subscription
+    @Published internal private(set) var notificationsPermission: NotificationsPermissionStatus? = nil
 
     // Do not disturb
 
@@ -39,6 +49,10 @@ internal class HomeViewModel: NSObject, ObservableObject {
     @Published internal var userId = ""
     @Published internal var userName = ""
     @Published internal private(set) var isDeviceRegistered = false
+
+    // Live Activities
+
+    @Published internal private(set) var coffeeBrewerLiveActivityState: CoffeeBrewerActivityAttributes.BrewingState?
 
     // Application Info
 
@@ -64,14 +78,33 @@ internal class HomeViewModel: NSObject, ObservableObject {
             }
             .store(in: &cancellables)
 
+        Actito.shared.push().allowedUIStream
+            .sink { [weak self] allowedUI in
+                self?.checkNotificationsStatus()
+                Logger.main.info("Combine publisher allowedUI: \(allowedUI)")
+            }
+            .store(in: &cancellables)
+
+        Actito.shared.push().subscriptionStream
+            .handleEvents(receiveOutput: { subscription in
+                Logger.main.info("Combine publisher subscription: \(String(describing: subscription))")
+            })
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$subscription)
+
         // Load initial stats
 
         updateStats()
+
+        if #available(iOS 16.1, *), LiveActivitiesController.shared.hasLiveActivityCapabilities {
+            monitorLiveActivities()
+        }
 
         applicationInfo = getApplicationInfo()
     }
 
     internal func updateStats() {
+        checkNotificationsStatus()
         checkDndStatus()
         checkCurrentDevice()
     }
@@ -88,6 +121,118 @@ extension HomeViewModel {
     internal func actitoUnlaunch() {
         Logger.main.info("Actito unlaunch clicked")
         Actito.shared.unlaunch { _ in }
+    }
+}
+
+// Notifications
+
+extension HomeViewModel {
+    internal func updateNotificationsStatus(enabled: Bool) {
+        Logger.main.info("Notifications Toggle switched \(enabled ? "ON" : "OFF")")
+
+        if enabled {
+            Logger.main.info("Checking notifications permission")
+
+            Task {
+                let status = await checkNotificationsPermissionStatus()
+
+                if status == .permanentlyDenied {
+                    Logger.main.info("Notification permission permanently denied, skipping enabling remote notifications")
+                    hasNotificationsAndPermission = false
+
+                    return
+                }
+
+                if status == .notDetermined {
+                    Logger.main.info("Requesting notifications permission")
+
+                    do {
+                        let granted = try await notificationCenter.requestAuthorization(options: Actito.shared.push().authorizationOptions)
+
+                        userMessages.append(
+                            UserMessage(variant: .requestNotificationsPermissionSuccess)
+                        )
+
+                        switch granted {
+                        case true:
+                            Logger.main.info("Granted notifications permission")
+
+                        case false:
+                            Logger.main.error("Notifications permission request denied, skipping enabling remote notifications")
+                            hasNotificationsAndPermission = false
+
+                            return
+                        }
+                    } catch {
+                        Logger.main.error("Failed to request notifications authorization: \(error)")
+                        hasNotificationsAndPermission = false
+
+                        userMessages.append(
+                            UserMessage(variant: .requestNotificationsPermissionFailure)
+                        )
+                    }
+                }
+
+                Logger.main.info("Enabling remote notifications")
+
+                do {
+                    let result = try await Actito.shared.push().enableRemoteNotifications()
+                    Logger.main.info("Successfully enabled remote notifications, result bool: \(result)")
+
+                    userMessages.append(
+                        UserMessage(variant: .enableRemoteNotificationsSuccess)
+                    )
+                } catch {
+                    Logger.main.error("Failed to enable remote notifications: \(error)")
+
+                    userMessages.append(
+                        UserMessage(variant: .enableRemoteNotificationsFailure)
+                    )
+                }
+
+                checkNotificationsStatus()
+            }
+        } else {
+            Task {
+                Logger.main.info("Disabling remote notifications")
+                try await Actito.shared.push().disableRemoteNotifications()
+
+                checkNotificationsStatus()
+            }
+        }
+    }
+
+    private func checkNotificationsPermissionStatus() async -> (NotificationsPermissionStatus) {
+        await withCheckedContinuation { completion in
+            UNUserNotificationCenter.current().getNotificationSettings { status in
+                var permissionStatus = NotificationsPermissionStatus.denied
+
+                if status.authorizationStatus == .notDetermined {
+                    permissionStatus = NotificationsPermissionStatus.notDetermined
+                }
+
+                if status.authorizationStatus == .authorized {
+                    permissionStatus = NotificationsPermissionStatus.granted
+                }
+
+                if status.authorizationStatus == .denied {
+                    permissionStatus = NotificationsPermissionStatus.permanentlyDenied
+                }
+
+                completion.resume(returning: permissionStatus)
+            }
+        }
+    }
+
+    internal func checkNotificationsStatus() {
+        Task {
+            let status = await checkNotificationsPermissionStatus()
+
+            hasNotificationsAndPermission = Actito.shared.push().hasRemoteNotificationsEnabled && status == .granted
+            notificationsPermission = status
+            hasNotificationsEnabled = Actito.shared.push().hasRemoteNotificationsEnabled
+            allowedUi = Actito.shared.push().allowedUI
+        }
     }
 }
 
@@ -217,6 +362,52 @@ extension HomeViewModel {
     }
 }
 
+// Live Activities
+
+extension HomeViewModel {
+    @available(iOS 16.1, *)
+    private func monitorLiveActivities() {
+        withAnimation {
+            // Load the initial state.
+            coffeeBrewerLiveActivityState = Activity<CoffeeBrewerActivityAttributes>.activities.first?.contentState.state
+        }
+
+        Task {
+            // Listen to on-going and new Live Activities.
+            for await activity in Activity<CoffeeBrewerActivityAttributes>.activityUpdates {
+                Task {
+                    // Listen to state changes of each activity.
+                    for await state in activity.activityStateUpdates {
+                        Logger.main.debug("Live activity '\(activity.id)' state = '\(String(describing: state))'")
+
+                        switch activity.activityState {
+                        case .active:
+                            Task {
+                                // Listen to content updates of each active activity.
+                                for await state in activity.contentStateUpdates {
+                                    withAnimation {
+                                        coffeeBrewerLiveActivityState = state.state
+                                    }
+                                }
+                            }
+
+                        case .dismissed, .ended:
+                            // Reset the UI controls.
+                            coffeeBrewerLiveActivityState = nil
+
+                        case .stale:
+                            break
+
+                        @unknown default:
+                            Logger.main.warning("Live activity '\(activity.id)' unknown state '\(String(describing: state))'.")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 // Application Info
 
 extension HomeViewModel {
@@ -257,6 +448,44 @@ extension HomeViewModel {
             case updateDoNotDisturbFailure
             case registerDeviceSuccess
             case registerDeviceFailure
+        }
+    }
+}
+
+extension HomeViewModel {
+    internal enum NotificationsPermissionStatus: String, CaseIterable {
+        case notDetermined = "permission_status_not_determined"
+        case granted = "permission_status_granted"
+        case denied = "permission_status_denied"
+        case permanentlyDenied = "permission_status_permanently_denied"
+
+        internal var localized: String {
+            return NSLocalizedString(rawValue, comment: "")
+        }
+    }
+
+    internal enum LocationPermissionGroup: CaseIterable {
+        case locationWhenInUse
+        case locationAlways
+        case bluetoothScan
+    }
+
+    internal enum LocationPermissionGroupStatus: CaseIterable {
+        case notDetermined
+        case granted
+        case restricted
+        case permanentlyDenied
+    }
+
+    internal enum LocationPermissionStatus: String, CaseIterable {
+        case notDetermined = "permission_status_not_determined"
+        case restricted = "permission_status_restricted"
+        case permanentlyDenied = "permission_status_permanently_denied"
+        case whenInUse = "permission_status_when_in_use"
+        case always = "permission_status_always"
+
+        internal var localized: String {
+            return NSLocalizedString(rawValue, comment: "")
         }
     }
 }
