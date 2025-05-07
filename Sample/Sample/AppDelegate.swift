@@ -4,6 +4,7 @@
 
 import ActitoInAppMessagingKit
 import ActitoKit
+import ActitoPushUIKit
 import ActitoScannablesKit
 import ActivityKit
 import CoreLocation
@@ -23,6 +24,7 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
         // Atlantis.start()
 
         Actito.shared.delegate = self
+        Actito.shared.pushUI().delegate = self
         Actito.shared.inAppMessaging().delegate = self
         Actito.shared.scannables().delegate = self
 
@@ -102,6 +104,48 @@ extension AppDelegate: ActitoDelegate {
     }
 }
 
+extension AppDelegate: ActitoPushUIDelegate {
+    internal func actito(_: ActitoPushUI, willPresentNotification notification: ActitoNotification) {
+        Logger.main.info("Actito: will present notification '\(notification.id)'")
+    }
+
+    internal func actito(_: ActitoPushUI, didPresentNotification notification: ActitoNotification) {
+        Logger.main.info("Actito: did present notification '\(notification.id)'")
+    }
+
+    internal func actito(_: ActitoPushUI, didFailToPresentNotification notification: ActitoNotification) {
+        Logger.main.error("Actito: did fail to present notification '\(notification.id)'")
+    }
+
+    internal func actito(_: ActitoPushUI, didFinishPresentingNotification notification: ActitoNotification) {
+        Logger.main.info("Actito: did finish presenting notification '\(notification.id)'")
+    }
+
+    internal func actito(_: ActitoPushUI, didClickURL url: URL, in notification: ActitoNotification) {
+        Logger.main.info("Actito: did click url '\(url)' in notification '\(notification.id)'")
+    }
+
+    internal func actito(_: ActitoPushUI, willExecuteAction action: ActitoNotification.Action, for notification: ActitoNotification) {
+        Logger.main.info("Actito: will execute action '\(action.label)' in notification '\(notification.id)'")
+    }
+
+    internal func actito(_: ActitoPushUI, didExecuteAction action: ActitoNotification.Action, for notification: ActitoNotification) {
+        Logger.main.info("Actito: did execute action '\(action.label)' in notification '\(notification.id)'")
+    }
+
+    internal func actito(_: ActitoPushUI, didNotExecuteAction action: ActitoNotification.Action, for notification: ActitoNotification) {
+        Logger.main.info("Actito: did not execute action '\(action.label)' in notification '\(notification.id)'")
+    }
+
+    internal func actito(_: ActitoPushUI, didFailToExecuteAction action: ActitoNotification.Action, for notification: ActitoNotification, error _: Error?) {
+        Logger.main.error("Actito: did fail to execute action '\(action.label)' in notification '\(notification.id)'")
+    }
+
+    internal func actito(_: ActitoPushUI, didReceiveCustomAction _: URL, in _: ActitoNotification.Action, for _: ActitoNotification) {
+        //
+    }
+}
+
 extension AppDelegate: ActitoInAppMessagingDelegate {
     internal func actito(_: ActitoInAppMessaging, didPresentMessage message: ActitoInAppMessage) {
         Logger.main.info("in-app message presented = \(String(describing: message))")
@@ -133,7 +177,7 @@ extension AppDelegate: ActitoScannablesDelegate {
             return
         }
 
-//        UIApplication.shared.present(notification)
+        UIApplication.shared.present(notification)
     }
 
     internal func actito(_: ActitoScannables, didInvalidateScannerSession error: Error) {
