@@ -54,6 +54,11 @@
 		E5BF8AF42DCA676C008FD3DE /* LiveActivitiesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8AF32DCA676C008FD3DE /* LiveActivitiesSection.swift */; };
 		E5BF8AF62DCA6A38008FD3DE /* ActitoPushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF8AF52DCA6A38008FD3DE /* ActitoPushKit.framework */; };
 		E5BF8AF72DCA6A38008FD3DE /* ActitoPushKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF8AF52DCA6A38008FD3DE /* ActitoPushKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5BF8B032DCB691E008FD3DE /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E5BF8AFC2DCB691D008FD3DE /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E5BF8B0F2DCB6A86008FD3DE /* ActitoNotificationServiceExtensionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF8B0E2DCB6A86008FD3DE /* ActitoNotificationServiceExtensionKit.framework */; };
+		E5BF8B152DCB6AE5008FD3DE /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8B132DCB6AE5008FD3DE /* NotificationService.swift */; };
+		E5BF8B172DCBA422008FD3DE /* ActitoNotificationServiceExtensionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF8B0E2DCB6A86008FD3DE /* ActitoNotificationServiceExtensionKit.framework */; };
+		E5BF8B182DCBA422008FD3DE /* ActitoNotificationServiceExtensionKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF8B0E2DCB6A86008FD3DE /* ActitoNotificationServiceExtensionKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E5C78EF729BB5015006BF1F6 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF629BB5015006BF1F6 /* Main.swift */; };
 		E5C78EF929BB57D7006BF1F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF829BB57D7006BF1F6 /* HomeView.swift */; };
 		E5C78EFC29BB6DC5006BF1F6 /* LaunchFlowSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */; };
@@ -88,6 +93,13 @@
 			remoteGlobalIDString = E5BF8A6F2DCA6056008FD3DE;
 			remoteInfo = WidgetExtension;
 		};
+		E5BF8B012DCB691E008FD3DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F29FD1EC24CB1FE1004B166D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5BF8AFB2DCB691D008FD3DE;
+			remoteInfo = NotificationService;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +113,7 @@
 				E5BF89F52DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Embed Frameworks */,
 				E5E5EB552DC1093100B00B6A /* ActitoAssetsKit.framework in Embed Frameworks */,
 				E5BF8AF72DCA6A38008FD3DE /* ActitoPushKit.framework in Embed Frameworks */,
+				E5BF8B182DCBA422008FD3DE /* ActitoNotificationServiceExtensionKit.framework in Embed Frameworks */,
 				E5E5249D2DBA743A0086A403 /* ActitoKit.framework in Embed Frameworks */,
 				E5BF89F02DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Embed Frameworks */,
 				E5BF89EA2DC918C4008FD3DE /* ActitoScannablesKit.framework in Embed Frameworks */,
@@ -115,6 +128,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				E5BF8A7F2DCA6058008FD3DE /* WidgetExtension.appex in Embed Foundation Extensions */,
+				E5BF8B032DCB691E008FD3DE /* NotificationService.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,6 +177,10 @@
 		E5BF8AE42DCA657F008FD3DE /* WidgetExtensionBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtensionBundle.swift; sourceTree = "<group>"; };
 		E5BF8AF32DCA676C008FD3DE /* LiveActivitiesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesSection.swift; sourceTree = "<group>"; };
 		E5BF8AF52DCA6A38008FD3DE /* ActitoPushKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoPushKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5BF8AFC2DCB691D008FD3DE /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5BF8B0E2DCB6A86008FD3DE /* ActitoNotificationServiceExtensionKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoNotificationServiceExtensionKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5BF8B122DCB6AE5008FD3DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5BF8B132DCB6AE5008FD3DE /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		E5C78EF629BB5015006BF1F6 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		E5C78EF829BB57D7006BF1F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowSection.swift; sourceTree = "<group>"; };
@@ -210,6 +228,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5BF8AF92DCB691D008FD3DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5BF8B0F2DCB6A86008FD3DE /* ActitoNotificationServiceExtensionKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F29FD1F124CB1FE1004B166D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,6 +244,7 @@
 				E5BF89F42DCA3AFD008FD3DE /* ActitoPushUIKit.framework in Frameworks */,
 				E5E5EB542DC1093100B00B6A /* ActitoAssetsKit.framework in Frameworks */,
 				E5BF8AF62DCA6A38008FD3DE /* ActitoPushKit.framework in Frameworks */,
+				E5BF8B172DCBA422008FD3DE /* ActitoNotificationServiceExtensionKit.framework in Frameworks */,
 				E5E5249C2DBA743A0086A403 /* ActitoKit.framework in Frameworks */,
 				E5BF89EF2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Frameworks */,
 				E5BF89E92DC918C4008FD3DE /* ActitoScannablesKit.framework in Frameworks */,
@@ -323,6 +350,15 @@
 			path = WidgetExtension;
 			sourceTree = "<group>";
 		};
+		E5BF8B142DCB6AE5008FD3DE /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				E5BF8B122DCB6AE5008FD3DE /* Info.plist */,
+				E5BF8B132DCB6AE5008FD3DE /* NotificationService.swift */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
 		E5C78EFA29BB6D71006BF1F6 /* HomeSectionViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +457,7 @@
 		F251694324D4077D0025B51F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF8B0E2DCB6A86008FD3DE /* ActitoNotificationServiceExtensionKit.framework */,
 				E5BF8AF52DCA6A38008FD3DE /* ActitoPushKit.framework */,
 				E5BF89F32DCA3AFD008FD3DE /* ActitoPushUIKit.framework */,
 				E5BF89EE2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework */,
@@ -489,6 +526,7 @@
 			children = (
 				F29FD1F624CB1FE1004B166D /* Sample */,
 				E5BF8AE52DCA657F008FD3DE /* WidgetExtension */,
+				E5BF8B142DCB6AE5008FD3DE /* NotificationService */,
 				F29FD1F524CB1FE1004B166D /* Products */,
 				F251694324D4077D0025B51F /* Frameworks */,
 			);
@@ -499,6 +537,7 @@
 			children = (
 				F29FD1F424CB1FE1004B166D /* Sample.app */,
 				E5BF8A702DCA6056008FD3DE /* WidgetExtension.appex */,
+				E5BF8AFC2DCB691D008FD3DE /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -547,6 +586,25 @@
 			productReference = E5BF8A702DCA6056008FD3DE /* WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		E5BF8AFB2DCB691D008FD3DE /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5BF8B092DCB691E008FD3DE /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				E5BF8AF82DCB691D008FD3DE /* Sources */,
+				E5BF8AF92DCB691D008FD3DE /* Frameworks */,
+				E5BF8AFA2DCB691D008FD3DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			packageProductDependencies = (
+			);
+			productName = NotificationService;
+			productReference = E5BF8AFC2DCB691D008FD3DE /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F29FD1F324CB1FE1004B166D /* Sample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F29FD20824CB1FE3004B166D /* Build configuration list for PBXNativeTarget "Sample" */;
@@ -562,6 +620,7 @@
 			);
 			dependencies = (
 				E5BF8A7E2DCA6058008FD3DE /* PBXTargetDependency */,
+				E5BF8B022DCB691E008FD3DE /* PBXTargetDependency */,
 			);
 			name = Sample;
 			packageProductDependencies = (
@@ -582,6 +641,9 @@
 				ORGANIZATIONNAME = Actito;
 				TargetAttributes = {
 					E5BF8A6F2DCA6056008FD3DE = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					E5BF8AFB2DCB691D008FD3DE = {
 						CreatedOnToolsVersion = 16.2;
 					};
 					F29FD1F324CB1FE1004B166D = {
@@ -606,6 +668,7 @@
 			projectRoot = "";
 			targets = (
 				F29FD1F324CB1FE1004B166D /* Sample */,
+				E5BF8AFB2DCB691D008FD3DE /* NotificationService */,
 				E5BF8A6F2DCA6056008FD3DE /* WidgetExtension */,
 			);
 		};
@@ -619,6 +682,13 @@
 				E5BF8AE62DCA657F008FD3DE /* Assets.xcassets in Resources */,
 				E5BF8AE82DCA657F008FD3DE /* Localizable.strings in Resources */,
 				E5BF8AE92DCA657F008FD3DE /* Localizable.stringsdict in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5BF8AFA2DCB691D008FD3DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +739,14 @@
 				E5BF8AED2DCA657F008FD3DE /* CoffeeBrewer+Utilities.swift in Sources */,
 				E5BF8AEE2DCA657F008FD3DE /* CoffeeBrewerLiveActivity.swift in Sources */,
 				E5BF8AEF2DCA657F008FD3DE /* WidgetExtensionBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5BF8AF82DCB691D008FD3DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5BF8B152DCB6AE5008FD3DE /* NotificationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,6 +804,11 @@
 			isa = PBXTargetDependency;
 			target = E5BF8A6F2DCA6056008FD3DE /* WidgetExtension */;
 			targetProxy = E5BF8A7D2DCA6058008FD3DE /* PBXContainerItemProxy */;
+		};
+		E5BF8B022DCB691E008FD3DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5BF8AFB2DCB691D008FD3DE /* NotificationService */;
+			targetProxy = E5BF8B012DCB691E008FD3DE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1060,6 +1143,320 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.actito.sample.app.test.widget-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-Test";
+		};
+		E5BF8B042DCB691E008FD3DE /* Debug-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 5;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = E3J9DDFVP4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Actito. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 3.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.actito.sample.app.dev.notification-service-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Production";
+		};
+		E5BF8B052DCB691E008FD3DE /* Debug-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 5;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = E3J9DDFVP4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Actito. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 3.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.actito.sample.app.test.dev.notification-service-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Test";
+		};
+		E5BF8B062DCB691E008FD3DE /* Release-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 5;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = E3J9DDFVP4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Actito. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 3.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.actito.sample.app.notification-service-extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release-Production";
+		};
+		E5BF8B072DCB691E008FD3DE /* Release-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 5;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = E3J9DDFVP4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 Actito. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 3.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.actito.sample.app.test.notification-service-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1421,6 +1818,17 @@
 				E5BF8A832DCA6058008FD3DE /* Debug-Test */,
 				E5BF8A842DCA6058008FD3DE /* Release-Production */,
 				E5BF8A852DCA6058008FD3DE /* Release-Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release-Production";
+		};
+		E5BF8B092DCB691E008FD3DE /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5BF8B042DCB691E008FD3DE /* Debug-Production */,
+				E5BF8B052DCB691E008FD3DE /* Debug-Test */,
+				E5BF8B062DCB691E008FD3DE /* Release-Production */,
+				E5BF8B072DCB691E008FD3DE /* Release-Test */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release-Production";
