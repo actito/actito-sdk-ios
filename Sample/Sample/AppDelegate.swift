@@ -3,6 +3,7 @@
 //
 
 import ActitoInAppMessagingKit
+import ActitoInboxKit
 import ActitoKit
 import ActitoPushKit
 import ActitoPushUIKit
@@ -34,6 +35,7 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
         Actito.shared.push().delegate = self
         Actito.shared.pushUI().delegate = self
         Actito.shared.inAppMessaging().delegate = self
+        Actito.shared.inbox().delegate = self
         Actito.shared.scannables().delegate = self
 
         Task {
@@ -206,6 +208,16 @@ extension AppDelegate: ActitoPushUIDelegate {
 
     internal func actito(_: ActitoPushUI, didReceiveCustomAction _: URL, in _: ActitoNotification.Action, for _: ActitoNotification) {
         //
+    }
+}
+
+extension AppDelegate: ActitoInboxDelegate {
+    internal func actito(_: ActitoInbox, didUpdateInbox items: [ActitoInboxItem]) {
+        Logger.main.info("Delegate inbox update. Total = \(items.count)")
+    }
+
+    internal func actito(_: ActitoInbox, didUpdateBadge badge: Int) {
+        Logger.main.info("Delegate badge update. Unread = \(badge)")
     }
 }
 

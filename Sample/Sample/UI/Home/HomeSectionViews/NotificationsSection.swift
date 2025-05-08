@@ -73,7 +73,7 @@ internal struct NotificationsSection: View {
             }
 
             NavigationLink {
-//                InboxView()
+                InboxView()
             } label: {
                 HStack {
                     Label {
