@@ -3,6 +3,7 @@
 //
 
 import ActitoInAppMessagingKit
+import ActitoInboxKit
 import ActitoKit
 import ActitoPushKit
 import ActivityKit
@@ -18,7 +19,7 @@ internal class HomeViewModel: NSObject, ObservableObject {
 
     @Published internal  private(set) var viewState: ViewState = .isNotReady
     @Published internal private(set) var userMessages: [UserMessage] = []
-    @Published internal private(set) var badge = 0
+    @Published internal private(set) var badge = Actito.shared.inbox().badge
 
     // Launch Flow
 
@@ -77,6 +78,23 @@ internal class HomeViewModel: NSObject, ObservableObject {
                 self?.applicationInfo = self?.getApplicationInfo()
             }
             .store(in: &cancellables)
+
+        // Listening for inbox items and badge updates
+
+        Actito.shared.inbox().itemsStream
+            .sink { items in
+                Logger.main.info("Combine publisher inbox update. Total = \(items.count)")
+            }
+            .store(in: &cancellables)
+
+        Actito.shared.inbox().badgeStream
+            .handleEvents(receiveOutput: { badge in
+                Logger.main.info("Combine publisher badge update. Unread = \(badge)")
+            })
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$badge)
+
+        // Listening for notification changes (only when has remote notifications enabled)
 
         Actito.shared.push().allowedUIStream
             .sink { [weak self] allowedUI in
