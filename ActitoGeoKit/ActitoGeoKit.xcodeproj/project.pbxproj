@@ -1,0 +1,1157 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A32741C2C5B3765002B78BA /* ActitoVisitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A32741B2C5B3765002B78BA /* ActitoVisitTest.swift */; };
+		1A52DE722CA45C2C00B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE712CA45C2C00B5F56C /* Logger.swift */; };
+		1ACA07DF2C59C4E8002CB47D /* ActitoHeadingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07DE2C59C4E8002CB47D /* ActitoHeadingTest.swift */; };
+		1ACA07E12C59C63B002CB47D /* ActitoRegionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07E02C59C63B002CB47D /* ActitoRegionTest.swift */; };
+		1ACA07E32C59CD88002CB47D /* ActitoBeaconTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07E22C59CD88002CB47D /* ActitoBeaconTest.swift */; };
+		1ACA07E52C59CF79002CB47D /* ActitoLocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07E42C59CF79002CB47D /* ActitoLocationTest.swift */; };
+		1ACA07E72C5A05C3002CB47D /* GeoPushAPIModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07E62C5A05C3002CB47D /* GeoPushAPIModelsTest.swift */; };
+		E577A7652DC4C7A300231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7632DC4C7A300231193 /* ActitoKit.framework */; };
+		E577A7672DC4C7A300231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7642DC4C7A300231193 /* ActitoUtilitiesKit.framework */; };
+		F2422E4926CC0FD800D035AD /* ActitoBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2422E4826CC0FD800D035AD /* ActitoBeacon.swift */; };
+		F24FF2F426D3DF1D00BB7B1C /* ActitoBeaconSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24FF2F326D3DF1D00BB7B1C /* ActitoBeaconSession.swift */; };
+		F24FF2F626D3FFFA00BB7B1C /* ActitoBeacon+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24FF2F526D3FFFA00BB7B1C /* ActitoBeacon+Extensions.swift */; };
+		F24FF2F826D4018E00BB7B1C /* ActitoGeoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24FF2F726D4018E00BB7B1C /* ActitoGeoDelegate.swift */; };
+		F258DD7A24BC4E95006F9ABD /* ActitoGeoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F258DD7024BC4E95006F9ABD /* ActitoGeoKit.framework */; };
+		F258DD8124BC4E95006F9ABD /* ActitoGeoKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F258DD7324BC4E95006F9ABD /* ActitoGeoKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F267DA4C273EBB2900448A8F /* ActitoGeoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F267DA4B273EBB2900448A8F /* ActitoGeoError.swift */; };
+		F26851812B8FEBFA00936EA3 /* ActitoBeaconSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26851802B8FEBFA00936EA3 /* ActitoBeaconSession+Extensions.swift */; };
+		F2696AAA26C275C5002EA653 /* ActitoGeoImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2696AA926C275C5002EA653 /* ActitoGeoImpl.swift */; };
+		F2696AB326C2B43C002EA653 /* PushAPI+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2696AB226C2B43C002EA653 /* PushAPI+Models.swift */; };
+		F2696AB526C2B446002EA653 /* PushAPI+Payloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2696AB426C2B446002EA653 /* PushAPI+Payloads.swift */; };
+		F2696AB726C2B44F002EA653 /* PushAPI+Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2696AB626C2B44F002EA653 /* PushAPI+Responses.swift */; };
+		F26E6DCF26C44BE500FA67CB /* ActitoRegion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26E6DCE26C44BE500FA67CB /* ActitoRegion+Extensions.swift */; };
+		F26E6DD126C44C4A00FA67CB /* ActitoRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26E6DD026C44C4A00FA67CB /* ActitoRegion.swift */; };
+		F288C1F826C407D600B6C83C /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288C1F726C407D600B6C83C /* LocalStorage.swift */; };
+		F29017EB2BD277A2009DB80B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F29017EA2BD277A2009DB80B /* PrivacyInfo.xcprivacy */; };
+		F29FCFDA26C5688200A2C7E1 /* Collections+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FCFD926C5688200A2C7E1 /* Collections+Extensions.swift */; };
+		F2CC441C26DD15A400740C06 /* ActitoHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CC441B26DD15A400740C06 /* ActitoHeading.swift */; };
+		F2CC441E26DD18E100740C06 /* ActitoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CC441D26DD18E100740C06 /* ActitoLocation.swift */; };
+		F2CDE01A26C672F200CC4867 /* MapKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE01926C672F200CC4867 /* MapKit+Extensions.swift */; };
+		F2CDE01C26C6AB7C00CC4867 /* ActitoGeo+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE01B26C6AB7C00CC4867 /* ActitoGeo+Events.swift */; };
+		F2CDE01E26C6B0BB00CC4867 /* ActitoRegionSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE01D26C6B0BB00CC4867 /* ActitoRegionSession.swift */; };
+		F2DAB395271F0C46002B5F27 /* ActitoGeo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DAB394271F0C46002B5F27 /* ActitoGeo.swift */; };
+		F2DAB39B271F0FCB002B5F27 /* ActitoGeo+Augment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DAB39A271F0FCB002B5F27 /* ActitoGeo+Augment.swift */; };
+		F2FC8BE126D67CE400089F1B /* ActitoVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC8BE026D67CE400089F1B /* ActitoVisit.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F258DD7B24BC4E95006F9ABD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F258DD6724BC4E95006F9ABD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F258DD6F24BC4E95006F9ABD;
+			remoteInfo = Location;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A32741B2C5B3765002B78BA /* ActitoVisitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoVisitTest.swift; sourceTree = "<group>"; };
+		1A52DE712CA45C2C00B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1ACA07DE2C59C4E8002CB47D /* ActitoHeadingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoHeadingTest.swift; sourceTree = "<group>"; };
+		1ACA07E02C59C63B002CB47D /* ActitoRegionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoRegionTest.swift; sourceTree = "<group>"; };
+		1ACA07E22C59CD88002CB47D /* ActitoBeaconTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoBeaconTest.swift; sourceTree = "<group>"; };
+		1ACA07E42C59CF79002CB47D /* ActitoLocationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLocationTest.swift; sourceTree = "<group>"; };
+		1ACA07E62C5A05C3002CB47D /* GeoPushAPIModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPushAPIModelsTest.swift; sourceTree = "<group>"; };
+		E577A7632DC4C7A300231193 /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E577A7642DC4C7A300231193 /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2422E4826CC0FD800D035AD /* ActitoBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoBeacon.swift; sourceTree = "<group>"; };
+		F24FF2F326D3DF1D00BB7B1C /* ActitoBeaconSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoBeaconSession.swift; sourceTree = "<group>"; };
+		F24FF2F526D3FFFA00BB7B1C /* ActitoBeacon+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoBeacon+Extensions.swift"; sourceTree = "<group>"; };
+		F24FF2F726D4018E00BB7B1C /* ActitoGeoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoGeoDelegate.swift; sourceTree = "<group>"; };
+		F258DD7024BC4E95006F9ABD /* ActitoGeoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActitoGeoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F258DD7324BC4E95006F9ABD /* ActitoGeoKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActitoGeoKit.h; sourceTree = "<group>"; };
+		F258DD7424BC4E95006F9ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F258DD7924BC4E95006F9ABD /* ActitoGeoKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActitoGeoKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F258DD8024BC4E95006F9ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F267DA4B273EBB2900448A8F /* ActitoGeoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoGeoError.swift; sourceTree = "<group>"; };
+		F26851802B8FEBFA00936EA3 /* ActitoBeaconSession+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoBeaconSession+Extensions.swift"; sourceTree = "<group>"; };
+		F2696AA926C275C5002EA653 /* ActitoGeoImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoGeoImpl.swift; sourceTree = "<group>"; };
+		F2696AB226C2B43C002EA653 /* PushAPI+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushAPI+Models.swift"; sourceTree = "<group>"; };
+		F2696AB426C2B446002EA653 /* PushAPI+Payloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushAPI+Payloads.swift"; sourceTree = "<group>"; };
+		F2696AB626C2B44F002EA653 /* PushAPI+Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushAPI+Responses.swift"; sourceTree = "<group>"; };
+		F26E6DCE26C44BE500FA67CB /* ActitoRegion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoRegion+Extensions.swift"; sourceTree = "<group>"; };
+		F26E6DD026C44C4A00FA67CB /* ActitoRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoRegion.swift; sourceTree = "<group>"; };
+		F288C1F726C407D600B6C83C /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		F29017EA2BD277A2009DB80B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F29FCFD926C5688200A2C7E1 /* Collections+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections+Extensions.swift"; sourceTree = "<group>"; };
+		F2CC441B26DD15A400740C06 /* ActitoHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoHeading.swift; sourceTree = "<group>"; };
+		F2CC441D26DD18E100740C06 /* ActitoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLocation.swift; sourceTree = "<group>"; };
+		F2CDE01926C672F200CC4867 /* MapKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapKit+Extensions.swift"; sourceTree = "<group>"; };
+		F2CDE01B26C6AB7C00CC4867 /* ActitoGeo+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoGeo+Events.swift"; sourceTree = "<group>"; };
+		F2CDE01D26C6B0BB00CC4867 /* ActitoRegionSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoRegionSession.swift; sourceTree = "<group>"; };
+		F2DAB394271F0C46002B5F27 /* ActitoGeo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoGeo.swift; sourceTree = "<group>"; };
+		F2DAB39A271F0FCB002B5F27 /* ActitoGeo+Augment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoGeo+Augment.swift"; sourceTree = "<group>"; };
+		F2FC8BE026D67CE400089F1B /* ActitoVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoVisit.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F258DD6D24BC4E95006F9ABD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E577A7672DC4C7A300231193 /* ActitoUtilitiesKit.framework in Frameworks */,
+				E577A7652DC4C7A300231193 /* ActitoKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258DD7624BC4E95006F9ABD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F258DD7A24BC4E95006F9ABD /* ActitoGeoKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F258DD6624BC4E95006F9ABD = {
+			isa = PBXGroup;
+			children = (
+				F258DD7224BC4E95006F9ABD /* Sources */,
+				F258DD7D24BC4E95006F9ABD /* Tests */,
+				F258DD7124BC4E95006F9ABD /* Products */,
+				F258DE8124BC8419006F9ABD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F258DD7124BC4E95006F9ABD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F258DD7024BC4E95006F9ABD /* ActitoGeoKit.framework */,
+				F258DD7924BC4E95006F9ABD /* ActitoGeoKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F258DD7224BC4E95006F9ABD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F2696AAF26C2B420002EA653 /* Internals */,
+				F2696AAE26C2B41B002EA653 /* Models */,
+				F258DD7424BC4E95006F9ABD /* Info.plist */,
+				F29017EA2BD277A2009DB80B /* PrivacyInfo.xcprivacy */,
+				F258DD7324BC4E95006F9ABD /* ActitoGeoKit.h */,
+				F2DAB394271F0C46002B5F27 /* ActitoGeo.swift */,
+				F2DAB39A271F0FCB002B5F27 /* ActitoGeo+Augment.swift */,
+				F24FF2F726D4018E00BB7B1C /* ActitoGeoDelegate.swift */,
+				F267DA4B273EBB2900448A8F /* ActitoGeoError.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		F258DD7D24BC4E95006F9ABD /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F258DD8024BC4E95006F9ABD /* Info.plist */,
+				1ACA07DE2C59C4E8002CB47D /* ActitoHeadingTest.swift */,
+				1ACA07E02C59C63B002CB47D /* ActitoRegionTest.swift */,
+				1ACA07E22C59CD88002CB47D /* ActitoBeaconTest.swift */,
+				1ACA07E42C59CF79002CB47D /* ActitoLocationTest.swift */,
+				1ACA07E62C5A05C3002CB47D /* GeoPushAPIModelsTest.swift */,
+				1A32741B2C5B3765002B78BA /* ActitoVisitTest.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		F258DE8124BC8419006F9ABD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E577A7632DC4C7A300231193 /* ActitoKit.framework */,
+				E577A7642DC4C7A300231193 /* ActitoUtilitiesKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2696AAE26C2B41B002EA653 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F2CC441D26DD18E100740C06 /* ActitoLocation.swift */,
+				F2422E4826CC0FD800D035AD /* ActitoBeacon.swift */,
+				F24FF2F326D3DF1D00BB7B1C /* ActitoBeaconSession.swift */,
+				F26E6DD026C44C4A00FA67CB /* ActitoRegion.swift */,
+				F2CDE01D26C6B0BB00CC4867 /* ActitoRegionSession.swift */,
+				F2CC441B26DD15A400740C06 /* ActitoHeading.swift */,
+				F2FC8BE026D67CE400089F1B /* ActitoVisit.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F2696AAF26C2B420002EA653 /* Internals */ = {
+			isa = PBXGroup;
+			children = (
+				F2696AB026C2B426002EA653 /* Network */,
+				F288C1F626C407BE00B6C83C /* Storage */,
+				F24FF2F526D3FFFA00BB7B1C /* ActitoBeacon+Extensions.swift */,
+				F26E6DCE26C44BE500FA67CB /* ActitoRegion+Extensions.swift */,
+				F26851802B8FEBFA00936EA3 /* ActitoBeaconSession+Extensions.swift */,
+				F29FCFD926C5688200A2C7E1 /* Collections+Extensions.swift */,
+				F2CDE01926C672F200CC4867 /* MapKit+Extensions.swift */,
+				F2696AA926C275C5002EA653 /* ActitoGeoImpl.swift */,
+				F2CDE01B26C6AB7C00CC4867 /* ActitoGeo+Events.swift */,
+				1A52DE712CA45C2C00B5F56C /* Logger.swift */,
+			);
+			path = Internals;
+			sourceTree = "<group>";
+		};
+		F2696AB026C2B426002EA653 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F2696AB126C2B431002EA653 /* Push API */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F2696AB126C2B431002EA653 /* Push API */ = {
+			isa = PBXGroup;
+			children = (
+				F2696AB226C2B43C002EA653 /* PushAPI+Models.swift */,
+				F2696AB426C2B446002EA653 /* PushAPI+Payloads.swift */,
+				F2696AB626C2B44F002EA653 /* PushAPI+Responses.swift */,
+			);
+			path = "Push API";
+			sourceTree = "<group>";
+		};
+		F288C1F626C407BE00B6C83C /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				F288C1F726C407D600B6C83C /* LocalStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F258DD6B24BC4E95006F9ABD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F258DD8124BC4E95006F9ABD /* ActitoGeoKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F258DD6F24BC4E95006F9ABD /* ActitoGeoKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F258DD8424BC4E95006F9ABD /* Build configuration list for PBXNativeTarget "ActitoGeoKit" */;
+			buildPhases = (
+				F258DD6B24BC4E95006F9ABD /* Headers */,
+				F258DD6C24BC4E95006F9ABD /* Sources */,
+				F258DD6D24BC4E95006F9ABD /* Frameworks */,
+				F258DD6E24BC4E95006F9ABD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ActitoGeoKit;
+			productName = Location;
+			productReference = F258DD7024BC4E95006F9ABD /* ActitoGeoKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F258DD7824BC4E95006F9ABD /* ActitoGeoKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F258DD8724BC4E95006F9ABD /* Build configuration list for PBXNativeTarget "ActitoGeoKitTests" */;
+			buildPhases = (
+				F258DD7524BC4E95006F9ABD /* Sources */,
+				F258DD7624BC4E95006F9ABD /* Frameworks */,
+				F258DD7724BC4E95006F9ABD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A546F662C5B5D8E0059F095 /* PBXTargetDependency */,
+				F258DD7C24BC4E95006F9ABD /* PBXTargetDependency */,
+			);
+			name = ActitoGeoKitTests;
+			productName = LocationTests;
+			productReference = F258DD7924BC4E95006F9ABD /* ActitoGeoKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F258DD6724BC4E95006F9ABD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1540;
+				ORGANIZATIONNAME = Actito;
+				TargetAttributes = {
+					F258DD6F24BC4E95006F9ABD = {
+						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1300;
+					};
+					F258DD7824BC4E95006F9ABD = {
+						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1540;
+					};
+				};
+			};
+			buildConfigurationList = F258DD6A24BC4E95006F9ABD /* Build configuration list for PBXProject "ActitoGeoKit" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F258DD6624BC4E95006F9ABD;
+			packageReferences = (
+				1A8C30E52BF639310000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
+			productRefGroup = F258DD7124BC4E95006F9ABD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F258DD6F24BC4E95006F9ABD /* ActitoGeoKit */,
+				F258DD7824BC4E95006F9ABD /* ActitoGeoKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F258DD6E24BC4E95006F9ABD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F29017EB2BD277A2009DB80B /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258DD7724BC4E95006F9ABD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F258DD6C24BC4E95006F9ABD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CDE01C26C6AB7C00CC4867 /* ActitoGeo+Events.swift in Sources */,
+				F2DAB39B271F0FCB002B5F27 /* ActitoGeo+Augment.swift in Sources */,
+				F267DA4C273EBB2900448A8F /* ActitoGeoError.swift in Sources */,
+				F2422E4926CC0FD800D035AD /* ActitoBeacon.swift in Sources */,
+				F26E6DD126C44C4A00FA67CB /* ActitoRegion.swift in Sources */,
+				F2CC441C26DD15A400740C06 /* ActitoHeading.swift in Sources */,
+				F2FC8BE126D67CE400089F1B /* ActitoVisit.swift in Sources */,
+				F2CDE01E26C6B0BB00CC4867 /* ActitoRegionSession.swift in Sources */,
+				F24FF2F626D3FFFA00BB7B1C /* ActitoBeacon+Extensions.swift in Sources */,
+				1A52DE722CA45C2C00B5F56C /* Logger.swift in Sources */,
+				F2DAB395271F0C46002B5F27 /* ActitoGeo.swift in Sources */,
+				F29FCFDA26C5688200A2C7E1 /* Collections+Extensions.swift in Sources */,
+				F24FF2F826D4018E00BB7B1C /* ActitoGeoDelegate.swift in Sources */,
+				F2CDE01A26C672F200CC4867 /* MapKit+Extensions.swift in Sources */,
+				F2696AB326C2B43C002EA653 /* PushAPI+Models.swift in Sources */,
+				F288C1F826C407D600B6C83C /* LocalStorage.swift in Sources */,
+				F2CC441E26DD18E100740C06 /* ActitoLocation.swift in Sources */,
+				F24FF2F426D3DF1D00BB7B1C /* ActitoBeaconSession.swift in Sources */,
+				F2696AB726C2B44F002EA653 /* PushAPI+Responses.swift in Sources */,
+				F26E6DCF26C44BE500FA67CB /* ActitoRegion+Extensions.swift in Sources */,
+				F2696AB526C2B446002EA653 /* PushAPI+Payloads.swift in Sources */,
+				F26851812B8FEBFA00936EA3 /* ActitoBeaconSession+Extensions.swift in Sources */,
+				F2696AAA26C275C5002EA653 /* ActitoGeoImpl.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258DD7524BC4E95006F9ABD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ACA07DF2C59C4E8002CB47D /* ActitoHeadingTest.swift in Sources */,
+				1ACA07E32C59CD88002CB47D /* ActitoBeaconTest.swift in Sources */,
+				1ACA07E52C59CF79002CB47D /* ActitoLocationTest.swift in Sources */,
+				1ACA07E72C5A05C3002CB47D /* GeoPushAPIModelsTest.swift in Sources */,
+				1ACA07E12C59C63B002CB47D /* ActitoRegionTest.swift in Sources */,
+				1A32741C2C5B3765002B78BA /* ActitoVisitTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A546F662C5B5D8E0059F095 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1A546F652C5B5D8E0059F095 /* SwiftLintBuildToolPlugin */;
+		};
+		F258DD7C24BC4E95006F9ABD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F258DD6F24BC4E95006F9ABD /* ActitoGeoKit */;
+			targetProxy = F258DD7B24BC4E95006F9ABD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F258DD8224BC4E95006F9ABD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F258DD8324BC4E95006F9ABD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F258DD8524BC4E95006F9ABD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-canary.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.geo;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F258DD8624BC4E95006F9ABD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-canary.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.geo;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F258DD8824BC4E95006F9ABD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.GeoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F258DD8924BC4E95006F9ABD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.GeoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F2EAF9892AF51ED800A2CC0C /* Debug-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Debug-Test";
+		};
+		F2EAF98A2AF51ED800A2CC0C /* Debug-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-canary.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.geo;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Test";
+		};
+		F2EAF98B2AF51ED800A2CC0C /* Debug-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.GeoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Test";
+		};
+		F2EAF98C2AF51EDE00A2CC0C /* Debug-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Debug-Production";
+		};
+		F2EAF98D2AF51EDE00A2CC0C /* Debug-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-canary.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.geo;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Production";
+		};
+		F2EAF98E2AF51EDE00A2CC0C /* Debug-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.GeoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Production";
+		};
+		F2EAF98F2AF51EE300A2CC0C /* Release-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Release-Test";
+		};
+		F2EAF9902AF51EE300A2CC0C /* Release-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-canary.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.geo;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Test";
+		};
+		F2EAF9912AF51EE300A2CC0C /* Release-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.GeoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Test";
+		};
+		F2EAF9922AF51EE900A2CC0C /* Release-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Release-Production";
+		};
+		F2EAF9932AF51EE900A2CC0C /* Release-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-canary.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.geo;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Production";
+		};
+		F2EAF9942AF51EE900A2CC0C /* Release-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.GeoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Production";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F258DD6A24BC4E95006F9ABD /* Build configuration list for PBXProject "ActitoGeoKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258DD8224BC4E95006F9ABD /* Debug */,
+				F2EAF98C2AF51EDE00A2CC0C /* Debug-Production */,
+				F2EAF9892AF51ED800A2CC0C /* Debug-Test */,
+				F258DD8324BC4E95006F9ABD /* Release */,
+				F2EAF9922AF51EE900A2CC0C /* Release-Production */,
+				F2EAF98F2AF51EE300A2CC0C /* Release-Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F258DD8424BC4E95006F9ABD /* Build configuration list for PBXNativeTarget "ActitoGeoKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258DD8524BC4E95006F9ABD /* Debug */,
+				F2EAF98D2AF51EDE00A2CC0C /* Debug-Production */,
+				F2EAF98A2AF51ED800A2CC0C /* Debug-Test */,
+				F258DD8624BC4E95006F9ABD /* Release */,
+				F2EAF9932AF51EE900A2CC0C /* Release-Production */,
+				F2EAF9902AF51EE300A2CC0C /* Release-Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F258DD8724BC4E95006F9ABD /* Build configuration list for PBXNativeTarget "ActitoGeoKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258DD8824BC4E95006F9ABD /* Debug */,
+				F2EAF98E2AF51EDE00A2CC0C /* Debug-Production */,
+				F2EAF98B2AF51ED800A2CC0C /* Debug-Test */,
+				F258DD8924BC4E95006F9ABD /* Release */,
+				F2EAF9942AF51EE900A2CC0C /* Release-Production */,
+				F2EAF9912AF51EE300A2CC0C /* Release-Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A8C30E52BF639310000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A546F652C5B5D8E0059F095 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A8C30E52BF639310000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F258DD6724BC4E95006F9ABD /* Project object */;
+}
