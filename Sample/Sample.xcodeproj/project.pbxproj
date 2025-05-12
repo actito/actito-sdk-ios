@@ -64,6 +64,8 @@
 		E5BF8B202DCCF658008FD3DE /* InboxItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8B1E2DCCF658008FD3DE /* InboxItemView.swift */; };
 		E5BF8B212DCCF658008FD3DE /* InboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8B1D2DCCF658008FD3DE /* InboxViewModel.swift */; };
 		E5BF8B222DCCF658008FD3DE /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BF8B1C2DCCF658008FD3DE /* InboxView.swift */; };
+		E5BF8B242DCDF440008FD3DE /* ActitoLoyaltyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF8B232DCDF440008FD3DE /* ActitoLoyaltyKit.framework */; };
+		E5BF8B252DCDF440008FD3DE /* ActitoLoyaltyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5BF8B232DCDF440008FD3DE /* ActitoLoyaltyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E5C78EF729BB5015006BF1F6 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF629BB5015006BF1F6 /* Main.swift */; };
 		E5C78EF929BB57D7006BF1F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EF829BB57D7006BF1F6 /* HomeView.swift */; };
 		E5C78EFC29BB6DC5006BF1F6 /* LaunchFlowSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */; };
@@ -122,6 +124,7 @@
 				E5BF8B182DCBA422008FD3DE /* ActitoNotificationServiceExtensionKit.framework in Embed Frameworks */,
 				E5E5249D2DBA743A0086A403 /* ActitoKit.framework in Embed Frameworks */,
 				E5BF89F02DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Embed Frameworks */,
+				E5BF8B252DCDF440008FD3DE /* ActitoLoyaltyKit.framework in Embed Frameworks */,
 				E5BF89EA2DC918C4008FD3DE /* ActitoScannablesKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -191,6 +194,7 @@
 		E5BF8B1C2DCCF658008FD3DE /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		E5BF8B1D2DCCF658008FD3DE /* InboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModel.swift; sourceTree = "<group>"; };
 		E5BF8B1E2DCCF658008FD3DE /* InboxItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxItemView.swift; sourceTree = "<group>"; };
+		E5BF8B232DCDF440008FD3DE /* ActitoLoyaltyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoLoyaltyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5C78EF629BB5015006BF1F6 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		E5C78EF829BB57D7006BF1F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E5C78EFB29BB6DC5006BF1F6 /* LaunchFlowSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowSection.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 				E5BF8B172DCBA422008FD3DE /* ActitoNotificationServiceExtensionKit.framework in Frameworks */,
 				E5E5249C2DBA743A0086A403 /* ActitoKit.framework in Frameworks */,
 				E5BF89EF2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Frameworks */,
+				E5BF8B242DCDF440008FD3DE /* ActitoLoyaltyKit.framework in Frameworks */,
 				E5BF89E92DC918C4008FD3DE /* ActitoScannablesKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,6 +483,7 @@
 		F251694324D4077D0025B51F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5BF8B232DCDF440008FD3DE /* ActitoLoyaltyKit.framework */,
 				E5BF8B192DCCF63A008FD3DE /* ActitoInboxKit.framework */,
 				E5BF8B0E2DCB6A86008FD3DE /* ActitoNotificationServiceExtensionKit.framework */,
 				E5BF8AF52DCA6A38008FD3DE /* ActitoPushKit.framework */,
