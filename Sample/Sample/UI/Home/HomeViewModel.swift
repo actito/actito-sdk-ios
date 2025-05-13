@@ -403,7 +403,6 @@ extension HomeViewModel: CLLocationManagerDelegate {
         case .granted:
             Logger.main.info("Location When in Use granted, enabling location updates")
             Actito.shared.geo().enableLocationUpdates()
-            checkLocationStatus()
         }
 
         Logger.main.info("Checking location Always permission status")
@@ -482,36 +481,35 @@ extension HomeViewModel: CLLocationManagerDelegate {
             UserDefaults.standard.removeObject(forKey: REQUESTED_LOCATION_ALWAYS_KEY)
         }
 
-        checkLocationStatus()
+        if let requestedPermission = requestedPermission {
+            let status = checkLocationPermissionStatus(permission: requestedPermission)
+            if requestedPermission == .locationWhenInUse {
+                if status != .granted {
+                    Logger.main.info("Location When in Use permission request denied")
 
-        guard let requestedPermission = requestedPermission else {
-            return
-        }
+                    self.requestedPermission = nil
 
-        let status = checkLocationPermissionStatus(permission: requestedPermission)
-        if requestedPermission == .locationWhenInUse {
-            if status != .granted {
-                Logger.main.info("Location When in Use permission request denied")
-
-                self.requestedPermission = nil
-                hasLocationAndPermission = false
-
-                return
-            }
-
-            self.requestedPermission = nil
-            enableLocationUpdates()
-        }
-
-        if requestedPermission == .locationAlways {
-            if status == .granted {
-                Logger.main.info("Location Always permission request granted, enabling location updates")
+                    return
+                }
 
                 self.requestedPermission = nil
-                Actito.shared.geo().enableLocationUpdates()
-            } else {
-                Logger.main.info("Location Always permission request denied")
+                enableLocationUpdates()
             }
+
+            if requestedPermission == .locationAlways {
+                if status == .granted {
+                    Logger.main.info("Location Always permission request granted, enabling location updates")
+
+                    self.requestedPermission = nil
+                    Actito.shared.geo().enableLocationUpdates()
+                } else {
+                    Logger.main.info("Location Always permission request denied")
+                }
+            }
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.checkLocationStatus()
         }
     }
 }
