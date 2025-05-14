@@ -1,0 +1,64 @@
+//
+// Copyright (c) 2025 Actito. All rights reserved.
+//
+
+import ActitoUtilitiesKit
+import Foundation
+
+public struct ActitoUserInboxResponse: Codable, Equatable {
+    public let count: Int
+    public let unread: Int
+    public let items: [ActitoUserInboxItem]
+
+    public init(count: Int, unread: Int, items: [ActitoUserInboxItem]) {
+        self.count = count
+        self.unread = unread
+        self.items = items
+    }
+}
+
+// Codable: ActitoUserInboxResponse
+extension ActitoUserInboxResponse {
+    public init(from decoder: Decoder) throws {
+        do {
+            let raw = try RawUserInboxResponse(from: decoder)
+
+            count = raw.count
+            unread = raw.unread
+            items = raw.inboxItems.map { $0.toModel() }
+
+            return
+        } catch {
+            logger.debug("Unable to parse user inbox response from the raw format.", error: error)
+        }
+
+        do {
+            let consumer = try ConsumerUserInboxResponse(from: decoder)
+
+            count = consumer.count
+            unread = consumer.unread
+            items = consumer.items
+        } catch {
+            logger.debug("Unable to parse user inbox response from the consumer format.", error: error)
+            throw error
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        let consumer = ConsumerUserInboxResponse(count: count, unread: unread, items: items)
+        try consumer.encode(to: encoder)
+    }
+}
+
+// JSON: ActitoUserInboxResponse
+extension ActitoUserInboxResponse {
+    public func toJson() throws -> [String: Any] {
+        let data = try JSONEncoder.actito.encode(self)
+        return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+    }
+
+    public static func fromJson(json: [String: Any]) throws -> ActitoUserInboxResponse {
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        return try JSONDecoder.actito.decode(ActitoUserInboxResponse.self, from: data)
+    }
+}
