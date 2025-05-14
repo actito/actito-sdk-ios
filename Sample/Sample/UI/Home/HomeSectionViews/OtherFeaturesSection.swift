@@ -34,6 +34,20 @@ internal struct OtherFeaturesSection: View {
                     )
                 }
             }
+
+            NavigationLink {
+                EventsView()
+            } label: {
+                Label {
+                    Text(String(localized: "home_custom_events"))
+                } icon: {
+                    ListIconView(
+                        icon: "light.beacon.max",
+                        foregroundColor: .white,
+                        backgroundColor: .red
+                    )
+                }
+            }
         } header: {
             Text(String(localized: "home_other_features"))
         }

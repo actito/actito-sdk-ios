@@ -1,0 +1,118 @@
+//
+// Copyright (c) 2025 Actito. All rights reserved.
+//
+
+import ActitoUtilitiesKit
+import Foundation
+
+public struct ActitoRegion: Codable, Equatable {
+    public let id: String
+    public let name: String
+    public let description: String?
+    public let referenceKey: String?
+    public let geometry: Geometry
+    public let advancedGeometry: AdvancedGeometry?
+    public let major: Int?
+    public let distance: Double
+    public let timeZone: String
+    public let timeZoneOffset: Float
+
+    public init(id: String, name: String, description: String?, referenceKey: String?, geometry: ActitoRegion.Geometry, advancedGeometry: ActitoRegion.AdvancedGeometry?, major: Int?, distance: Double, timeZone: String, timeZoneOffset: Float) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.referenceKey = referenceKey
+        self.geometry = geometry
+        self.advancedGeometry = advancedGeometry
+        self.major = major
+        self.distance = distance
+        self.timeZone = timeZone
+        self.timeZoneOffset = timeZoneOffset
+    }
+
+    public struct Geometry: Codable, Equatable {
+        public let type: String
+        public let coordinate: Coordinate
+
+        public init(type: String, coordinate: ActitoRegion.Coordinate) {
+            self.type = type
+            self.coordinate = coordinate
+        }
+    }
+
+    public struct AdvancedGeometry: Codable, Equatable {
+        public let type: String
+        public let coordinates: [Coordinate]
+
+        public init(type: String, coordinates: [ActitoRegion.Coordinate]) {
+            self.type = type
+            self.coordinates = coordinates
+        }
+    }
+
+    public struct Coordinate: Codable, Equatable {
+        public let latitude: Double
+        public let longitude: Double
+
+        public init(latitude: Double, longitude: Double) {
+            self.latitude = latitude
+            self.longitude = longitude
+        }
+    }
+}
+
+// Identifiable: ActitoRegion
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension ActitoRegion: Identifiable {}
+
+// JSON: ActitoRegion
+extension ActitoRegion {
+    public func toJson() throws -> [String: Any] {
+        let data = try JSONEncoder.actito.encode(self)
+        return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+    }
+
+    public static func fromJson(json: [String: Any]) throws -> ActitoRegion {
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        return try JSONDecoder.actito.decode(ActitoRegion.self, from: data)
+    }
+}
+
+// JSON: ActitoRegion.Geometry
+extension ActitoRegion.Geometry {
+    public func toJson() throws -> [String: Any] {
+        let data = try JSONEncoder.actito.encode(self)
+        return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+    }
+
+    public static func fromJson(json: [String: Any]) throws -> ActitoRegion.Geometry {
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        return try JSONDecoder.actito.decode(ActitoRegion.Geometry.self, from: data)
+    }
+}
+
+// JSON: ActitoRegion.AdvancedGeometry
+extension ActitoRegion.AdvancedGeometry {
+    public func toJson() throws -> [String: Any] {
+        let data = try JSONEncoder.actito.encode(self)
+        return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+    }
+
+    public static func fromJson(json: [String: Any]) throws -> ActitoRegion.AdvancedGeometry {
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        return try JSONDecoder.actito.decode(ActitoRegion.AdvancedGeometry.self, from: data)
+    }
+}
+
+// JSON: ActitoRegion.Coordinate
+extension ActitoRegion.Coordinate {
+    public func toJson() throws -> [String: Any] {
+        let data = try JSONEncoder.actito.encode(self)
+        return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+    }
+
+    public static func fromJson(json: [String: Any]) throws -> ActitoRegion.Coordinate {
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        return try JSONDecoder.actito.decode(ActitoRegion.Coordinate.self, from: data)
+    }
+}

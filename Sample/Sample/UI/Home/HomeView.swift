@@ -38,6 +38,14 @@ internal struct HomeView: View {
                 LiveActivitiesSection(coffeeBrewerLiveActivityState: viewModel.coffeeBrewerLiveActivityState)
             }
 
+            LocationSection(
+                hasLocationAndPermission: $viewModel.hasLocationAndPermission,
+                hasLocationEnabled: viewModel.hasLocationEnabled,
+                hasBluetoothEnabled: viewModel.hasBluetoothEnabled,
+                locationPermission: viewModel.locationPermission,
+                updateLocationServicesStatus: { enabled in viewModel.updateLocationServicesStatus(enabled: enabled) }
+            )
+
             InAppMessagingSection(
                 hasEvaluateContextOn: $viewModel.hasEvaluateContextOn,
                 hasSuppressedOn: $viewModel.hasSuppressedOn,

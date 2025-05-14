@@ -2,6 +2,7 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+import ActitoGeoKit
 import ActitoInAppMessagingKit
 import ActitoInboxKit
 import ActitoKit
@@ -36,6 +37,7 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
         Actito.shared.pushUI().delegate = self
         Actito.shared.inAppMessaging().delegate = self
         Actito.shared.inbox().delegate = self
+        Actito.shared.geo().delegate = self
         Actito.shared.scannables().delegate = self
 
         Task {
@@ -218,6 +220,103 @@ extension AppDelegate: ActitoInboxDelegate {
 
     internal func actito(_: ActitoInbox, didUpdateBadge badge: Int) {
         Logger.main.info("Delegate badge update. Unread = \(badge)")
+    }
+}
+
+extension AppDelegate: ActitoGeoDelegate {
+    internal func actito(_: ActitoGeo, didUpdateLocations locations: [ActitoLocation]) {
+        Logger.main.info("Locations updated = \(locations)")
+    }
+
+    internal func actito(_: ActitoGeo, didFailWith error: Error) {
+        Logger.main.error("Location services failed = \(error)")
+    }
+
+    internal func actito(_: ActitoGeo, didStartMonitoringFor region: ActitoRegion) {
+        Logger.main.info("Started monitoring region = \(region.name)")
+    }
+
+    internal func actito(_: ActitoGeo, didStartMonitoringFor beacon: ActitoBeacon) {
+        Logger.main.info("Started monitoring beacon = \(beacon.name)")
+    }
+
+    internal func actito(_: ActitoGeo, monitoringDidFailFor region: ActitoRegion, with error: Error) {
+        Logger.main.error("Failed to monitor region = \(region.name)\n\(error)")
+    }
+
+    internal func actito(_: ActitoGeo, monitoringDidFailFor beacon: ActitoBeacon, with error: Error) {
+        Logger.main.error("Failed to monitor beacon = \(beacon.name)\n\(error)")
+    }
+
+    internal func actito(_: ActitoGeo, didDetermineState state: CLRegionState, for region: ActitoRegion) {
+        let stateStr: String
+        switch state {
+        case .inside:
+            stateStr = "inside"
+        case .outside:
+            stateStr = "outside"
+        case .unknown:
+            stateStr = "unknown"
+        }
+
+        Logger.main.info("State for region '\(region.name)' = \(stateStr)")
+    }
+
+    internal func actito(_: ActitoGeo, didDetermineState state: CLRegionState, for beacon: ActitoBeacon) {
+        let stateStr: String
+        switch state {
+        case .inside:
+            stateStr = "inside"
+        case .outside:
+            stateStr = "outside"
+        case .unknown:
+            stateStr = "unknown"
+        }
+
+        Logger.main.info("State for beacon '\(beacon.name)' = \(stateStr)")
+    }
+
+    internal func actito(_: ActitoGeo, didEnter region: ActitoRegion) {
+        Logger.main.info("On region enter = \(region.name)")
+    }
+
+    internal func actito(_: ActitoGeo, didEnter beacon: ActitoBeacon) {
+        Logger.main.info("On beacon enter = \(beacon.name)")
+    }
+
+    internal func actito(_: ActitoGeo, didExit region: ActitoRegion) {
+        Logger.main.info("On region exit = \(region.name)")
+    }
+
+    internal func actito(_: ActitoGeo, didExit beacon: ActitoBeacon) {
+        Logger.main.info("On beacon exit = \(beacon.name)")
+    }
+
+    internal func actito(_: ActitoGeo, didVisit visit: ActitoVisit) {
+        Logger.main.info("On visit = \(String(describing: visit))")
+    }
+
+    internal func actito(_: ActitoGeo, didUpdateHeading heading: ActitoHeading) {
+        Logger.main.info("On heading updated = \(String(describing: heading))")
+    }
+
+    internal func actito(_: ActitoGeo, didRange beacons: [ActitoBeacon], in region: ActitoRegion) {
+        if !beacons.isEmpty {
+            Logger.main.info("On ranging beacons: \(beacons.map(\.name).joined(separator: " "))")
+        }
+
+        NotificationCenter.default.post(
+            name: .beaconsRanged,
+            object: nil,
+            userInfo: [
+                "region": region,
+                "beacons": beacons,
+            ]
+        )
+    }
+
+    internal func actito(_: ActitoGeo, didFailRangingFor region: ActitoRegion, with _: Error) {
+        Logger.main.error("Failed to range beacons for region = \(region.name)")
     }
 }
 
