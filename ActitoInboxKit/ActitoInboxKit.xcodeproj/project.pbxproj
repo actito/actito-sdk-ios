@@ -11,9 +11,7 @@
 		1A52DE772CA4617500B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE762CA4617500B5F56C /* Logger.swift */; };
 		1ACA07DB2C5946BB002CB47D /* InboxPushAPIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07DA2C5946BB002CB47D /* InboxPushAPIModels.swift */; };
 		E577A76C2DC4D8DB00231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A76A2DC4D8DB00231193 /* ActitoKit.framework */; };
-		E577A76D2DC4D8DB00231193 /* ActitoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E577A76A2DC4D8DB00231193 /* ActitoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E577A76E2DC4D8DB00231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A76B2DC4D8DB00231193 /* ActitoUtilitiesKit.framework */; };
-		E577A76F2DC4D8DB00231193 /* ActitoUtilitiesKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E577A76B2DC4D8DB00231193 /* ActitoUtilitiesKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F21DD9EB27184CE500C88D7B /* ActitoInbox+Augment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DD9EA27184CE500C88D7B /* ActitoInbox+Augment.swift */; };
 		F21DD9ED27185C4B00C88D7B /* ActitoInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DD9EC27185C4B00C88D7B /* ActitoInbox.swift */; };
 		F27DB1A0262F2B5C000C024D /* PushAPI+Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27DB19F262F2B5C000C024D /* PushAPI+Responses.swift */; };
@@ -41,21 +39,6 @@
 			remoteInfo = ActitoInboxKit;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E577A7702DC4D8DB00231193 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E577A76F2DC4D8DB00231193 /* ActitoUtilitiesKit.framework in Embed Frameworks */,
-				E577A76D2DC4D8DB00231193 /* ActitoKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A1FE0622C465CB200468B84 /* ActitoInboxItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInboxItemTest.swift; sourceTree = "<group>"; };
@@ -230,7 +213,6 @@
 				F289F53125B85E020091AB97 /* Sources */,
 				F289F53225B85E020091AB97 /* Frameworks */,
 				F289F53325B85E020091AB97 /* Resources */,
-				E577A7702DC4D8DB00231193 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

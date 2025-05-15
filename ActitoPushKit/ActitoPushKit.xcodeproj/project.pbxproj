@@ -12,9 +12,7 @@
 		1AF8E7CE2BF21AB500DE2BC8 /* ActitoPushAppDelegateInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8E7CD2BF21AB500DE2BC8 /* ActitoPushAppDelegateInterceptor.swift */; };
 		1AF8E7D12BF21C0700DE2BC8 /* ActitoNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8E7D02BF21C0700DE2BC8 /* ActitoNotificationCenterDelegate.swift */; };
 		E577A7732DC4F96700231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7712DC4F96700231193 /* ActitoKit.framework */; };
-		E577A7742DC4F96700231193 /* ActitoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7712DC4F96700231193 /* ActitoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E577A7752DC4F96700231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7722DC4F96700231193 /* ActitoUtilitiesKit.framework */; };
-		E577A7762DC4F96700231193 /* ActitoUtilitiesKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7722DC4F96700231193 /* ActitoUtilitiesKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F2128F022594E47700F7F68F /* ActitoSystemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2128F012594E47700F7F68F /* ActitoSystemNotification.swift */; };
 		F21619F32642DCE90005BFF9 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21619F22642DCE90005BFF9 /* LocalStorage.swift */; };
 		F21DD9DF2717384800C88D7B /* ActitoPush+Augment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DD9DE2717384800C88D7B /* ActitoPush+Augment.swift */; };
@@ -45,21 +43,6 @@
 			remoteInfo = Push;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E577A7772DC4F96700231193 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E577A7762DC4F96700231193 /* ActitoUtilitiesKit.framework in Embed Frameworks */,
-				E577A7742DC4F96700231193 /* ActitoKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A3274192C5AE254002B78BA /* ActitoSystemNotificationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoSystemNotificationTest.swift; sourceTree = "<group>"; };
@@ -249,7 +232,6 @@
 				F258DD9024BC4EE2006F9ABD /* Sources */,
 				F258DD9124BC4EE2006F9ABD /* Frameworks */,
 				F258DD9224BC4EE2006F9ABD /* Resources */,
-				E577A7772DC4F96700231193 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A52DE7D2CA4623700B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE7C2CA4623700B5F56C /* Logger.swift */; };
 		E577A77A2DC5035D00231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7782DC5035D00231193 /* ActitoKit.framework */; };
-		E577A77B2DC5035D00231193 /* ActitoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7782DC5035D00231193 /* ActitoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E577A77C2DC5035D00231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7792DC5035D00231193 /* ActitoUtilitiesKit.framework */; };
-		E577A77D2DC5035D00231193 /* ActitoUtilitiesKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7792DC5035D00231193 /* ActitoUtilitiesKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E5A878A92C23346100D53A91 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A878A82C23346100D53A91 /* URLExtensions.swift */; };
 		F216F0BC26A84B2100F9EF56 /* ActitoWebPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F216F0BB26A84B2100F9EF56 /* ActitoWebPassViewController.swift */; };
 		F21CBCB025AF1F5000495F7A /* ActitoStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21CBCAF25AF1F5000495F7A /* ActitoStoreController.swift */; };
@@ -59,21 +57,6 @@
 			remoteInfo = ActitoPushUIKit;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E577A77E2DC5035D00231193 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E577A77D2DC5035D00231193 /* ActitoUtilitiesKit.framework in Embed Frameworks */,
-				E577A77B2DC5035D00231193 /* ActitoKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A52DE7C2CA4623700B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -283,7 +266,6 @@
 				F29B17C725A48BEF007ED6F9 /* Sources */,
 				F29B17C825A48BEF007ED6F9 /* Frameworks */,
 				F29B17C925A48BEF007ED6F9 /* Resources */,
-				E577A77E2DC5035D00231193 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -10,9 +10,7 @@
 		1A52DE792CA461AF00B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE782CA461AF00B5F56C /* Logger.swift */; };
 		1ACA07CD2C5780D0002CB47D /* ActitoPassTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07CC2C5780D0002CB47D /* ActitoPassTest.swift */; };
 		E577A75E2DC4C0CD00231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A75C2DC4C0CD00231193 /* ActitoKit.framework */; };
-		E577A75F2DC4C0CD00231193 /* ActitoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E577A75C2DC4C0CD00231193 /* ActitoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E577A7602DC4C0CD00231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A75D2DC4C0CD00231193 /* ActitoUtilitiesKit.framework */; };
-		E577A7612DC4C0CD00231193 /* ActitoUtilitiesKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E577A75D2DC4C0CD00231193 /* ActitoUtilitiesKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F216F0B126A825F700F9EF56 /* ActitoLoyaltyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F216F0B026A825F700F9EF56 /* ActitoLoyaltyImpl.swift */; };
 		F216F0B626A8266700F9EF56 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F216F0B526A8266700F9EF56 /* PassKit.framework */; };
 		F258DDE624BC4F32006F9ABD /* ActitoLoyaltyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F258DDDC24BC4F31006F9ABD /* ActitoLoyaltyKit.framework */; };
@@ -34,21 +32,6 @@
 			remoteInfo = Loyalty;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E577A7622DC4C0CD00231193 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E577A7612DC4C0CD00231193 /* ActitoUtilitiesKit.framework in Embed Frameworks */,
-				E577A75F2DC4C0CD00231193 /* ActitoKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A52DE782CA461AF00B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -201,7 +184,6 @@
 				F258DDD824BC4F31006F9ABD /* Sources */,
 				F258DDD924BC4F31006F9ABD /* Frameworks */,
 				F258DDDA24BC4F31006F9ABD /* Resources */,
-				E577A7622DC4C0CD00231193 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
