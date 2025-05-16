@@ -70,6 +70,10 @@ internal class ActitoPushImpl: NSObject, ActitoModule, ActitoPush {
         if hasRemoteNotificationsEnabled {
             logger.debug("Enabling remote notifications automatically.")
             try await updateDeviceSubscription()
+
+            if await hasNotificationPermission() {
+                await reloadActionCategories()
+            }
         }
     }
 
