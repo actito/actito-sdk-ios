@@ -7,9 +7,9 @@ import Foundation
 public enum ActitoInternals {
     public enum Module: String, CaseIterable {
         // Embedded modules
-        case events = "ActitoKit.ActitoEventsModuleImpl"
-        case session = "ActitoKit.ActitoSessionModuleImpl"
         case device = "ActitoKit.ActitoDeviceModuleImpl"
+        case session = "ActitoKit.ActitoSessionModuleImpl"
+        case events = "ActitoKit.ActitoEventsModuleImpl"
         case crashReporter = "ActitoKit.ActitoCrashReporterModuleImpl"
 
         // Peer modules
