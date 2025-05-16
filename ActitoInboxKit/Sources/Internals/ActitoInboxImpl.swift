@@ -57,7 +57,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
     private var _badgeStream = CurrentValueSubject<Int, Never>(0)
     private var _itemsStream = CurrentValueSubject<[ActitoInboxItem], Never>([])
 
-    override init() {
+    internal override init() {
         itemsStream = _itemsStream
             .map { items in
                 items.filter { !$0.isExpired }
