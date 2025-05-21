@@ -1,0 +1,44 @@
+#!/bin/bash
+
+DESTINATION=$(xcodebuild -showdestinations -scheme Sample-Production | grep 'platform:iOS Simulator' | grep 'iPhone' | sort -t ':' -k4 -Vr | head -n 1 | sed -n 's/.*id:\([A-F0-9-]*\).*/\1/p')
+
+BUILD_DIR=$(xcodebuild -showBuildSettings -workspace Actito.xcworkspace -scheme Sample-Production -destination "id=$DESTINATION" | grep " BUILD_DIR " | cut -d " " -f 7)
+
+SWIFTLINT=$(find "${BUILD_DIR%/Build/*}" -type f -path "*macos*/swiftlint" | head -n 1)
+
+if [[ -x "${SWIFTLINT}" ]]; then
+    count=0
+    while IFS= read -r file_path; do
+        export SCRIPT_INPUT_FILE_$count="$file_path"
+        count=$((count + 1))
+    done < <(git diff --name-only --cached --diff-filter=d | grep ".swift$")
+    export SCRIPT_INPUT_FILE_COUNT=$count
+
+    if [ "$count" -eq 0 ]; then
+	echo "No Swift files staged for commit. Skipping SwiftLint."
+        exit 0
+    fi
+
+    echo "Found $count Swift file(s) staged for commit. Running SwiftLint..."
+    $SWIFTLINT --use-script-input-files --fix --config .swiftlint.yml
+    RESULT=$?
+
+    for ((i=0; i < count; i++)); do
+        file_var="SCRIPT_INPUT_FILE_$i"
+        file="${!file_var}"
+        if [[ -f "$file" ]]; then
+            git add "$file"
+        fi
+    done
+
+    if [ $RESULT -eq 0 ]; then
+        echo "No SwiftLint violations found."
+    else
+        echo "SwiftLint unable to fix all violations. Please fix them before committing."
+    fi
+
+    exit $RESULT
+else
+    echo "WARNING: SwiftLint not found at $SWIFTLINT"
+    exit 1
+fi
