@@ -20,8 +20,8 @@ extension ActitoInternals.PushAPI.Models {
         internal let visible: Bool
         internal let expires: Date?
 
-        internal func toModel() -> ActitoInboxItem {
-            ActitoInboxItem(
+        internal func toLocal() -> LocalInboxItem {
+            LocalInboxItem(
                 id: _id,
                 notification: ActitoNotification(
                     partial: true,
@@ -39,6 +39,7 @@ extension ActitoInternals.PushAPI.Models {
                 ),
                 time: time,
                 opened: opened,
+                visible: visible,
                 expires: expires
             )
         }
