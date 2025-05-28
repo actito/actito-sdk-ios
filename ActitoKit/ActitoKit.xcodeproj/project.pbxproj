@@ -15,6 +15,9 @@
 		1A3274162C5A1B66002B78BA /* ActitoApplicationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */; };
 		1A3274182C5A8F13002B78BA /* PushAPIModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */; };
 		1A52DE6E2CA44B3500B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE6D2CA44B3500B5F56C /* Logger.swift */; };
+		1AD52A222DE75AF7006C7D88 /* LocalEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */; };
+		1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */; };
+		1AD52A262DE75BAC006C7D88 /* ActitoEvent+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A252DE75BA5006C7D88 /* ActitoEvent+Local.swift */; };
 		42A2011DB7750225B7C9D3E2 /* ActitoBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A205DF5970468FB18808F5 /* ActitoBootstrap.m */; };
 		42A201A3F80D5668FF5D6759 /* ActitoBootstrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A20450A15AAC914DBC800F /* ActitoBootstrap.h */; };
 		42A20330821EAB78A0A5EB13 /* URLSession+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20F817E5D783B690400CF /* URLSession+Retry.swift */; };
@@ -60,7 +63,6 @@
 		F293E3232630524B008C2010 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F293E3252630524B008C2010 /* Localizable.strings */; };
 		F293E32C263053C8008C2010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F293E32B263053C8008C2010 /* Assets.xcassets */; };
 		F29DA38125022170004CCB8F /* ActitoDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29DA38025022170004CCB8F /* ActitoDatabase.swift */; };
-		F29DA38325024753004CCB8F /* ActitoEvent+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29DA38225024753004CCB8F /* ActitoEvent+CoreData.swift */; };
 		F2B1817C25BAFDFE00384991 /* ActitoNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1817B25BAFDFE00384991 /* ActitoNotification.swift */; };
 		F2D3894026664AAA00EAEF44 /* LocalStorageMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D3893F26664AAA00EAEF44 /* LocalStorageMigration.swift */; };
 		F2DAB3AE27202DEF002B5F27 /* NotificareDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2DAB3AC27202DEF002B5F27 /* NotificareDatabase.xcdatamodeld */; };
@@ -89,6 +91,9 @@
 		1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoApplicationTest.swift; sourceTree = "<group>"; };
 		1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAPIModelsTest.swift; sourceTree = "<group>"; };
 		1A52DE6D2CA44B3500B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEvent.swift; sourceTree = "<group>"; };
+		1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalEvent+CoreData.swift"; sourceTree = "<group>"; };
+		1AD52A252DE75BA5006C7D88 /* ActitoEvent+Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoEvent+Local.swift"; sourceTree = "<group>"; };
 		42A20228EB70EA83D835BF01 /* ActitoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoError.swift; sourceTree = "<group>"; };
 		42A20450A15AAC914DBC800F /* ActitoBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActitoBootstrap.h; sourceTree = "<group>"; };
 		42A205DF5970468FB18808F5 /* ActitoBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActitoBootstrap.m; sourceTree = "<group>"; };
@@ -138,7 +143,6 @@
 		F293E3282630531B008C2010 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F293E32B263053C8008C2010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F29DA38025022170004CCB8F /* ActitoDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDatabase.swift; sourceTree = "<group>"; };
-		F29DA38225024753004CCB8F /* ActitoEvent+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoEvent+CoreData.swift"; sourceTree = "<group>"; };
 		F2B1817B25BAFDFE00384991 /* ActitoNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoNotification.swift; sourceTree = "<group>"; };
 		F2D3893F26664AAA00EAEF44 /* LocalStorageMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageMigration.swift; sourceTree = "<group>"; };
 		F2DAB3AD27202DEF002B5F27 /* NotificareDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotificareDatabase.xcdatamodel; sourceTree = "<group>"; };
@@ -343,8 +347,10 @@
 		F29DA37F25022154004CCB8F /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				1AD52A252DE75BA5006C7D88 /* ActitoEvent+Local.swift */,
+				1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */,
+				1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */,
 				F29DA38025022170004CCB8F /* ActitoDatabase.swift */,
-				F29DA38225024753004CCB8F /* ActitoEvent+CoreData.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -526,6 +532,8 @@
 				F293E2DB26304675008C2010 /* LocalStorage.swift in Sources */,
 				F2E801E9269F021800582DB8 /* ActitoInternals.swift in Sources */,
 				1A52DE6E2CA44B3500B5F56C /* Logger.swift in Sources */,
+				1AD52A262DE75BAC006C7D88 /* ActitoEvent+Local.swift in Sources */,
+				1AD52A222DE75AF7006C7D88 /* LocalEvent.swift in Sources */,
 				F2DAB3AE27202DEF002B5F27 /* NotificareDatabase.xcdatamodeld in Sources */,
 				F29DA38125022170004CCB8F /* ActitoDatabase.swift in Sources */,
 				F27DB188262EDEB5000C024D /* PushAPI+Models.swift in Sources */,
@@ -541,7 +549,6 @@
 				42A20F5A817E461AD741CEF0 /* ActitoAutoConfig.swift in Sources */,
 				F2B1817C25BAFDFE00384991 /* ActitoNotification.swift in Sources */,
 				F27DB180262EDAA5000C024D /* PushAPI+Responses.swift in Sources */,
-				F29DA38325024753004CCB8F /* ActitoEvent+CoreData.swift in Sources */,
 				F2E07E7A2534B5DD00AF0C14 /* ActitoTime.swift in Sources */,
 				42A207D529B7F7770917822D /* ActitoDevice.swift in Sources */,
 				F2D3894026664AAA00EAEF44 /* LocalStorageMigration.swift in Sources */,
@@ -562,6 +569,7 @@
 				F27DDD9A29266B5F0020036D /* ActitoLoyaltyIntegration.swift in Sources */,
 				F219FADD252DEB3900464B4E /* ActitoSessionModuleImpl.swift in Sources */,
 				42A20845E1262C362CD05DB2 /* ActitoDeviceModuleImpl.swift in Sources */,
+				1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */,
 				42A204EEDC52B164B27D6563 /* ActitoEventsModuleImpl.swift in Sources */,
 				42A20BCB911114B0BCBEF371 /* ActitoCrashReporterModuleImpl.swift in Sources */,
 				F289993525C97D35008ADC7E /* ActitoOptions.swift in Sources */,
