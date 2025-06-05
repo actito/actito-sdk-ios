@@ -245,7 +245,7 @@ internal class ActitoEventsModuleImpl: NSObject, ActitoModule, ActitoEventsModul
                     try? await Actito.shared.database.update(updatedLocalEvent)
                 } else {
                     logger.debug("Event was retried too many times. Removing...")
-                    await Actito.shared.database.remove(localEvent)
+                    await Actito.shared.database.remove(updatedLocalEvent)
                 }
             } else {
                 logger.debug("Failed to process event due to an unrecoverable error. Discarding it...")

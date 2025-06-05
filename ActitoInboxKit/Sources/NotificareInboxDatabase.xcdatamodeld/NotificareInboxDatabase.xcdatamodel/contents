@@ -8,7 +8,7 @@
         <attribute name="opened" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="visible" attributeType="Boolean" usesScalarValueType="YES"/>
-        <fetchIndex name="byInboxItemIndex">
+        <fetchIndex name="byInboxItemIdIndex">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
         <fetchIndex name="byNotificationIdIndex">
