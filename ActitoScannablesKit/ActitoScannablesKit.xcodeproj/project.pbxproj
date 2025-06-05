@@ -208,6 +208,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AD52A2E2DE75F7D006C7D88 /* PBXTargetDependency */,
 			);
 			name = ActitoScannablesKit;
 			productName = Scannable;
@@ -327,6 +328,10 @@
 		1A546F742C5B5DDD0059F095 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 1A546F732C5B5DDD0059F095 /* SwiftLintBuildToolPlugin */;
+		};
+		1AD52A2E2DE75F7D006C7D88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AD52A2D2DE75F7D006C7D88 /* SwiftLintBuildToolPlugin */;
 		};
 		F258DE3024BC4FAD006F9ABD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1083,6 +1088,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		1A546F732C5B5DDD0059F095 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A8C30ED2BF6397A0000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AD52A2D2DE75F7D006C7D88 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1A8C30ED2BF6397A0000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";

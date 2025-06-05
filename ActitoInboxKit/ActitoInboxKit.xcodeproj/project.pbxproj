@@ -228,6 +228,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AD52A362DE75FA8006C7D88 /* PBXTargetDependency */,
 			);
 			name = ActitoInboxKit;
 			productName = ActitoInboxKit;
@@ -245,6 +246,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AD52A382DE75FB0006C7D88 /* PBXTargetDependency */,
 				F289F54125B85E020091AB97 /* PBXTargetDependency */,
 			);
 			name = ActitoInboxKitTests;
@@ -349,6 +351,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1AD52A362DE75FA8006C7D88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AD52A352DE75FA8006C7D88 /* SwiftLintBuildToolPlugin */;
+		};
+		1AD52A382DE75FB0006C7D88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AD52A372DE75FB0006C7D88 /* SwiftLintBuildToolPlugin */;
+		};
 		F289F54125B85E020091AB97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F289F53425B85E020091AB97 /* ActitoInboxKit */;
@@ -1089,6 +1099,19 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1AD52A352DE75FA8006C7D88 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A8C30E72BF639440000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AD52A372DE75FB0006C7D88 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A8C30E72BF639440000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F2DAB3A9271F18E1002B5F27 /* NotificareInboxDatabase.xcdatamodeld */ = {
