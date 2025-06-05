@@ -17,7 +17,7 @@ extension ActitoInternals.PushAPI.Payloads {
         internal var timeZoneOffset: Float
         internal var backgroundAppRefresh: Bool
     }
-    
+
     internal struct UpdateDevice: Encodable {
         internal var language: String
         internal var region: String
@@ -29,20 +29,20 @@ extension ActitoInternals.PushAPI.Payloads {
         internal var timeZoneOffset: Float
         internal var backgroundAppRefresh: Bool
     }
-    
+
     internal struct UpdateDeviceUser: Encodable {
         @EncodeNull internal var userID: String?
         @EncodeNull internal var userName: String?
     }
-    
+
     internal struct UpdateDeviceDoNotDisturb: Encodable {
         @EncodeNull internal var dnd: ActitoDoNotDisturb?
     }
-    
+
     internal struct UpdateDeviceUserData: Encodable {
         internal let userData: [String: String?]
     }
-    
+
     internal struct UpgradeToLongLivedDevice: Encodable {
         internal let deviceID: String
         internal let transport: String
@@ -57,37 +57,37 @@ extension ActitoInternals.PushAPI.Payloads {
         internal let timeZoneOffset: Float
         internal let backgroundAppRefresh: Bool
     }
-    
+
     internal enum Device {
         internal struct UpdateTimeZone: Encodable {
             internal let language: String
             internal let region: String
             internal let timeZoneOffset: Float
         }
-        
+
         internal struct UpdateLanguage: Encodable {
             internal let language: String
             internal let region: String
         }
-        
+
         internal struct UpdateBackgroundAppRefresh: Encodable {
             internal let language: String
             internal let region: String
             internal let backgroundAppRefresh: Bool
         }
-        
+
         internal struct Tags: Encodable {
             internal let tags: [String]
         }
     }
-    
+
     internal struct CreateNotificationReply: Encodable {
         internal let notification: String
         internal let deviceID: String
         internal let userID: String?
         internal let label: String
         internal let data: ReplyData
-        
+
         internal struct ReplyData: Encodable {
             internal let target: String?
             internal let message: String?
@@ -95,7 +95,7 @@ extension ActitoInternals.PushAPI.Payloads {
             internal let mimeType: String?
         }
     }
-    
+
     internal struct TestDeviceRegistration: Encodable {
         internal let deviceID: String
     }

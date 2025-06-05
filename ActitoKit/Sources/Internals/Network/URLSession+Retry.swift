@@ -7,11 +7,11 @@ import Foundation
 extension URLSession {
     /// Default number of retries to attempt on each `URLRequest` instance. To customize, supply desired value to `perform()`
     public static var maximumNumberOfRetries: Int = 5
-    
+
     /// Output types
     public typealias DataResult = Result<(response: HTTPURLResponse, data: Data?), ActitoNetworkError>
     public typealias Callback = (DataResult) -> Void
-    
+
     /// Executes given URLRequest instance, possibly retrying the said number of times. Through `callback` returns either `Data` from the response or `NetworkError` instance.
     /// If any authentication needs to be done, it's handled internally by this methods and its derivatives.
     /// - Parameters:
@@ -26,7 +26,7 @@ extension URLSession {
         if maxRetries <= 0 {
             fatalError("maxRetries must be 1 or larger.")
         }
-        
+
         let networkRequest = NetworkRequest(urlRequest, 0, maxRetries, allowEmptyData, callback)
         authenticate(networkRequest)
     }
@@ -43,13 +43,13 @@ extension URLSession {
         allowEmptyData: Bool,
         callback: Callback
     )
-    
+
     /// Extra-step where `URLRequest`'s authorization should be handled, before actually performing the URLRequest in `execute()`
     private func authenticate(_ networkRequest: NetworkRequest) {
         let currentRetries = networkRequest.currentRetries
         let maxRetries = networkRequest.maxRetries
         let callback = networkRequest.callback
-        
+
         if currentRetries >= maxRetries {
             // Too many unsuccessful attempts
             DispatchQueue.main.async {
@@ -57,25 +57,25 @@ extension URLSession {
             }
             return
         }
-        
+
         //    NOTE: this is the place to handle OAuth2
         //    or some other form of URLRequest‘s authorization
         //    now execute the request
         execute(networkRequest)
     }
-    
+
     ///    Creates the instance of `URLSessionDataTask`, performs it then lightly processes the response before calling `validate`.
     private func execute(_ networkRequest: NetworkRequest) {
         let urlRequest = networkRequest.urlRequest
-        
+
         let task = dataTask(with: urlRequest) { [unowned self] data, urlResponse, error in
             let dataResult = process(data, urlResponse, error, for: networkRequest)
             validate(dataResult, for: networkRequest)
         }
-        
+
         task.resume()
     }
-    
+
     ///    Process results of `URLSessionDataTask` and converts it into `DataResult` instance
     private func process(_ data: Data?, _ urlResponse: URLResponse?, _ error: Error?, for _: NetworkRequest) -> DataResult {
         if let urlError = error as? URLError {
@@ -83,7 +83,7 @@ extension URLSession {
         } else if let otherError = error {
             return .failure(ActitoNetworkError.genericError(otherError))
         }
-        
+
         guard let httpURLResponse = urlResponse as? HTTPURLResponse else {
             if let urlResponse = urlResponse {
                 return .failure(ActitoNetworkError.invalidResponseType(urlResponse))
@@ -91,7 +91,7 @@ extension URLSession {
                 return .failure(ActitoNetworkError.noResponse)
             }
         }
-        
+
         //        if httpURLResponse.statusCode >= 400 {
         //            return .failure(ActitoNetworkError.endpointError(httpURLResponse, data))
         //        }
@@ -103,24 +103,24 @@ extension URLSession {
         //
         //            return .failure(ActitoNetworkError.noResponseData(httpURLResponse))
         //        }
-        
+
         return .success((response: httpURLResponse, data: data))
     }
-    
+
     ///    Checks the result of URLSessionDataTask and if there were errors, should the URLRequest be retried.
     private func validate(_ result: DataResult, for networkRequest: NetworkRequest) {
         let callback = networkRequest.callback
-        
+
         switch result {
         case .success:
             break
-            
+
         case let .failure(networkError):
             switch networkError {
             case .inaccessible:
                 //    too many failed network calls
                 break
-                
+
             default:
                 if networkError.shouldRetry {
                     //    update retries count and
@@ -133,7 +133,7 @@ extension URLSession {
                 }
             }
         }
-        
+
         DispatchQueue.main.async {
             callback(result)
         }

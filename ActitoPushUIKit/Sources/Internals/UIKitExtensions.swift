@@ -17,10 +17,10 @@ extension UIViewController {
             } else {
                 present(controller, animated: true, completion: completion)
             }
-            
+
             return
         }
-        
+
         if let navigationController = self as? UINavigationController {
             navigationController.pushViewController(controller, animated: true)
             completion?()
@@ -35,7 +35,7 @@ extension UIView {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide
         }
-        
+
         return layoutMarginsGuide
     }
 }
