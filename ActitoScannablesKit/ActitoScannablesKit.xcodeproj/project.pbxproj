@@ -10,6 +10,7 @@
 		1A52DE7F2CA4628000B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE7E2CA4628000B5F56C /* Logger.swift */; };
 		1ACA07CF2C57AA87002CB47D /* ActitoScannableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07CE2C57AA87002CB47D /* ActitoScannableTest.swift */; };
 		1ACA07D32C58F4D5002CB47D /* ScannablesPushApiModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07D22C58F4D5002CB47D /* ScannablesPushApiModelsTest.swift */; };
+		1AD52A642E0003D8006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A632E0003D0006C7D88 /* LaunchComponent.swift */; };
 		E5E5EB622DC112A900B00B6A /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB612DC112A900B00B6A /* ActitoKit.framework */; };
 		E5E5EB662DC112AD00B00B6A /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB652DC112AD00B00B6A /* ActitoUtilitiesKit.framework */; };
 		F258DE2E24BC4FAD006F9ABD /* ActitoScannablesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F258DE2424BC4FAD006F9ABD /* ActitoScannablesKit.framework */; };
@@ -41,6 +42,7 @@
 		1A52DE7E2CA4628000B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1ACA07CE2C57AA87002CB47D /* ActitoScannableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoScannableTest.swift; sourceTree = "<group>"; };
 		1ACA07D22C58F4D5002CB47D /* ScannablesPushApiModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannablesPushApiModelsTest.swift; sourceTree = "<group>"; };
+		1AD52A632E0003D0006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
 		E5E5EB612DC112A900B00B6A /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5E5EB652DC112AD00B00B6A /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F258DE2424BC4FAD006F9ABD /* ActitoScannablesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActitoScannablesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +154,7 @@
 			children = (
 				F2E801DA269D946D00582DB8 /* Network */,
 				F2E801D3269D93AA00582DB8 /* ActitoScannablesImpl.swift */,
+				1AD52A632E0003D0006C7D88 /* LaunchComponent.swift */,
 				1A52DE7E2CA4628000B5F56C /* Logger.swift */,
 			);
 			path = Internals;
@@ -307,6 +310,7 @@
 				F267DA50273EC00200448A8F /* ActitoScannablesError.swift in Sources */,
 				1A52DE7F2CA4628000B5F56C /* Logger.swift in Sources */,
 				F2E801E5269D957700582DB8 /* ActitoScannablesDelegate.swift in Sources */,
+				1AD52A642E0003D8006C7D88 /* LaunchComponent.swift in Sources */,
 				F2E801EC269F19BC00582DB8 /* ActitoQrCodeScannerViewController.swift in Sources */,
 				F2E801E3269D94CA00582DB8 /* PushAPI+Responses.swift in Sources */,
 				F2E801DD269D947E00582DB8 /* ActitoScannable.swift in Sources */,
