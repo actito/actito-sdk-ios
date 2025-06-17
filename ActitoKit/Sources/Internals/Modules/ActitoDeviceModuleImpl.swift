@@ -6,8 +6,7 @@ import ActitoUtilitiesKit
 import Foundation
 import UIKit
 
-internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModule {
-
+internal class ActitoDeviceModuleImpl: ActitoDeviceModule {
     internal static let instance = ActitoDeviceModuleImpl()
 
     internal private(set) var storedDevice: StoredDevice? {
@@ -15,92 +14,9 @@ internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModul
         set { LocalStorage.device = newValue }
     }
 
-    private var hasPendingDeviceRegistrationEvent: Bool?
+    internal var hasPendingDeviceRegistrationEvent: Bool?
 
-    // MARK: - Actito Module
-
-    internal func configure() {
-        // Listen to timezone changes
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(updateDeviceTimezone),
-            name: UIApplication.significantTimeChangeNotification,
-            object: nil
-        )
-
-        // Listen to language changes
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(updateDeviceLanguage),
-            name: NSLocale.currentLocaleDidChangeNotification,
-            object: nil
-        )
-
-        // Listen to 'background refresh status' changes
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(updateDeviceBackgroundAppRefresh),
-            name: UIApplication.backgroundRefreshStatusDidChangeNotification,
-            object: nil
-        )
-    }
-
-    internal func launch() async throws {
-        try await upgradeToLongLivedDeviceWhenNeeded()
-
-        if let storedDevice {
-            let isApplicationUpgrade = storedDevice.appVersion != Bundle.main.applicationVersion
-
-            do {
-                try await updateDevice()
-            } catch {
-                if case let ActitoNetworkError.validationError(response, _, _) = error, response.statusCode == 404 {
-                    logger.warning("The device was removed from Actito. Recovering...")
-
-                    logger.debug("Resetting local storage.")
-                    try await resetLocalStorage()
-
-                    logger.debug("Creating a new device")
-                    try await createDevice()
-                    hasPendingDeviceRegistrationEvent = true
-
-                    // Ensure a session exists for the current device.
-                    try await Actito.shared.session().launch()
-
-                    // We will log the Install & Registration events here since this will execute only one time at the start.
-                    try? await Actito.shared.eventsImplementation().logApplicationInstall()
-                    try? await Actito.shared.eventsImplementation().logApplicationRegistration()
-
-                    return
-                }
-
-                throw error
-            }
-
-            // Ensure a session exists for the current device.
-            try await Actito.shared.session().launch()
-
-            if isApplicationUpgrade {
-                // It's not the same version, let's log it as an upgrade.
-                logger.debug("New version detected")
-                try? await Actito.shared.eventsImplementation().logApplicationUpgrade()
-            }
-        } else {
-            logger.debug("New install detected")
-
-            try await createDevice()
-            hasPendingDeviceRegistrationEvent = true
-
-            // Ensure a session exists for the current device.
-            try await Actito.shared.session().launch()
-
-            // We will log the Install & Registration events here since this will execute only one time at the start.
-            try? await Actito.shared.eventsImplementation().logApplicationInstall()
-            try? await Actito.shared.eventsImplementation().logApplicationRegistration()
-        }
-    }
-
-    private func resetLocalStorage() async throws {
+    internal func resetLocalStorage() async throws {
         for module in ActitoInternals.Module.allCases {
             if let instance = module.klass?.instance {
                 logger.debug("Resetting module: \(module)")
@@ -120,14 +36,6 @@ internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModul
         LocalStorage.device = nil
         LocalStorage.preferredLanguage = nil
         LocalStorage.preferredRegion = nil
-    }
-
-    internal func postLaunch() async throws {
-        if let storedDevice, hasPendingDeviceRegistrationEvent == true {
-            DispatchQueue.main.async {
-                Actito.shared.delegate?.actito(Actito.shared, didRegisterDevice: storedDevice.asPublic())
-            }
-        }
     }
 
     // MARK: - Actito Device Module
@@ -505,7 +413,7 @@ internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModul
 
     // TODO: check prerequisites
 
-    private func createDevice() async throws {
+    internal func createDevice() async throws {
         let backgroundRefreshStatus = await UIApplication.shared.backgroundRefreshStatus
 
         let payload = await ActitoInternals.PushAPI.Payloads.CreateDevice(
@@ -541,7 +449,7 @@ internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModul
         )
     }
 
-    private func updateDevice() async throws {
+    internal func updateDevice() async throws {
         guard var device = storedDevice else {
             throw ActitoError.deviceUnavailable
         }
@@ -576,7 +484,7 @@ internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModul
         self.storedDevice = device
     }
 
-    private func upgradeToLongLivedDeviceWhenNeeded() async throws {
+    internal func upgradeToLongLivedDeviceWhenNeeded() async throws {
         guard let device = LocalStorage.device, !device.isLongLived else {
             return
         }
@@ -734,7 +642,7 @@ internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModul
 
     // MARK: - Notification Center listeners
 
-    @objc private func updateDeviceTimezone() {
+    @objc internal func updateDeviceTimezone() {
         logger.info("Device timezone changed.")
 
         Task {
@@ -743,7 +651,7 @@ internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModul
         }
     }
 
-    @objc private func updateDeviceLanguage() {
+    @objc internal func updateDeviceLanguage() {
         logger.info("Device language changed.")
 
         let language = getDeviceLanguage()
@@ -755,7 +663,7 @@ internal class ActitoDeviceModuleImpl: NSObject, ActitoModule, ActitoDeviceModul
         }
     }
 
-    @objc private func updateDeviceBackgroundAppRefresh() {
+    @objc internal func updateDeviceBackgroundAppRefresh() {
         logger.info("Device background app refresh status changed.")
 
         Task {

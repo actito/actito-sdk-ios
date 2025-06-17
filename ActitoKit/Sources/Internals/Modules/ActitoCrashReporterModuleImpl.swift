@@ -6,62 +6,12 @@ import ActitoUtilitiesKit
 import Foundation
 import UIKit
 
-internal class ActitoCrashReporterModuleImpl: NSObject, ActitoModule {
-    // MARK: - Actito Module
-
+internal class ActitoCrashReporterModuleImpl {
     internal static let instance = ActitoCrashReporterModuleImpl()
-
-    internal func configure() {
-        let crashReportsEnabled = Actito.shared.options!.crashReportsEnabled
-
-        guard crashReportsEnabled else {
-            logger.debug("Crash reports are not enabled.")
-            return
-        }
-
-        // Catch NSExceptions
-        NSSetUncaughtExceptionHandler(uncaughtExceptionHandler)
-
-        // Catch Swift exceptions
-        signal(SIGQUIT, signalReceiver)
-        signal(SIGILL, signalReceiver)
-        signal(SIGTRAP, signalReceiver)
-        signal(SIGABRT, signalReceiver)
-        signal(SIGEMT, signalReceiver)
-        signal(SIGFPE, signalReceiver)
-        signal(SIGBUS, signalReceiver)
-        signal(SIGSEGV, signalReceiver)
-        signal(SIGSYS, signalReceiver)
-        signal(SIGPIPE, signalReceiver)
-        signal(SIGALRM, signalReceiver)
-        signal(SIGXCPU, signalReceiver)
-        signal(SIGXFSZ, signalReceiver)
-    }
-
-    internal func launch() async throws {
-        guard let event = LocalStorage.crashReport else {
-            logger.debug("No crash report to process.")
-            return
-        }
-
-        do {
-            try await ActitoRequest.Builder()
-                .post("/event", body: event)
-                .response()
-
-            logger.info("Crash report processed.")
-
-            // Clean up the stored crash report
-            LocalStorage.crashReport = nil
-        } catch {
-            logger.error("Failed to process a crash report.", error: error)
-
-        }
-    }
 
     // MARK: - Internal API
 
-    private let uncaughtExceptionHandler: @convention(c) (NSException) -> Void = { exception in
+    internal let uncaughtExceptionHandler: @convention(c) (NSException) -> Void = { exception in
         guard let device = Actito.shared.device().currentDevice else {
             logger.warning("Cannot process a crash report before the device becomes available.")
             return
@@ -90,7 +40,7 @@ internal class ActitoCrashReporterModuleImpl: NSObject, ActitoModule {
         )
     }
 
-    private let signalReceiver: @convention(c) (Int32) -> Void = { signal in
+    internal let signalReceiver: @convention(c) (Int32) -> Void = { signal in
         guard let device = Actito.shared.device().currentDevice else {
             logger.warning("Cannot process a crash report before the device becomes available.")
             return

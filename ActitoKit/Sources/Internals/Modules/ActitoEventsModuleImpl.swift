@@ -8,35 +8,11 @@ import UIKit
 private let MAX_RETRIES = 5
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
-internal class ActitoEventsModuleImpl: NSObject, ActitoModule, ActitoEventsModule, ActitoInternalEventsModule {
-    private let discardableEvents = [String]()
-    private var processEventsTaskIdentifier: UIBackgroundTaskIdentifier?
-
-    // MARK: - Actito Module
-
+internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsModule {
     internal static let instance = ActitoEventsModuleImpl()
 
-    internal func configure() {
-        // Listen to application did become active events.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onApplicationDidBecomeActiveNotification(_:)),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil
-        )
-
-        // Listen to reachability changed events.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onReachabilityChanged(_:)),
-            name: .reachabilityChanged,
-            object: nil
-        )
-    }
-
-    internal func launch() async throws {
-        processStoredEvents()
-    }
+    private let discardableEvents = [String]()
+    private var processEventsTaskIdentifier: UIBackgroundTaskIdentifier?
 
     // MARK: - Actito Events
 
@@ -144,7 +120,7 @@ internal class ActitoEventsModuleImpl: NSObject, ActitoModule, ActitoEventsModul
         }
     }
 
-    private func processStoredEvents() {
+    internal func processStoredEvents() {
         // Check that Actito is ready to process the events.
         guard Actito.shared.state >= .configured else {
             logger.debug("Actito is not ready yet. Skipping...")
@@ -254,13 +230,13 @@ internal class ActitoEventsModuleImpl: NSObject, ActitoModule, ActitoEventsModul
         }
     }
 
-    @objc private func onApplicationDidBecomeActiveNotification(_: Notification) {
+    @objc internal func onApplicationDidBecomeActiveNotification(_: Notification) {
         guard Actito.shared.isReady else { return }
 
         processStoredEvents()
     }
 
-    @objc private func onReachabilityChanged(_: Notification) {
+    @objc internal func onReachabilityChanged(_: Notification) {
         guard let reachability = Actito.shared.reachability else {
             logger.debug("Reachbility module not configure.")
             return

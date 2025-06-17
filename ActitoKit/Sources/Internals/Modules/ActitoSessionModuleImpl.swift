@@ -8,10 +8,12 @@ import UIKit
 
 private let SESSION_CLOSE_TASK_NAME = "re.notifica.tasks.session.Close"
 
-internal class ActitoSessionModuleImpl: NSObject, ActitoModule {
+internal class ActitoSessionModuleImpl {
+    internal static let instance = ActitoSessionModuleImpl()
+
     internal private(set) var sessionId: String?
     private var sessionStart: Date?
-    private var sessionEnd: Date?
+    internal var sessionEnd: Date?
 
     private var backgroundTask: DispatchWorkItem?
     private var backgroundTaskIdentifier: UIBackgroundTaskIdentifier = .invalid
@@ -23,44 +25,9 @@ internal class ActitoSessionModuleImpl: NSObject, ActitoModule {
         return formatter
     }()
 
-    // MARK: - Actito Module
-
-    internal static let instance = ActitoSessionModuleImpl()
-
-    internal func configure() {
-        // Listen to 'application did become active'
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(applicationDidBecomeActive),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil
-        )
-
-        // Listen to 'application will resign active'
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(applicationWillResignActive),
-            name: UIApplication.willResignActiveNotification,
-            object: nil
-        )
-    }
-
-    internal func launch() async throws {
-        if sessionId == nil, Actito.shared.device().currentDevice != nil, await UIApplication.shared.applicationState == .active {
-            // Launch is taking place after the application came to the foreground.
-            // Start the application session.
-            await startSession()
-        }
-    }
-
-    internal func unlaunch() async throws {
-        sessionEnd = Date()
-        await stopSession()
-    }
-
     // MARK: - Internal API
 
-    @objc private func applicationDidBecomeActive() {
+    @objc internal func applicationDidBecomeActive() {
         guard UIApplication.shared.applicationState == .active else {
             logger.debug("The application is not active. Skipping...")
             return
@@ -86,7 +53,7 @@ internal class ActitoSessionModuleImpl: NSObject, ActitoModule {
         }
     }
 
-    @objc private func applicationWillResignActive() {
+    @objc internal func applicationWillResignActive() {
         guard UIApplication.shared.applicationState == .active else {
             logger.debug("The application is not active. Skipping...")
             return
@@ -106,7 +73,7 @@ internal class ActitoSessionModuleImpl: NSObject, ActitoModule {
         }
     }
 
-    private func startSession() async {
+    internal func startSession() async {
         let sessionId = UUID().uuidString.lowercased()
         let sessionStart = Date()
 
@@ -130,7 +97,7 @@ internal class ActitoSessionModuleImpl: NSObject, ActitoModule {
         }
     }
 
-    private func stopSession() async {
+    internal func stopSession() async {
         guard let sessionId = sessionId,
               let sessionStart = sessionStart,
               let sessionEnd = sessionEnd
