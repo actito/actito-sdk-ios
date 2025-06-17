@@ -6,11 +6,13 @@ import ActitoKit
 import Combine
 import UIKit
 
-internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
-    private static let addInboxItemNotification = NSNotification.Name(rawValue: "ActitoInboxKit.AddInboxItem")
-    private static let readInboxItemNotification = NSNotification.Name(rawValue: "ActitoInboxKit.ReadInboxItem")
-    private static let refreshBadgeNotification = NSNotification.Name(rawValue: "ActitoInboxKit.RefreshBadge")
-    private static let reloadInboxNotification = NSNotification.Name(rawValue: "ActitoInboxKit.ReloadInbox")
+internal class ActitoInboxImpl: ActitoInbox {
+    internal static let instance = ActitoInboxImpl()
+
+    internal static let addInboxItemNotification = NSNotification.Name(rawValue: "ActitoInboxKit.AddInboxItem")
+    internal static let readInboxItemNotification = NSNotification.Name(rawValue: "ActitoInboxKit.ReadInboxItem")
+    internal static let refreshBadgeNotification = NSNotification.Name(rawValue: "ActitoInboxKit.RefreshBadge")
+    internal static let reloadInboxNotification = NSNotification.Name(rawValue: "ActitoInboxKit.ReloadInbox")
 
     public weak var delegate: ActitoInboxDelegate?
 
@@ -62,13 +64,13 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
         return LocalStorage.currentBadge
     }
 
-    private let database = InboxDatabase()
+    internal let database = InboxDatabase()
     private var cachedItems: [LocalInboxItem] = []
 
     private var _badgeStream = CurrentValueSubject<Int, Never>(0)
     private var _itemsStream = CurrentValueSubject<[ActitoInboxItem], Never>([])
 
-    internal override init() {
+    internal init() {
         itemsStream = _itemsStream
             .map { items in
                 items.filter { !$0.isExpired }
@@ -76,79 +78,6 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
             .eraseToAnyPublisher()
 
         badgeStream = _badgeStream.eraseToAnyPublisher()
-    }
-
-    // MARK: - Actito Module
-
-    internal static let instance = ActitoInboxImpl()
-
-    internal func configure() {
-        logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-
-        database.configure()
-
-        Task {
-            await loadCachedItems()
-        }
-
-        // Listen to inbox addition requests.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onAddItemNotification(_:)),
-            name: ActitoInboxImpl.addInboxItemNotification,
-            object: nil
-        )
-
-        // Listen to inbox read requests.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onReadItemNotification(_:)),
-            name: ActitoInboxImpl.readInboxItemNotification,
-            object: nil
-        )
-
-        // Listen to badge refresh requests.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onRefreshBadgeNotification(_:)),
-            name: ActitoInboxImpl.refreshBadgeNotification,
-            object: nil
-        )
-
-        // Listen to inbox reload requests.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onReloadInboxNotification(_:)),
-            name: ActitoInboxImpl.reloadInboxNotification,
-            object: nil
-        )
-
-        // Listen to application did become active events.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onApplicationDidBecomeActiveNotification(_:)),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil
-        )
-    }
-
-    internal func clearStorage() async throws {
-        try await database.clear()
-        LocalStorage.clear()
-    }
-
-    internal func launch() async throws {
-        sync()
-    }
-
-    internal func unlaunch() async throws {
-        try await clearLocalInbox()
-        clearNotificationCenter()
-
-        try await clearRemoteInbox()
-
-        notifyItemsUpdated(self.items)
-        _ = try? await refreshBadge()
     }
 
     // MARK: - Actito Inbox
@@ -394,7 +323,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
 
     // MARK: - Internal API
 
-    private func notifyItemsUpdated(_ items: [ActitoInboxItem]) {
+    internal func notifyItemsUpdated(_ items: [ActitoInboxItem]) {
         DispatchQueue.main.async {
             self.delegate?.actito(self, didUpdateInbox: self.items)
         }
@@ -432,7 +361,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
         }
     }
 
-    private func sync() {
+    internal func sync() {
         guard let device = Actito.shared.device().currentDevice else {
             logger.warning("No device registered yet. Skipping...")
             return
@@ -482,7 +411,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
         }
     }
 
-    private func loadCachedItems() async {
+    internal func loadCachedItems() async {
         do {
             cachedItems = try await database.find()
         } catch {
@@ -504,7 +433,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
         }
     }
 
-    private func clearLocalInbox() async throws {
+    internal func clearLocalInbox() async throws {
         try await database.clear()
         cachedItems.removeAll()
     }
@@ -517,7 +446,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
         }
     }
 
-    private func clearNotificationCenter() {
+    internal func clearNotificationCenter() {
         logger.debug("Removing all messages from the notification center.")
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
@@ -560,7 +489,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
         }
     }
 
-    private func clearRemoteInbox() async throws {
+    internal func clearRemoteInbox() async throws {
         guard let device = Actito.shared.device().currentDevice else {
             throw ActitoError.deviceUnavailable
         }
@@ -577,7 +506,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
 
     // MARK: - NotificationCenter events
 
-    @objc private func onAddItemNotification(_ notificationSignal: Notification) {
+    @objc internal func onAddItemNotification(_ notificationSignal: Notification) {
         logger.debug("Received a signal to add an item to the inbox.")
 
         guard let userInfo = notificationSignal.userInfo,
@@ -606,7 +535,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
         }
     }
 
-    @objc private func onReadItemNotification(_ notification: Notification) {
+    @objc internal func onReadItemNotification(_ notification: Notification) {
         logger.debug("Received a signal to mark an item as read.")
 
         guard let userInfo = notification.userInfo, let inboxItemId = userInfo["inboxItemId"] as? String else {
@@ -634,7 +563,7 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
         }
     }
 
-    @objc private func onRefreshBadgeNotification(_: Notification) {
+    @objc internal func onRefreshBadgeNotification(_: Notification) {
         logger.debug("Received a signal to refresh the badge.")
 
         Task {
@@ -642,12 +571,12 @@ internal class ActitoInboxImpl: NSObject, ActitoModule, ActitoInbox {
         }
     }
 
-    @objc private func onReloadInboxNotification(_: Notification) {
+    @objc internal func onReloadInboxNotification(_: Notification) {
         logger.debug("Received a signal to reload the inbox.")
         reloadInbox()
     }
 
-    @objc private func onApplicationDidBecomeActiveNotification(_: Notification) {
+    @objc internal func onApplicationDidBecomeActiveNotification(_: Notification) {
         // Don't check anything unless we're ready.
         guard Actito.shared.isReady else {
             return
