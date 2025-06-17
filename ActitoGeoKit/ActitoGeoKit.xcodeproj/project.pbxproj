@@ -255,6 +255,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AD52A3C2DE75FCC006C7D88 /* PBXTargetDependency */,
 			);
 			name = ActitoGeoKit;
 			productName = Location;
@@ -391,6 +392,10 @@
 		1A546F662C5B5D8E0059F095 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 1A546F652C5B5D8E0059F095 /* SwiftLintBuildToolPlugin */;
+		};
+		1AD52A3C2DE75FCC006C7D88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AD52A3B2DE75FCC006C7D88 /* SwiftLintBuildToolPlugin */;
 		};
 		F258DD7C24BC4E95006F9ABD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1147,6 +1152,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		1A546F652C5B5D8E0059F095 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A8C30E52BF639310000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AD52A3B2DE75FCC006C7D88 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1A8C30E52BF639310000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";

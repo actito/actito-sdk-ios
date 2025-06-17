@@ -14,7 +14,7 @@ public struct ActitoApplication: Codable, Equatable {
     public let regionConfig: RegionConfig?
     public let userDataFields: [UserDataField]
     public let actionCategories: [ActionCategory]
-    
+
     public init(id: String, name: String, category: String, appStoreId: String?, services: [String: Bool], inboxConfig: ActitoApplication.InboxConfig?, regionConfig: ActitoApplication.RegionConfig?, userDataFields: [ActitoApplication.UserDataField], actionCategories: [ActitoApplication.ActionCategory]) {
         self.id = id
         self.name = name
@@ -26,7 +26,7 @@ public struct ActitoApplication: Codable, Equatable {
         self.userDataFields = userDataFields
         self.actionCategories = actionCategories
     }
-    
+
     public enum ServiceKey: String {
         case oauth2
         case richPush
@@ -39,45 +39,45 @@ public struct ActitoApplication: Codable, Equatable {
         case inbox
         case storage
     }
-    
+
     public struct InboxConfig: Codable, Equatable {
         public let useInbox: Bool
         public let useUserInbox: Bool
         public let autoBadge: Bool
-        
+
         public init(useInbox: Bool, useUserInbox: Bool, autoBadge: Bool) {
             self.useInbox = useInbox
             self.useUserInbox = useUserInbox
             self.autoBadge = autoBadge
         }
     }
-    
+
     public struct RegionConfig: Codable, Equatable {
         public let proximityUUID: String?
-        
+
         public init(proximityUUID: String?) {
             self.proximityUUID = proximityUUID
         }
     }
-    
+
     public struct UserDataField: Codable, Equatable {
         public let type: String
         public let key: String
         public let label: String
-        
+
         public init(type: String, key: String, label: String) {
             self.type = type
             self.key = key
             self.label = label
         }
     }
-    
+
     public struct ActionCategory: Codable, Equatable {
         public let name: String
         public let description: String?
         public let type: String
         public let actions: [ActitoNotification.Action]
-        
+
         public init(name: String, description: String?, type: String, actions: [ActitoNotification.Action]) {
             self.name = name
             self.description = description
@@ -97,7 +97,7 @@ extension ActitoApplication {
         let data = try JSONEncoder.actito.encode(self)
         return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
     }
-    
+
     public static func fromJson(json: [String: Any]) throws -> ActitoApplication {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try JSONDecoder.actito.decode(ActitoApplication.self, from: data)
@@ -110,7 +110,7 @@ extension ActitoApplication.InboxConfig {
         let data = try JSONEncoder.actito.encode(self)
         return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
     }
-    
+
     public static func fromJson(json: [String: Any]) throws -> ActitoApplication.InboxConfig {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try JSONDecoder.actito.decode(ActitoApplication.InboxConfig.self, from: data)
@@ -123,7 +123,7 @@ extension ActitoApplication.RegionConfig {
         let data = try JSONEncoder.actito.encode(self)
         return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
     }
-    
+
     public static func fromJson(json: [String: Any]) throws -> ActitoApplication.RegionConfig {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try JSONDecoder.actito.decode(ActitoApplication.RegionConfig.self, from: data)
@@ -136,7 +136,7 @@ extension ActitoApplication.UserDataField {
         let data = try JSONEncoder.actito.encode(self)
         return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
     }
-    
+
     public static func fromJson(json: [String: Any]) throws -> ActitoApplication.UserDataField {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try JSONDecoder.actito.decode(ActitoApplication.UserDataField.self, from: data)
@@ -149,7 +149,7 @@ extension ActitoApplication.ActionCategory {
         let data = try JSONEncoder.actito.encode(self)
         return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
     }
-    
+
     public static func fromJson(json: [String: Any]) throws -> ActitoApplication.ActionCategory {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try JSONDecoder.actito.decode(ActitoApplication.ActionCategory.self, from: data)

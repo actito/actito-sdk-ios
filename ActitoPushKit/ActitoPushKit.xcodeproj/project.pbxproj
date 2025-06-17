@@ -236,6 +236,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AD52A322DE75F91006C7D88 /* PBXTargetDependency */,
 			);
 			name = ActitoPushKit;
 			productName = Push;
@@ -363,6 +364,10 @@
 		1A546F702C5B5DC80059F095 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 1A546F6F2C5B5DC80059F095 /* SwiftLintBuildToolPlugin */;
+		};
+		1AD52A322DE75F91006C7D88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AD52A312DE75F91006C7D88 /* SwiftLintBuildToolPlugin */;
 		};
 		F258DDA024BC4EE2006F9ABD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1119,6 +1124,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		1A546F6F2C5B5DC80059F095 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A8C30EB2BF639690000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AD52A312DE75F91006C7D88 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1A8C30EB2BF639690000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";

@@ -50,7 +50,7 @@ extension ActitoSystemNotification {
         case type
         case extra
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 

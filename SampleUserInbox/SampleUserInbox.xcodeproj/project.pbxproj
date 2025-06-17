@@ -417,6 +417,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AD52A522DF1D34D006C7D88 /* PBXTargetDependency */,
 				F2F41D7B25CD651D0010260B /* PBXTargetDependency */,
 			);
 			name = SampleUserInbox;
@@ -582,6 +583,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1AD52A522DF1D34D006C7D88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AD52A512DF1D34D006C7D88 /* SwiftLintBuildToolPlugin */;
+		};
 		F2F41D7B25CD651D0010260B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F2F41D7425CD651D0010260B /* NotificationService */;
@@ -877,6 +882,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1AD52A512DF1D34D006C7D88 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A8C30EF2BF639940000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
 		E509E4C42C9DC9AD00ED600E /* Auth0 */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E509E4B52C9DBE8400ED600E /* XCRemoteSwiftPackageReference "Auth0" */;

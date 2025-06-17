@@ -5,7 +5,7 @@
 import Alamofire
 
 extension HTTPHeaders {
-    static func authorizationHeader(accessToken: String) -> HTTPHeaders {
+    internal static func authorizationHeader(accessToken: String) -> HTTPHeaders {
         return [
             "Authorization": "Bearer \(accessToken)"
         ]

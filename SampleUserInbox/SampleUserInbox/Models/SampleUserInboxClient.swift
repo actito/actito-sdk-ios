@@ -9,7 +9,7 @@ internal struct SampleUserInboxClient: Decodable {
     internal let fetchInboxUrl: String
     internal let registerDeviceUrl: String
 
-    var isAllDataFilled: Bool {
+    internal var isAllDataFilled: Bool {
         return !fetchInboxUrl.isEmpty &&
                !registerDeviceUrl.isEmpty
     }
