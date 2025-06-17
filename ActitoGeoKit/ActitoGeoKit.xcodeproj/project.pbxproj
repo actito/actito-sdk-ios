@@ -14,6 +14,7 @@
 		1ACA07E32C59CD88002CB47D /* ActitoBeaconTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07E22C59CD88002CB47D /* ActitoBeaconTest.swift */; };
 		1ACA07E52C59CF79002CB47D /* ActitoLocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07E42C59CF79002CB47D /* ActitoLocationTest.swift */; };
 		1ACA07E72C5A05C3002CB47D /* GeoPushAPIModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07E62C5A05C3002CB47D /* GeoPushAPIModelsTest.swift */; };
+		1AD52A582DFFF867006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A572DFFF860006C7D88 /* LaunchComponent.swift */; };
 		E577A7652DC4C7A300231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7632DC4C7A300231193 /* ActitoKit.framework */; };
 		E577A7672DC4C7A300231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7642DC4C7A300231193 /* ActitoUtilitiesKit.framework */; };
 		F2422E4926CC0FD800D035AD /* ActitoBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2422E4826CC0FD800D035AD /* ActitoBeacon.swift */; };
@@ -61,6 +62,7 @@
 		1ACA07E22C59CD88002CB47D /* ActitoBeaconTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoBeaconTest.swift; sourceTree = "<group>"; };
 		1ACA07E42C59CF79002CB47D /* ActitoLocationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLocationTest.swift; sourceTree = "<group>"; };
 		1ACA07E62C5A05C3002CB47D /* GeoPushAPIModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPushAPIModelsTest.swift; sourceTree = "<group>"; };
+		1AD52A572DFFF860006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
 		E577A7632DC4C7A300231193 /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E577A7642DC4C7A300231193 /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2422E4826CC0FD800D035AD /* ActitoBeacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoBeacon.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				F2CDE01926C672F200CC4867 /* MapKit+Extensions.swift */,
 				F2696AA926C275C5002EA653 /* ActitoGeoImpl.swift */,
 				F2CDE01B26C6AB7C00CC4867 /* ActitoGeo+Events.swift */,
+				1AD52A572DFFF860006C7D88 /* LaunchComponent.swift */,
 				1A52DE712CA45C2C00B5F56C /* Logger.swift */,
 			);
 			path = Internals;
@@ -361,6 +364,7 @@
 				F29FCFDA26C5688200A2C7E1 /* Collections+Extensions.swift in Sources */,
 				F24FF2F826D4018E00BB7B1C /* ActitoGeoDelegate.swift in Sources */,
 				F2CDE01A26C672F200CC4867 /* MapKit+Extensions.swift in Sources */,
+				1AD52A582DFFF867006C7D88 /* LaunchComponent.swift in Sources */,
 				F2696AB326C2B43C002EA653 /* PushAPI+Models.swift in Sources */,
 				F288C1F826C407D600B6C83C /* LocalStorage.swift in Sources */,
 				F2CC441E26DD18E100740C06 /* ActitoLocation.swift in Sources */,
