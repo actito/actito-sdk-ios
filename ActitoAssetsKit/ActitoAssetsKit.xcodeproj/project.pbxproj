@@ -10,6 +10,7 @@
 		1A32740A2C5A0EE1002B78BA /* AssetsPushAPIModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274092C5A0EE1002B78BA /* AssetsPushAPIModelsTest.swift */; };
 		1A52DE702CA4526900B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE6F2CA4526900B5F56C /* Logger.swift */; };
 		1ACA07E92C5A0AC5002CB47D /* ActitoAssetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07E82C5A0AC5002CB47D /* ActitoAssetTest.swift */; };
+		1AD52A542DFFF719006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A532DFFF713006C7D88 /* LaunchComponent.swift */; };
 		E5E5EB4D2DC101A800B00B6A /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB4C2DC101A800B00B6A /* ActitoKit.framework */; };
 		E5E5EB512DC101AB00B00B6A /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB502DC101AB00B00B6A /* ActitoUtilitiesKit.framework */; };
 		F258DDC224BC4F09006F9ABD /* ActitoAssetsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F258DDB824BC4F09006F9ABD /* ActitoAssetsKit.framework */; };
@@ -37,6 +38,7 @@
 		1A3274092C5A0EE1002B78BA /* AssetsPushAPIModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsPushAPIModelsTest.swift; sourceTree = "<group>"; };
 		1A52DE6F2CA4526900B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1ACA07E82C5A0AC5002CB47D /* ActitoAssetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoAssetTest.swift; sourceTree = "<group>"; };
+		1AD52A532DFFF713006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
 		E5E5EB4C2DC101A800B00B6A /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5E5EB502DC101AB00B00B6A /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F258DDB824BC4F09006F9ABD /* ActitoAssetsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActitoAssetsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,7 @@
 			children = (
 				F2ABF342269C575F00401D3F /* Network */,
 				F2ABF33B269C43AB00401D3F /* ActitoAssetsImpl.swift */,
+				1AD52A532DFFF713006C7D88 /* LaunchComponent.swift */,
 				1A52DE6F2CA4526900B5F56C /* Logger.swift */,
 			);
 			path = Internals;
@@ -284,6 +287,7 @@
 				F2ABF346269C579900401D3F /* PushAPI+Responses.swift in Sources */,
 				1A52DE702CA4526900B5F56C /* Logger.swift in Sources */,
 				F2ABF33F269C45A900401D3F /* ActitoAsset.swift in Sources */,
+				1AD52A542DFFF719006C7D88 /* LaunchComponent.swift in Sources */,
 				F2ABF348269C57C500401D3F /* PushAPI+Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
