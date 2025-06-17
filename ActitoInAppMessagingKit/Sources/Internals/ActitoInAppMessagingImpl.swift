@@ -6,38 +6,12 @@ import ActitoKit
 import Foundation
 import UIKit
 
-internal class ActitoInAppMessagingImpl: NSObject, ActitoModule, ActitoInAppMessaging {
+internal class ActitoInAppMessagingImpl: ActitoInAppMessaging {
+    internal static let instance = ActitoInAppMessagingImpl()
+
     private var presentedView: ActitoInAppMessagingView?
     private var presentedViewBackgroundTimestamp: Date?
     private var messageWorkItem: DispatchWorkItem?
-
-    // MARK: - Actito Module
-
-    internal static let instance = ActitoInAppMessagingImpl()
-
-    internal func configure() {
-        logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-
-        // Listen to when the application comes into the foreground.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onApplicationForeground),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil
-        )
-
-        // Listen to when the application goes into the background.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onApplicationBackground),
-            name: UIApplication.willResignActiveNotification,
-            object: nil
-        )
-    }
-
-    internal func launch() async throws {
-        evaluateContext(.launch)
-    }
 
     // MARK: - Actito In-App Messaging
 
@@ -68,7 +42,7 @@ internal class ActitoInAppMessagingImpl: NSObject, ActitoModule, ActitoInAppMess
 
     // MARK: - Private API
 
-    private func evaluateContext(_ context: ApplicationContext) {
+    internal func evaluateContext(_ context: ApplicationContext) {
         logger.debug("Checking in-app message for context '\(context.rawValue)'.")
 
         Task {
@@ -258,7 +232,7 @@ internal class ActitoInAppMessagingImpl: NSObject, ActitoModule, ActitoInAppMess
         }
     }
 
-    @objc private func onApplicationForeground() {
+    @objc internal func onApplicationForeground() {
         if let presentedView = presentedView, let presentedViewBackgroundTimestamp = presentedViewBackgroundTimestamp {
             let now = Date().timeIntervalSince1970 * 1000
             let backgroundGracePeriod = Double(Actito.shared.options?.backgroundGracePeriodMillis ?? ActitoOptions.DEFAULT_IAM_BACKGROUND_GRACE_PERIOD_MILLIS)
@@ -291,7 +265,7 @@ internal class ActitoInAppMessagingImpl: NSObject, ActitoModule, ActitoInAppMess
         evaluateContext(.foreground)
     }
 
-    @objc private func onApplicationBackground() {
+    @objc internal func onApplicationBackground() {
         presentedViewBackgroundTimestamp = Date()
 
         if messageWorkItem != nil {
