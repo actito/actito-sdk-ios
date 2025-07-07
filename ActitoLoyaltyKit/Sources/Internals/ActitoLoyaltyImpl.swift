@@ -6,14 +6,8 @@ import ActitoKit
 import PassKit
 import UIKit
 
-internal class ActitoLoyaltyImpl: NSObject, ActitoModule, ActitoLoyalty, ActitoLoyaltyIntegration {
-    // MARK: - Actito Module
-
+internal class ActitoLoyaltyImpl: ActitoLoyalty, ActitoLoyaltyIntegration {
     internal static let instance = ActitoLoyaltyImpl()
-
-    internal func configure() {
-        logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-    }
 
     // MARK: - Actito Loyalty
 

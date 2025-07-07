@@ -7,17 +7,11 @@ import SafariServices
 import StoreKit
 import UIKit
 
-internal class ActitoPushUIImpl: ActitoModule, ActitoPushUI {
-    private var latestPresentableNotificationHandler: ActitoNotificationPresenter?
-    private var latestPresentableActionHandler: ActitoBaseActionHandler?
-
-    // MARK: - Actito Module
-
+internal class ActitoPushUIImpl: ActitoPushUI {
     internal static let instance = ActitoPushUIImpl()
 
-    internal func configure() {
-        logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-    }
+    private var latestPresentableNotificationHandler: ActitoNotificationPresenter?
+    private var latestPresentableActionHandler: ActitoBaseActionHandler?
 
     // MARK: - Actito Push UI
 
@@ -108,19 +102,35 @@ internal class ActitoPushUIImpl: ActitoModule, ActitoPushUI {
             latestPresentableNotificationHandler = notificationController
 
         case .passbook:
-            if
-                ActitoInternals.Module.loyalty.isAvailable,
-                let integration = ActitoInternals.Module.loyalty.klass?.instance as? ActitoLoyaltyIntegration,
-                integration.canPresentPasses
-            {
-                integration.present(notification: notification, in: controller)
-                return
+            Task {
+                do {
+                    guard
+                        ActitoInternals.Module.loyalty.isAvailable,
+                        let module = ActitoInternals.Module.loyalty.klass?.instance,
+                        let canPresent = try await module.executeCommand("canPresentPasses", data: nil) as? Bool,
+                        canPresent
+                    else {
+                        await MainActor.run {
+                            let notificationController = ActitoWebPassViewController()
+                            notificationController.notification = notification
+
+                            latestPresentableNotificationHandler = notificationController
+                        }
+
+                        return
+                    }
+
+                    let data: [String: Any] = [
+                        "controller": controller,
+                        "notification": notification,
+                    ]
+
+                    _ = try await module.executeCommand("present", data: data)
+                } catch {
+                    logger.error("Error executing loyalty commands", error: error)
+                    return
+                }
             }
-
-            let notificationController = ActitoWebPassViewController()
-            notificationController.notification = notification
-
-            latestPresentableNotificationHandler = notificationController
 
         case .store:
             latestPresentableNotificationHandler = ActitoStoreController(notification: notification)

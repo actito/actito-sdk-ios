@@ -10,3 +10,9 @@ extension Actito {
         ActitoLoyaltyImpl.instance
     }
 }
+
+extension Actito {
+    internal func loyaltyImplementation() -> ActitoLoyaltyImpl {
+        ActitoLoyaltyImpl.instance
+    }
+}

@@ -13,4 +13,5 @@ public enum ActitoError: Error {
 
     // supporting errors
     case invalidArgument(message: String)
+    case unsupportedCommand(message: String)
 }

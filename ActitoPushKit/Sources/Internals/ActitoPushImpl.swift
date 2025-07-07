@@ -9,93 +9,19 @@ import MobileCoreServices
 import UIKit
 import UserNotifications
 
-internal class ActitoPushImpl: NSObject, ActitoModule, ActitoPush {
-    private var notificationCenter: UNUserNotificationCenter {
+internal class ActitoPushImpl: ActitoPush {
+    internal static let instance = ActitoPushImpl()
+
+    internal var notificationCenter: UNUserNotificationCenter {
         UNUserNotificationCenter.current()
     }
 
-    private var _subscriptionStream: CurrentValueSubject<ActitoPushSubscription?, Never> = .init(LocalStorage.subscription)
-    private var _allowedUIStream: CurrentValueSubject<Bool, Never> = .init(LocalStorage.allowedUI)
+    internal var _subscriptionStream: CurrentValueSubject<ActitoPushSubscription?, Never> = .init(LocalStorage.subscription)
+    internal var _allowedUIStream: CurrentValueSubject<Bool, Never> = .init(LocalStorage.allowedUI)
 
     internal let applicationDelegateInterceptor = ActitoPushAppDelegateInterceptor()
     internal let notificationCenterDelegate = ActitoNotificationCenterDelegate()
     internal let pushTokenRequester = PushTokenRequester()
-
-    // MARK: - Actito Module
-
-    internal static let instance = ActitoPushImpl()
-
-    internal func migrate() {
-        let allowedUI = UserDefaults.standard.bool(forKey: "notificareAllowedUI")
-
-        LocalStorage.allowedUI = allowedUI
-        LocalStorage.remoteNotificationsEnabled = UserDefaults.standard.bool(forKey: "notificareRegisteredForNotifications")
-
-        if allowedUI {
-            // Prevent the lib from sending the push registration event for existing devices.
-            LocalStorage.firstRegistration = false
-        }
-    }
-
-    internal func configure() {
-        logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-
-        if Actito.shared.options!.userNotificationCenterDelegateEnabled {
-            logger.debug("Actito will set itself as the UNUserNotificationCenter delegate.")
-            notificationCenter.delegate = notificationCenterDelegate
-        } else {
-            logger.warning("""
-            Please configure your plist settings to allow Actito to become the UNUserNotificationCenter delegate. \
-            Alternatively forward the UNUserNotificationCenter delegate events to Actito.
-            """)
-        }
-
-        // Register interceptor to receive APNS swizzled events.
-        _ = ActitoSwizzler.addInterceptor(applicationDelegateInterceptor)
-
-        // Listen to 'application did become active'.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onApplicationForeground),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil
-        )
-    }
-
-    internal func clearStorage() async throws {
-        LocalStorage.clear()
-
-        _subscriptionStream.value = LocalStorage.subscription
-        _allowedUIStream.value = LocalStorage.allowedUI
-    }
-
-    internal func postLaunch() async throws {
-        if hasRemoteNotificationsEnabled {
-            logger.debug("Enabling remote notifications automatically.")
-            try await updateDeviceSubscription()
-
-            if await hasNotificationPermission() {
-                await reloadActionCategories()
-            }
-        }
-    }
-
-    internal func unlaunch() async throws {
-        // Unregister from APNS
-        await UIApplication.shared.unregisterForRemoteNotifications()
-        logger.info("Unregistered from APNS.")
-
-        // Reset local storage
-        LocalStorage.remoteNotificationsEnabled = false
-        LocalStorage.firstRegistration = true
-
-        self.transport = nil
-        self.subscription = nil
-        self.allowedUI = false
-
-        notifySubscriptionUpdated(nil)
-        notifyAllowedUIUpdated(false)
-    }
 
     // MARK: Actito Push Module
 
@@ -120,17 +46,17 @@ internal class ActitoPushImpl: NSObject, ActitoModule, ActitoPush {
         LocalStorage.remoteNotificationsEnabled
     }
 
-    public private(set) var transport: ActitoTransport? {
+    public internal(set) var transport: ActitoTransport? {
         get { LocalStorage.transport }
         set { LocalStorage.transport = newValue }
     }
 
-    public private(set) var subscription: ActitoPushSubscription? {
+    public internal(set) var subscription: ActitoPushSubscription? {
         get { LocalStorage.subscription }
         set { LocalStorage.subscription = newValue }
     }
 
-    public private(set) var allowedUI: Bool {
+    public internal(set) var allowedUI: Bool {
         get { LocalStorage.allowedUI }
         set { LocalStorage.allowedUI = newValue }
     }
@@ -257,7 +183,7 @@ internal class ActitoPushImpl: NSObject, ActitoModule, ActitoPush {
 
     // MARK: Internal API
 
-    private func notifySubscriptionUpdated(_ subscription: ActitoPushSubscription?) {
+    internal func notifySubscriptionUpdated(_ subscription: ActitoPushSubscription?) {
         DispatchQueue.main.async {
             self.delegate?.actito(self, didChangeSubscription: subscription)
         }
@@ -265,7 +191,7 @@ internal class ActitoPushImpl: NSObject, ActitoModule, ActitoPush {
         _subscriptionStream.value = subscription
     }
 
-    private func notifyAllowedUIUpdated(_ allowedUI: Bool) {
+    internal func notifyAllowedUIUpdated(_ allowedUI: Bool) {
         DispatchQueue.main.async {
             self.delegate?.actito(self, didChangeNotificationSettings: allowedUI)
         }
@@ -435,7 +361,7 @@ internal class ActitoPushImpl: NSObject, ActitoModule, ActitoPush {
         )
     }
 
-    @objc private func onApplicationForeground() {
+    @objc internal func onApplicationForeground() {
         guard Actito.shared.isReady else {
             return
         }
@@ -503,7 +429,7 @@ internal class ActitoPushImpl: NSObject, ActitoModule, ActitoPush {
         }.resume()
     }
 
-    private func updateDeviceSubscription() async throws {
+    internal func updateDeviceSubscription() async throws {
         let token = try await pushTokenRequester.requestToken()
 
         try await updateDeviceSubscription(
@@ -588,7 +514,7 @@ internal class ActitoPushImpl: NSObject, ActitoModule, ActitoPush {
         await ensureLoggedPushRegistration()
     }
 
-    private func hasNotificationPermission() async -> Bool {
+    internal func hasNotificationPermission() async -> Bool {
         let settings = await notificationCenter.notificationSettings()
 
         var granted = settings.authorizationStatus == .authorized

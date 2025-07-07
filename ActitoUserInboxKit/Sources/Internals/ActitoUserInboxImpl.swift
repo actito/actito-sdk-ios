@@ -6,14 +6,8 @@ import ActitoKit
 import ActitoUtilitiesKit
 import Foundation
 
-internal class ActitoUserInboxImpl: ActitoModule, ActitoUserInbox {
-    // MARK: - Actito module
-
+internal class ActitoUserInboxImpl: ActitoUserInbox {
     internal static let instance = ActitoUserInboxImpl()
-
-    internal func configure() {
-        logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-    }
 
     // MARK: - Actito user inbox
 

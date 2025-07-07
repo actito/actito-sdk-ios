@@ -4,14 +4,8 @@
 
 import ActitoKit
 
-internal class ActitoAssetsImpl: NSObject, ActitoModule, ActitoAssets {
-    // MARK: - Actito Module
-
+internal class ActitoAssetsImpl: ActitoAssets {
     internal static let instance = ActitoAssetsImpl()
-
-    internal func configure() {
-        logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-    }
 
     // MARK: - Actito Assets
 

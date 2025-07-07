@@ -10,3 +10,9 @@ extension Actito {
         ActitoInAppMessagingImpl.instance
     }
 }
+
+extension Actito {
+    internal func inAppMessagingImplementation() -> ActitoInAppMessagingImpl {
+        ActitoInAppMessagingImpl.instance
+    }
+}

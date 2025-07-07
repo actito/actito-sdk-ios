@@ -6,14 +6,8 @@ import ActitoKit
 import CoreNFC
 import UIKit
 
-internal class ActitoScannablesImpl: NSObject, ActitoModule, ActitoScannables {
-    // MARK: - Actito Module
-
+internal class ActitoScannablesImpl: NSObject, ActitoScannables {
     internal static let instance = ActitoScannablesImpl()
-
-    internal func configure() {
-        logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-    }
 
     // MARK: - Actito Scannables
 

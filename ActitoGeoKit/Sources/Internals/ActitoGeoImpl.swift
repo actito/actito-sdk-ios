@@ -15,8 +15,10 @@ private let FAKE_BEACON_IDENTIFIER = "ActitoFakeBeacon"
 private let SMALLEST_DISPLACEMENT_METERS = 100.0
 private let MAX_REGION_SESSION_LOCATIONS = 100
 
-internal class ActitoGeoImpl: NSObject, ActitoModule, ActitoGeo, CLLocationManagerDelegate {
-    private var locationManager: CLLocationManager!
+internal class ActitoGeoImpl: NSObject, ActitoGeo, CLLocationManagerDelegate {
+    internal static let instance = ActitoGeoImpl()
+
+    internal var locationManager: CLLocationManager!
     private var lastKnownLocation: CLLocation?
     private var processingLocationUpdate = false
     private let fakeBeaconUUID = UUID()
@@ -72,67 +74,6 @@ internal class ActitoGeoImpl: NSObject, ActitoModule, ActitoGeo, CLLocationManag
     private var monitoredBeaconsLimit: Int {
         // The fixed -1 is to reserve for the fake beacon (bluetooth check).
         max(0, MAX_MONITORED_REGIONS_LIMIT - monitoredRegionsLimit - 1)
-    }
-
-    // MARK: - Actito Module
-
-    internal static let instance = ActitoGeoImpl()
-
-    internal func migrate() {
-        LocalStorage.locationServicesEnabled = UserDefaults.standard.bool(forKey: "notificareAllowedLocationServices")
-        LocalStorage.bluetoothEnabled = UserDefaults.standard.bool(forKey: "notificareBluetoothON")
-    }
-
-    internal func configure() {
-        logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-
-        if let backgroundModes = Bundle.main.infoDictionary?["UIBackgroundModes"] as? [String], backgroundModes.contains("location") {
-            logger.debug("Using Background Location Updates background mode.")
-            locationManager.allowsBackgroundLocationUpdates = true
-        }
-
-        // Listen to application did become active events.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onApplicationDidBecomeActiveNotification(_:)),
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil
-        )
-
-        // Listen to application will resign active events.
-        NotificationCenter.default.upsertObserver(
-            self,
-            selector: #selector(onApplicationWillResignActiveNotification(_:)),
-            name: UIApplication.willResignActiveNotification,
-            object: nil
-        )
-    }
-
-    internal func clearStorage() async throws {
-        stopMonitoringLocationUpdates()
-        stopMonitoringGeofences()
-
-        LocalStorage.clear()
-    }
-
-    internal func postLaunch() async throws {
-        if hasLocationServicesEnabled {
-            logger.debug("Enabling locations updates automatically.")
-            enableLocationUpdates()
-        }
-    }
-
-    internal func unlaunch() async throws {
-        LocalStorage.locationServicesEnabled = false
-
-        stopMonitoringGeofences()
-        stopMonitoringLocationUpdates()
-
-        try await clearDeviceLocation()
     }
 
     // MARK: - Actito Geo
@@ -511,7 +452,7 @@ internal class ActitoGeoImpl: NSObject, ActitoModule, ActitoGeo, CLLocationManag
         }
     }
 
-    private func stopMonitoringLocationUpdates() {
+    internal func stopMonitoringLocationUpdates() {
         locationManager.stopUpdatingLocation()
         locationManager.stopMonitoringSignificantLocationChanges()
 
@@ -526,12 +467,12 @@ internal class ActitoGeoImpl: NSObject, ActitoModule, ActitoGeo, CLLocationManag
         }
     }
 
-    private func stopMonitoringGeofences() {
+    internal func stopMonitoringGeofences() {
         clearRegions()
         clearBeacons()
     }
 
-    private func clearDeviceLocation() async throws {
+    internal func clearDeviceLocation() async throws {
         guard let device = Actito.shared.device().currentDevice else {
             logger.warning("Cannot update location authorization state without a device.")
             throw ActitoError.deviceUnavailable
@@ -1265,7 +1206,7 @@ internal class ActitoGeoImpl: NSObject, ActitoModule, ActitoGeo, CLLocationManag
 
     // MARK: - NotificationCenter events
 
-    @objc private func onApplicationDidBecomeActiveNotification(_: Notification) {
+    @objc internal func onApplicationDidBecomeActiveNotification(_: Notification) {
         guard hasLocationServicesEnabled else { return }
 
         guard Actito.shared.isReady else { return }
@@ -1299,7 +1240,7 @@ internal class ActitoGeoImpl: NSObject, ActitoModule, ActitoGeo, CLLocationManag
         }
     }
 
-    @objc private func onApplicationWillResignActiveNotification(_: Notification) {
+    @objc internal func onApplicationWillResignActiveNotification(_: Notification) {
         guard hasLocationServicesEnabled else { return }
 
         do {

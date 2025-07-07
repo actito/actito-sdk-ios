@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A52DE792CA461AF00B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE782CA461AF00B5F56C /* Logger.swift */; };
 		1ACA07CD2C5780D0002CB47D /* ActitoPassTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07CC2C5780D0002CB47D /* ActitoPassTest.swift */; };
+		1AD52A5E2E0000AE006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A5D2E0000AA006C7D88 /* LaunchComponent.swift */; };
 		E577A75E2DC4C0CD00231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A75C2DC4C0CD00231193 /* ActitoKit.framework */; };
 		E577A7602DC4C0CD00231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A75D2DC4C0CD00231193 /* ActitoUtilitiesKit.framework */; };
 		F216F0B126A825F700F9EF56 /* ActitoLoyaltyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F216F0B026A825F700F9EF56 /* ActitoLoyaltyImpl.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		1A52DE782CA461AF00B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1ACA07CC2C5780D0002CB47D /* ActitoPassTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoPassTest.swift; sourceTree = "<group>"; };
+		1AD52A5D2E0000AA006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
 		E577A75C2DC4C0CD00231193 /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E577A75D2DC4C0CD00231193 /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F216F0B026A825F700F9EF56 /* ActitoLoyaltyImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLoyaltyImpl.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				F2BB224626A870C300B20BF3 /* Network */,
 				F216F0B026A825F700F9EF56 /* ActitoLoyaltyImpl.swift */,
+				1AD52A5D2E0000AA006C7D88 /* LaunchComponent.swift */,
 				1A52DE782CA461AF00B5F56C /* Logger.swift */,
 			);
 			path = Internals;
@@ -286,6 +289,7 @@
 				F2DAB393271F0B88002B5F27 /* ActitoLoyalty+Augment.swift in Sources */,
 				1A52DE792CA461AF00B5F56C /* Logger.swift in Sources */,
 				F2BB224426A867AF00B20BF3 /* ActitoPass.swift in Sources */,
+				1AD52A5E2E0000AE006C7D88 /* LaunchComponent.swift in Sources */,
 				F2BB224B26A8710300B20BF3 /* PushAPI+Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

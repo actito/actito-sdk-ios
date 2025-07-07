@@ -10,3 +10,9 @@ extension Actito {
         ActitoAssetsImpl.instance
     }
 }
+
+extension Actito {
+    internal func assetsImplementation() -> ActitoAssetsImpl {
+        ActitoAssetsImpl.instance
+    }
+}

@@ -7,28 +7,28 @@ import Foundation
 public enum ActitoInternals {
     public enum Module: String, CaseIterable {
         // Embedded modules
-        case device = "ActitoKit.ActitoDeviceModuleImpl"
-        case session = "ActitoKit.ActitoSessionModuleImpl"
-        case events = "ActitoKit.ActitoEventsModuleImpl"
-        case crashReporter = "ActitoKit.ActitoCrashReporterModuleImpl"
+        case device = "ActitoKit.DeviceLaunchComponent"
+        case session = "ActitoKit.SessionLaunchComponent"
+        case events = "ActitoKit.EventsLaunchComponent"
+        case crashReporter = "ActitoKit.CrashReporterLaunchComponent"
 
         // Peer modules
-        case push = "ActitoPushKit.ActitoPushImpl"
-        case pushUI = "ActitoPushUIKit.ActitoPushUIImpl"
-        case inbox = "ActitoInboxKit.ActitoInboxImpl"
-        case loyalty = "ActitoLoyaltyKit.ActitoLoyaltyImpl"
-        case assets = "ActitoAssetsKit.ActitoAssetsImpl"
-        case scannables = "ActitoScannablesKit.ActitoScannablesImpl"
-        case geo = "ActitoGeoKit.ActitoGeoImpl"
-        case inAppMessaging = "ActitoInAppMessagingKit.ActitoInAppMessagingImpl"
-        case userInbox = "ActitoUserInboxKit.ActitoUserInboxImpl"
+        case push = "ActitoPushKit.LaunchComponent"
+        case pushUI = "ActitoPushUIKit.LaunchComponent"
+        case inbox = "ActitoInboxKit.LaunchComponent"
+        case loyalty = "ActitoLoyaltyKit.LaunchComponent"
+        case assets = "ActitoAssetsKit.LaunchComponent"
+        case scannables = "ActitoScannablesKit.LaunchComponent"
+        case geo = "ActitoGeoKit.LaunchComponent"
+        case inAppMessaging = "ActitoInAppMessagingKit.LaunchComponent"
+        case userInbox = "ActitoUserInboxKit.LaunchComponent"
 
         public var isAvailable: Bool {
             NSClassFromString(rawValue) != nil
         }
 
-        public var klass: (any ActitoModule.Type)? {
-            NSClassFromString(rawValue) as? any ActitoModule.Type
+        public var klass: (any ActitoLaunchComponent.Type)? {
+            NSClassFromString(rawValue) as? any ActitoLaunchComponent.Type
         }
 
         internal var isPeer: Bool {
