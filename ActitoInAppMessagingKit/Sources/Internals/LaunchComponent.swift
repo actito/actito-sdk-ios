@@ -8,8 +8,6 @@ import UIKit
 internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = LaunchComponent()
 
-    internal let implementation = ActitoInAppMessagingImpl.instance
-
     internal func migrate() {
         // no-op
     }
@@ -19,16 +17,16 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
 
         // Listen to when the application comes into the foreground.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onApplicationForeground),
+            Actito.shared.inAppMessagingImplementation(),
+            selector: #selector(Actito.shared.inAppMessagingImplementation().onApplicationForeground),
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
 
         // Listen to when the application goes into the background.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onApplicationBackground),
+            Actito.shared.inAppMessagingImplementation(),
+            selector: #selector(Actito.shared.inAppMessagingImplementation().onApplicationBackground),
             name: UIApplication.willResignActiveNotification,
             object: nil
         )
@@ -39,8 +37,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func launch() async throws {
-        implementation.evaluateContext(.launch)
-
+        Actito.shared.inAppMessagingImplementation().evaluateContext(.launch)
     }
 
     internal func postLaunch() async throws {

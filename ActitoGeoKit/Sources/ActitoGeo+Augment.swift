@@ -10,3 +10,9 @@ extension Actito {
         ActitoGeoImpl.instance
     }
 }
+
+extension Actito {
+    internal func geoImplementation() -> ActitoGeoImpl {
+        ActitoGeoImpl.instance
+    }
+}

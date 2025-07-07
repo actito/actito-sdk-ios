@@ -7,8 +7,6 @@ import ActitoKit
 internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = LaunchComponent()
 
-    internal let implementation = ActitoScannablesImpl.instance
-
     internal func migrate() {
         // no-op
     }

@@ -7,8 +7,6 @@ import UIKit
 internal class SessionLaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = SessionLaunchComponent()
 
-    internal let implementation = ActitoSessionModuleImpl.instance
-
     internal func migrate() {
         // no-op
     }
@@ -16,16 +14,16 @@ internal class SessionLaunchComponent: NSObject, ActitoLaunchComponent {
     internal func configure() {
         // Listen to 'application did become active'
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.applicationDidBecomeActive),
+            Actito.shared.session(),
+            selector: #selector(Actito.shared.session().applicationDidBecomeActive),
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
 
         // Listen to 'application will resign active'
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.applicationWillResignActive),
+            Actito.shared.session(),
+            selector: #selector(Actito.shared.session().applicationWillResignActive),
             name: UIApplication.willResignActiveNotification,
             object: nil
         )
@@ -37,13 +35,13 @@ internal class SessionLaunchComponent: NSObject, ActitoLaunchComponent {
 
     internal func launch() async throws {
         if
-            implementation.sessionId == nil,
+            Actito.shared.session().sessionId == nil,
             Actito.shared.device().currentDevice != nil,
             await UIApplication.shared.applicationState == .active
         {
             // Launch is taking place after the application came to the foreground.
             // Start the application session.
-            await implementation.startSession()
+            await Actito.shared.session().startSession()
         }
     }
 
@@ -52,8 +50,8 @@ internal class SessionLaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func unlaunch() async throws {
-        implementation.sessionEnd = Date()
-        await implementation.stopSession()
+        Actito.shared.session().sessionEnd = Date()
+        await Actito.shared.session().stopSession()
     }
 
     internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {

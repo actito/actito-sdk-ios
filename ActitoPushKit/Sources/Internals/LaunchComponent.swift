@@ -8,8 +8,6 @@ import UIKit
 internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = LaunchComponent()
 
-    internal let implementation = ActitoPushImpl.instance
-
     internal func migrate() {
         let allowedUI = UserDefaults.standard.bool(forKey: "notificareAllowedUI")
 
@@ -27,7 +25,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
 
         if Actito.shared.options!.userNotificationCenterDelegateEnabled {
             logger.debug("Actito will set itself as the UNUserNotificationCenter delegate.")
-            implementation.notificationCenter.delegate = implementation.notificationCenterDelegate
+            Actito.shared.pushImplementation().notificationCenter.delegate = Actito.shared.pushImplementation().notificationCenterDelegate
         } else {
             logger.warning("""
             Please configure your plist settings to allow Actito to become the UNUserNotificationCenter delegate. \
@@ -36,12 +34,12 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
         }
 
         // Register interceptor to receive APNS swizzled events.
-        _ = ActitoSwizzler.addInterceptor(implementation.applicationDelegateInterceptor)
+        _ = ActitoSwizzler.addInterceptor(Actito.shared.pushImplementation().applicationDelegateInterceptor)
 
         // Listen to 'application did become active'.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onApplicationForeground),
+            Actito.shared.pushImplementation(),
+            selector: #selector(Actito.shared.pushImplementation().onApplicationForeground),
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
@@ -50,8 +48,8 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal func clearStorage() async throws {
         LocalStorage.clear()
 
-        implementation._subscriptionStream.value = LocalStorage.subscription
-        implementation._allowedUIStream.value = LocalStorage.allowedUI
+        Actito.shared.pushImplementation()._subscriptionStream.value = LocalStorage.subscription
+        Actito.shared.pushImplementation()._allowedUIStream.value = LocalStorage.allowedUI
     }
 
     internal func launch() async throws {
@@ -59,12 +57,12 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func postLaunch() async throws {
-        if implementation.hasRemoteNotificationsEnabled {
+        if Actito.shared.pushImplementation().hasRemoteNotificationsEnabled {
             logger.debug("Enabling remote notifications automatically.")
-            try await implementation.updateDeviceSubscription()
+            try await Actito.shared.pushImplementation().updateDeviceSubscription()
 
-            if await implementation.hasNotificationPermission() {
-                await implementation.reloadActionCategories()
+            if await Actito.shared.pushImplementation().hasNotificationPermission() {
+                await Actito.shared.pushImplementation().reloadActionCategories()
             }
         }
     }
@@ -78,12 +76,12 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
         LocalStorage.remoteNotificationsEnabled = false
         LocalStorage.firstRegistration = true
 
-        implementation.transport = nil
-        implementation.subscription = nil
-        implementation.allowedUI = false
+        Actito.shared.pushImplementation().transport = nil
+        Actito.shared.pushImplementation().subscription = nil
+        Actito.shared.pushImplementation().allowedUI = false
 
-        implementation.notifySubscriptionUpdated(nil)
-        implementation.notifyAllowedUIUpdated(false)
+        Actito.shared.pushImplementation().notifySubscriptionUpdated(nil)
+        Actito.shared.pushImplementation().notifyAllowedUIUpdated(false)
     }
 
     internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {

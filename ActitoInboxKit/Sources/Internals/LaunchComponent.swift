@@ -8,8 +8,6 @@ import UIKit
 internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = LaunchComponent()
 
-    internal let implementation = ActitoInboxImpl.instance
-
     internal func migrate() {
         // no-op
     }
@@ -17,60 +15,60 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal func configure() {
         logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
 
-        implementation.database.configure()
+        Actito.shared.inboxImplementation().database.configure()
 
         Task {
-            await implementation.loadCachedItems()
+            await Actito.shared.inboxImplementation().loadCachedItems()
         }
 
         // Listen to inbox addition requests.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onAddItemNotification(_:)),
+            Actito.shared.inboxImplementation(),
+            selector: #selector(Actito.shared.inboxImplementation().onAddItemNotification(_:)),
             name: ActitoInboxImpl.addInboxItemNotification,
             object: nil
         )
 
         // Listen to inbox read requests.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onReadItemNotification(_:)),
+            Actito.shared.inboxImplementation(),
+            selector: #selector(Actito.shared.inboxImplementation().onReadItemNotification(_:)),
             name: ActitoInboxImpl.readInboxItemNotification,
             object: nil
         )
 
         // Listen to badge refresh requests.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onRefreshBadgeNotification(_:)),
+            Actito.shared.inboxImplementation(),
+            selector: #selector(Actito.shared.inboxImplementation().onRefreshBadgeNotification(_:)),
             name: ActitoInboxImpl.refreshBadgeNotification,
             object: nil
         )
 
         // Listen to inbox reload requests.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onReloadInboxNotification(_:)),
+            Actito.shared.inboxImplementation(),
+            selector: #selector(Actito.shared.inboxImplementation().onReloadInboxNotification(_:)),
             name: ActitoInboxImpl.reloadInboxNotification,
             object: nil
         )
 
         // Listen to application did become active events.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onApplicationDidBecomeActiveNotification(_:)),
+            Actito.shared.inboxImplementation(),
+            selector: #selector(Actito.shared.inboxImplementation().onApplicationDidBecomeActiveNotification(_:)),
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
     }
 
     internal func clearStorage() async throws {
-        try await implementation.database.clear()
+        try await Actito.shared.inboxImplementation().database.clear()
         LocalStorage.clear()
     }
 
     internal func launch() async throws {
-        implementation.sync()
+        Actito.shared.inboxImplementation().sync()
     }
 
     internal func postLaunch() async throws {
@@ -78,13 +76,13 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func unlaunch() async throws {
-        try await implementation.clearLocalInbox()
-        implementation.clearNotificationCenter()
+        try await Actito.shared.inboxImplementation().clearLocalInbox()
+        Actito.shared.inboxImplementation().clearNotificationCenter()
 
-        try await implementation.clearRemoteInbox()
+        try await Actito.shared.inboxImplementation().clearRemoteInbox()
 
-        implementation.notifyItemsUpdated(implementation.items)
-        _ = try? await implementation.refreshBadge()
+        Actito.shared.inboxImplementation().notifyItemsUpdated(Actito.shared.inboxImplementation().items)
+        _ = try? await Actito.shared.inboxImplementation().refreshBadge()
     }
 
     internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {

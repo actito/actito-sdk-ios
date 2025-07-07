@@ -5,8 +5,6 @@
 internal class CrashReporterLaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = CrashReporterLaunchComponent()
 
-    internal let implementation = ActitoCrashReporterModuleImpl.instance
-
     internal func migrate() {
         // no-op
     }
@@ -20,22 +18,22 @@ internal class CrashReporterLaunchComponent: NSObject, ActitoLaunchComponent {
         }
 
         // Catch NSExceptions
-        NSSetUncaughtExceptionHandler(implementation.uncaughtExceptionHandler)
+        NSSetUncaughtExceptionHandler(Actito.shared.crashReporter().uncaughtExceptionHandler)
 
         // Catch Swift exceptions
-        signal(SIGQUIT, implementation.signalReceiver)
-        signal(SIGILL, implementation.signalReceiver)
-        signal(SIGTRAP, implementation.signalReceiver)
-        signal(SIGABRT, implementation.signalReceiver)
-        signal(SIGEMT, implementation.signalReceiver)
-        signal(SIGFPE, implementation.signalReceiver)
-        signal(SIGBUS, implementation.signalReceiver)
-        signal(SIGSEGV, implementation.signalReceiver)
-        signal(SIGSYS, implementation.signalReceiver)
-        signal(SIGPIPE, implementation.signalReceiver)
-        signal(SIGALRM, implementation.signalReceiver)
-        signal(SIGXCPU, implementation.signalReceiver)
-        signal(SIGXFSZ, implementation.signalReceiver)
+        signal(SIGQUIT, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGILL, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGTRAP, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGABRT, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGEMT, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGFPE, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGBUS, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGSEGV, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGSYS, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGPIPE, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGALRM, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGXCPU, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGXFSZ, Actito.shared.crashReporter().signalReceiver)
     }
 
     internal func clearStorage() async throws {

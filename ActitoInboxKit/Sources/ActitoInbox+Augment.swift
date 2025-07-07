@@ -10,3 +10,9 @@ extension Actito {
         ActitoInboxImpl.instance
     }
 }
+
+extension Actito {
+    internal func inboxImplementation() -> ActitoInboxImpl {
+        ActitoInboxImpl.instance
+    }
+}

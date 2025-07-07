@@ -7,8 +7,6 @@ import UIKit
 internal class EventsLaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = EventsLaunchComponent()
 
-    internal let implementation = ActitoEventsModuleImpl.instance
-
     internal func migrate() {
         // no-op
     }
@@ -16,16 +14,16 @@ internal class EventsLaunchComponent: NSObject, ActitoLaunchComponent {
     internal func configure() {
         // Listen to application did become active events.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onApplicationDidBecomeActiveNotification(_:)),
+            Actito.shared.eventsImplementation(),
+            selector: #selector(Actito.shared.eventsImplementation().onApplicationDidBecomeActiveNotification(_:)),
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
 
         // Listen to reachability changed events.
         NotificationCenter.default.upsertObserver(
-            implementation,
-            selector: #selector(implementation.onReachabilityChanged(_:)),
+            Actito.shared.eventsImplementation(),
+            selector: #selector(Actito.shared.eventsImplementation().onReachabilityChanged(_:)),
             name: .reachabilityChanged,
             object: nil
         )
@@ -36,7 +34,7 @@ internal class EventsLaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func launch() async throws {
-        implementation.processStoredEvents()
+        Actito.shared.eventsImplementation().processStoredEvents()
     }
 
     internal func postLaunch() async throws {

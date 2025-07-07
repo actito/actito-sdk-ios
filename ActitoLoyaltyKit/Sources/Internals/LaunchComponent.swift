@@ -8,8 +8,6 @@ import UIKit
 internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = LaunchComponent()
 
-    internal let implementation = ActitoLoyaltyImpl.instance
-
     internal func migrate() {
         // no-op
     }
@@ -37,7 +35,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {
         switch command {
         case "canPresentPasses":
-            return implementation.canPresentPasses
+            return Actito.shared.loyaltyImplementation().canPresentPasses
 
         case "present":
             guard
@@ -49,7 +47,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
             }
 
             await MainActor.run {
-                implementation.present(notification: notification, in: controller)
+                Actito.shared.loyaltyImplementation().present(notification: notification, in: controller)
             }
             return nil
 

@@ -10,3 +10,9 @@ extension Actito {
         ActitoScannablesImpl.instance
     }
 }
+
+extension Actito {
+    internal func scannablesImplementation() -> ActitoScannablesImpl {
+        ActitoScannablesImpl.instance
+    }
+}
