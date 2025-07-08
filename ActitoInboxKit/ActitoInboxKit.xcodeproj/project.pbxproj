@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		1A1FE0632C465CB200468B84 /* ActitoInboxItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FE0622C465CB200468B84 /* ActitoInboxItemTest.swift */; };
 		1A52DE772CA4617500B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE762CA4617500B5F56C /* Logger.swift */; };
-		1ACA07DB2C5946BB002CB47D /* InboxPushAPIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA07DA2C5946BB002CB47D /* InboxPushAPIModels.swift */; };
+		1AD2650E2E1C23C300BE984E /* InboxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2650D2E1C23BE00BE984E /* InboxCache.swift */; };
+		1AD265102E1C2A1700BE984E /* InboxConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2650F2E1C2A0C00BE984E /* InboxConcurrencyTests.swift */; };
 		1AD52A202DE74ED3006C7D88 /* LocalInboxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A1F2DE74ECA006C7D88 /* LocalInboxItem.swift */; };
 		1AD52A5C2DFFFE2C006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A5B2DFFFE28006C7D88 /* LaunchComponent.swift */; };
 		E577A76C2DC4D8DB00231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A76A2DC4D8DB00231193 /* ActitoKit.framework */; };
@@ -45,7 +46,8 @@
 /* Begin PBXFileReference section */
 		1A1FE0622C465CB200468B84 /* ActitoInboxItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInboxItemTest.swift; sourceTree = "<group>"; };
 		1A52DE762CA4617500B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		1ACA07DA2C5946BB002CB47D /* InboxPushAPIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxPushAPIModels.swift; sourceTree = "<group>"; };
+		1AD2650D2E1C23BE00BE984E /* InboxCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCache.swift; sourceTree = "<group>"; };
+		1AD2650F2E1C2A0C00BE984E /* InboxConcurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxConcurrencyTests.swift; sourceTree = "<group>"; };
 		1AD52A1F2DE74ECA006C7D88 /* LocalInboxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalInboxItem.swift; sourceTree = "<group>"; };
 		1AD52A5B2DFFFE28006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
 		E577A76A2DC4D8DB00231193 /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,7 +153,7 @@
 			children = (
 				F289F54525B85E020091AB97 /* Info.plist */,
 				1A1FE0622C465CB200468B84 /* ActitoInboxItemTest.swift */,
-				1ACA07DA2C5946BB002CB47D /* InboxPushAPIModels.swift */,
+				1AD2650F2E1C2A0C00BE984E /* InboxConcurrencyTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -178,10 +180,11 @@
 			children = (
 				F28E584825C041B000C83537 /* Database */,
 				F2F311FC25C1A1BD007E4B01 /* Network */,
-				F293E2E92630491E008C2010 /* LocalStorage.swift */,
 				F289F5E725B8643A0091AB97 /* ActitoInboxImpl.swift */,
 				F27FD2692D7F341500ED26AD /* ActitoInboxItem+Expiration.swift */,
+				1AD2650D2E1C23BE00BE984E /* InboxCache.swift */,
 				1AD52A5B2DFFFE28006C7D88 /* LaunchComponent.swift */,
+				F293E2E92630491E008C2010 /* LocalStorage.swift */,
 				1A52DE762CA4617500B5F56C /* Logger.swift */,
 			);
 			path = Internals;
@@ -338,6 +341,7 @@
 				1AD52A5C2DFFFE2C006C7D88 /* LaunchComponent.swift in Sources */,
 				F2DAB3AB271F18E1002B5F27 /* NotificareInboxDatabase.xcdatamodeld in Sources */,
 				1A52DE772CA4617500B5F56C /* Logger.swift in Sources */,
+				1AD2650E2E1C23C300BE984E /* InboxCache.swift in Sources */,
 				F2F311FA25C1962D007E4B01 /* ActitoInboxError.swift in Sources */,
 				F28E583B25C0401800C83537 /* InboxDatabase.swift in Sources */,
 			);
@@ -348,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A1FE0632C465CB200468B84 /* ActitoInboxItemTest.swift in Sources */,
-				1ACA07DB2C5946BB002CB47D /* InboxPushAPIModels.swift in Sources */,
+				1AD265102E1C2A1700BE984E /* InboxConcurrencyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
