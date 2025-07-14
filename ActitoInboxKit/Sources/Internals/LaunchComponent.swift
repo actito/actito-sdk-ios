@@ -18,7 +18,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
         Actito.shared.inboxImplementation().database.configure()
 
         Task {
-            await Actito.shared.inboxImplementation().loadCachedItems()
+            await Actito.shared.inboxImplementation().loadCache()
         }
 
         // Listen to inbox addition requests.
