@@ -119,10 +119,10 @@ internal class ActitoLiquidGlassCallbackView: ActitoBaseCallbackView {
     private lazy var imageViewConstraints: [NSLayoutConstraint] = [
         // Image view: square
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-        imageView.topAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.topAnchor),
-        imageView.bottomAnchor.constraint(lessThanOrEqualTo: viewController.view.ncSafeAreaLayoutGuide.bottomAnchor),
-        imageView.leadingAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.leadingAnchor),
-        imageView.trailingAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.trailingAnchor),
+        imageView.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor),
+        imageView.bottomAnchor.constraint(lessThanOrEqualTo: viewController.view.safeAreaLayoutGuide.bottomAnchor),
+        imageView.leadingAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.leadingAnchor),
+        imageView.trailingAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.trailingAnchor),
     ]
 
     private lazy var messageFieldConstraints: [NSLayoutConstraint] = [
