@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0238882E32E36700AD55F8 /* ActitoLiquidGlassCallbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0238872E32E35F00AD55F8 /* ActitoLiquidGlassCallbackView.swift */; };
+		1A02388A2E337C7B00AD55F8 /* ActitoLegacyCallbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0238892E337C7200AD55F8 /* ActitoLegacyCallbackView.swift */; };
 		1A52DE7D2CA4623700B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE7C2CA4623700B5F56C /* Logger.swift */; };
+		1AC54CFE2E38A996000D107C /* ActitoBaseCallbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC54CFD2E38A98A000D107C /* ActitoBaseCallbackView.swift */; };
 		1AD52A622E000360006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A612E000359006C7D88 /* LaunchComponent.swift */; };
 		E577A77A2DC5035D00231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7782DC5035D00231193 /* ActitoKit.framework */; };
 		E577A77C2DC5035D00231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7792DC5035D00231193 /* ActitoUtilitiesKit.framework */; };
@@ -60,7 +63,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A0238872E32E35F00AD55F8 /* ActitoLiquidGlassCallbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLiquidGlassCallbackView.swift; sourceTree = "<group>"; };
+		1A0238892E337C7200AD55F8 /* ActitoLegacyCallbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLegacyCallbackView.swift; sourceTree = "<group>"; };
 		1A52DE7C2CA4623700B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1AC54CFD2E38A98A000D107C /* ActitoBaseCallbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoBaseCallbackView.swift; sourceTree = "<group>"; };
 		1AD52A612E000359006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
 		E577A7782DC5035D00231193 /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E577A7792DC5035D00231193 /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +132,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0238862E32E35500AD55F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1AC54CFD2E38A98A000D107C /* ActitoBaseCallbackView.swift */,
+				1A0238892E337C7200AD55F8 /* ActitoLegacyCallbackView.swift */,
+				1A0238872E32E35F00AD55F8 /* ActitoLiquidGlassCallbackView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F2770B38276266A000450FF8 /* View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +153,7 @@
 		F277EAAD25B084740026225C /* Action Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				1A0238862E32E35500AD55F8 /* Views */,
 				F277EAAE25B084860026225C /* ActitoBaseActionHandler.swift */,
 				F277EAB525B0A04F0026225C /* ActitoAppActionHandler.swift */,
 				F277EABF25B0A1150026225C /* ActitoBrowserActionHandler.swift */,
@@ -368,6 +385,7 @@
 				F277EAC325B0A1220026225C /* ActitoCustomActionHandler.swift in Sources */,
 				F29C96EA25ACBE5D00620E9B /* ActitoBaseNotificationViewController.swift in Sources */,
 				F29C96E725ACBE2500620E9B /* ActitoImageGalleryViewController.swift in Sources */,
+				1AC54CFE2E38A996000D107C /* ActitoBaseCallbackView.swift in Sources */,
 				F2CB6F5C25AEFD0600FC994E /* ActitoMapViewController.swift in Sources */,
 				F289F52325B838DE0091AB97 /* ActitoAlertController.swift in Sources */,
 				F277EABD25B0A10C0026225C /* ActitoTelephoneActionHandler.swift in Sources */,
@@ -382,6 +400,7 @@
 				F2E9D41E25ADE98D00FF7827 /* ActitoVideoViewController.swift in Sources */,
 				E5A878A92C23346100D53A91 /* URLExtensions.swift in Sources */,
 				F289F51F25B836850091AB97 /* ActitoNotificationPresenter.swift in Sources */,
+				1A02388A2E337C7B00AD55F8 /* ActitoLegacyCallbackView.swift in Sources */,
 				F28085A625B5EB4A00D3AD50 /* ActitoPushUIDelegate.swift in Sources */,
 				F2E9D45825AE1D4500FF7827 /* ActitoUrlViewController.swift in Sources */,
 				F28B54962C2D55FA0074FFA9 /* String.swift in Sources */,
@@ -398,6 +417,7 @@
 				F277EAB925B0A0FF0026225C /* ActitoSmsActionHandler.swift in Sources */,
 				F293E2E6263048A1008C2010 /* LocalStorage.swift in Sources */,
 				F277EAB325B085740026225C /* ActitoMailActionHandler.swift in Sources */,
+				1A0238882E32E36700AD55F8 /* ActitoLiquidGlassCallbackView.swift in Sources */,
 				F21CBCB025AF1F5000495F7A /* ActitoStoreController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
