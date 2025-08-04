@@ -13,20 +13,15 @@ import UIKit
 public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     private var theme: ActitoOptions.Theme?
 
-    private var callbackView: ActitoBaseCallbackView?
-
     private var navigationController: UINavigationController!
-    private var viewController: UIViewController!
-    private var activityIndicatorView: UIActivityIndicatorView!
-    private var closeButton: UIBarButtonItem!
-    private var sendButton: UIButton!
+    private var viewController: ActitoCallbackViewController!
     private var imagePickerController: UIImagePickerController!
 
     private var imageData: Data?
     private var videoData: Data?
 
     @MainActor private var message: String? {
-        callbackView?.message
+        viewController.message
     }
 
     private var mediaUrl: String?
@@ -35,95 +30,14 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     internal override init(notification: ActitoNotification, action: ActitoNotification.Action, sourceViewController: UIViewController) {
         super.init(notification: notification, action: action, sourceViewController: sourceViewController)
 
-        viewController = UIViewController()
+        if #available(iOS 26, *){
+            viewController = ActitoLiquidGlassCallbackViewController(notification: notification, onClose: { self.onCloseClicked() }, onSend: { await self.onSendClicked() })
+        } else {
+            viewController = ActitoLegacyCallbackViewController(notification: notification, onClose: { self.onCloseClicked() }, onSend: { await self.onSendClicked() })
+        }
+
         navigationController = UINavigationController(rootViewController: viewController)
         navigationController.presentationController?.delegate = self
-
-        theme = Actito.shared.options!.theme(for: viewController)
-        if let colorStr = theme?.backgroundColor {
-            viewController.view.backgroundColor = UIColor(hexString: colorStr)
-        } else {
-            viewController.view.backgroundColor = .systemBackground
-        }
-
-        viewController.title = notification.title ?? Bundle.main.applicationName
-        setupNavigationActions()
-    }
-
-    private func setupNavigationActions() {
-        if Actito.shared.options?.legacyNotificationsUserInterfaceEnabled == true {
-            setupLegacyNavigationActions()
-        } else {
-            setupModernNavigationActions()
-        }
-
-        activityIndicatorView = UIActivityIndicatorView(style: .medium)
-        activityIndicatorView.hidesWhenStopped = true
-        if let colorStr = theme?.activityIndicatorColor {
-            activityIndicatorView.tintColor = UIColor(hexString: colorStr)
-        }
-
-        viewController.navigationItem.leftBarButtonItem = closeButton
-        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
-
-        if #available(iOS 19.0, *) {
-            viewController.navigationItem.rightBarButtonItem?.isHidden = true
-        }
-    }
-
-    private func setupLegacyNavigationActions() {
-        if let image = ActitoLocalizable.image(resource: .close) {
-            closeButton = UIBarButtonItem(image: image,
-                                          style: .plain,
-                                          target: self,
-                                          action: #selector(onCloseClicked))
-
-            if let colorStr = theme?.actionButtonTextColor {
-                closeButton.tintColor = UIColor(hexString: colorStr)
-            }
-        } else {
-            closeButton = UIBarButtonItem(title: ActitoLocalizable.string(resource: .closeButton),
-                                          style: .plain,
-                                          target: self,
-                                          action: #selector(onCloseClicked))
-
-            if let colorStr = theme?.actionButtonTextColor {
-                closeButton.tintColor = UIColor(hexString: colorStr)
-            }
-        }
-
-        if let image = ActitoLocalizable.image(resource: .send) {
-            sendButton = UIButton(type: .system)
-            sendButton.setImage(image, for: .normal)
-            sendButton.addTarget(self, action: #selector(onSendClicked), for: .touchUpInside)
-
-            if let colorStr = theme?.buttonTextColor {
-                sendButton.tintColor = UIColor(hexString: colorStr)
-            }
-        } else {
-            sendButton = UIButton(type: .system)
-            sendButton.setTitle(ActitoLocalizable.string(resource: .sendButton), for: .normal)
-            sendButton.addTarget(self, action: #selector(onSendClicked), for: .touchUpInside)
-
-            if let colorStr = theme?.buttonTextColor {
-                sendButton.tintColor = UIColor(hexString: colorStr)
-            }        }
-    }
-
-    private func setupModernNavigationActions() {
-        closeButton = UIBarButtonItem(
-            barButtonSystemItem: .close,
-            target: self,
-            action: #selector(onCloseClicked)
-        )
-
-        sendButton = UIButton()
-        sendButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        sendButton.addTarget(self, action: #selector(onSendClicked), for: .touchUpInside)
-
-        if let colorStr = theme?.buttonTextColor {
-            sendButton.tintColor = UIColor(hexString: colorStr)
-        }
     }
 
     internal override func execute() {
@@ -157,44 +71,39 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         }
     }
 
-    @objc private func onSendClicked() {
-        sendButton.isEnabled = false
-        activityIndicatorView.startAnimating()
+    @objc private func onSendClicked() async {
+        if let imageData = imageData {
+            do {
+                let url = try await Actito.shared.uploadNotificationReplyAsset(imageData, contentType: "image/jpeg")
 
-        Task {
-            if let imageData = imageData {
-                do {
-                    let url = try await Actito.shared.uploadNotificationReplyAsset(imageData, contentType: "image/jpeg")
+                mediaUrl = url
+                mediaMimeType = "image/jpeg"
 
-                    mediaUrl = url
-                    mediaMimeType = "image/jpeg"
-
-                    await send()
-                } catch {
-                    await MainActor.run {
-                        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
-
-                        dismiss()
-                    }
-                }
-            } else  if let videoData = videoData {
-                do {
-                    let url = try await Actito.shared.uploadNotificationReplyAsset(videoData, contentType: "video/quicktime")
-
-                    mediaUrl = url
-                    mediaMimeType = "video/quicktime"
-
-                    await send()
-                } catch {
-                    await MainActor.run {
-                        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
-
-                        dismiss()
-                    }
-                }
-            } else if await message != nil {
                 await send()
+            } catch {
+                await MainActor.run {
+                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
+
+                    dismiss()
+                }
             }
+        } else  if let videoData = videoData {
+            do {
+                let url = try await Actito.shared.uploadNotificationReplyAsset(videoData, contentType: "video/quicktime")
+
+                mediaUrl = url
+                mediaMimeType = "video/quicktime"
+
+                await send()
+            } catch {
+                await MainActor.run {
+                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
+
+                    dismiss()
+                }
+            }
+        } else if await message != nil {
+            await send()
         }
     }
 
@@ -264,44 +173,16 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     }
 
     private func openKeyboard() {
-        if #available(iOS 19.0, *) {
-            self.callbackView = ActitoLiquidGlassCallbackView(
-                theme: theme,
-                action: action,
-                viewController: viewController,
-                sendButton: sendButton,
-                image: nil,
-            )
-        } else {
-            self.callbackView = ActitoLegacyCallbackView(
-                theme: theme,
-                action: action,
-                viewController: viewController,
-                sendButton: sendButton,
-                image: nil,
-            )
-        }
+        viewController.showKeyboardView()
 
         sourceViewController.presentOrPush(navigationController)
     }
 
     private func showMedia(_ image: UIImage?) {
-        if #available(iOS 19.0, *) {
-            self.callbackView = ActitoLiquidGlassCallbackView(
-                theme: theme,
-                action: action,
-                viewController: viewController,
-                sendButton: sendButton,
-                image: image,
-            )
+        if action.camera, action.keyboard {
+            viewController.showMediaWithKeyboardView(image: image)
         } else {
-            self.callbackView = ActitoLegacyCallbackView(
-                theme: theme,
-                action: action,
-                viewController: viewController,
-                sendButton: sendButton,
-                image: image,
-            )
+            viewController.showMediaView(image: image)
         }
 
         sourceViewController.presentOrPush(navigationController)
