@@ -11,6 +11,7 @@ public class ActitoUrlViewController: ActitoBaseNotificationViewController {
     private var webView: WKWebView!
     private var loadingView: UIView!
     private var progressView: UIProgressView!
+    private var webViewProgressObserver: NSKeyValueObservation?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,18 @@ public class ActitoUrlViewController: ActitoBaseNotificationViewController {
 
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        webView.addObserver(self, forKeyPath: NSStringFromSelector(#selector(getter: WKWebView.estimatedProgress)), options: .new, context: nil)
+
+        webViewProgressObserver = webView.observe(\.estimatedProgress, options: .new) { webView, _ in
+            DispatchQueue.main.async {
+                self.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+            }
+        }
     }
 
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        webView.removeObserver(self, forKeyPath: NSStringFromSelector(#selector(getter: WKWebView.estimatedProgress)))
+
+        webViewProgressObserver = nil
 
         // NOTE: Loading a blank view to prevent the videos from continuing
         // playing after dismissing the view controller.
@@ -110,15 +117,6 @@ public class ActitoUrlViewController: ActitoBaseNotificationViewController {
         }
 
         webView.load(URLRequest(url: url))
-    }
-
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == NSStringFromSelector(#selector(getter: WKWebView.estimatedProgress)), object as? WKWebView == webView {
-            progressView.setProgress(Float(webView.estimatedProgress), animated: true)
-        } else {
-            // Make sure to call the superclass's implementation in case it is also implementing KVO.
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
     }
 }
 

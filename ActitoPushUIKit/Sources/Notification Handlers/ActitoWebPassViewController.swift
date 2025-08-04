@@ -11,6 +11,7 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
     private var loadingView: UIView!
     private var progressView: UIProgressView!
     private var brightness: CGFloat = 0
+    private var webViewProgressObserver: NSKeyValueObservation?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,12 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
 
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        webView.addObserver(self, forKeyPath: NSStringFromSelector(#selector(getter: WKWebView.estimatedProgress)), options: .new, context: nil)
+
+        webViewProgressObserver = webView.observe(\.estimatedProgress, options: .new) { webView, _ in
+            DispatchQueue.main.async {
+                self.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+            }
+        }
 
         brightness = UIScreen.main.brightness
         UIScreen.main.brightness = 1
@@ -29,8 +35,8 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
 
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        webView.removeObserver(self, forKeyPath: NSStringFromSelector(#selector(getter: WKWebView.estimatedProgress)))
 
+        webViewProgressObserver = nil
         UIScreen.main.brightness = brightness
 
         DispatchQueue.main.async {
@@ -113,15 +119,6 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
         }
 
         webView.load(URLRequest(url: url))
-    }
-
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == NSStringFromSelector(#selector(getter: WKWebView.estimatedProgress)), object as? WKWebView == webView {
-            progressView.setProgress(Float(webView.estimatedProgress), animated: true)
-        } else {
-            // Make sure to call the superclass's implementation in case it is also implementing KVO.
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
     }
 }
 
