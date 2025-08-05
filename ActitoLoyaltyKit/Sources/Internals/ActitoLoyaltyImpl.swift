@@ -61,6 +61,7 @@ internal class ActitoLoyaltyImpl: ActitoLoyalty, ActitoLoyaltyIntegration {
         return try await enhancePass(response.pass)
     }
 
+    @MainActor
     public func present(pass: ActitoPass, in controller: UIViewController) {
         guard let host = Actito.shared.servicesInfo?.hosts.restApi,
               let url = URL(string: "https://\(host)/pass/pkpass/\(pass.serial)")
@@ -85,6 +86,7 @@ internal class ActitoLoyaltyImpl: ActitoLoyalty, ActitoLoyaltyIntegration {
         PKPassLibrary.isPassLibraryAvailable() && PKAddPassesViewController.canAddPasses()
     }
 
+    @MainActor
     internal func present(notification: ActitoNotification, in viewController: UIViewController) {
         guard let content = notification.content.first(where: { $0.type == "re.notifica.content.PKPass" }),
               let urlStr = content.data as? String,

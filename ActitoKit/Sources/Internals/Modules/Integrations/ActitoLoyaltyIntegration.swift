@@ -8,5 +8,6 @@ import UIKit
 public protocol ActitoLoyaltyIntegration {
     var canPresentPasses: Bool { get }
 
+    @MainActor
     func present(notification: ActitoNotification, in viewController: UIViewController)
 }
