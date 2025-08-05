@@ -6,7 +6,7 @@ import ActitoUtilitiesKit
 import CoreLocation
 import Foundation
 
-public struct ActitoLocation: Codable, Equatable {
+public struct ActitoLocation: Codable, Equatable, Sendable {
     public let latitude: Double
     public let longitude: Double
     public let altitude: Double

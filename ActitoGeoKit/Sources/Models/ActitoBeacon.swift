@@ -6,7 +6,7 @@ import ActitoUtilitiesKit
 import CoreLocation
 import Foundation
 
-public struct ActitoBeacon: Codable, Hashable, Equatable {
+public struct ActitoBeacon: Codable, Hashable, Equatable, Sendable {
     public let id: String
     public let name: String
     public let major: Int
@@ -23,7 +23,7 @@ public struct ActitoBeacon: Codable, Hashable, Equatable {
         self.proximity = proximity
     }
 
-    public enum Proximity: String, Codable, Equatable {
+    public enum Proximity: String, Codable, Equatable, Sendable {
         case unknown
         case immediate
         case near

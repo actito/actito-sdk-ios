@@ -5,7 +5,7 @@
 import ActitoUtilitiesKit
 import Foundation
 
-public struct ActitoRegion: Codable, Equatable {
+public struct ActitoRegion: Codable, Equatable, Sendable {
     public let id: String
     public let name: String
     public let description: String?
@@ -30,7 +30,7 @@ public struct ActitoRegion: Codable, Equatable {
         self.timeZoneOffset = timeZoneOffset
     }
 
-    public struct Geometry: Codable, Equatable {
+    public struct Geometry: Codable, Equatable, Sendable {
         public let type: String
         public let coordinate: Coordinate
 
@@ -40,7 +40,7 @@ public struct ActitoRegion: Codable, Equatable {
         }
     }
 
-    public struct AdvancedGeometry: Codable, Equatable {
+    public struct AdvancedGeometry: Codable, Equatable, Sendable {
         public let type: String
         public let coordinates: [Coordinate]
 
@@ -50,7 +50,7 @@ public struct ActitoRegion: Codable, Equatable {
         }
     }
 
-    public struct Coordinate: Codable, Equatable {
+    public struct Coordinate: Codable, Equatable, Sendable {
         public let latitude: Double
         public let longitude: Double
 

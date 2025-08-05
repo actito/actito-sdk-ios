@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoUtilitiesKit
 import Foundation
 
-public struct ActitoUserInboxItem: Codable, Equatable {
+public struct ActitoUserInboxItem: Codable, Equatable, Sendable {
     public let id: String
     public let notification: ActitoNotification
     public let time: Date

@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct ActitoRegionSession: Codable, Equatable {
+public struct ActitoRegionSession: Codable, Equatable, Sendable {
     public let regionId: String
     public let start: Date
     public let end: Date?

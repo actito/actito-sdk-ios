@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-public struct ActitoApplication: Codable, Equatable {
+public struct ActitoApplication: Codable, Equatable, Sendable {
     public let id: String
     public let name: String
     public let category: String
@@ -40,7 +40,7 @@ public struct ActitoApplication: Codable, Equatable {
         case storage
     }
 
-    public struct InboxConfig: Codable, Equatable {
+    public struct InboxConfig: Codable, Equatable, Sendable {
         public let useInbox: Bool
         public let useUserInbox: Bool
         public let autoBadge: Bool
@@ -52,7 +52,7 @@ public struct ActitoApplication: Codable, Equatable {
         }
     }
 
-    public struct RegionConfig: Codable, Equatable {
+    public struct RegionConfig: Codable, Equatable, Sendable {
         public let proximityUUID: String?
 
         public init(proximityUUID: String?) {
@@ -60,7 +60,7 @@ public struct ActitoApplication: Codable, Equatable {
         }
     }
 
-    public struct UserDataField: Codable, Equatable {
+    public struct UserDataField: Codable, Equatable, Sendable {
         public let type: String
         public let key: String
         public let label: String
@@ -72,7 +72,7 @@ public struct ActitoApplication: Codable, Equatable {
         }
     }
 
-    public struct ActionCategory: Codable, Equatable {
+    public struct ActionCategory: Codable, Equatable, Sendable {
         public let name: String
         public let description: String?
         public let type: String

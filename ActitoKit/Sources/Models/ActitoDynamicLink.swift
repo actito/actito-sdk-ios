@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-public struct ActitoDynamicLink: Codable, Equatable {
+public struct ActitoDynamicLink: Codable, Equatable, Sendable {
     public let target: String
 
     public init(target: String) {

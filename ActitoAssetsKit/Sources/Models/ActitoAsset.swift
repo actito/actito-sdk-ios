@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-public struct ActitoAsset: Codable, Equatable {
+public struct ActitoAsset: Codable, Equatable, @unchecked Sendable {
     public let id: String
     public let title: String
     public let description: String?
@@ -25,7 +25,7 @@ public struct ActitoAsset: Codable, Equatable {
         self.extra = extra
     }
 
-    public struct Button: Codable, Equatable {
+    public struct Button: Codable, Equatable, Sendable {
         public let label: String?
         public let action: String?
 
@@ -35,7 +35,7 @@ public struct ActitoAsset: Codable, Equatable {
         }
     }
 
-    public struct MetaData: Codable, Equatable {
+    public struct MetaData: Codable, Equatable, Sendable {
         public let originalFileName: String
         public let contentType: String
         public let contentLength: Int

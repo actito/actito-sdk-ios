@@ -5,7 +5,7 @@
 import ActitoKit
 import ActitoUtilitiesKit
 
-public struct ActitoScannable: Codable, Equatable {
+public struct ActitoScannable: Codable, Equatable, Sendable {
     public let id: String
     public let name: String
     public let tag: String

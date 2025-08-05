@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoUtilitiesKit
 import Foundation
 
-public struct ActitoPass: Codable, Equatable {
+public struct ActitoPass: Codable, Equatable, @unchecked Sendable {
     public let id: String
     public let type: PassType?
     public let version: Int
@@ -38,7 +38,7 @@ public struct ActitoPass: Codable, Equatable {
         self.date = date
     }
 
-    public enum PassType: String, Codable {
+    public enum PassType: String, Codable, Sendable {
         case boarding
         case coupon
         case ticket
@@ -46,13 +46,13 @@ public struct ActitoPass: Codable, Equatable {
         case card
     }
 
-    public enum Redeem: String, Codable {
+    public enum Redeem: String, Codable, Sendable {
         case once
         case limit
         case always
     }
 
-    public struct Redemption: Codable, Equatable {
+    public struct Redemption: Codable, Equatable, Sendable {
         public let comments: String?
         public let date: Date
 

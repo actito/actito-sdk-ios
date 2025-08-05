@@ -10,7 +10,7 @@ private let DEFAULT_APP_LINKS_HOST = "applinks.notifica.re"
 
 private let HOST_REGEX = "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$".toRegex()
 
-public struct ActitoServicesInfo: Decodable {
+public struct ActitoServicesInfo: Decodable, Sendable {
     internal static let fileName = "NotificareServices"
     internal static let fileExtension = "plist"
 
@@ -53,7 +53,7 @@ public struct ActitoServicesInfo: Decodable {
         case hosts = "HOSTS"
     }
 
-    public struct Hosts: Decodable {
+    public struct Hosts: Decodable, Sendable {
         public let restApi: String
         public let appLinks: String
         public let shortLinks: String
