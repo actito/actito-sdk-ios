@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-public struct ActitoNotification: Codable, Equatable {
+public struct ActitoNotification: Codable, Equatable, @unchecked Sendable {
     public let partial: Bool
     public let id: String
     public let type: String
@@ -49,7 +49,7 @@ public struct ActitoNotification: Codable, Equatable {
         case store = "re.notifica.notification.Store"
     }
 
-    public struct Content: Codable, Equatable {
+    public struct Content: Codable, Equatable, @unchecked Sendable {
         public let type: String
         @ActitoExtraEquatable public private(set) var data: Any
 
@@ -59,7 +59,7 @@ public struct ActitoNotification: Codable, Equatable {
         }
     }
 
-    public struct Action: Codable, Equatable {
+    public struct Action: Codable, Equatable, Sendable {
         public let type: String
         public let label: String
         public let target: String?
@@ -92,7 +92,7 @@ public struct ActitoNotification: Codable, Equatable {
             case webView = "re.notifica.action.WebView"
         }
 
-        public struct Icon: Codable, Equatable {
+        public struct Icon: Codable, Equatable, Sendable {
             public let android: String?
             public let ios: String?
             public let web: String?
@@ -105,7 +105,7 @@ public struct ActitoNotification: Codable, Equatable {
         }
     }
 
-    public struct Attachment: Codable, Equatable {
+    public struct Attachment: Codable, Equatable, Sendable {
         public let mimeType: String
         public let uri: String
 

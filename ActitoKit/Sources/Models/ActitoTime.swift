@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct ActitoTime: Equatable {
+public struct ActitoTime: Equatable, Sendable {
     public let hours: Int
     public let minutes: Int
 

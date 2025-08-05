@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-public struct ActitoInAppMessage: Codable, Equatable {
+public struct ActitoInAppMessage: Codable, Equatable, Sendable {
     public let id: String
     public let name: String
     public let type: String
@@ -31,7 +31,7 @@ public struct ActitoInAppMessage: Codable, Equatable {
         self.secondaryAction = secondaryAction
     }
 
-    public struct Action: Codable, Equatable {
+    public struct Action: Codable, Equatable, Sendable {
         public let label: String?
         public let destructive: Bool
         public let url: String?

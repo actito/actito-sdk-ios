@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-public struct ActitoDoNotDisturb: Codable, Equatable {
+public struct ActitoDoNotDisturb: Codable, Equatable, Sendable {
     public let start: ActitoTime
     public let end: ActitoTime
 

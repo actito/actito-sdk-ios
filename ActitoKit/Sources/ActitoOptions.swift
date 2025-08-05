@@ -4,7 +4,7 @@
 
 import UIKit
 
-public struct ActitoOptions: Decodable {
+public struct ActitoOptions: Decodable, Sendable {
     internal static let fileName = "NotificareOptions"
     internal static let fileExtension = "plist"
 
@@ -77,7 +77,7 @@ public struct ActitoOptions: Decodable {
         self.legacyNotificationsUserInterfaceEnabled = legacyNotificationsUserInterfaceEnabled
     }
 
-    public struct Themes: Decodable {
+    public struct Themes: Decodable, Sendable {
         public let light: ActitoOptions.Theme?
         public let dark: ActitoOptions.Theme?
 
@@ -87,7 +87,7 @@ public struct ActitoOptions: Decodable {
         }
     }
 
-    public struct Theme: Decodable {
+    public struct Theme: Decodable, Sendable {
         public let backgroundColor: String?
         public let actionButtonTextColor: String?
         public let toolbarBackgroundColor: String?

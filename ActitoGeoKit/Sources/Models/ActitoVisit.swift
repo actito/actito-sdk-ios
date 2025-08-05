@@ -5,7 +5,7 @@
 import ActitoUtilitiesKit
 import Foundation
 
-public struct ActitoVisit: Codable, Equatable {
+public struct ActitoVisit: Codable, Equatable, Sendable {
     public let departureDate: Date
     public let arrivalDate: Date
     public let latitude: Double

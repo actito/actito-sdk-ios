@@ -4,7 +4,7 @@
 
 import Foundation
 
-public enum ActitoTransport: String, Codable {
+public enum ActitoTransport: String, Codable, Sendable {
     case notificare = "Notificare"
     case apns = "APNS"
 }

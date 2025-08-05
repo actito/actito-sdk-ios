@@ -5,7 +5,7 @@
 import ActitoUtilitiesKit
 import Foundation
 
-public struct ActitoUserInboxResponse: Codable, Equatable {
+public struct ActitoUserInboxResponse: Codable, Equatable, Sendable {
     public let count: Int
     public let unread: Int
     public let items: [ActitoUserInboxItem]

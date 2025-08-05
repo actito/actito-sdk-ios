@@ -5,7 +5,7 @@
 import ActitoUtilitiesKit
 import Foundation
 
-public struct ActitoPushSubscription: Codable {
+public struct ActitoPushSubscription: Codable, Sendable {
     public let token: String
 
     public init(token: String) {

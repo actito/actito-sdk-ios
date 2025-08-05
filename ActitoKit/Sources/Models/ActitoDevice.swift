@@ -6,7 +6,7 @@ import ActitoUtilitiesKit
 
 public typealias ActitoUserData = [String: String]
 
-public struct ActitoDevice: Codable, Equatable {
+public struct ActitoDevice: Codable, Equatable, Sendable {
     public let id: String
     public let userId: String?
     public let userName: String?

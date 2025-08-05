@@ -5,7 +5,7 @@
 import ActitoKit
 import Foundation
 
-public enum ActitoNotificationDeliveryMechanism: String, Codable {
+public enum ActitoNotificationDeliveryMechanism: String, Codable, Sendable {
     case standard
     case silent
 }

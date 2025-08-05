@@ -5,7 +5,7 @@
 import ActitoUtilitiesKit
 import Foundation
 
-public struct ActitoHeading: Codable, Equatable {
+public struct ActitoHeading: Codable, Equatable, Sendable {
     public let magneticHeading: Double
     public let trueHeading: Double
     public let headingAccuracy: Double
