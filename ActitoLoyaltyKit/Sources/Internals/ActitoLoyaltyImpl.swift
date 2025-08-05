@@ -69,13 +69,13 @@ internal class ActitoLoyaltyImpl: ActitoLoyalty, ActitoLoyaltyIntegration {
             return
         }
 
-        do {
-            let data = try Data(contentsOf: url)
-            let pass = try PKPass(data: data)
-
-            present(pass, in: controller)
-        } catch {
-            logger.error("Failed to create PKPass from URL.", error: error)
+        Task {
+            do {
+                let pass = try await loadPassFromUrl(url)
+                present(pass, in: controller)
+            } catch {
+                logger.error("Failed to create PKPass from URL.", error: error)
+            }
         }
     }
 
@@ -94,13 +94,13 @@ internal class ActitoLoyaltyImpl: ActitoLoyalty, ActitoLoyaltyIntegration {
             return
         }
 
-        do {
-            let data = try Data(contentsOf: url)
-            let pass = try PKPass(data: data)
-
-            present(pass, in: viewController)
-        } catch {
-            logger.error("Failed to create PKPass from URL.", error: error)
+        Task {
+            do {
+                let pass = try await loadPassFromUrl(url)
+                present(pass, in: viewController)
+            } catch {
+                logger.error("Failed to create PKPass from URL.", error: error)
+            }
         }
     }
 
@@ -164,6 +164,18 @@ internal class ActitoLoyaltyImpl: ActitoLoyalty, ActitoLoyaltyIntegration {
         )
     }
 
+    private func loadPassFromUrl(_ url: URL) async throws -> PKPass {
+        let (data, response) = try await URLSession.shared.data(from: url)
+        let validStatusCodes = 200 ... 299
+
+        if let httpResponse = response as? HTTPURLResponse, !validStatusCodes.contains(httpResponse.statusCode) {
+            throw ActitoNetworkError.validationError(response: httpResponse, data: data, validStatusCodes: validStatusCodes)
+        }
+
+        return try PKPass(data: data)
+    }
+
+    @MainActor
     private func present(_ pass: PKPass, in controller: UIViewController) {
         guard let passController = PKAddPassesViewController(pass: pass) else {
             logger.warning("Failed to create pass view controller.")
