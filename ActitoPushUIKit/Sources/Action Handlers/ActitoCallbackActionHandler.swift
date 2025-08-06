@@ -30,10 +30,18 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     internal override init(notification: ActitoNotification, action: ActitoNotification.Action, sourceViewController: UIViewController) {
         super.init(notification: notification, action: action, sourceViewController: sourceViewController)
 
-        if #available(iOS 26, *){
-            viewController = ActitoLiquidGlassCallbackViewController(notification: notification, onClose: { self.onCloseClicked() }, onSend: { await self.onSendClicked() })
+        if #available(iOS 26, *) {
+            viewController = ActitoLiquidGlassCallbackViewController(
+                notification: notification,
+                onClose: onCloseClicked,
+                onSend: onSendClicked
+            )
         } else {
-            viewController = ActitoLegacyCallbackViewController(notification: notification, onClose: { self.onCloseClicked() }, onSend: { await self.onSendClicked() })
+            viewController = ActitoLegacyCallbackViewController(
+                notification: notification,
+                onClose: onCloseClicked,
+                onSend: onSendClicked
+            )
         }
 
         navigationController = UINavigationController(rootViewController: viewController)
