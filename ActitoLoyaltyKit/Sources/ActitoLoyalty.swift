@@ -15,6 +15,7 @@ public protocol ActitoLoyalty: AnyObject {
     /// - Parameters:
     ///   - pass: The ``ActitoPass`` to be presented to the user.
     ///   - controller: The ``UIViewController`` in which to present the pass.
+    @MainActor
     func present(pass: ActitoPass, in controller: UIViewController)
 
     /// Fetches a pass by its serial number, with a callback.

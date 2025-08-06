@@ -46,9 +46,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
                 throw ActitoError.invalidArgument(message: "Invalid data for present command")
             }
 
-            await MainActor.run {
-                Actito.shared.loyaltyImplementation().present(notification: notification, in: controller)
-            }
+                await Actito.shared.loyaltyImplementation().present(notification: notification, in: controller)
             return nil
 
         default:
