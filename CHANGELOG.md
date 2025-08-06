@@ -7,4 +7,4 @@
 
 #### Breaking changes
 
-- Mark `present(notification: ActitoNotification, in viewController: UIViewController)` with `MainActor` to ensure main-thread execution
+- Ensure the loyalty pass `present` method is executed on the main thread by marking it with `MainActor`
