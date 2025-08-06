@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1A52DE7D2CA4623700B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE7C2CA4623700B5F56C /* Logger.swift */; };
+		1AC54D002E3BADA8000D107C /* ActitoCallbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC54CFF2E3BAD9E000D107C /* ActitoCallbackViewController.swift */; };
+		1AC54D022E3BAE16000D107C /* ActitoLegacyCallbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC54D012E3BAE0B000D107C /* ActitoLegacyCallbackViewController.swift */; };
+		1AC54D042E3BAEA8000D107C /* ActitoLiquidGlassCallbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC54D032E3BAE98000D107C /* ActitoLiquidGlassCallbackViewController.swift */; };
 		1AD52A622E000360006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A612E000359006C7D88 /* LaunchComponent.swift */; };
 		E577A77A2DC5035D00231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7782DC5035D00231193 /* ActitoKit.framework */; };
 		E577A77C2DC5035D00231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A7792DC5035D00231193 /* ActitoUtilitiesKit.framework */; };
@@ -61,6 +64,9 @@
 
 /* Begin PBXFileReference section */
 		1A52DE7C2CA4623700B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1AC54CFF2E3BAD9E000D107C /* ActitoCallbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoCallbackViewController.swift; sourceTree = "<group>"; };
+		1AC54D012E3BAE0B000D107C /* ActitoLegacyCallbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLegacyCallbackViewController.swift; sourceTree = "<group>"; };
+		1AC54D032E3BAE98000D107C /* ActitoLiquidGlassCallbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLiquidGlassCallbackViewController.swift; sourceTree = "<group>"; };
 		1AD52A612E000359006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
 		E577A7782DC5035D00231193 /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E577A7792DC5035D00231193 /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +132,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0238862E32E35500AD55F8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1AC54D032E3BAE98000D107C /* ActitoLiquidGlassCallbackViewController.swift */,
+				1AC54D012E3BAE0B000D107C /* ActitoLegacyCallbackViewController.swift */,
+				1AC54CFF2E3BAD9E000D107C /* ActitoCallbackViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		F2770B38276266A000450FF8 /* View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +153,7 @@
 		F277EAAD25B084740026225C /* Action Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				1A0238862E32E35500AD55F8 /* ViewControllers */,
 				F277EAAE25B084860026225C /* ActitoBaseActionHandler.swift */,
 				F277EAB525B0A04F0026225C /* ActitoAppActionHandler.swift */,
 				F277EABF25B0A1150026225C /* ActitoBrowserActionHandler.swift */,
@@ -375,6 +392,7 @@
 				F28C95072640478100D6EF32 /* ActitoPushUI+ActitoNotification.swift in Sources */,
 				F2770B3A276266BE00450FF8 /* ActitoImageGalleryCollectionViewCell.swift in Sources */,
 				F2DAB3A1271F1325002B5F27 /* ActitoPushUI.swift in Sources */,
+				1AC54D002E3BADA8000D107C /* ActitoCallbackViewController.swift in Sources */,
 				F216F0BC26A84B2100F9EF56 /* ActitoWebPassViewController.swift in Sources */,
 				1AD52A622E000360006C7D88 /* LaunchComponent.swift in Sources */,
 				F289F52625B8395B0091AB97 /* ActitoUrlSchemeController.swift in Sources */,
@@ -393,7 +411,9 @@
 				1A52DE7D2CA4623700B5F56C /* Logger.swift in Sources */,
 				F277EAC725B0A7680026225C /* ActitoCallbackActionHandler.swift in Sources */,
 				F23ED157284E1B91007BE36C /* ActitoInAppBrowserController.swift in Sources */,
+				1AC54D022E3BAE16000D107C /* ActitoLegacyCallbackViewController.swift in Sources */,
 				F277EAC025B0A1150026225C /* ActitoBrowserActionHandler.swift in Sources */,
+				1AC54D042E3BAEA8000D107C /* ActitoLiquidGlassCallbackViewController.swift in Sources */,
 				F2DAB3A3271F138D002B5F27 /* ActitoPushUI+Augment.swift in Sources */,
 				F277EAB925B0A0FF0026225C /* ActitoSmsActionHandler.swift in Sources */,
 				F293E2E6263048A1008C2010 /* LocalStorage.swift in Sources */,

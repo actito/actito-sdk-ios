@@ -14,23 +14,14 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     private var theme: ActitoOptions.Theme?
 
     private var navigationController: UINavigationController!
-    private var viewController: UIViewController!
-    private var imageView: UIImageView!
-    private var activityIndicatorView: UIActivityIndicatorView!
-    private var toolbar: UIToolbar!
-    private var closeButton: UIBarButtonItem!
-    private var sendButton: UIBarButtonItem!
+    private var viewController: ActitoCallbackViewController!
     private var imagePickerController: UIImagePickerController!
-    private var messageView: UITextView?
-    private var messageField: UITextField?
-
-    private var toolbarBottomConstraint: NSLayoutConstraint?
 
     private var imageData: Data?
     private var videoData: Data?
 
     @MainActor private var message: String? {
-        messageField?.text ?? messageView?.text
+        viewController.message
     }
 
     private var mediaUrl: String?
@@ -39,111 +30,22 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     internal override init(notification: ActitoNotification, action: ActitoNotification.Action, sourceViewController: UIViewController) {
         super.init(notification: notification, action: action, sourceViewController: sourceViewController)
 
-        viewController = UIViewController()
+        if #available(iOS 26, *) {
+            viewController = ActitoLiquidGlassCallbackViewController(
+                notification: notification,
+                onClose: onCloseClicked,
+                onSend: onSendClicked
+            )
+        } else {
+            viewController = ActitoLegacyCallbackViewController(
+                notification: notification,
+                onClose: onCloseClicked,
+                onSend: onSendClicked
+            )
+        }
+
         navigationController = UINavigationController(rootViewController: viewController)
         navigationController.presentationController?.delegate = self
-
-        theme = Actito.shared.options!.theme(for: viewController)
-        if let colorStr = theme?.backgroundColor {
-            viewController.view.backgroundColor = UIColor(hexString: colorStr)
-        } else {
-            if #available(iOS 13.0, *) {
-                viewController.view.backgroundColor = .systemBackground
-            } else {
-                viewController.view.backgroundColor = .white
-            }
-        }
-
-        viewController.title = notification.title ?? Bundle.main.applicationName
-        setupNavigationActions()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillAppear(_:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillDisappear(_:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    }
-
-    private func setupNavigationActions() {
-        if Actito.shared.options?.legacyNotificationsUserInterfaceEnabled == true {
-            setupLegacyNavigationActions()
-        } else {
-            setupModernNavigationActions()
-        }
-
-        activityIndicatorView = UIActivityIndicatorView(style: .medium)
-        activityIndicatorView.hidesWhenStopped = true
-        if let colorStr = theme?.activityIndicatorColor {
-            activityIndicatorView.tintColor = UIColor(hexString: colorStr)
-        }
-
-        viewController.navigationItem.leftBarButtonItem = closeButton
-        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
-    }
-
-    private func setupLegacyNavigationActions() {
-        if let image = ActitoLocalizable.image(resource: .close) {
-            closeButton = UIBarButtonItem(image: image,
-                                          style: .plain,
-                                          target: self,
-                                          action: #selector(onCloseClicked))
-
-            if let colorStr = theme?.actionButtonTextColor {
-                closeButton.tintColor = UIColor(hexString: colorStr)
-            }
-        } else {
-            closeButton = UIBarButtonItem(title: ActitoLocalizable.string(resource: .closeButton),
-                                          style: .plain,
-                                          target: self,
-                                          action: #selector(onCloseClicked))
-
-            if let colorStr = theme?.actionButtonTextColor {
-                closeButton.tintColor = UIColor(hexString: colorStr)
-            }
-        }
-
-        if let image = ActitoLocalizable.image(resource: .send) {
-            sendButton = UIBarButtonItem(image: image,
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(onSendClicked))
-
-            if let colorStr = theme?.buttonTextColor {
-                sendButton.tintColor = UIColor(hexString: colorStr)
-            }
-        } else {
-            sendButton = UIBarButtonItem(title: ActitoLocalizable.string(resource: .sendButton),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(onSendClicked))
-
-            if let colorStr = theme?.buttonTextColor {
-                sendButton.tintColor = UIColor(hexString: colorStr)
-            }
-        }
-    }
-
-    private func setupModernNavigationActions() {
-        closeButton = UIBarButtonItem(
-            barButtonSystemItem: .close,
-            target: self,
-            action: #selector(onCloseClicked)
-        )
-
-        sendButton = UIBarButtonItem(
-            image: UIImage(systemName: "chevron.right"),
-            style: .plain,
-            target: self,
-            action: #selector(onSendClicked)
-        )
-
-        if let colorStr = theme?.buttonTextColor {
-            sendButton.tintColor = UIColor(hexString: colorStr)
-        }
     }
 
     internal override func execute() {
@@ -177,44 +79,39 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         }
     }
 
-    @objc private func onSendClicked() {
-        sendButton.isEnabled = false
-        activityIndicatorView.startAnimating()
+    @objc private func onSendClicked() async {
+        if let imageData = imageData {
+            do {
+                let url = try await Actito.shared.uploadNotificationReplyAsset(imageData, contentType: "image/jpeg")
 
-        Task {
-            if let imageData = imageData {
-                do {
-                    let url = try await Actito.shared.uploadNotificationReplyAsset(imageData, contentType: "image/jpeg")
+                mediaUrl = url
+                mediaMimeType = "image/jpeg"
 
-                    mediaUrl = url
-                    mediaMimeType = "image/jpeg"
-
-                    await send()
-                } catch {
-                    await MainActor.run {
-                        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
-
-                        dismiss()
-                    }
-                }
-            } else  if let videoData = videoData {
-                do {
-                    let url = try await Actito.shared.uploadNotificationReplyAsset(videoData, contentType: "video/quicktime")
-
-                    mediaUrl = url
-                    mediaMimeType = "video/quicktime"
-
-                    await send()
-                } catch {
-                    await MainActor.run {
-                        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
-
-                        dismiss()
-                    }
-                }
-            } else if await message != nil {
                 await send()
+            } catch {
+                await MainActor.run {
+                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
+
+                    dismiss()
+                }
             }
+        } else  if let videoData = videoData {
+            do {
+                let url = try await Actito.shared.uploadNotificationReplyAsset(videoData, contentType: "video/quicktime")
+
+                mediaUrl = url
+                mediaMimeType = "video/quicktime"
+
+                await send()
+            } catch {
+                await MainActor.run {
+                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
+
+                    dismiss()
+                }
+            }
+        } else if await message != nil {
+            await send()
         }
     }
 
@@ -284,164 +181,19 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     }
 
     private func openKeyboard() {
-        let messageView = UITextView()
-        messageView.translatesAutoresizingMaskIntoConstraints = false
-        messageView.font = UIFont.systemFont(ofSize: 16)
-        messageView.autocorrectionType = .default
-        messageView.keyboardType = .default
-        messageView.returnKeyType = .default
-        messageView.textContainerInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-
-        self.messageView = messageView
-        if let colorStr = theme?.textFieldBackgroundColor {
-            messageView.backgroundColor = UIColor(hexString: colorStr)
-        }
-        if let colorStr = theme?.textFieldTextColor {
-            messageView.textColor = UIColor(hexString: colorStr)
-        }
-
-        toolbar = UIToolbar(frame: .zero)
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .vertical)
-        toolbar.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .vertical)
-        if let colorStr = theme?.toolbarBackgroundColor {
-            toolbar.barTintColor = UIColor(hexString: colorStr)
-        }
-
-        toolbar.setItems(
-            [
-                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-                sendButton,
-            ],
-            animated: false
-        )
-
-        viewController.view.addSubview(messageView)
-        viewController.view.addSubview(toolbar)
-
-        let toolbarBottomConstraint = toolbar.bottomAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.bottomAnchor)
-        self.toolbarBottomConstraint = toolbarBottomConstraint
-
-        NSLayoutConstraint.activate([
-            // Message view
-            messageView.topAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.topAnchor),
-            messageView.bottomAnchor.constraint(equalTo: toolbar.topAnchor),
-            messageView.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
-            messageView.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor),
-            // Toolbar
-            toolbar.topAnchor.constraint(equalTo: messageView.bottomAnchor),
-            toolbarBottomConstraint,
-            toolbar.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
-            toolbar.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor),
-        ])
-
-        messageView.becomeFirstResponder()
+        viewController.showKeyboardView()
 
         sourceViewController.presentOrPush(navigationController)
     }
 
     private func showMedia(_ image: UIImage?) {
-        // Use a square to display the image, this makes sure the image is in the right ratio.
-        imageView = UIImageView(frame: .zero)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = image
-        viewController.view.addSubview(imageView)
-
-        if action.keyboard {
-            let messageField = UITextField()
-            messageField.translatesAutoresizingMaskIntoConstraints = false
-            messageField.placeholder = ActitoLocalizable.string(resource: .actionsInputPlaceholder)
-            messageField.borderStyle = .none
-            if let colorStr = theme?.textFieldBackgroundColor {
-                messageField.backgroundColor = UIColor(hexString: colorStr)
-            }
-            if let colorStr = theme?.textFieldTextColor {
-                messageField.textColor = UIColor(hexString: colorStr)
-            }
-            messageField.font = UIFont.systemFont(ofSize: 14)
-            messageField.autocorrectionType = .default
-            messageField.keyboardType = .default
-            messageField.returnKeyType = .default
-            messageField.clearButtonMode = .whileEditing
-            messageField.contentVerticalAlignment = .center
-            messageField.becomeFirstResponder()
-
-            self.messageField = messageField
-
-            toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: viewController.view.frame.width, height: 44))
-            toolbar.translatesAutoresizingMaskIntoConstraints = false
-            toolbar.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 751), for: .vertical)
-            toolbar.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .vertical)
-            if let colorStr = theme?.toolbarBackgroundColor {
-                toolbar.barTintColor = UIColor(hexString: colorStr)
-            }
-
-            toolbar.setItems(
-                [
-                    UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-                    sendButton,
-                ],
-                animated: false
-            )
-
-            toolbar.addSubview(messageField)
-            NSLayoutConstraint.activate([
-                messageField.topAnchor.constraint(equalTo: toolbar.topAnchor),
-                messageField.bottomAnchor.constraint(equalTo: toolbar.bottomAnchor),
-                messageField.leadingAnchor.constraint(equalTo: toolbar.leadingAnchor, constant: 16),
-                messageField.trailingAnchor.constraint(equalTo: toolbar.trailingAnchor, constant: -16 - 44),
-            ])
-
-            let toolbarBottomConstraint = toolbar.bottomAnchor.constraint(equalTo: viewController.view.bottomAnchor)
-            self.toolbarBottomConstraint = toolbarBottomConstraint
-
-            viewController.view.addSubview(toolbar)
-            NSLayoutConstraint.activate([
-                // Image view: available space
-                imageView.topAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.topAnchor),
-                imageView.bottomAnchor.constraint(equalTo: toolbar.topAnchor),
-                imageView.leadingAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.leadingAnchor),
-                imageView.trailingAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.trailingAnchor),
-                // Toolbar
-                toolbar.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-                toolbarBottomConstraint,
-                toolbar.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
-                toolbar.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor),
-            ])
+        if action.camera, action.keyboard {
+            viewController.showMediaWithKeyboardView(image: image)
         } else {
-            NSLayoutConstraint.activate([
-                // Image view: square
-                imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-                imageView.topAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.topAnchor),
-                imageView.bottomAnchor.constraint(lessThanOrEqualTo: viewController.view.ncSafeAreaLayoutGuide.bottomAnchor),
-                imageView.leadingAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.leadingAnchor),
-                imageView.trailingAnchor.constraint(equalTo: viewController.view.ncSafeAreaLayoutGuide.trailingAnchor),
-            ])
-
-            viewController.navigationItem.rightBarButtonItem = sendButton
+            viewController.showMediaView(image: image)
         }
 
         sourceViewController.presentOrPush(navigationController)
-    }
-
-    @objc private func keyboardWillAppear(_ notification: Notification) {
-        guard UIDevice.current.userInterfaceIdiom != .pad else {
-            return
-        }
-
-        guard let userInfo = notification.userInfo,
-              let keyboardRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
-        else {
-            return
-        }
-
-        toolbarBottomConstraint?.constant = -(keyboardRect.height - viewController.view.safeAreaInsets.bottom)
-    }
-
-    @objc private func keyboardWillDisappear(_ notification: Notification) {
-        toolbarBottomConstraint?.constant = 0
     }
 
     private func send() async {
