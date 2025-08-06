@@ -137,7 +137,7 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
 
     private lazy var stackViewBottomConstraint: NSLayoutConstraint = stackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
 
-    // MARK: - Contructors
+    // MARK: - Constructors
 
     public init(notification: ActitoNotification, onClose: @escaping () -> Void, onSend: @escaping () async -> Void) {
         self.onClose = onClose
@@ -145,15 +145,26 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
 
         super.init(nibName: nil, bundle: nil)
 
-        theme  = Actito.shared.options!.theme(for: self)
+        theme = Actito.shared.options!.theme(for: self)
+
+        self.title = notification.title ?? Bundle.main.applicationName
+    }
+
+    @available(*, unavailable)
+    internal required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle
+
+    override internal func viewDidLoad() {
+        super.viewDidLoad()
 
         if let colorStr = theme?.backgroundColor {
             self.view.backgroundColor = UIColor(hexString: colorStr)
         } else {
             self.view.backgroundColor = .systemBackground
         }
-
-        self.title = notification.title ?? Bundle.main.applicationName
 
         setupNavigationActions()
 
@@ -170,11 +181,6 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
-    }
-
-    @available(*, unavailable)
-    internal required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Internal API
