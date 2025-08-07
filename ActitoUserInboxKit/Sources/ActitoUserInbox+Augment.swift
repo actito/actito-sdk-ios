@@ -7,12 +7,6 @@ import Foundation
 
 extension Actito {
     public func userInbox() -> ActitoUserInbox {
-        ActitoUserInboxImpl.instance
-    }
-}
-
-extension Actito {
-    internal func userInboxImplementation() -> ActitoUserInboxImpl {
-        ActitoUserInboxImpl.instance
+        ActitoUserInbox.shared
     }
 }
