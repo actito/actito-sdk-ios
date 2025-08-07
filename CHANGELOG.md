@@ -8,3 +8,4 @@
 #### Breaking changes
 
 - Ensure the loyalty pass `present` method is executed on the main thread by marking it with `MainActor`
+- Crash reporting is deprecated and disabled by default. We recommend using another solution to collect crash analytics.

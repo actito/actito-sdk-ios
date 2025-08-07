@@ -13,9 +13,10 @@ internal class CrashReporterLaunchComponent: NSObject, ActitoLaunchComponent {
         let crashReportsEnabled = Actito.shared.options!.crashReportsEnabled
 
         guard crashReportsEnabled else {
-            logger.debug("Crash reports are not enabled.")
             return
         }
+
+        logger.warning("Crash reporting is deprecated. We recommend using another solution to collect crash analytics.")
 
         // Catch NSExceptions
         NSSetUncaughtExceptionHandler(Actito.shared.crashReporter().uncaughtExceptionHandler)
