@@ -14,7 +14,7 @@ public class ActitoInAppBrowserActionHandler: ActitoBaseActionHandler {
         {
             DispatchQueue.main.async {
                 let theme = Actito.shared.options?.theme(for: self.sourceViewController)
-                let safariViewController = Actito.shared.pushUIImplementation().createSafariViewController(url: url, theme: theme)
+                let safariViewController = Actito.shared.pushUI().createSafariViewController(url: url, theme: theme)
                 safariViewController.delegate = self
 
                 self.sourceViewController.presentOrPush(safariViewController)

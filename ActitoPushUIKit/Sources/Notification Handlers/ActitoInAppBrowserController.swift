@@ -27,7 +27,7 @@ internal class ActitoInAppBrowserController: NSObject, ActitoNotificationPresent
         }
 
         let theme = Actito.shared.options?.theme(for: controller)
-        let safariViewController = Actito.shared.pushUIImplementation().createSafariViewController(url: url, theme: theme)
+        let safariViewController = Actito.shared.pushUI().createSafariViewController(url: url, theme: theme)
         safariViewController.delegate = self
 
         controller.presentOrPush(safariViewController)

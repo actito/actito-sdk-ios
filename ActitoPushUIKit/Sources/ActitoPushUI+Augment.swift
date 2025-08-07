@@ -7,12 +7,6 @@ import Foundation
 
 extension Actito {
     public func pushUI() -> ActitoPushUI {
-        ActitoPushUIImpl.instance
-    }
-}
-
-extension Actito {
-    internal func pushUIImplementation() -> ActitoPushUIImpl {
-        ActitoPushUIImpl.instance
+        ActitoPushUI.shared
     }
 }
