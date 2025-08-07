@@ -167,7 +167,7 @@ internal class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCen
 
         let userInfo = notification.request.content.userInfo
 
-        guard Actito.shared.pushImplementation().isActitoNotification(userInfo) else {
+        guard Actito.shared.push().isActitoNotification(userInfo) else {
             logger.debug("Cannot handle a notification from a provider other than Actito.")
             return
         }
