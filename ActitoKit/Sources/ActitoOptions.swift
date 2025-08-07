@@ -13,7 +13,7 @@ public struct ActitoOptions: Decodable, Sendable {
     public static let DEFAULT_SWIZZLING_ENABLED = true
     public static let DEFAULT_USER_NOTIFICATION_CENTER_DELEGATE_ENABLED = true
     public static let DEFAULT_PRESERVE_EXISTING_NOTIFICATION_CATEGORIES = false
-    public static let DEFAULT_CRASH_REPORTS_ENABLED = true
+    public static let DEFAULT_CRASH_REPORTS_ENABLED = false
     public static let DEFAULT_HEADING_API_ENABLED = false
     public static let DEFAULT_VISITS_API_ENABLED = false
     public static let DEFAULT_IMAGE_SHARING_ENABLED = true
