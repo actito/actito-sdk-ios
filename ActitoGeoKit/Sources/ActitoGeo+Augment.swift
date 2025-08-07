@@ -7,12 +7,6 @@ import Foundation
 
 extension Actito {
     public func geo() -> ActitoGeo {
-        ActitoGeoImpl.instance
-    }
-}
-
-extension Actito {
-    internal func geoImplementation() -> ActitoGeoImpl {
-        ActitoGeoImpl.instance
+        ActitoGeo.shared
     }
 }
