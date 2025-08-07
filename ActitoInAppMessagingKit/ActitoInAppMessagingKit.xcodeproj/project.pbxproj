@@ -26,7 +26,6 @@
 		F29017EE2BD27879009DB80B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F29017ED2BD27879009DB80B /* PrivacyInfo.xcprivacy */; };
 		F2E513FC28A2BB7C00D1E0BF /* ActitoInAppMessagingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E513F128A2BB7C00D1E0BF /* ActitoInAppMessagingKit.framework */; };
 		F2E5140228A2BB7C00D1E0BF /* ActitoInAppMessagingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F2E513F428A2BB7C00D1E0BF /* ActitoInAppMessagingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F2E5141228A2C85E00D1E0BF /* ActitoInAppMessagingImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5141128A2C85E00D1E0BF /* ActitoInAppMessagingImpl.swift */; };
 		F2E5141428A2C86700D1E0BF /* ActitoInAppMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5141328A2C86700D1E0BF /* ActitoInAppMessaging.swift */; };
 		F2E5141A28A50C6800D1E0BF /* ActitoInAppMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5141928A50C6800D1E0BF /* ActitoInAppMessage.swift */; };
 		F2E5141C28A50E6D00D1E0BF /* ActitoInAppMessaging+Augment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E5141B28A50E6D00D1E0BF /* ActitoInAppMessaging+Augment.swift */; };
@@ -65,7 +64,6 @@
 		F2E513F128A2BB7C00D1E0BF /* ActitoInAppMessagingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActitoInAppMessagingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E513F428A2BB7C00D1E0BF /* ActitoInAppMessagingKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActitoInAppMessagingKit.h; sourceTree = "<group>"; };
 		F2E513FB28A2BB7C00D1E0BF /* ActitoInAppMessagingKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActitoInAppMessagingKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2E5141128A2C85E00D1E0BF /* ActitoInAppMessagingImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInAppMessagingImpl.swift; sourceTree = "<group>"; };
 		F2E5141328A2C86700D1E0BF /* ActitoInAppMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInAppMessaging.swift; sourceTree = "<group>"; };
 		F2E5141928A50C6800D1E0BF /* ActitoInAppMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInAppMessage.swift; sourceTree = "<group>"; };
 		F2E5141B28A50E6D00D1E0BF /* ActitoInAppMessaging+Augment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoInAppMessaging+Augment.swift"; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 				F286CF1B2C1C363E005DF265 /* Caching */,
 				F206D6EE28A5426900A35E60 /* Extensions */,
 				F2E5141D28A50EA100D1E0BF /* Network */,
-				F2E5141128A2C85E00D1E0BF /* ActitoInAppMessagingImpl.swift */,
 				F25314A328A5133900A979EA /* ApplicationContext.swift */,
 				1AD52A592DFFFB7D006C7D88 /* LaunchComponent.swift */,
 				1A52DE742CA460E300B5F56C /* Logger.swift */,
@@ -338,7 +335,6 @@
 				F206D6ED28A53E3500A35E60 /* ActitoInAppMessagingBannerView.swift in Sources */,
 				F23D9E8B28B537FC009675DE /* String+Utilities.swift in Sources */,
 				F225AC9728AFDA3500E4446A /* ActitoInAppMessagingDelegate.swift in Sources */,
-				F2E5141228A2C85E00D1E0BF /* ActitoInAppMessagingImpl.swift in Sources */,
 				F25314A428A5133900A979EA /* ApplicationContext.swift in Sources */,
 				1A52DE752CA460E300B5F56C /* Logger.swift in Sources */,
 				F2E5141428A2C86700D1E0BF /* ActitoInAppMessaging.swift in Sources */,

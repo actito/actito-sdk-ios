@@ -7,12 +7,6 @@ import Foundation
 
 extension Actito {
     public func inAppMessaging() -> ActitoInAppMessaging {
-        ActitoInAppMessagingImpl.instance
-    }
-}
-
-extension Actito {
-    internal func inAppMessagingImplementation() -> ActitoInAppMessagingImpl {
-        ActitoInAppMessagingImpl.instance
+        ActitoInAppMessaging.shared
     }
 }
