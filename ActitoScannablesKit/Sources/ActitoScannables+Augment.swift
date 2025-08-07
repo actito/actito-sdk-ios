@@ -7,12 +7,6 @@ import Foundation
 
 extension Actito {
     public func scannables() -> ActitoScannables {
-        ActitoScannablesImpl.instance
-    }
-}
-
-extension Actito {
-    internal func scannablesImplementation() -> ActitoScannablesImpl {
-        ActitoScannablesImpl.instance
+        ActitoScannables.shared
     }
 }
