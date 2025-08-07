@@ -328,7 +328,7 @@ public class Actito {
         }
 
         logger.debug("Removing device.")
-        try await self.deviceImplementation().delete()
+        try await self.device().delete()
 
         logger.info("Un-launched Actito.")
         self.state = .configured
@@ -622,7 +622,7 @@ public class Actito {
 
         Task {
             do {
-                try await deviceImplementation().registerTestDevice(nonce: nonce)
+                try await device().registerTestDevice(nonce: nonce)
                 logger.info("Device registered for testing.")
             } catch {
                 logger.error("Failed to register the device for testing.", error: error)
