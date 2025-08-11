@@ -7,12 +7,6 @@ import Foundation
 
 extension Actito {
     public func assets() -> ActitoAssets {
-        ActitoAssetsImpl.instance
-    }
-}
-
-extension Actito {
-    internal func assetsImplementation() -> ActitoAssetsImpl {
-        ActitoAssetsImpl.instance
+        ActitoAssets.shared
     }
 }

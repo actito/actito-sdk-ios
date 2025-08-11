@@ -16,8 +16,8 @@ extension ActitoInternals.PushAPI.Payloads {
         @EncodeNull internal var course: Double?
         @EncodeNull internal var country: String?
         @EncodeNull internal var floor: Int?
-        @EncodeNull internal var locationServicesAuthStatus: ActitoGeoImpl.AuthorizationMode?
-        @EncodeNull internal var locationServicesAccuracyAuth: ActitoGeoImpl.AccuracyMode?
+        @EncodeNull internal var locationServicesAuthStatus: ActitoGeo.AuthorizationMode?
+        @EncodeNull internal var locationServicesAccuracyAuth: ActitoGeo.AccuracyMode?
     }
 
     internal struct RegionTrigger: Encodable {

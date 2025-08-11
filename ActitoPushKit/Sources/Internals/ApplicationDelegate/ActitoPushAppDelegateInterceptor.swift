@@ -8,13 +8,13 @@ import UIKit
 
 internal class ActitoPushAppDelegateInterceptor: NSObject, ActitoAppDelegateInterceptor {
     internal func application(_: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Actito.shared.pushImplementation().pushTokenRequester.signalTokenReceived(deviceToken)
+        Actito.shared.push().pushTokenRequester.signalTokenReceived(deviceToken)
     }
 
     internal func application(_: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         logger.error("Failed to register for remote notifications.", error: error)
 
-        Actito.shared.pushImplementation().pushTokenRequester.signalTokenRequestError(error)
+        Actito.shared.push().pushTokenRequester.signalTokenRequestError(error)
 
         DispatchQueue.main.async {
             Actito.shared.push().delegate?.actito(Actito.shared.push(), didFailToRegisterForRemoteNotificationsWithError: error)
@@ -70,7 +70,7 @@ internal class ActitoPushAppDelegateInterceptor: NSObject, ActitoAppDelegateInte
 
                 do {
                     _ = try await Actito.shared.fetchApplication()
-                    await Actito.shared.pushImplementation().reloadActionCategories()
+                    await Actito.shared.push().reloadActionCategories()
                 } catch {
                     logger.warning("Failed to refresh the application info.", error: error)
                 }

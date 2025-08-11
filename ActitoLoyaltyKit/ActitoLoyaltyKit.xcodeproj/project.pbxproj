@@ -12,7 +12,6 @@
 		1AD52A5E2E0000AE006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A5D2E0000AA006C7D88 /* LaunchComponent.swift */; };
 		E577A75E2DC4C0CD00231193 /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A75C2DC4C0CD00231193 /* ActitoKit.framework */; };
 		E577A7602DC4C0CD00231193 /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E577A75D2DC4C0CD00231193 /* ActitoUtilitiesKit.framework */; };
-		F216F0B126A825F700F9EF56 /* ActitoLoyaltyImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F216F0B026A825F700F9EF56 /* ActitoLoyaltyImpl.swift */; };
 		F216F0B626A8266700F9EF56 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F216F0B526A8266700F9EF56 /* PassKit.framework */; };
 		F258DDE624BC4F32006F9ABD /* ActitoLoyaltyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F258DDDC24BC4F31006F9ABD /* ActitoLoyaltyKit.framework */; };
 		F258DDED24BC4F32006F9ABD /* ActitoLoyaltyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F258DDDF24BC4F31006F9ABD /* ActitoLoyaltyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,7 +39,6 @@
 		1AD52A5D2E0000AA006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
 		E577A75C2DC4C0CD00231193 /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E577A75D2DC4C0CD00231193 /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F216F0B026A825F700F9EF56 /* ActitoLoyaltyImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLoyaltyImpl.swift; sourceTree = "<group>"; };
 		F216F0B526A8266700F9EF56 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		F258DDDC24BC4F31006F9ABD /* ActitoLoyaltyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActitoLoyaltyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F258DDDF24BC4F31006F9ABD /* ActitoLoyaltyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActitoLoyaltyKit.h; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				F2BB224626A870C300B20BF3 /* Network */,
-				F216F0B026A825F700F9EF56 /* ActitoLoyaltyImpl.swift */,
 				1AD52A5D2E0000AA006C7D88 /* LaunchComponent.swift */,
 				1A52DE782CA461AF00B5F56C /* Logger.swift */,
 			);
@@ -283,7 +280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F216F0B126A825F700F9EF56 /* ActitoLoyaltyImpl.swift in Sources */,
 				F2BB224926A870D500B20BF3 /* PushAPI+Responses.swift in Sources */,
 				F2DAB391271F0ADB002B5F27 /* ActitoLoyalty.swift in Sources */,
 				F2DAB393271F0B88002B5F27 /* ActitoLoyalty+Augment.swift in Sources */,

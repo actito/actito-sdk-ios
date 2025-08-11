@@ -22,7 +22,6 @@
 		F2EA0713291E9BA7009DB7A0 /* ActitoUserInboxKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2EA070A291E9BA7009DB7A0 /* ActitoUserInboxKit.framework */; };
 		F2EA0719291E9BA7009DB7A0 /* ActitoUserInboxKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EA070D291E9BA7009DB7A0 /* ActitoUserInboxKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2EA0726291EA89F009DB7A0 /* ActitoUserInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA0725291EA89F009DB7A0 /* ActitoUserInbox.swift */; };
-		F2EA072B291EAD84009DB7A0 /* ActitoUserInboxImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA072A291EAD84009DB7A0 /* ActitoUserInboxImpl.swift */; };
 		F2EA0733291EAFFD009DB7A0 /* ActitoUserInboxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA0732291EAFFD009DB7A0 /* ActitoUserInboxItem.swift */; };
 		F2EA0735291EB02A009DB7A0 /* ActitoUserInbox+Augment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA0734291EB02A009DB7A0 /* ActitoUserInbox+Augment.swift */; };
 		F2EA0737291EB6B0009DB7A0 /* ActitoUserInboxResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA0736291EB6B0009DB7A0 /* ActitoUserInboxResponse.swift */; };
@@ -55,7 +54,6 @@
 		F2EA070D291E9BA7009DB7A0 /* ActitoUserInboxKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActitoUserInboxKit.h; sourceTree = "<group>"; };
 		F2EA0712291E9BA7009DB7A0 /* ActitoUserInboxKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActitoUserInboxKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2EA0725291EA89F009DB7A0 /* ActitoUserInbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoUserInbox.swift; sourceTree = "<group>"; };
-		F2EA072A291EAD84009DB7A0 /* ActitoUserInboxImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoUserInboxImpl.swift; sourceTree = "<group>"; };
 		F2EA0732291EAFFD009DB7A0 /* ActitoUserInboxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoUserInboxItem.swift; sourceTree = "<group>"; };
 		F2EA0734291EB02A009DB7A0 /* ActitoUserInbox+Augment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoUserInbox+Augment.swift"; sourceTree = "<group>"; };
 		F2EA0736291EB6B0009DB7A0 /* ActitoUserInboxResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoUserInboxResponse.swift; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				F2EA0729291EAD53009DB7A0 /* Responses */,
-				F2EA072A291EAD84009DB7A0 /* ActitoUserInboxImpl.swift */,
 				1AD52A652E00043F006C7D88 /* LaunchComponent.swift */,
 				1A52DE802CA462AD00B5F56C /* Logger.swift */,
 			);
@@ -307,7 +304,6 @@
 				F2EA0737291EB6B0009DB7A0 /* ActitoUserInboxResponse.swift in Sources */,
 				1AD52A662E000444006C7D88 /* LaunchComponent.swift in Sources */,
 				F28CF5D8292D143E00F44651 /* ActitoUserInboxError.swift in Sources */,
-				F2EA072B291EAD84009DB7A0 /* ActitoUserInboxImpl.swift in Sources */,
 				F28CF5DC292D39B400F44651 /* PushAPI+Responses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

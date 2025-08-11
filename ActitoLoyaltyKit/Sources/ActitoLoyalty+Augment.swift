@@ -7,12 +7,6 @@ import Foundation
 
 extension Actito {
     public func loyalty() -> ActitoLoyalty {
-        ActitoLoyaltyImpl.instance
-    }
-}
-
-extension Actito {
-    internal func loyaltyImplementation() -> ActitoLoyaltyImpl {
-        ActitoLoyaltyImpl.instance
+        ActitoLoyalty.shared
     }
 }

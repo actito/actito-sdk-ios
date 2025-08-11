@@ -16,7 +16,6 @@
 		F258DDC224BC4F09006F9ABD /* ActitoAssetsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F258DDB824BC4F09006F9ABD /* ActitoAssetsKit.framework */; };
 		F258DDC924BC4F09006F9ABD /* ActitoAssetsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F258DDBB24BC4F09006F9ABD /* ActitoAssetsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F29017E82BD27730009DB80B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F29017E72BD2772C009DB80B /* PrivacyInfo.xcprivacy */; };
-		F2ABF33C269C43AB00401D3F /* ActitoAssetsImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ABF33B269C43AB00401D3F /* ActitoAssetsImpl.swift */; };
 		F2ABF33F269C45A900401D3F /* ActitoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ABF33E269C45A900401D3F /* ActitoAsset.swift */; };
 		F2ABF346269C579900401D3F /* PushAPI+Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ABF345269C579900401D3F /* PushAPI+Responses.swift */; };
 		F2ABF348269C57C500401D3F /* PushAPI+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ABF347269C57C500401D3F /* PushAPI+Models.swift */; };
@@ -47,7 +46,6 @@
 		F258DDC124BC4F09006F9ABD /* ActitoAssetsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActitoAssetsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F258DDC824BC4F09006F9ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F29017E72BD2772C009DB80B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		F2ABF33B269C43AB00401D3F /* ActitoAssetsImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoAssetsImpl.swift; sourceTree = "<group>"; };
 		F2ABF33E269C45A900401D3F /* ActitoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoAsset.swift; sourceTree = "<group>"; };
 		F2ABF345269C579900401D3F /* PushAPI+Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushAPI+Responses.swift"; sourceTree = "<group>"; };
 		F2ABF347269C57C500401D3F /* PushAPI+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushAPI+Models.swift"; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				F2ABF342269C575F00401D3F /* Network */,
-				F2ABF33B269C43AB00401D3F /* ActitoAssetsImpl.swift */,
 				1AD52A532DFFF713006C7D88 /* LaunchComponent.swift */,
 				1A52DE6F2CA4526900B5F56C /* Logger.swift */,
 			);
@@ -281,7 +278,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2ABF33C269C43AB00401D3F /* ActitoAssetsImpl.swift in Sources */,
 				F2DAB38D271F0467002B5F27 /* ActitoAssets.swift in Sources */,
 				F2DAB38F271F0473002B5F27 /* ActitoAssets+Augment.swift in Sources */,
 				F2ABF346269C579900401D3F /* PushAPI+Responses.swift in Sources */,

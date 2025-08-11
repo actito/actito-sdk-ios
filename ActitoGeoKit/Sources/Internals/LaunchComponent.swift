@@ -17,35 +17,35 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal func configure() {
         logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
 
-        Actito.shared.geoImplementation().locationManager = CLLocationManager()
-        Actito.shared.geoImplementation().locationManager?.delegate = Actito.shared.geoImplementation()
-        Actito.shared.geoImplementation().locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        Actito.shared.geo().locationManager = CLLocationManager()
+        Actito.shared.geo().locationManager?.delegate = Actito.shared.geo()
+        Actito.shared.geo().locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 
         if let backgroundModes = Bundle.main.infoDictionary?["UIBackgroundModes"] as? [String], backgroundModes.contains("location") {
             logger.debug("Using Background Location Updates background mode.")
-            Actito.shared.geoImplementation().locationManager.allowsBackgroundLocationUpdates = true
+            Actito.shared.geo().locationManager.allowsBackgroundLocationUpdates = true
         }
 
         // Listen to application did become active events.
         NotificationCenter.default.upsertObserver(
-            Actito.shared.geoImplementation(),
-            selector: #selector(Actito.shared.geoImplementation().onApplicationDidBecomeActiveNotification(_:)),
+            Actito.shared.geo(),
+            selector: #selector(Actito.shared.geo().onApplicationDidBecomeActiveNotification(_:)),
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
 
         // Listen to application will resign active events.
         NotificationCenter.default.upsertObserver(
-            Actito.shared.geoImplementation(),
-            selector: #selector(Actito.shared.geoImplementation().onApplicationWillResignActiveNotification(_:)),
+            Actito.shared.geo(),
+            selector: #selector(Actito.shared.geo().onApplicationWillResignActiveNotification(_:)),
             name: UIApplication.willResignActiveNotification,
             object: nil
         )
     }
 
     internal func clearStorage() async throws {
-        Actito.shared.geoImplementation().stopMonitoringLocationUpdates()
-        Actito.shared.geoImplementation().stopMonitoringGeofences()
+        Actito.shared.geo().stopMonitoringLocationUpdates()
+        Actito.shared.geo().stopMonitoringGeofences()
 
         LocalStorage.clear()
     }
@@ -55,19 +55,19 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func postLaunch() async throws {
-        if Actito.shared.geoImplementation().hasLocationServicesEnabled {
+        if Actito.shared.geo().hasLocationServicesEnabled {
             logger.debug("Enabling locations updates automatically.")
-            Actito.shared.geoImplementation().enableLocationUpdates()
+            Actito.shared.geo().enableLocationUpdates()
         }
     }
 
     internal func unlaunch() async throws {
         LocalStorage.locationServicesEnabled = false
 
-        Actito.shared.geoImplementation().stopMonitoringGeofences()
-        Actito.shared.geoImplementation().stopMonitoringLocationUpdates()
+        Actito.shared.geo().stopMonitoringGeofences()
+        Actito.shared.geo().stopMonitoringLocationUpdates()
 
-        try await Actito.shared.geoImplementation().clearDeviceLocation()
+        try await Actito.shared.geo().clearDeviceLocation()
     }
 
     internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {

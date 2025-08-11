@@ -14,24 +14,24 @@ internal class DeviceLaunchComponent: NSObject, ActitoLaunchComponent {
     internal func configure() {
         // Listen to timezone changes
         NotificationCenter.default.upsertObserver(
-            Actito.shared.deviceImplementation(),
-            selector: #selector(Actito.shared.deviceImplementation().updateDeviceTimezone),
+            Actito.shared.device(),
+            selector: #selector(Actito.shared.device().updateDeviceTimezone),
             name: UIApplication.significantTimeChangeNotification,
             object: nil
         )
 
         // Listen to language changes
         NotificationCenter.default.upsertObserver(
-            Actito.shared.deviceImplementation(),
-            selector: #selector(Actito.shared.deviceImplementation().updateDeviceLanguage),
+            Actito.shared.device(),
+            selector: #selector(Actito.shared.device().updateDeviceLanguage),
             name: NSLocale.currentLocaleDidChangeNotification,
             object: nil
         )
 
         // Listen to 'background refresh status' changes
         NotificationCenter.default.upsertObserver(
-            Actito.shared.deviceImplementation(),
-            selector: #selector(Actito.shared.deviceImplementation().updateDeviceBackgroundAppRefresh),
+            Actito.shared.device(),
+            selector: #selector(Actito.shared.device().updateDeviceBackgroundAppRefresh),
             name: UIApplication.backgroundRefreshStatusDidChangeNotification,
             object: nil
         )
@@ -42,23 +42,23 @@ internal class DeviceLaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func launch() async throws {
-        try await Actito.shared.deviceImplementation().upgradeToLongLivedDeviceWhenNeeded()
+        try await Actito.shared.device().upgradeToLongLivedDeviceWhenNeeded()
 
-        if let storedDevice = Actito.shared.deviceImplementation().storedDevice {
+        if let storedDevice = Actito.shared.device().storedDevice {
             let isApplicationUpgrade = storedDevice.appVersion != Bundle.main.applicationVersion
 
             do {
-                try await Actito.shared.deviceImplementation().updateDevice()
+                try await Actito.shared.device().updateDevice()
             } catch {
                 if case let ActitoNetworkError.validationError(response, _, _) = error, response.statusCode == 404 {
                     logger.warning("The device was removed from Actito. Recovering...")
 
                     logger.debug("Resetting local storage.")
-                    try await Actito.shared.deviceImplementation().resetLocalStorage()
+                    try await Actito.shared.device().resetLocalStorage()
 
                     logger.debug("Creating a new device")
-                    try await Actito.shared.deviceImplementation().createDevice()
-                    Actito.shared.deviceImplementation().hasPendingDeviceRegistrationEvent = true
+                    try await Actito.shared.device().createDevice()
+                    Actito.shared.device().hasPendingDeviceRegistrationEvent = true
 
                     // Ensure a session exists for the current device.
                     try await ActitoInternals.Module.session.klass?.instance.launch()
@@ -84,8 +84,8 @@ internal class DeviceLaunchComponent: NSObject, ActitoLaunchComponent {
         } else {
             logger.debug("New install detected")
 
-            try await Actito.shared.deviceImplementation().createDevice()
-            Actito.shared.deviceImplementation().hasPendingDeviceRegistrationEvent = true
+            try await Actito.shared.device().createDevice()
+            Actito.shared.device().hasPendingDeviceRegistrationEvent = true
 
             // Ensure a session exists for the current device.
             try await ActitoInternals.Module.session.klass?.instance.launch()
@@ -98,7 +98,7 @@ internal class DeviceLaunchComponent: NSObject, ActitoLaunchComponent {
 
     internal func postLaunch() async throws {
         if
-            let storedDevice = Actito.shared.deviceImplementation().storedDevice, Actito.shared.deviceImplementation().hasPendingDeviceRegistrationEvent == true
+            let storedDevice = Actito.shared.device().storedDevice, Actito.shared.device().hasPendingDeviceRegistrationEvent == true
         {
             DispatchQueue.main.async {
                 Actito.shared.delegate?.actito(Actito.shared, didRegisterDevice: storedDevice.asPublic())

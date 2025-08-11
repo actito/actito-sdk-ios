@@ -39,7 +39,6 @@
 		F293E2E6263048A1008C2010 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E2E5263048A1008C2010 /* LocalStorage.swift */; };
 		F29B17D525A48BF0007ED6F9 /* ActitoPushUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F29B17CB25A48BEF007ED6F9 /* ActitoPushUIKit.framework */; };
 		F29B17DC25A48BF0007ED6F9 /* ActitoPushUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F29B17CE25A48BEF007ED6F9 /* ActitoPushUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F29B17F325A48CAF007ED6F9 /* ActitoPushUIImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29B17F225A48CAF007ED6F9 /* ActitoPushUIImpl.swift */; };
 		F29C96E725ACBE2500620E9B /* ActitoImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29C96E625ACBE2500620E9B /* ActitoImageGalleryViewController.swift */; };
 		F29C96EA25ACBE5D00620E9B /* ActitoBaseNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29C96E925ACBE5D00620E9B /* ActitoBaseNotificationViewController.swift */; };
 		F2B1817925BAF4F800384991 /* ActitoInAppBrowserActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1817825BAF4F800384991 /* ActitoInAppBrowserActionHandler.swift */; };
@@ -98,7 +97,6 @@
 		F29B17CF25A48BEF007ED6F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F29B17D425A48BF0007ED6F9 /* ActitoPushUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActitoPushUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29B17DB25A48BF0007ED6F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F29B17F225A48CAF007ED6F9 /* ActitoPushUIImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoPushUIImpl.swift; sourceTree = "<group>"; };
 		F29C96E625ACBE2500620E9B /* ActitoImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoImageGalleryViewController.swift; sourceTree = "<group>"; };
 		F29C96E925ACBE5D00620E9B /* ActitoBaseNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoBaseNotificationViewController.swift; sourceTree = "<group>"; };
 		F2B1817825BAF4F800384991 /* ActitoInAppBrowserActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInAppBrowserActionHandler.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				F28B54942C2D55D10074FFA9 /* Extensions */,
-				F29B17F225A48CAF007ED6F9 /* ActitoPushUIImpl.swift */,
 				F293E2E5263048A1008C2010 /* LocalStorage.swift */,
 				F2DAB3A4271F14D3002B5F27 /* UIKitExtensions.swift */,
 				E5A878A82C23346100D53A91 /* URLExtensions.swift */,
@@ -388,7 +385,6 @@
 				F2CB6F5C25AEFD0600FC994E /* ActitoMapViewController.swift in Sources */,
 				F289F52325B838DE0091AB97 /* ActitoAlertController.swift in Sources */,
 				F277EABD25B0A10C0026225C /* ActitoTelephoneActionHandler.swift in Sources */,
-				F29B17F325A48CAF007ED6F9 /* ActitoPushUIImpl.swift in Sources */,
 				F28C95072640478100D6EF32 /* ActitoPushUI+ActitoNotification.swift in Sources */,
 				F2770B3A276266BE00450FF8 /* ActitoImageGalleryCollectionViewCell.swift in Sources */,
 				F2DAB3A1271F1325002B5F27 /* ActitoPushUI.swift in Sources */,

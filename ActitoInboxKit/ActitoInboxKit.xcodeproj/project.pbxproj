@@ -21,7 +21,6 @@
 		F27DB1A3262F2B94000C024D /* PushAPI+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27DB1A2262F2B94000C024D /* PushAPI+Models.swift */; };
 		F27FD26A2D7F341D00ED26AD /* ActitoInboxItem+Expiration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FD2692D7F341500ED26AD /* ActitoInboxItem+Expiration.swift */; };
 		F289F53F25B85E020091AB97 /* ActitoInboxKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F289F53525B85E020091AB97 /* ActitoInboxKit.framework */; };
-		F289F5E825B8643A0091AB97 /* ActitoInboxImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F289F5E725B8643A0091AB97 /* ActitoInboxImpl.swift */; };
 		F289F5ED25B8651F0091AB97 /* ActitoInboxDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F289F5EC25B8651F0091AB97 /* ActitoInboxDelegate.swift */; };
 		F289F5F125B884EC0091AB97 /* ActitoInboxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F289F5F025B884EC0091AB97 /* ActitoInboxItem.swift */; };
 		F28E583B25C0401800C83537 /* InboxDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E583A25C0401800C83537 /* InboxDatabase.swift */; };
@@ -61,7 +60,6 @@
 		F289F53925B85E020091AB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F289F53E25B85E020091AB97 /* ActitoInboxKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActitoInboxKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F289F54525B85E020091AB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F289F5E725B8643A0091AB97 /* ActitoInboxImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInboxImpl.swift; sourceTree = "<group>"; };
 		F289F5EB25B864A90091AB97 /* ActitoInboxKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActitoInboxKit.h; sourceTree = "<group>"; };
 		F289F5EC25B8651F0091AB97 /* ActitoInboxDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInboxDelegate.swift; sourceTree = "<group>"; };
 		F289F5F025B884EC0091AB97 /* ActitoInboxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInboxItem.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 			children = (
 				F28E584825C041B000C83537 /* Database */,
 				F2F311FC25C1A1BD007E4B01 /* Network */,
-				F289F5E725B8643A0091AB97 /* ActitoInboxImpl.swift */,
 				F27FD2692D7F341500ED26AD /* ActitoInboxItem+Expiration.swift */,
 				1AD2650D2E1C23BE00BE984E /* InboxCache.swift */,
 				1AD52A5B2DFFFE28006C7D88 /* LaunchComponent.swift */,
@@ -331,7 +328,6 @@
 				F289F5F125B884EC0091AB97 /* ActitoInboxItem.swift in Sources */,
 				F21DD9EB27184CE500C88D7B /* ActitoInbox+Augment.swift in Sources */,
 				F28E584A25C041C900C83537 /* InboxItemEntity.swift in Sources */,
-				F289F5E825B8643A0091AB97 /* ActitoInboxImpl.swift in Sources */,
 				F27DB1A3262F2B94000C024D /* PushAPI+Models.swift in Sources */,
 				F2B984C82850C123005CD6D6 /* InboxDatabaseError.swift in Sources */,
 				F289F5ED25B8651F0091AB97 /* ActitoInboxDelegate.swift in Sources */,

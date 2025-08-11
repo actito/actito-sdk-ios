@@ -35,7 +35,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {
         switch command {
         case "canPresentPasses":
-            return Actito.shared.loyaltyImplementation().canPresentPasses
+            return Actito.shared.loyalty().canPresentPasses
 
         case "present":
             guard
@@ -46,7 +46,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
                 throw ActitoError.invalidArgument(message: "Invalid data for present command")
             }
 
-                await Actito.shared.loyaltyImplementation().present(notification: notification, in: controller)
+            await Actito.shared.loyalty().present(notification: notification, in: controller)
             return nil
 
         default:

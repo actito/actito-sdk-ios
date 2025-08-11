@@ -8,8 +8,8 @@ import UIKit
 
 private let SESSION_CLOSE_TASK_NAME = "re.notifica.tasks.session.Close"
 
-internal class ActitoSessionModuleImpl {
-    internal static let instance = ActitoSessionModuleImpl()
+internal class ActitoSessionModule {
+    internal static let instance = ActitoSessionModule()
 
     internal private(set) var sessionId: String?
     private var sessionStart: Date?

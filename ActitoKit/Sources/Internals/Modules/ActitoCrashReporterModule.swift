@@ -6,8 +6,8 @@ import ActitoUtilitiesKit
 import Foundation
 import UIKit
 
-internal class ActitoCrashReporterModuleImpl {
-    internal static let instance = ActitoCrashReporterModuleImpl()
+internal class ActitoCrashReporterModule {
+    internal static let instance = ActitoCrashReporterModule()
 
     // MARK: - Internal API
 

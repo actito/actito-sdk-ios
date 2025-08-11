@@ -3,9 +3,14 @@
 //
 
 import ActitoKit
+import ActitoUtilitiesKit
 import Foundation
 
-public protocol ActitoUserInbox: AnyObject {
+public class ActitoUserInbox {
+    public static let shared = ActitoUserInbox()
+
+    // MARK: - Public API
+
     /// Parses a JSON string to produce a ``ActitoUserInboxResponse``.
     ///
     /// This method takes a raw JSON string and converts it into a structured ``ActitoUserInboxResponse``.
@@ -14,7 +19,13 @@ public protocol ActitoUserInbox: AnyObject {
     ///   - string: The JSON string representing the user inbox response.
     ///
     /// - Returns: A ``ActitoUserInboxResponse`` object parsed from the provided JSON string.
-    func parseResponse(string: String) throws -> ActitoUserInboxResponse
+    public func parseResponse(string: String) throws -> ActitoUserInboxResponse {
+        guard let data = string.data(using: .utf8) else {
+            throw ActitoUserInboxError.dataCorrupted
+        }
+
+        return try parseResponse(data: data)
+    }
 
     /// Parses a dictionary to produce a ``ActitoUserInboxResponse``.
     ///
@@ -24,7 +35,10 @@ public protocol ActitoUserInbox: AnyObject {
     ///   - json: The dictionary representing the user inbox response.
     ///
     /// - Returns: A ``ActitoUserInboxResponse`` object parsed from the provided string.
-    func parseResponse(json: [String: Any]) throws -> ActitoUserInboxResponse
+    public func parseResponse(json: [String: Any]) throws -> ActitoUserInboxResponse {
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        return try parseResponse(data: data)
+    }
 
     /// Parses a ``Data`` object to produce a ``ActitoUserInboxResponse``.
     ///
@@ -34,7 +48,9 @@ public protocol ActitoUserInbox: AnyObject {
     ///   - data: The ``Data`` object representing the user inbox response.
     ///
     /// - Returns: A ``ActitoUserInboxResponse`` object parsed from the provided ``Data`` object.
-    func parseResponse(data: Data) throws -> ActitoUserInboxResponse
+    public func parseResponse(data: Data) throws -> ActitoUserInboxResponse {
+        try JSONDecoder.actito.decode(ActitoUserInboxResponse.self, from: data)
+    }
 
     /// Opens a specified inbox item and retrieves its associated notification, with a callback.
     ///
@@ -44,7 +60,16 @@ public protocol ActitoUserInbox: AnyObject {
     /// - Parameters:
     ///   - item: The ``ActitoUserInboxItem`` to open.
     ///   - completion: A callback that will be invoked with the result ot the notification open operation.
-    func open(_ item: ActitoUserInboxItem, _ completion: @escaping ActitoCallback<ActitoNotification>)
+    public func open(_ item: ActitoUserInboxItem, _ completion: @escaping ActitoCallback<ActitoNotification>) {
+        Task {
+            do {
+                let result = try await open(item)
+                completion(.success(result))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
 
     /// Opens a specified inbox item and retrieves its associated notification.
     ///
@@ -55,7 +80,15 @@ public protocol ActitoUserInbox: AnyObject {
     ///   - item: The ``ActitoUserInboxItem`` to open.
     ///
     /// - Returns: The ``ActitoNotification`` associated with the opened inbox item.
-    func open(_ item: ActitoUserInboxItem) async throws -> ActitoNotification
+    public func open(_ item: ActitoUserInboxItem) async throws -> ActitoNotification {
+        try checkPrerequisites()
+
+        let notification = try await fetchUserInboxNotification(item)
+
+        // Mark the item as read & send a notification open event.
+        try await markAsRead(item)
+        return notification
+    }
 
     /// Marks an inbox item as read, with a callback.
     ///
@@ -64,7 +97,16 @@ public protocol ActitoUserInbox: AnyObject {
     /// - Parameters:
     ///   - item: The ``ActitoUserInboxItem`` to mark as read.
     ///   - completion: A callback that will be inboked with the result of the mark as read operation.
-    func markAsRead(_ item: ActitoUserInboxItem, _ completion: @escaping ActitoCallback<Void>)
+    public func markAsRead(_ item: ActitoUserInboxItem, _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await markAsRead(item)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
 
     /// Marks an inbox item as read.
     ///
@@ -72,7 +114,13 @@ public protocol ActitoUserInbox: AnyObject {
     ///
     /// - Parameters:
     ///   - item: The ``ActitoUserInboxItem`` to mark as read.
-    func markAsRead(_ item: ActitoUserInboxItem) async throws
+    public func markAsRead(_ item: ActitoUserInboxItem) async throws {
+        try checkPrerequisites()
+
+        try await Actito.shared.events().logNotificationOpen(item.notification.id)
+
+        Actito.shared.removeNotificationFromNotificationCenter(item.notification)
+    }
 
     /// Removes an inbox item from the user's inbox, with a callback.
     ///
@@ -81,12 +129,78 @@ public protocol ActitoUserInbox: AnyObject {
     /// - Parameters:
     ///   - item: The ``ActitoUserInboxItem`` to be removed.
     ///   - completion: A callback that will be invoked with the result of the remove operation.
-    func remove(_ item: ActitoUserInboxItem, _ completion: @escaping ActitoCallback<Void>)
+    public func remove(_ item: ActitoUserInboxItem, _ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await remove(item)
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
 
     /// Removes an inbox item from the user's inbox.
     ///
     /// This method deletes the provided ``ActitoUserInboxItem`` from the user's inbox.
     ///
     /// - Parameter item: The ``ActitoUserInboxItem`` to be removed.
-    func remove(_ item: ActitoUserInboxItem) async throws
+    public func remove(_ item: ActitoUserInboxItem) async throws {
+        try checkPrerequisites()
+
+        guard let device = Actito.shared.device().currentDevice else {
+            throw ActitoError.deviceUnavailable
+        }
+
+        try await ActitoRequest.Builder()
+            .delete("/notification/userinbox/\(item.id)/fordevice/\(device.id)")
+            .response()
+
+        Actito.shared.removeNotificationFromNotificationCenter(item.notification)
+    }
+
+    // MARK: - Private API
+
+    private func checkPrerequisites() throws {
+        guard Actito.shared.isReady else {
+            logger.warning("Actito is not ready yet.")
+            throw ActitoError.notReady
+        }
+
+        guard let application = Actito.shared.application else {
+            logger.warning("Actito application is not yet available.")
+            throw ActitoError.applicationUnavailable
+        }
+
+        guard application.services[ActitoApplication.ServiceKey.inbox.rawValue] == true else {
+            logger.warning("Actito inbox functionality is not enabled.")
+            throw ActitoError.serviceUnavailable(service: ActitoApplication.ServiceKey.inbox.rawValue)
+        }
+
+        guard application.inboxConfig?.useInbox == true else {
+            logger.warning("Actito inbox functionality is not enabled.")
+            throw ActitoError.serviceUnavailable(service: ActitoApplication.ServiceKey.inbox.rawValue)
+        }
+
+        guard application.inboxConfig?.useUserInbox == true else {
+            logger.warning("Actito user inbox functionality is not enabled.")
+            throw ActitoError.serviceUnavailable(service: ActitoApplication.ServiceKey.inbox.rawValue)
+        }
+    }
+
+    private func fetchUserInboxNotification(_ item: ActitoUserInboxItem) async throws -> ActitoNotification {
+        guard Actito.shared.isConfigured else {
+            throw ActitoError.notConfigured
+        }
+
+        guard let device = Actito.shared.device().currentDevice else {
+            throw ActitoError.notConfigured
+        }
+
+        let response = try await ActitoRequest.Builder()
+            .get("/notification/userinbox/\(item.id)/fordevice/\(device.id)")
+            .responseDecodable(ActitoInternals.PushAPI.Responses.UserInboxNotification.self)
+
+        return response.notification.toModel()
+    }
 }
