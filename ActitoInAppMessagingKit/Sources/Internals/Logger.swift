@@ -8,10 +8,9 @@ import Foundation
 internal var logger: ActitoLogger = {
     var logger = ActitoLogger(
         subsystem: "com.actito.iam",
-        category: "ActitoInAppMessaging"
+        category: "ActitoInAppMessaging",
+        labelIgnoreList: ["ActitoInAppMessaging"]
     )
-
-    logger.labelIgnoreList.append("ActitoInAppMessaging")
 
     return logger
 }()

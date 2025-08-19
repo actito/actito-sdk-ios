@@ -8,10 +8,9 @@ import Foundation
 internal var logger: ActitoLogger = {
     var logger = ActitoLogger(
         subsystem: "com.actito.push.ui",
-        category: "ActitoPushUI"
+        category: "ActitoPushUI",
+        labelIgnoreList: ["ActitoPushUI"]
     )
-
-    logger.labelIgnoreList.append("ActitoPushUI")
 
     return logger
 }()
