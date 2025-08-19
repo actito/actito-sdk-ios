@@ -4,7 +4,7 @@
 
 import ActitoKit
 
-internal class LaunchComponent: NSObject, ActitoLaunchComponent{
+internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = LaunchComponent()
 
     internal func migrate() {
@@ -31,7 +31,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent{
         // no-op
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> Any?{
+    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
         return nil
     }
 }

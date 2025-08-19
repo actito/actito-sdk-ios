@@ -2,13 +2,14 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-public protocol ActitoLaunchComponent {
+public protocol ActitoLaunchComponent: Sendable {
     associatedtype Instance: ActitoLaunchComponent
 
     static var instance: Instance { get }
 
     func migrate()
 
+    @MainActor
     func configure()
 
     func clearStorage() async throws
@@ -19,5 +20,5 @@ public protocol ActitoLaunchComponent {
 
     func unlaunch() async throws
 
-    func executeCommand(_ command: String, data: Any?) async throws -> Any?
+    func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)?
 }
