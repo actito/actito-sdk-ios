@@ -5,21 +5,25 @@
 import Foundation
 import os
 
-public struct ActitoLogger {
+public final class ActitoLogger: Sendable {
 
-    public init(subsystem: String = "com.actito", category: String = "Actito") {
+    public init(subsystem: String = "com.actito", category: String = "Actito", labelIgnoreList: [String] = Array()) {
+        self.labelIgnoreList = labelIgnoreList
         self.osLog = OSLog(subsystem: subsystem, category: category)
 
         if #available(iOS 14, *) {
             self.logger = Logger(subsystem: subsystem, category: category)
+        } else {
+            self.logger = nil
         }
     }
 
+    @MainActor
     public var hasDebugLoggingEnabled: Bool = false
-    public var labelIgnoreList: [String] = Array()
 
+    private let labelIgnoreList: [String]
     private let osLog: OSLog
-    private var logger: Any?
+    private let logger: (any Sendable)?
 
     public func debug(_ message: String, error: Error? = nil, file: String = #file) {
         log(level: .debug, message: message, error: error, file: file)
@@ -49,9 +53,12 @@ public struct ActitoLogger {
             label = file
         }
 
-        log(level: level, label: label, message: message, error: error)
+        Task {
+            await log(level: level, label: label, message: message, error: error)
+        }
     }
 
+    @MainActor
     private func log(level: Level, label: String?, message: String, error: Error?) {
         guard level != .debug || hasDebugLoggingEnabled else {
             return
