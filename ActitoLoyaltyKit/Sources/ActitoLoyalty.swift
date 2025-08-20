@@ -6,7 +6,7 @@ import ActitoKit
 import PassKit
 import UIKit
 
-public class ActitoLoyalty {
+public final class ActitoLoyalty: Sendable {
     public static let shared = ActitoLoyalty()
 
     // MARK: - Public API
@@ -109,6 +109,7 @@ public class ActitoLoyalty {
 
     // MARK: - Actito Loyalty Integration
 
+    @MainActor
     internal var canPresentPasses: Bool {
         PKPassLibrary.isPassLibraryAvailable() && PKAddPassesViewController.canAddPasses()
     }
@@ -193,7 +194,7 @@ public class ActitoLoyalty {
         )
     }
 
-    private func loadPassFromUrl(_ url: URL) async throws -> PKPass {
+    private func loadPassFromUrl(_ url: URL) async throws -> sending PKPass {
         let (data, response) = try await URLSession.shared.data(from: url)
         let validStatusCodes = 200 ... 299
 

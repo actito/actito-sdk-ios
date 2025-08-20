@@ -35,7 +35,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
         switch command {
         case "canPresentPasses":
-            return Actito.shared.loyalty().canPresentPasses
+            return await Actito.shared.loyalty().canPresentPasses
 
         case "present":
             guard
