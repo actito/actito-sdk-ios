@@ -6,6 +6,7 @@ import ActitoKit
 import Foundation
 import UIKit
 
+@MainActor
 public class ActitoInAppMessaging {
     public static let shared = ActitoInAppMessaging()
 
@@ -68,7 +69,7 @@ public class ActitoInAppMessaging {
             do {
                 let message = try await fetchInAppMessage(for: context)
 
-                await processInAppMessage(message)
+                processInAppMessage(message)
             } catch {
                 if case let ActitoNetworkError.validationError(response, _, _) = error, response.statusCode == 404 {
                     logger.debug("There is no in-app message for '\(context.rawValue)' context to process.")
@@ -85,7 +86,6 @@ public class ActitoInAppMessaging {
         }
     }
 
-    @MainActor
     private func processInAppMessage(_ message: ActitoInAppMessage) {
         logger.info("Processing in-app message '\(message.name)'.")
 
@@ -108,7 +108,6 @@ public class ActitoInAppMessaging {
         present(message)
     }
 
-    @MainActor
     private func present(_ message: ActitoInAppMessage) {
         Task {
             let cache = ActitoImageCache()
@@ -129,7 +128,6 @@ public class ActitoInAppMessaging {
         }
     }
 
-    @MainActor
     private func present(_ message: ActitoInAppMessage, cache: ActitoImageCache) {
         guard presentedView == nil else {
             logger.warning("Cannot display an in-app message while another is being presented.")
@@ -190,7 +188,6 @@ public class ActitoInAppMessaging {
         return response.message.toModel()
     }
 
-    @MainActor
     private func findParentView() -> UIView? {
         let window: UIWindow
 

@@ -12,6 +12,7 @@ public class ActitoImageCache {
     public private(set) var portraitImage: UIImage?
     public private(set) var landscapeImage: UIImage?
 
+    @MainActor
     public var orientationConstrainedImage: UIImage? {
         if UIDevice.current.orientation.isLandscape {
             return landscapeImage ?? portraitImage

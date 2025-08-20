@@ -4,6 +4,7 @@
 
 import Foundation
 
+@MainActor
 public protocol ActitoInAppMessagingDelegate: AnyObject {
     /// Called when an in-app message is successfully presented to the user.
     ///

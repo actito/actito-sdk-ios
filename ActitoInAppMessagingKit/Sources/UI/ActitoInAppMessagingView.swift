@@ -6,6 +6,7 @@ import ActitoKit
 import Foundation
 import UIKit
 
+@MainActor
 public protocol ActitoInAppMessagingView: UIView {
     // MARK: - Properties
 
@@ -131,6 +132,7 @@ extension ActitoInAppMessagingView {
     }
 }
 
+@MainActor
 public protocol ActitoInAppMessagingViewDelegate: AnyObject {
     func onViewDismissed()
 }
