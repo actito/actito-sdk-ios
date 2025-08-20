@@ -5,12 +5,12 @@
 import CoreGraphics
 import Foundation
 import MobileCoreServices
-import UserNotifications
+@preconcurrency import UserNotifications
 
 public class ActitoNotificationServiceExtension {
     private init() {}
 
-    public static func handleNotificationRequest(_ request: UNNotificationRequest, _ completion: @escaping (Result<UNNotificationContent, Swift.Error>) -> Void) {
+    public static func handleNotificationRequest(_ request: UNNotificationRequest, _ completion: @Sendable @escaping (Result<UNNotificationContent, Swift.Error>) -> Void) {
         Task {
             do {
                 let result = try await handleNotificationRequest(request)
@@ -31,17 +31,6 @@ public class ActitoNotificationServiceExtension {
         }
 
         return content
-    }
-
-    private static func fetchAttachment(for request: UNNotificationRequest, _ completion: @escaping (Result<UNNotificationAttachment?, Swift.Error>) -> Void) {
-        Task {
-            do {
-                let result = try await fetchAttachment(for: request)
-                completion(.success(result))
-            } catch {
-                completion(.failure(error))
-            }
-        }
     }
 
     private static func fetchAttachment(for request: UNNotificationRequest) async throws -> UNNotificationAttachment? {
