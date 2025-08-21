@@ -7,6 +7,7 @@ import SafariServices
 import StoreKit
 import UIKit
 
+@MainActor
 public class ActitoPushUI {
     public static let shared = ActitoPushUI()
 
@@ -149,9 +150,7 @@ public class ActitoPushUI {
             return
         }
 
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willPresentNotification: notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willPresentNotification: notification)
 
         latestPresentableNotificationHandler?.present(in: controller)
     }
@@ -211,10 +210,7 @@ public class ActitoPushUI {
             return
         }
 
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willExecuteAction: action, for: notification)
-        }
-
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willExecuteAction: action, for: notification)
         latestPresentableActionHandler?.execute()
     }
 

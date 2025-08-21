@@ -43,9 +43,7 @@ public class ActitoUrlViewController: ActitoBaseNotificationViewController {
         // playing after dismissing the view controller.
         webView.load(URLRequest(url: URL(string: "about:blank")!))
 
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
     }
 
     private func setupViews() {
@@ -109,10 +107,7 @@ public class ActitoUrlViewController: ActitoBaseNotificationViewController {
         guard let content = notification.content.first,
               let url = URL(string: content.data as! String)?.removingQueryComponent(name: "notificareWebView")
         else {
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
-            }
-
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             return
         }
 
@@ -134,7 +129,7 @@ extension ActitoUrlViewController: WKScriptMessageHandler {
 }
 
 extension ActitoUrlViewController: WKNavigationDelegate, WKUIDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @MainActor @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url else {
             decisionHandler(.cancel)
             return
@@ -142,10 +137,7 @@ extension ActitoUrlViewController: WKNavigationDelegate, WKUIDelegate {
 
         if let scheme = url.scheme, Actito.shared.options!.urlSchemes.contains(scheme) {
             handleActitoQueryParameters(for: url)
-
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
-            }
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
 
             decisionHandler(.cancel)
         } else if navigationAction.targetFrame == nil {
@@ -177,33 +169,27 @@ extension ActitoUrlViewController: WKNavigationDelegate, WKUIDelegate {
     }
 
     public func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
 
         loadingView.removeFromSuperview()
         progressView.removeFromSuperview()
     }
 
     public func webView(_: WKWebView, didFailProvisionalNavigation _: WKNavigation!, withError _: Error) {
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
 
         loadingView.removeFromSuperview()
         progressView.removeFromSuperview()
     }
 
     public func webView(_: WKWebView, didFinish _: WKNavigation!) {
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
 
         loadingView.removeFromSuperview()
         progressView.removeFromSuperview()
     }
 
-    public func webView(_: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @escaping () -> Void) {
+    public func webView(_: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @MainActor @escaping () -> Void) {
         let alert = UIAlertController(title: Bundle.main.applicationName,
                                       message: message,
                                       preferredStyle: .alert)
@@ -217,7 +203,7 @@ extension ActitoUrlViewController: WKNavigationDelegate, WKUIDelegate {
         present(alert, animated: true, completion: nil)
     }
 
-    public func webView(_: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+    public func webView(_: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @MainActor @escaping (Bool) -> Void) {
         let alert = UIAlertController(title: Bundle.main.applicationName,
                                       message: message,
                                       preferredStyle: .alert)
@@ -237,7 +223,7 @@ extension ActitoUrlViewController: WKNavigationDelegate, WKUIDelegate {
         present(alert, animated: true, completion: nil)
     }
 
-    public func webView(_: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame _: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+    public func webView(_: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame _: WKFrameInfo, completionHandler: @MainActor @escaping (String?) -> Void) {
         let alert = UIAlertController(title: Bundle.main.applicationName,
                                       message: prompt,
                                       preferredStyle: .alert)

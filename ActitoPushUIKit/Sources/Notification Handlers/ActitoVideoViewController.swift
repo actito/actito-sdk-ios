@@ -23,9 +23,7 @@ public class ActitoVideoViewController: ActitoBaseNotificationViewController {
         // playing after dismissing the view controller.
         webView.load(URLRequest(url: URL(string: "about:blank")!))
 
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
     }
 
     private func setupWebView() {
@@ -58,10 +56,7 @@ public class ActitoVideoViewController: ActitoBaseNotificationViewController {
 
     private func setupContent() {
         guard let content = notification.content.first else {
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
-            }
-
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             return
         }
 
@@ -76,16 +71,11 @@ public class ActitoVideoViewController: ActitoBaseNotificationViewController {
             renderHtml5Video(content.data as! String)
 
         default:
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
-            }
-
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             return
         }
 
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
     }
 
     private func renderYouTubeVideo(_ videoId: String) {
@@ -202,16 +192,13 @@ public class ActitoVideoViewController: ActitoBaseNotificationViewController {
 }
 
 extension ActitoVideoViewController: WKNavigationDelegate, WKUIDelegate {
-    public func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @MainActor @escaping (WKNavigationActionPolicy) -> Void) {
         if
             let url = navigationAction.request.url,
             let scheme = url.scheme,
             Actito.shared.options!.urlSchemes.contains(scheme)
         {
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
-            }
-
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
@@ -219,9 +206,7 @@ extension ActitoVideoViewController: WKNavigationDelegate, WKUIDelegate {
     }
 
     public func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
     }
 }
 

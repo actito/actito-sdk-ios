@@ -35,17 +35,13 @@ internal class ActitoRateController: ActitoNotificationPresenter {
                     let appStoreId = Actito.shared.application?.appStoreId,
                     let url = URL(string: "https://itunes.apple.com/app/id\(appStoreId)?action=write-review")
                 {
-                    DispatchQueue.main.async {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 } else {
                     logger.warning("Cannot open the App Store.")
                 }
             }
 
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
-            }
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
         }))
 
         // Cancel action
@@ -53,16 +49,12 @@ internal class ActitoRateController: ActitoNotificationPresenter {
             UIAlertAction(title: ActitoLocalizable.string(resource: .rateAlertNoButton),
                           style: .default,
                           handler: { _ in
-                              DispatchQueue.main.async {
-                                  Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
-                              }
+                              Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
                           })
         )
 
         controller.presentOrPush(alert) {
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
-            }
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
         }
     }
 }

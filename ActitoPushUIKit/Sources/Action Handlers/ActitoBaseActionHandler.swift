@@ -5,6 +5,7 @@
 import ActitoKit
 import UIKit
 
+@MainActor
 public class ActitoBaseActionHandler: NSObject {
     internal let notification: ActitoNotification
     internal let action: ActitoNotification.Action

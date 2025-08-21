@@ -22,9 +22,7 @@ public class ActitoImageGalleryViewController: ActitoBaseNotificationViewControl
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
     }
 
     private func setupViews() {
@@ -80,10 +78,7 @@ public class ActitoImageGalleryViewController: ActitoBaseNotificationViewControl
 
     private func setupContent() {
         guard !notification.content.isEmpty else {
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
-            }
-
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             return
         }
 
@@ -102,9 +97,7 @@ public class ActitoImageGalleryViewController: ActitoBaseNotificationViewControl
             }.resume()
         }
 
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
     }
 
     private func openSharingActionSheet(for image: UIImage) {

@@ -9,9 +9,7 @@ import MessageUI
 public class ActitoMailActionHandler: ActitoBaseActionHandler {
     internal override func execute() {
         guard let target = action.target, MFMailComposeViewController.canSendMail() else {
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.notSupported)
-            }
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.notSupported)
 
             return
         }
@@ -28,32 +26,24 @@ public class ActitoMailActionHandler: ActitoBaseActionHandler {
     }
 }
 
-extension ActitoMailActionHandler: MFMailComposeViewControllerDelegate {
+extension ActitoMailActionHandler: @preconcurrency MFMailComposeViewControllerDelegate {
     public func mailComposeController(_: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result {
         case .saved, .sent:
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
-            }
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
 
             Task {
                 try? await Actito.shared.createNotificationReply(notification: notification, action: action)
             }
 
         case .cancelled:
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
-            }
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
 
         case .failed:
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
-            }
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
 
         default:
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
-            }
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
         }
 
         dismiss()

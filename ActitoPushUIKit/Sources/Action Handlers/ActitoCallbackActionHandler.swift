@@ -20,7 +20,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     private var imageData: Data?
     private var videoData: Data?
 
-    @MainActor private var message: String? {
+    private var message: String? {
         viewController.message
     }
 
@@ -72,11 +72,9 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     }
 
     @objc private func onCloseClicked() {
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
 
-            self.dismiss()
-        }
+        self.dismiss()
     }
 
     @objc private func onSendClicked() async {
@@ -89,13 +87,11 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
 
                 await send()
             } catch {
-                await MainActor.run {
-                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
 
-                    dismiss()
-                }
+                dismiss()
             }
-        } else  if let videoData = videoData {
+        } else if let videoData = videoData {
             do {
                 let url = try await Actito.shared.uploadNotificationReplyAsset(videoData, contentType: "video/quicktime")
 
@@ -104,13 +100,11 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
 
                 await send()
             } catch {
-                await MainActor.run {
-                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
 
-                    dismiss()
-                }
+                dismiss()
             }
-        } else if await message != nil {
+        } else if message != nil {
             await send()
         }
     }
@@ -197,14 +191,10 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     }
 
     private func send() async {
-        await MainActor.run {
-            dismiss()
-        }
+        dismiss()
 
         guard let target = action.target, let url = URL(string: target), url.scheme != nil, url.host != nil else {
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
-            }
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
 
             logAction()
 
@@ -216,7 +206,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
             "notificationID": notification.id,
         ]
 
-        if let message = await message {
+        if let message = message {
             params["message"] = message
         }
 
@@ -238,10 +228,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         do {
             data = try JSONEncoder.actito.encode(params)
         } catch {
-            DispatchQueue.main.async {
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
-            }
-
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
             return
         }
 
@@ -296,9 +283,7 @@ extension ActitoCallbackActionHandler: UIImagePickerControllerDelegate {
     }
 
     public func imagePickerControllerDidCancel(_: UIImagePickerController) {
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
 
         dismiss()
     }
@@ -306,9 +291,7 @@ extension ActitoCallbackActionHandler: UIImagePickerControllerDelegate {
 
 extension ActitoCallbackActionHandler: UIAdaptivePresentationControllerDelegate {
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        DispatchQueue.main.async {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
-        }
+        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
 
         dismiss()
     }
