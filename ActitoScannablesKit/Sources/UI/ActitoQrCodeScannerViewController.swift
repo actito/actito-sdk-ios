@@ -116,7 +116,8 @@ internal class ActitoQrCodeScannerViewController: UIViewController {
     }
 }
 
-extension ActitoQrCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
+// AVCaptureMetadataOutputObjectsDelegate will execute in the queue set during its assign
+extension ActitoQrCodeScannerViewController: @preconcurrency AVCaptureMetadataOutputObjectsDelegate {
     internal func metadataOutput(_: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from _: AVCaptureConnection) {
         metadataObjects.forEach { metadata in
             if

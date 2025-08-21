@@ -6,7 +6,7 @@ import ActitoKit
 import CoreNFC
 import UIKit
 
-public class ActitoScannables: NSObject {
+public final class ActitoScannables: NSObject, Sendable {
     public static let shared = ActitoScannables()
 
     // MARK: - Public API
@@ -15,6 +15,7 @@ public class ActitoScannables: NSObject {
     ///
     /// This property allows setting a delegate conforming to ``ActitoScannablesDelegate`` to respond to various scannables session events,
     /// such as such as when a scannable item is detected (either via NFC or QR code), or when an error occurs during the session.
+    @MainActor
     public weak var delegate: ActitoScannablesDelegate?
 
     /// Indicates whether an NFC scannable session can be started on the current device.
@@ -31,6 +32,7 @@ public class ActitoScannables: NSObject {
     ///
     ///  - Parameters:
     ///    - controller: The ``UIViewController`` in which to start the scannable session.
+    @MainActor
     public func startScannableSession(controller: UIViewController) {
         if canStartNfcScannableSession {
             startNfcScannableSession()
@@ -59,6 +61,7 @@ public class ActitoScannables: NSObject {
     /// - Parameters:
     ///   - controller: The ``UIViewController`` in which to start the scannable session.
     ///   - modal: A Boolean indicating whether the scanner should be presented modally (`true`) or embedded in the existing navigation flow (`false`).
+    @MainActor
     public func startQrCodeScannableSession(controller: UIViewController, modal: Bool = false) {
         let qrCodeScanner = ActitoQrCodeScannerViewController()
         qrCodeScanner.onQrCodeDetected = { qrCode in
