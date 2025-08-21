@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoUtilitiesKit
 import Foundation
 
-public class ActitoUserInbox {
+public final class ActitoUserInbox: Sendable {
     public static let shared = ActitoUserInbox()
 
     // MARK: - Public API
