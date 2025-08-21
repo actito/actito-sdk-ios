@@ -3,7 +3,7 @@
 //
 
 import ActitoKit
-import CoreLocation
+@preconcurrency import CoreLocation
 import Foundation
 import MapKit
 import UIKit
@@ -15,12 +15,24 @@ private let FAKE_BEACON_IDENTIFIER = "ActitoFakeBeacon"
 private let SMALLEST_DISPLACEMENT_METERS = 100.0
 private let MAX_REGION_SESSION_LOCATIONS = 100
 
-public class ActitoGeo: NSObject, CLLocationManagerDelegate{
+public final class ActitoGeo: NSObject, CLLocationManagerDelegate, Sendable {
     public static let shared = ActitoGeo()
 
-    internal var locationManager: CLLocationManager!
-    private var lastKnownLocation: CLLocation?
-    private var processingLocationUpdate = false
+    @MainActor private var lastKnownLocation: CLLocation?
+    @MainActor private var processingLocationUpdate = false
+
+    private let locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+
+        if let backgroundModes = Bundle.main.infoDictionary?["UIBackgroundModes"] as? [String], backgroundModes.contains("location") {
+            logger.debug("Using Background Location Updates background mode.")
+            manager.allowsBackgroundLocationUpdates = true
+        }
+
+        return manager
+    }()
+
     private let fakeBeaconUUID = UUID()
 
     private var hasReducedAccuracy: Bool {
@@ -82,6 +94,7 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
     ///
     /// This property allows setting a delegate conforming to ``ActitoGeoDelegate`` to respond to various geo events,
     /// such as location updates, region monitoring events, and beacon proximity events.
+    @MainActor
     public weak var delegate: ActitoGeoDelegate?
 
     /// Indicates whether location services are enabled.
@@ -121,6 +134,12 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
                 region.id == id
             }
         }
+    }
+
+    public override init() {
+        super.init()
+
+        self.locationManager.delegate = self
     }
 
     /// Enables location updates, activating location tracking, region monitoring, and beacon detection.
@@ -223,7 +242,7 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
         }
     }
 
-    private func hasLocationServicesEnabled(_ completion: @escaping (_ enabled: Bool) -> Void) {
+    private func hasLocationServicesEnabled(_ completion: @Sendable @escaping (_ enabled: Bool) -> Void) {
         DispatchQueue.global().async {
             let enabled = CLLocationManager.locationServicesEnabled()
             DispatchQueue.main.async {
@@ -263,6 +282,7 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
         checkBluetoothEnabled()
     }
 
+    @MainActor
     private func handleLocationUpdate(_ location: CLLocation) {
         guard shouldUpdateLocation(location) else {
             logger.debug("Received a location update. Skipping due to smallest displacement constraints...")
@@ -329,6 +349,7 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
         }
     }
 
+    @MainActor
     private func shouldUpdateLocation(_ location: CLLocation) -> Bool {
         guard let lastKnownLocation else { return true }
 
@@ -359,7 +380,7 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
         }
 
         guard let placemark = placemarks.first,
-                let device = Actito.shared.device().currentDevice
+              let device = Actito.shared.device().currentDevice
         else {
             return
         }
@@ -1247,25 +1268,27 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
             return
         }
 
-        // Request user location when we're only authorized while in use
-        // or when the background updates are not available.
-        if
-            CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-            UIApplication.shared.backgroundRefreshStatus == .denied ||
-            UIApplication.shared.backgroundRefreshStatus == .restricted ||
-            !CLLocationManager.significantLocationChangeMonitoringAvailable()
-        {
-            logger.debug("Requesting user location. This might take a while. Please wait...")
-            locationManager.requestLocation()
-        }
+        DispatchQueue.main.async {
+            // Request user location when we're only authorized while in use
+            // or when the background updates are not available.
+            if
+                CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+                    UIApplication.shared.backgroundRefreshStatus == .denied ||
+                    UIApplication.shared.backgroundRefreshStatus == .restricted ||
+                    !CLLocationManager.significantLocationChangeMonitoringAvailable()
+            {
+                logger.debug("Requesting user location. This might take a while. Please wait...")
+                self.locationManager.requestLocation()
+            }
 
-        if Actito.shared.options?.headingApiEnabled == true && CLLocationManager.headingAvailable() {
-            logger.debug("Started updating heading.")
-            locationManager.startUpdatingHeading()
-        }
+            if Actito.shared.options?.headingApiEnabled == true && CLLocationManager.headingAvailable() {
+                logger.debug("Started updating heading.")
+                self.locationManager.startUpdatingHeading()
+            }
 
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
-            checkBluetoothEnabled()
+            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
+                self.checkBluetoothEnabled()
+            }
         }
     }
 
@@ -1318,9 +1341,10 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
         }
 
         handlePolygonSessions(for: location)
-        handleLocationUpdate(location)
 
         DispatchQueue.main.async {
+            self.handleLocationUpdate(location)
+
             self.delegate?.actito(self, didUpdateLocations: locations.map { ActitoLocation(cl: $0) })
         }
     }

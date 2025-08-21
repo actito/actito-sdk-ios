@@ -6,6 +6,7 @@ import ActitoKit
 import CoreLocation
 import Foundation
 
+@MainActor
 public protocol ActitoGeoDelegate: AnyObject {
     /// Called when the device's location is updated.
     ///
