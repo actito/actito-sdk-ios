@@ -6,6 +6,7 @@ import ActitoKit
 import Foundation
 import UserNotifications
 
+@MainActor
 public protocol ActitoPushDelegate: AnyObject {
     /// Called when the app encounters an error during the registration process for remote notifications.
     ///

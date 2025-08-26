@@ -3,21 +3,21 @@
 //
 
 import ActitoKit
-import Combine
+@preconcurrency import Combine
 import Foundation
 import MobileCoreServices
 import UIKit
 import UserNotifications
 
-public class ActitoPush {
+public final class ActitoPush: Sendable {
     public static let shared = ActitoPush()
 
     internal var notificationCenter: UNUserNotificationCenter {
         UNUserNotificationCenter.current()
     }
 
-    internal var _subscriptionStream: CurrentValueSubject<ActitoPushSubscription?, Never> = .init(LocalStorage.subscription)
-    internal var _allowedUIStream: CurrentValueSubject<Bool, Never> = .init(LocalStorage.allowedUI)
+    internal let _subscriptionStream: CurrentValueSubject<ActitoPushSubscription?, Never> = .init(LocalStorage.subscription)
+    internal let _allowedUIStream: CurrentValueSubject<Bool, Never> = .init(LocalStorage.allowedUI)
 
     internal let applicationDelegateInterceptor = ActitoPushAppDelegateInterceptor()
     internal let notificationCenterDelegate = ActitoNotificationCenterDelegate()
@@ -29,12 +29,15 @@ public class ActitoPush {
     ///
     /// This property allows setting a delegate conforming to ``ActitoPushDelegate`` to respond to various push notification events,
     /// such as receiving, opening, or interacting with notifications.
+    @MainActor
     public weak var delegate: ActitoPushDelegate?
 
     /// Defines the authorization options used when requesting push notification permissions.
+    @MainActor
     public var authorizationOptions: UNAuthorizationOptions = [.badge, .sound, .alert]
 
     /// Defines the notification category options for custom notification actions.
+    @MainActor
     public var categoryOptions: UNNotificationCategoryOptions = {
         if #available(iOS 11.0, *) {
             return [.customDismissAction, .hiddenPreviewsShowTitle]
@@ -44,6 +47,7 @@ public class ActitoPush {
     }()
 
     /// Defines the presentation options for displaying notifications while the app is in the foreground.
+    @MainActor
     public var presentationOptions: UNNotificationPresentationOptions = []
 
     /// Indicates whether remote notifications are enabled.
@@ -88,6 +92,8 @@ public class ActitoPush {
 
     /// This property returns a Publisher that can be observed to track any changes to whether the device can receive remote notifications.
     public var allowedUIStream: AnyPublisher<Bool, Never> { _allowedUIStream.eraseToAnyPublisher() }
+
+    internal init() {}
 
     /// Enables remote notifications, with a callback.
     ///
@@ -328,44 +334,28 @@ public class ActitoPush {
         }
     }
 
-    internal func reloadActionCategories(_ completion: @escaping () -> Void) {
-        logger.debug("Reloading action categories.")
-
-        if Actito.shared.options?.preserveExistingNotificationCategories == true {
-            notificationCenter.getNotificationCategories { existingCategories in
-                let categories = existingCategories.union(self.loadAvailableCategories())
-                self.notificationCenter.setNotificationCategories(categories)
-
-                completion()
-            }
-        } else {
-            let categories = loadAvailableCategories()
-            notificationCenter.setNotificationCategories(categories)
-
-            return
-        }
-    }
-
     internal func reloadActionCategories() async {
         logger.debug("Reloading action categories.")
 
         if Actito.shared.options?.preserveExistingNotificationCategories == true {
             let existingCategories = await notificationCenter.notificationCategories()
 
-            let categories = existingCategories.union(loadAvailableCategories())
+            let categories = await existingCategories.union(loadAvailableCategories())
             notificationCenter.setNotificationCategories(categories)
 
             return
         } else {
-            let categories = loadAvailableCategories()
+            let categories = await loadAvailableCategories()
             notificationCenter.setNotificationCategories(categories)
 
             return
         }
     }
 
-    private func loadAvailableCategories() -> Set<UNNotificationCategory> {
+    private func loadAvailableCategories() async -> Set<UNNotificationCategory> {
         var categories = Set<UNNotificationCategory>()
+
+        let categoryOptions = await self.categoryOptions
 
         if #available(iOS 11.0, *) {
             categories.insert(
@@ -657,77 +647,3 @@ public class ActitoPush {
         }
     }
 }
-/*
-public protocol ActitoPushUIApplicationDelegate {
-    /// Called when the app successfully registers with Apple Push Notification Service (APNS).
-    ///
-    /// - Parameters:
-    ///   - application: The singleton app instance.
-    ///   - token:  The device token data for remote notifications.
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken token: Data)
-
-    /// Called when the app fails to register for remote notifications.
-    ///
-    /// - Parameters:
-    ///   - application: The singleton app instance.
-    ///   - error: An error object describing why registration failed.
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
-
-    /// Called when a remote notification is received. Used to handle notification content and initiate background processing if necessary.
-    ///
-    /// - Parameters:
-    ///   - application: The singleton app instance.
-    ///   - userInfo: The payload of the received remote notification.
-    ///   - completionHandler: A handler to be called with a `UIBackgroundFetchResult` after processing the notification.
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
-
-    /// Called when a remote notification is received. Provides async support for handling the notification.
-    ///
-    /// - Parameters:
-    ///   - application: The singleton app instance.
-    ///   - userInfo: The payload of the received remote notification.
-    ///
-    /// - Returns: A `UIBackgroundFetchResult` indicating the result of the background fetch operation.
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) async -> UIBackgroundFetchResult
-}*/
-/*
-public protocol ActitoPushUNUserNotificationCenterDelegate {
-    /// Called when a notification prompts the app to open its settings screen.
-    ///
-    /// - Parameters:
-    ///   - center: The notification center managing notifications for the app.
-    ///   - notification: The notification that prompted the settings to be opened, if applicable.
-    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?)
-
-    /// Called when the user interacts with a notification.
-    ///
-    /// - Parameters:
-    ///   - center: The notification center managing notifications for the app.
-    ///   - response: The user’s response to the notification.
-    ///   - completionHandler: A completion handler to call after processing the response.
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
-
-    /// Called asynchronously when the user interacts with a notification.
-    ///
-    /// - Parameters:
-    ///   - center: The notification center managing notifications for the app.
-    ///   - response: The user’s response to the notification.
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async
-
-    /// Called when a notification is delivered to the app while it’s in the foreground.
-    ///
-    /// - Parameters:
-    ///   - center: The notification center managing notifications for the app.
-    ///   - notification: The notification being presented.
-    ///   - completionHandler: A completion handler to call with the desired presentation options.
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-
-    /// Called asynchronously when a notification is delivered to the app while it’s in the foreground.
-    ///
-    /// - Parameters:
-    ///   - center: The notification center managing notifications for the app.
-    ///   - notification: The notification being presented.
-    ///
-    /// - Returns: The desired presentation options for the notification.
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions
-}*/

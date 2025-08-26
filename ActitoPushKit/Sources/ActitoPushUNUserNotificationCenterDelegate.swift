@@ -19,6 +19,7 @@ public protocol ActitoPushUNUserNotificationCenterDelegate {
     ///   - center: The notification center managing notifications for the app.
     ///   - response: The user’s response to the notification.
     ///   - completionHandler: A completion handler to call after processing the response.
+    @MainActor
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
 
     /// Called asynchronously when the user interacts with a notification.
@@ -26,6 +27,7 @@ public protocol ActitoPushUNUserNotificationCenterDelegate {
     /// - Parameters:
     ///   - center: The notification center managing notifications for the app.
     ///   - response: The user’s response to the notification.
+    @MainActor
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async
 
     /// Called when a notification is delivered to the app while it’s in the foreground.
@@ -34,6 +36,7 @@ public protocol ActitoPushUNUserNotificationCenterDelegate {
     ///   - center: The notification center managing notifications for the app.
     ///   - notification: The notification being presented.
     ///   - completionHandler: A completion handler to call with the desired presentation options.
+    @MainActor
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
 
     /// Called asynchronously when a notification is delivered to the app while it’s in the foreground.

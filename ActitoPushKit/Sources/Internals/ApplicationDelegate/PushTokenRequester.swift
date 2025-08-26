@@ -6,10 +6,10 @@ import ActitoKit
 import Foundation
 import UIKit
 
-internal class PushTokenRequester {
+internal final class PushTokenRequester: Sendable {
 
-    private var task: Task<String, Error>?
-    private var continuation: CheckedContinuation<String, Error>?
+    nonisolated(unsafe) private var task: Task<String, Error>?
+    nonisolated(unsafe) private var continuation: CheckedContinuation<String, Error>?
     private let semaphore = DispatchSemaphore(value: 1)
 
     internal func requestToken() async throws -> String {

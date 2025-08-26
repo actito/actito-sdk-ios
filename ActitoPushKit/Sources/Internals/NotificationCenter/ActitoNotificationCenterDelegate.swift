@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 import NotificationCenter
 
-internal class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate {
+internal final class ActitoNotificationCenterDelegate: NSObject, @preconcurrency UNUserNotificationCenterDelegate, Sendable {
     @MainActor
     internal func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         let userInfo = response.notification.request.content.userInfo
@@ -20,21 +20,17 @@ internal class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCen
             if response.actionIdentifier != UNNotificationDefaultActionIdentifier {
                 let responseText = (response as? UNTextInputNotificationResponse)?.userText
 
-                DispatchQueue.main.async {
-                    Actito.shared.push().delegate?.actito(
-                        Actito.shared.push(),
-                        didOpenUnknownAction: response.actionIdentifier,
-                        for: userInfo,
-                        responseText: responseText
-                    )
-                }
+                Actito.shared.push().delegate?.actito(
+                    Actito.shared.push(),
+                    didOpenUnknownAction: response.actionIdentifier,
+                    for: userInfo,
+                    responseText: responseText
+                )
             } else {
-                DispatchQueue.main.async {
-                    Actito.shared.push().delegate?.actito(
-                        Actito.shared.push(),
-                        didOpenUnknownNotification: userInfo
-                    )
-                }
+                Actito.shared.push().delegate?.actito(
+                    Actito.shared.push(),
+                    didOpenUnknownNotification: userInfo
+                )
             }
 
             return
@@ -101,9 +97,7 @@ internal class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCen
 
                 InboxIntegration.markItemAsRead(userInfo: userInfo)
 
-                DispatchQueue.main.async {
-                    Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenAction: clickedAction, for: notification)
-                }
+                Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenAction: clickedAction, for: notification)
 
                 return
             }
@@ -120,9 +114,7 @@ internal class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCen
 
             InboxIntegration.markItemAsRead(userInfo: userInfo)
 
-            DispatchQueue.main.async {
-                Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenNotification: notification)
-            }
+            Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenNotification: notification)
         }
     }
 
@@ -131,7 +123,7 @@ internal class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCen
 
         guard Actito.shared.push().isActitoNotification(userInfo) else {
             // Unrecognizable notification
-            return Actito.shared.push().presentationOptions
+            return await Actito.shared.push().presentationOptions
         }
 
         guard let application = Actito.shared.application else {
@@ -153,7 +145,7 @@ internal class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCen
             }
         }
 
-        return Actito.shared.push().presentationOptions
+        return await Actito.shared.push().presentationOptions
     }
 
     internal func userNotificationCenter(_: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
@@ -194,6 +186,7 @@ internal class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCen
         }
     }
 
+    @MainActor
     private func handleQuickResponse(userInfo: [AnyHashable: Any], notification: ActitoNotification, action: ActitoNotification.Action, responseText: String?) {
         Task {
             try? await sendQuickResponse(notification: notification, action: action, responseText: responseText)
