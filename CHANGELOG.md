@@ -4,6 +4,7 @@
 
 - Public models conform to Sendable protocol
 - Move pass loading to a background thread when presenting a loyalty pass
+- Ensure the capture session starts on a background thread when scanning QR codes
 
 #### Breaking changes
 
