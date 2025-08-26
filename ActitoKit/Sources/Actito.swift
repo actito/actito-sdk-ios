@@ -4,7 +4,7 @@
 
 import UIKit
 
-public typealias ActitoCallback<T> = (Result<T, Error>) -> Void
+public typealias ActitoCallback<T> = @Sendable (Result<T, Error>) -> Void
 
 public class Actito {
     public static let shared = Actito()
