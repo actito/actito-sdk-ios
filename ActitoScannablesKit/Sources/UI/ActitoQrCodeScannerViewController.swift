@@ -27,14 +27,18 @@ internal class ActitoQrCodeScannerViewController: UIViewController {
         setupCaptureSession()
         setupCrosshair()
 
-        captureSession.startRunning()
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.captureSession.startRunning()
+        }
     }
 
     internal override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if !captureSession.isRunning {
-            captureSession.startRunning()
+        DispatchQueue.global(qos: .userInteractive).async {
+            if !self.captureSession.isRunning {
+                self.captureSession.startRunning()
+            }
         }
     }
 
