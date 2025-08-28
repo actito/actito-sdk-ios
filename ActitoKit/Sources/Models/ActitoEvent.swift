@@ -7,7 +7,7 @@ import Foundation
 
 public typealias ActitoEventData = [String: Any]
 
-public struct ActitoEvent: Equatable {
+internal struct ActitoEvent: Equatable {
     public let type: String
     public let timestamp: Int64
     public let deviceId: String
