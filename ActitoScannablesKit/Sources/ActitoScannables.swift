@@ -6,7 +6,8 @@ import ActitoKit
 import CoreNFC
 import UIKit
 
-public final class ActitoScannables: NSObject, Sendable {
+@MainActor
+public final class ActitoScannables: NSObject {
     public static let shared = ActitoScannables()
 
     // MARK: - Public API
@@ -15,7 +16,6 @@ public final class ActitoScannables: NSObject, Sendable {
     ///
     /// This property allows setting a delegate conforming to ``ActitoScannablesDelegate`` to respond to various scannables session events,
     /// such as such as when a scannable item is detected (either via NFC or QR code), or when an error occurs during the session.
-    @MainActor
     public weak var delegate: ActitoScannablesDelegate?
 
     /// Indicates whether an NFC scannable session can be started on the current device.
@@ -32,7 +32,6 @@ public final class ActitoScannables: NSObject, Sendable {
     ///
     ///  - Parameters:
     ///    - controller: The ``UIViewController`` in which to start the scannable session.
-    @MainActor
     public func startScannableSession(controller: UIViewController) {
         if canStartNfcScannableSession {
             startNfcScannableSession()
@@ -61,7 +60,6 @@ public final class ActitoScannables: NSObject, Sendable {
     /// - Parameters:
     ///   - controller: The ``UIViewController`` in which to start the scannable session.
     ///   - modal: A Boolean indicating whether the scanner should be presented modally (`true`) or embedded in the existing navigation flow (`false`).
-    @MainActor
     public func startQrCodeScannableSession(controller: UIViewController, modal: Bool = false) {
         let qrCodeScanner = ActitoQrCodeScannerViewController()
         qrCodeScanner.onQrCodeDetected = { qrCode in
@@ -129,11 +127,11 @@ public final class ActitoScannables: NSObject, Sendable {
 
     // MARK: - Private API
 
-    private func parseScannableTag(_ record: NFCNDEFPayload) -> String? {
+    private nonisolated func parseScannableTag(_ record: NFCNDEFPayload) -> String? {
         return record.wellKnownTypeURIPayload()?.absoluteString
     }
 
-    private func handleScannableTag(_ tag: String) {
+    private nonisolated func handleScannableTag(_ tag: String) {
         Task {
             do {
                 let scannable = try await fetch(tag: tag)
@@ -151,7 +149,7 @@ public final class ActitoScannables: NSObject, Sendable {
 }
 
 extension ActitoScannables: NFCNDEFReaderSessionDelegate {
-    public func readerSession(_: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
+    public nonisolated func readerSession(_: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         messages.forEach { message in
             message.records.forEach { record in
                 if
@@ -170,7 +168,7 @@ extension ActitoScannables: NFCNDEFReaderSessionDelegate {
         }
     }
 
-    public func readerSession(_: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
+    public nonisolated func readerSession(_: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         // When invalidateAfterFirstRead is YES, the reader session automatically terminates after the first NFC tag is successfully read.
         // In this scenario, the delegate receives the NFCReaderSessionInvalidationErrorFirstNDEFTagRead status.
         if let error = error as? NFCReaderError, error.code == .readerSessionInvalidationErrorFirstNDEFTagRead {

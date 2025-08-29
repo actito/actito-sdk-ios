@@ -4,7 +4,7 @@
 
 import ActitoKit
 import ActitoUtilitiesKit
-import AVFoundation
+@preconcurrency import AVFoundation
 import UIKit
 
 private let kCrosshairMarginHorizontal: CGFloat = 20.0
@@ -27,17 +27,17 @@ internal class ActitoQrCodeScannerViewController: UIViewController {
         setupCaptureSession()
         setupCrosshair()
 
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.captureSession.startRunning()
+        Task.detached(priority: .userInitiated) {
+            await self.captureSession.startRunning()
         }
     }
 
     internal override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        DispatchQueue.global(qos: .userInteractive).async {
-            if !self.captureSession.isRunning {
-                self.captureSession.startRunning()
+        Task.detached(priority: .userInitiated) {
+            if await !self.captureSession.isRunning {
+                await self.captureSession.startRunning()
             }
         }
     }
