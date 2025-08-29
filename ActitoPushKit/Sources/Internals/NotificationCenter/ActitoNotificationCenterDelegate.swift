@@ -6,8 +6,8 @@ import ActitoKit
 import Foundation
 import NotificationCenter
 
-internal final class ActitoNotificationCenterDelegate: NSObject, @preconcurrency UNUserNotificationCenterDelegate, Sendable {
-    @MainActor
+@MainActor
+internal final class ActitoNotificationCenterDelegate: NSObject, @MainActor UNUserNotificationCenterDelegate {
     internal func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         let userInfo = response.notification.request.content.userInfo
 
@@ -123,7 +123,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, @preconcurrency
 
         guard Actito.shared.push().isActitoNotification(userInfo) else {
             // Unrecognizable notification
-            return await Actito.shared.push().presentationOptions
+            return Actito.shared.push().presentationOptions
         }
 
         guard let application = Actito.shared.application else {
@@ -145,7 +145,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, @preconcurrency
             }
         }
 
-        return await Actito.shared.push().presentationOptions
+        return Actito.shared.push().presentationOptions
     }
 
     internal func userNotificationCenter(_: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
@@ -186,7 +186,6 @@ internal final class ActitoNotificationCenterDelegate: NSObject, @preconcurrency
         }
     }
 
-    @MainActor
     private func handleQuickResponse(userInfo: [AnyHashable: Any], notification: ActitoNotification, action: ActitoNotification.Action, responseText: String?) {
         Task {
             try? await sendQuickResponse(notification: notification, action: action, responseText: responseText)

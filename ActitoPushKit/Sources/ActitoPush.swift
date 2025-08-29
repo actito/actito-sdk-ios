@@ -3,13 +3,14 @@
 //
 
 import ActitoKit
-@preconcurrency import Combine
+import Combine
 import Foundation
 import MobileCoreServices
 import UIKit
 import UserNotifications
 
-public final class ActitoPush: Sendable {
+@MainActor
+public final class ActitoPush {
     public static let shared = ActitoPush()
 
     internal var notificationCenter: UNUserNotificationCenter {
@@ -29,15 +30,12 @@ public final class ActitoPush: Sendable {
     ///
     /// This property allows setting a delegate conforming to ``ActitoPushDelegate`` to respond to various push notification events,
     /// such as receiving, opening, or interacting with notifications.
-    @MainActor
     public weak var delegate: ActitoPushDelegate?
 
     /// Defines the authorization options used when requesting push notification permissions.
-    @MainActor
     public var authorizationOptions: UNAuthorizationOptions = [.badge, .sound, .alert]
 
     /// Defines the notification category options for custom notification actions.
-    @MainActor
     public var categoryOptions: UNNotificationCategoryOptions = {
         if #available(iOS 11.0, *) {
             return [.customDismissAction, .hiddenPreviewsShowTitle]
@@ -47,7 +45,6 @@ public final class ActitoPush: Sendable {
     }()
 
     /// Defines the presentation options for displaying notifications while the app is in the foreground.
-    @MainActor
     public var presentationOptions: UNNotificationPresentationOptions = []
 
     /// Indicates whether remote notifications are enabled.
@@ -162,7 +159,7 @@ public final class ActitoPush: Sendable {
         )
 
         // Unregister from APNS
-        await UIApplication.shared.unregisterForRemoteNotifications()
+        UIApplication.shared.unregisterForRemoteNotifications()
 
         logger.info("Unregistered from push provider.")
     }
@@ -355,7 +352,7 @@ public final class ActitoPush: Sendable {
     private func loadAvailableCategories() async -> Set<UNNotificationCategory> {
         var categories = Set<UNNotificationCategory>()
 
-        let categoryOptions = await self.categoryOptions
+        let categoryOptions = self.categoryOptions
 
         if #available(iOS 11.0, *) {
             categories.insert(

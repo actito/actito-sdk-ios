@@ -69,7 +69,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
 
     internal func unlaunch() async throws {
         // Unregister from APNS
-        await UIApplication.shared.unregisterForRemoteNotifications()
+        UIApplication.shared.unregisterForRemoteNotifications()
         logger.info("Unregistered from APNS.")
 
         // Reset local storage
