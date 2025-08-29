@@ -20,17 +20,21 @@ internal final class ActitoNotificationCenterDelegate: NSObject, @MainActor UNUs
             if response.actionIdentifier != UNNotificationDefaultActionIdentifier {
                 let responseText = (response as? UNTextInputNotificationResponse)?.userText
 
-                Actito.shared.push().delegate?.actito(
-                    Actito.shared.push(),
-                    didOpenUnknownAction: response.actionIdentifier,
-                    for: userInfo,
-                    responseText: responseText
-                )
+                DispatchQueue.main.async {
+                    Actito.shared.push().delegate?.actito(
+                        Actito.shared.push(),
+                        didOpenUnknownAction: response.actionIdentifier,
+                        for: userInfo,
+                        responseText: responseText
+                    )
+                }
             } else {
-                Actito.shared.push().delegate?.actito(
-                    Actito.shared.push(),
-                    didOpenUnknownNotification: userInfo
-                )
+                DispatchQueue.main.async {
+                    Actito.shared.push().delegate?.actito(
+                        Actito.shared.push(),
+                        didOpenUnknownNotification: userInfo
+                    )
+                }
             }
 
             return
@@ -97,7 +101,9 @@ internal final class ActitoNotificationCenterDelegate: NSObject, @MainActor UNUs
 
                 InboxIntegration.markItemAsRead(userInfo: userInfo)
 
-                Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenAction: clickedAction, for: notification)
+                DispatchQueue.main.async {
+                    Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenAction: clickedAction, for: notification)
+                }
 
                 return
             }
@@ -114,7 +120,9 @@ internal final class ActitoNotificationCenterDelegate: NSObject, @MainActor UNUs
 
             InboxIntegration.markItemAsRead(userInfo: userInfo)
 
-            Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenNotification: notification)
+            DispatchQueue.main.async {
+                Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenNotification: notification)
+            }
         }
     }
 
