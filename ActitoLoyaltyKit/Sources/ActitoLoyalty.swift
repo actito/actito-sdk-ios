@@ -6,7 +6,8 @@ import ActitoKit
 import PassKit
 import UIKit
 
-public final class ActitoLoyalty: Sendable {
+@MainActor
+public final class ActitoLoyalty {
     public static let shared = ActitoLoyalty()
 
     // MARK: - Public API
