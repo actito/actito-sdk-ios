@@ -6,10 +6,11 @@ import UIKit
 
 public typealias ActitoCallback<T> = @Sendable (Result<T, Error>) -> Void
 
+@MainActor
 public class Actito {
     public static let shared = Actito()
 
-    public static var SDK_VERSION: String {
+    public nonisolated static var SDK_VERSION: String {
         ACTITO_VERSION
     }
 
@@ -76,7 +77,6 @@ public class Actito {
     /// - Parameters:
     ///   - servicesInfo: The optional ``ActitoServicesInfo`` object to use for configuration.
     ///   - options: The optional ``ActitoOptions`` object to use for configuration.
-    @MainActor
     public func configure(servicesInfo: ActitoServicesInfo? = nil, options: ActitoOptions? = nil) {
         configure(
             servicesInfo: servicesInfo ?? loadServiceInfoFile(),
@@ -89,7 +89,6 @@ public class Actito {
     /// - Parameters:
     ///   - servicesInfo: The ``ActitoServicesInfo`` object to use for configuration.
     ///   - options: The ``ActitoOptions`` object to use for configuration.
-    @MainActor
     public func configure(servicesInfo: ActitoServicesInfo, options: ActitoOptions) {
         if !Thread.isMainThread {
             logger.warning("Actito must be configured on the main thread. Call configure() from the main thread.")
@@ -155,7 +154,7 @@ public class Actito {
         }
 
         logger.debug("Configuring available modules.")
-        database.configure()
+        database.configure(overrideDatabaseFileProtection: self.options?.overrideDatabaseFileProtection ?? false)
 
         ActitoInternals.Module.allCases.forEach { module in
             if let instance = module.klass?.instance {
@@ -194,7 +193,7 @@ public class Actito {
     public func launch() async throws {
         if state == .none {
             logger.debug("Actito wasn't configured. Configuring before launching.")
-            await configure()
+            configure()
         }
 
         if state > .configured {

@@ -4,7 +4,7 @@
 
 import UIKit
 
-internal class EventsLaunchComponent: NSObject, ActitoLaunchComponent {
+internal final class EventsLaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = EventsLaunchComponent()
 
     internal func migrate() {
@@ -45,7 +45,7 @@ internal class EventsLaunchComponent: NSObject, ActitoLaunchComponent {
         // no-op
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {
+    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
         return nil
     }
 }

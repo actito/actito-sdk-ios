@@ -2,7 +2,7 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-internal class CrashReporterLaunchComponent: NSObject, ActitoLaunchComponent {
+internal final class CrashReporterLaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = CrashReporterLaunchComponent()
 
     internal func migrate() {
@@ -70,7 +70,7 @@ internal class CrashReporterLaunchComponent: NSObject, ActitoLaunchComponent {
         // no-op
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {
+    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
         return nil
     }
 }

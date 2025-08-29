@@ -27,7 +27,7 @@ public struct ActitoRequest {
         }
     }
 
-    public func responseDecodable<T: Decodable>(_ type: T.Type, _ completion: @escaping (Result<T, Error>) -> Void) {
+    public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type, _ completion: @escaping (Result<T, Error>) -> Void) {
         response { result in
             switch result {
             case let .success((response, data)):
@@ -58,6 +58,7 @@ public struct ActitoRequest {
         completion(.success((response, data)))
     }
 
+    @MainActor
     public class Builder {
         private var baseUrl: String?
         private var url: String?
@@ -213,7 +214,7 @@ public struct ActitoRequest {
             )
         }
 
-        public func response(_ completion: @escaping (Result<(response: HTTPURLResponse, data: Data?), Error>) -> Void) {
+        public func response(_ completion: @Sendable @escaping (Result<(response: HTTPURLResponse, data: Data?), Error>) -> Void) {
             do {
                 try build().response(completion)
             } catch {

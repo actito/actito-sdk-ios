@@ -51,9 +51,7 @@ open class ActitoAbstractDatabase {
         !persistentContainer.persistentStoreCoordinator.persistentStores.isEmpty
     }
 
-    private var shouldOverrideDatabaseFileProtection: Bool {
-        Actito.shared.options?.overrideDatabaseFileProtection ?? false
-    }
+    private var shouldOverrideDatabaseFileProtection: Bool = false
 
     public init(name: String, rebuildOnVersionChange: Bool = true, mergePolicy: NSMergePolicy? = nil) {
         self.name = name
@@ -61,7 +59,9 @@ open class ActitoAbstractDatabase {
         self.mergePolicy = mergePolicy
     }
 
-    public func configure() {
+    public func configure(overrideDatabaseFileProtection: Bool) {
+        shouldOverrideDatabaseFileProtection = overrideDatabaseFileProtection
+
         // Force the container to be loaded.
         _ = persistentContainer
 

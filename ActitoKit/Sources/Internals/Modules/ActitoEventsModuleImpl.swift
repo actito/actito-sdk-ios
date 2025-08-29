@@ -8,6 +8,7 @@ import UIKit
 private let MAX_RETRIES = 5
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
+@MainActor
 internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsModule {
     internal static let instance = ActitoEventsModuleImpl()
 
@@ -160,7 +161,7 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
 
             // Stop the task if the given time expires.
             logger.debug("Completing background task after processing all the events.")
-            await UIApplication.shared.endBackgroundTask(taskId)
+            UIApplication.shared.endBackgroundTask(taskId)
             self.processEventsTaskIdentifier = nil
         }
     }

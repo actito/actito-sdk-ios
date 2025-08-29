@@ -2,14 +2,14 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-public protocol ActitoLaunchComponent: Sendable {
+@MainActor
+public protocol ActitoLaunchComponent {
     associatedtype Instance: ActitoLaunchComponent
 
     static var instance: Instance { get }
 
     func migrate()
 
-    @MainActor
     func configure()
 
     func clearStorage() async throws
