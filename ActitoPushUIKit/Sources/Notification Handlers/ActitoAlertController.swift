@@ -24,7 +24,10 @@ internal class ActitoAlertController: ActitoNotificationPresenter {
                               style: .default,
                               handler: { _ in
                                   Actito.shared.pushUI().presentAction(action, for: self.notification, in: controller)
-                                  Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+
+                                  DispatchQueue.main.async {
+                                      Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+                                  }
                               })
             )
         }
@@ -33,11 +36,15 @@ internal class ActitoAlertController: ActitoNotificationPresenter {
         alert.addAction(UIAlertAction(title: ActitoLocalizable.string(resource: useCancelButton ? .cancelButton : .okButton),
                                       style: useCancelButton ? .cancel : .default,
                                       handler: { _ in
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+            }
         }))
 
         controller.presentOrPush(alert) {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
+            }
         }
     }
 }

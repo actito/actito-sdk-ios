@@ -21,7 +21,9 @@ public class ActitoMapViewController: ActitoBaseNotificationViewController {
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+        DispatchQueue.main.async {
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+        }
     }
 
     private func setupViews() {
@@ -153,7 +155,9 @@ extension ActitoMapViewController: MKMapViewDelegate {
 extension ActitoMapViewController: ActitoNotificationPresenter {
     internal func present(in controller: UIViewController) {
         controller.presentOrPush(self) {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
+            }
         }
     }
 }

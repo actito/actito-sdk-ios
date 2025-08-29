@@ -8,8 +8,10 @@ import UIKit
 public class ActitoCustomActionHandler: ActitoBaseActionHandler {
     internal override func execute() {
         if let target = action.target, let url = URL(string: target) {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didReceiveCustomAction: url, in: self.action, for: self.notification)
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didReceiveCustomAction: url, in: self.action, for: self.notification)
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
+            }
 
             Task {
                 try? await Actito.shared.createNotificationReply(notification: notification, action: action)
@@ -17,7 +19,9 @@ public class ActitoCustomActionHandler: ActitoBaseActionHandler {
 
             self.dismiss()
         } else {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.invalidUrl)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.invalidUrl)
+            }
         }
     }
 }

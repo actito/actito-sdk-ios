@@ -150,7 +150,9 @@ public class ActitoPushUI {
             return
         }
 
-        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willPresentNotification: notification)
+        DispatchQueue.main.async {
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willPresentNotification: notification)
+        }
 
         latestPresentableNotificationHandler?.present(in: controller)
     }
@@ -210,7 +212,10 @@ public class ActitoPushUI {
             return
         }
 
-        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willExecuteAction: action, for: notification)
+        DispatchQueue.main.async {
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willExecuteAction: action, for: notification)
+        }
+
         latestPresentableActionHandler?.execute()
     }
 

@@ -24,7 +24,9 @@ public class ActitoWebViewController: ActitoBaseNotificationViewController {
         // playing after dismissing the view controller.
         webView.load(URLRequest(url: URL(string: "about:blank")!))
 
-        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+        DispatchQueue.main.async {
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+        }
     }
 
     private func configureWebView() {
@@ -60,14 +62,19 @@ public class ActitoWebViewController: ActitoBaseNotificationViewController {
 
     private func setupContent() {
         guard let content = notification.content.first else {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
+            }
+
             return
         }
 
         let html = content.data as! String
         webView.loadHTMLString(html, baseURL: URL(string: ""))
 
-        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
+        DispatchQueue.main.async {
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
+        }
 
         // Check if we should show any possible actions
         if html.contains("notificareOpenAction") || html.contains("notificareOpenActions") {
@@ -78,7 +85,9 @@ public class ActitoWebViewController: ActitoBaseNotificationViewController {
 
 extension ActitoWebViewController: WKNavigationDelegate, WKUIDelegate {
     public func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
-        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
+        DispatchQueue.main.async {
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
+        }
     }
 
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @MainActor @escaping (WKNavigationActionPolicy) -> Void) {
@@ -89,7 +98,10 @@ extension ActitoWebViewController: WKNavigationDelegate, WKUIDelegate {
 
         if let scheme = url.scheme, Actito.shared.options!.urlSchemes.contains(scheme) {
             handleActitoQueryParameters(for: url)
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
+
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
+            }
 
             decisionHandler(.cancel)
         } else if navigationAction.targetFrame == nil {

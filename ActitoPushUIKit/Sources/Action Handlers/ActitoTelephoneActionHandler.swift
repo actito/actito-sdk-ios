@@ -13,7 +13,9 @@ public class ActitoTelephoneActionHandler: ActitoBaseActionHandler {
             UIApplication.shared.canOpenURL(url)
         {
             UIApplication.shared.open(url, options: [:]) { _ in
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
+                DispatchQueue.main.async {
+                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
+                }
 
                 Task {
                     try? await Actito.shared.createNotificationReply(notification: self.notification, action: self.action)
@@ -22,7 +24,9 @@ public class ActitoTelephoneActionHandler: ActitoBaseActionHandler {
                 self.dismiss()
             }
         } else {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.notSupported)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.notSupported)
+            }
         }
     }
 }

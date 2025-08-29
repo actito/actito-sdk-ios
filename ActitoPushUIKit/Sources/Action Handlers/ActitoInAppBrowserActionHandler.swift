@@ -18,7 +18,9 @@ public class ActitoInAppBrowserActionHandler: ActitoBaseActionHandler {
 
             self.sourceViewController.presentOrPush(safariViewController)
         } else {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.invalidUrl)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.invalidUrl)
+            }
         }
     }
 }
@@ -26,13 +28,17 @@ public class ActitoInAppBrowserActionHandler: ActitoBaseActionHandler {
 extension ActitoInAppBrowserActionHandler: @preconcurrency SFSafariViewControllerDelegate {
     public func safariViewController(_: SFSafariViewController, didCompleteInitialLoad successfully: Bool) {
         if successfully {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
+            }
 
             Task {
                 try? await Actito.shared.createNotificationReply(notification: notification, action: action)
             }
         } else {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: nil)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: nil)
+            }
         }
     }
 

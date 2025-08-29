@@ -19,7 +19,10 @@ internal class ActitoInAppBrowserController: NSObject, ActitoNotificationPresent
               let url = URL(string: urlStr)?.removingQueryComponent(name: "notificareWebView"),
               url.isHttpUrl
         else {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
+            }
+
             return
         }
 
@@ -33,14 +36,18 @@ internal class ActitoInAppBrowserController: NSObject, ActitoNotificationPresent
 
 extension ActitoInAppBrowserController: @preconcurrency SFSafariViewControllerDelegate {
     public func safariViewController(_: SFSafariViewController, didCompleteInitialLoad successfully: Bool) {
-        if successfully {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
-        } else {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
+        DispatchQueue.main.async {
+            if successfully {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
+            } else {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
+            }
         }
     }
 
     public func safariViewControllerDidFinish(_: SFSafariViewController) {
-        Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+        DispatchQueue.main.async {
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
+        }
     }
 }
