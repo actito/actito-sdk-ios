@@ -26,6 +26,7 @@ extension ActitoInternals.PushAPI.Models {
             internal let contentLength: Int
         }
 
+        @MainActor
         internal func toModel() -> ActitoAsset {
             let url: String?
             if let key = key, let host = Actito.shared.servicesInfo?.hosts.restApi {

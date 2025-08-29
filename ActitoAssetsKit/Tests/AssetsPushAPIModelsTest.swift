@@ -8,6 +8,7 @@ import Testing
 
 internal struct AssetsPushAPIModelsTest {
     @Test
+    @MainActor
     internal func testAssetToModel() {
         let expectedAsset = ActitoAsset(
             id: "testId",
@@ -48,6 +49,7 @@ internal struct AssetsPushAPIModelsTest {
     }
 
     @Test
+    @MainActor
     internal func testAssetWithNilPropsToModel() {
         let expectedAsset = ActitoAsset(
             id: "testId",

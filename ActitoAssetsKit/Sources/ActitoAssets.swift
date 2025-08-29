@@ -4,7 +4,8 @@
 
 import ActitoKit
 
-public final class ActitoAssets: Sendable {
+@MainActor
+public final class ActitoAssets {
     public static let shared = ActitoAssets()
 
     // MARK: - Public API
