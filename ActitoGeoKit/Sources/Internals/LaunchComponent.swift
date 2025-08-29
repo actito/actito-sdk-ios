@@ -16,7 +16,15 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
 
     internal func configure() {
         logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
-        _ = Actito.shared.geo()
+
+        Actito.shared.geo().locationManager = CLLocationManager()
+        Actito.shared.geo().locationManager?.delegate = Actito.shared.geo()
+        Actito.shared.geo().locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+
+        if let backgroundModes = Bundle.main.infoDictionary?["UIBackgroundModes"] as? [String], backgroundModes.contains("location") {
+            logger.debug("Using Background Location Updates background mode.")
+            Actito.shared.geo().locationManager.allowsBackgroundLocationUpdates = true
+        }
 
         // Listen to application did become active events.
         NotificationCenter.default.upsertObserver(

@@ -3,7 +3,7 @@
 //
 
 import ActitoKit
-@preconcurrency import CoreLocation
+import CoreLocation
 import Foundation
 import MapKit
 import UIKit
@@ -15,23 +15,13 @@ private let FAKE_BEACON_IDENTIFIER = "ActitoFakeBeacon"
 private let SMALLEST_DISPLACEMENT_METERS = 100.0
 private let MAX_REGION_SESSION_LOCATIONS = 100
 
-public final class ActitoGeo: NSObject, CLLocationManagerDelegate, Sendable {
+@MainActor
+public final class ActitoGeo: NSObject, @preconcurrency CLLocationManagerDelegate {
     public static let shared = ActitoGeo()
 
-    @MainActor private var lastKnownLocation: CLLocation?
-    @MainActor private var processingLocationUpdate = false
-
-    private let locationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-
-        if let backgroundModes = Bundle.main.infoDictionary?["UIBackgroundModes"] as? [String], backgroundModes.contains("location") {
-            logger.debug("Using Background Location Updates background mode.")
-            manager.allowsBackgroundLocationUpdates = true
-        }
-
-        return manager
-    }()
+    internal var locationManager: CLLocationManager!
+    private var lastKnownLocation: CLLocation?
+    private var processingLocationUpdate = false
 
     private let fakeBeaconUUID = UUID()
 
@@ -136,12 +126,6 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate, Sendable {
         }
     }
 
-    public override init() {
-        super.init()
-
-        self.locationManager.delegate = self
-    }
-
     /// Enables location updates, activating location tracking, region monitoring, and beacon detection.
     ///
     /// The behavior varies based on granted permissions:
@@ -156,8 +140,8 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate, Sendable {
             return
         }
 
-        hasLocationServicesEnabled { enabled in
-            guard enabled else {
+        Task {
+            guard await hasLocationServicesEnabled() else {
                 logger.warning("Location functionality is disabled by the user.")
                 return
             }
@@ -242,13 +226,10 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate, Sendable {
         }
     }
 
-    private func hasLocationServicesEnabled(_ completion: @Sendable @escaping (_ enabled: Bool) -> Void) {
-        DispatchQueue.global().async {
-            let enabled = CLLocationManager.locationServicesEnabled()
-            DispatchQueue.main.async {
-                completion(enabled)
-            }
-        }
+    private func hasLocationServicesEnabled() async -> Bool {
+        await Task.detached(priority: .high) {
+            CLLocationManager.locationServicesEnabled()
+        }.value
     }
 
     private func handleLocationServicesUnauthorized() {
