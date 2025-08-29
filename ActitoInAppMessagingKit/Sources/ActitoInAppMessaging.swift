@@ -23,16 +23,16 @@ public class ActitoInAppMessaging {
     public weak var delegate: ActitoInAppMessagingDelegate?
 
     /// Indicates wheter in-app messages are currently suppressed.
-    /// 
+    ///
     /// If *true*, message dispatching and the presentation of in-app messages are temporarily suspended.
     /// When *false*, in-app messages are allowed to be presented.
     public var hasMessagesSuppressed: Bool = false
 
     /// Sets the message suppression state
-    ///  
+    ///
     /// When messages are suppressed, in-app messages will not be presented to the user.
     /// By default, stopping the in-app message suppression does not re-evaluate the foreground context.
-    ///  
+    ///
     /// To trigger a new context evaluation after stopping in-app message suppression, set the `evaluateContext`
     /// parameter to `true`.
     ///

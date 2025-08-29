@@ -37,7 +37,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func launch() async throws {
-        await Actito.shared.inAppMessaging().evaluateContext(.launch)
+        Actito.shared.inAppMessaging().evaluateContext(.launch)
     }
 
     internal func postLaunch() async throws {
