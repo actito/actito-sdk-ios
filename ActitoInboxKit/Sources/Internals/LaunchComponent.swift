@@ -15,7 +15,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal func configure() {
         logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
 
-        Actito.shared.inbox().database.configure()
+        Actito.shared.inbox().database.configure(overrideDatabaseFileProtection: Actito.shared.options?.overrideDatabaseFileProtection ?? false)
 
         Task {
             await Actito.shared.inbox().loadCache()

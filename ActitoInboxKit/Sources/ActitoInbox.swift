@@ -6,6 +6,7 @@ import ActitoKit
 import Combine
 import UIKit
 
+@MainActor
 public class ActitoInbox {
     public static let shared = ActitoInbox()
 
@@ -145,7 +146,7 @@ public class ActitoInbox {
             LocalStorage.currentBadge = response.unread
 
             // Update the application badge.
-            await setApplicationBadge(response.unread)
+            setApplicationBadge(response.unread)
 
             notifyBadgeUpdated(response.unread)
 
