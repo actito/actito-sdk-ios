@@ -200,10 +200,10 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
         }
 
         do {
-            let event = ActitoInternals.PushAPI.Payloads.CreateEventPayload(from: localEvent)
+            let payload = ActitoInternals.PushAPI.Payloads.CreateEventPayload(from: localEvent)
 
             try await ActitoRequest.Builder()
-                .post("/event", body: event)
+                .post("/event", body: payload)
                 .response()
 
             logger.debug("Event processed. Removing from storage...")
