@@ -93,7 +93,7 @@ internal class ActitoSessionModule {
         }
     }
 
-    private func stopSession(_ completion: @escaping ActitoCallback<Void>) {
+    private func stopSession(_ completion: @MainActor @escaping (Result<Void, Error>) -> Void) {
         Task {
             await stopSession()
             completion(.success(()))
@@ -125,10 +125,12 @@ internal class ActitoSessionModule {
         }
     }
 
-    private func createBackgroundTask() -> DispatchWorkItem {
+    private nonisolated func createBackgroundTask() -> DispatchWorkItem {
         DispatchWorkItem {
-            self.stopSession { _ in
-                self.cancelBackgroundTask()
+            DispatchQueue.main.async {
+                self.stopSession { _ in
+                        self.cancelBackgroundTask()
+                }
             }
         }
     }
