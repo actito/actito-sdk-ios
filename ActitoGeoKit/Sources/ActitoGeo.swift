@@ -1254,12 +1254,12 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 !CLLocationManager.significantLocationChangeMonitoringAvailable()
         {
             logger.debug("Requesting user location. This might take a while. Please wait...")
-            self.locationManager.requestLocation()
+            locationManager.requestLocation()
         }
 
         if Actito.shared.options?.headingApiEnabled == true && CLLocationManager.headingAvailable() {
             logger.debug("Started updating heading.")
-            self.locationManager.startUpdatingHeading()
+            locationManager.startUpdatingHeading()
         }
 
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
