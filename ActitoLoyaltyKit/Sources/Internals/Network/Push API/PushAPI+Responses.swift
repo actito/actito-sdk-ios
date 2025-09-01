@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 
 extension ActitoInternals.PushAPI.Responses {
-    internal struct Pass: Decodable {
+    internal struct Pass: Decodable, Sendable {
         internal let pass: ActitoInternals.PushAPI.Models.Pass
     }
 
