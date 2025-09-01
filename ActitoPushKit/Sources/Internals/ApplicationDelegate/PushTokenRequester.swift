@@ -6,10 +6,11 @@ import ActitoKit
 import Foundation
 import UIKit
 
-internal final class PushTokenRequester: Sendable {
+@MainActor
+internal final class PushTokenRequester {
 
-    nonisolated(unsafe) private var task: Task<String, Error>?
-    nonisolated(unsafe) private var continuation: CheckedContinuation<String, Error>?
+    private var task: Task<String, Error>?
+    private var continuation: CheckedContinuation<String, Error>?
     private let semaphore = DispatchSemaphore(value: 1)
 
     internal func requestToken() async throws -> String {
@@ -60,10 +61,8 @@ internal final class PushTokenRequester: Sendable {
             try await withCheckedThrowingContinuation { continuation in
                 self.continuation = continuation
 
-                DispatchQueue.main.async {
-                    logger.debug("Registering for remote notifications with the operative system.")
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
+                logger.debug("Registering for remote notifications with the operative system.")
+                UIApplication.shared.registerForRemoteNotifications()
             }
         }
 
