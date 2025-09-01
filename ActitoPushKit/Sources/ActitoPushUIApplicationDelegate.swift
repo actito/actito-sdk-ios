@@ -5,13 +5,13 @@
 import Foundation
 import UIKit
 
+@MainActor
 public protocol ActitoPushUIApplicationDelegate {
     /// Called when the app successfully registers with Apple Push Notification Service (APNS).
     ///
     /// - Parameters:
     ///   - application: The singleton app instance.
     ///   - token:  The device token data for remote notifications.
-    @MainActor
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken token: Data)
 
     /// Called when the app fails to register for remote notifications.
@@ -19,7 +19,6 @@ public protocol ActitoPushUIApplicationDelegate {
     /// - Parameters:
     ///   - application: The singleton app instance.
     ///   - error: An error object describing why registration failed.
-    @MainActor
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
 
     /// Called when a remote notification is received. Used to handle notification content and initiate background processing if necessary.
@@ -28,7 +27,6 @@ public protocol ActitoPushUIApplicationDelegate {
     ///   - application: The singleton app instance.
     ///   - userInfo: The payload of the received remote notification.
     ///   - completionHandler: A handler to be called with a `UIBackgroundFetchResult` after processing the notification.
-    @MainActor
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
 
     /// Called when a remote notification is received. Provides async support for handling the notification.
@@ -38,6 +36,5 @@ public protocol ActitoPushUIApplicationDelegate {
     ///   - userInfo: The payload of the received remote notification.
     ///
     /// - Returns: A `UIBackgroundFetchResult` indicating the result of the background fetch operation.
-    @MainActor
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) async -> UIBackgroundFetchResult
 }

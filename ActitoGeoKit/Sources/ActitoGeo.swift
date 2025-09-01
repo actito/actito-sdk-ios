@@ -16,13 +16,12 @@ private let SMALLEST_DISPLACEMENT_METERS = 100.0
 private let MAX_REGION_SESSION_LOCATIONS = 100
 
 @MainActor
-public final class ActitoGeo: NSObject, @preconcurrency CLLocationManagerDelegate {
+public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
     public static let shared = ActitoGeo()
 
     internal var locationManager: CLLocationManager!
     private var lastKnownLocation: CLLocation?
     private var processingLocationUpdate = false
-
     private let fakeBeaconUUID = UUID()
 
     private var hasReducedAccuracy: Bool {
@@ -1246,27 +1245,25 @@ public final class ActitoGeo: NSObject, @preconcurrency CLLocationManagerDelegat
             return
         }
 
-        DispatchQueue.main.async {
-            // Request user location when we're only authorized while in use
-            // or when the background updates are not available.
-            if
-                CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-                    UIApplication.shared.backgroundRefreshStatus == .denied ||
-                    UIApplication.shared.backgroundRefreshStatus == .restricted ||
-                    !CLLocationManager.significantLocationChangeMonitoringAvailable()
-            {
-                logger.debug("Requesting user location. This might take a while. Please wait...")
-                self.locationManager.requestLocation()
-            }
+        // Request user location when we're only authorized while in use
+        // or when the background updates are not available.
+        if
+            CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+                UIApplication.shared.backgroundRefreshStatus == .denied ||
+                UIApplication.shared.backgroundRefreshStatus == .restricted ||
+                !CLLocationManager.significantLocationChangeMonitoringAvailable()
+        {
+            logger.debug("Requesting user location. This might take a while. Please wait...")
+            self.locationManager.requestLocation()
+        }
 
-            if Actito.shared.options?.headingApiEnabled == true && CLLocationManager.headingAvailable() {
-                logger.debug("Started updating heading.")
-                self.locationManager.startUpdatingHeading()
-            }
+        if Actito.shared.options?.headingApiEnabled == true && CLLocationManager.headingAvailable() {
+            logger.debug("Started updating heading.")
+            self.locationManager.startUpdatingHeading()
+        }
 
-            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
-                self.checkBluetoothEnabled()
-            }
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
+            self.checkBluetoothEnabled()
         }
     }
 
@@ -1319,10 +1316,9 @@ public final class ActitoGeo: NSObject, @preconcurrency CLLocationManagerDelegat
         }
 
         handlePolygonSessions(for: location)
+        handleLocationUpdate(location)
 
         DispatchQueue.main.async {
-            self.handleLocationUpdate(location)
-
             self.delegate?.actito(self, didUpdateLocations: locations.map { ActitoLocation(cl: $0) })
         }
     }

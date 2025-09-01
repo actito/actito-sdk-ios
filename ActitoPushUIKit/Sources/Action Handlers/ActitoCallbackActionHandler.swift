@@ -200,7 +200,9 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         dismiss()
 
         guard let target = action.target, let url = URL(string: target), url.scheme != nil, url.host != nil else {
-            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
+            }
 
             logAction()
 

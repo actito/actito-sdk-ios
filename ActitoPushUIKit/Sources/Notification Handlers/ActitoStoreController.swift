@@ -65,7 +65,7 @@ internal class ActitoStoreController: NSObject, ActitoNotificationPresenter {
     }
 }
 
-extension ActitoStoreController: @preconcurrency SKStoreProductViewControllerDelegate {
+extension ActitoStoreController: SKStoreProductViewControllerDelegate {
     public func productViewControllerDidFinish(_: SKStoreProductViewController) {
         UIApplication.shared.rootViewController?.dismiss(animated: true, completion: {
             DispatchQueue.main.async {

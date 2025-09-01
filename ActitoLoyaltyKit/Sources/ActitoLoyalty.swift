@@ -192,7 +192,7 @@ public final class ActitoLoyalty {
         )
     }
 
-    private func loadPassFromUrl(_ url: URL) async throws -> sending PKPass {
+    private func loadPassFromUrl(_ url: URL) async throws -> PKPass {
         let (data, response) = try await URLSession.shared.data(from: url)
         let validStatusCodes = 200 ... 299
 

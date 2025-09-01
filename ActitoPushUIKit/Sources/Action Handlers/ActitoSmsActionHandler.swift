@@ -27,7 +27,7 @@ public class ActitoSmsActionHandler: ActitoBaseActionHandler {
     }
 }
 
-extension ActitoSmsActionHandler: @preconcurrency MFMessageComposeViewControllerDelegate {
+extension ActitoSmsActionHandler: MFMessageComposeViewControllerDelegate {
     public func messageComposeViewController(_: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         switch result {
         case .sent:

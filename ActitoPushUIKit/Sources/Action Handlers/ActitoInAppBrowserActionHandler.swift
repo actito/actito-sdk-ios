@@ -25,7 +25,7 @@ public class ActitoInAppBrowserActionHandler: ActitoBaseActionHandler {
     }
 }
 
-extension ActitoInAppBrowserActionHandler: @preconcurrency SFSafariViewControllerDelegate {
+extension ActitoInAppBrowserActionHandler: SFSafariViewControllerDelegate {
     public func safariViewController(_: SFSafariViewController, didCompleteInitialLoad successfully: Bool) {
         if successfully {
             DispatchQueue.main.async {

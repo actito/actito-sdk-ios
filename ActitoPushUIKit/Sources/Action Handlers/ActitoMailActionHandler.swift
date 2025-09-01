@@ -28,7 +28,7 @@ public class ActitoMailActionHandler: ActitoBaseActionHandler {
     }
 }
 
-extension ActitoMailActionHandler: @preconcurrency MFMailComposeViewControllerDelegate {
+extension ActitoMailActionHandler: MFMailComposeViewControllerDelegate {
     public func mailComposeController(_: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result {
         case .saved, .sent:

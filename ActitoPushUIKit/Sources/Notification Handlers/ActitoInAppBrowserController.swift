@@ -34,7 +34,7 @@ internal class ActitoInAppBrowserController: NSObject, ActitoNotificationPresent
     }
 }
 
-extension ActitoInAppBrowserController: @preconcurrency SFSafariViewControllerDelegate {
+extension ActitoInAppBrowserController: SFSafariViewControllerDelegate {
     public func safariViewController(_: SFSafariViewController, didCompleteInitialLoad successfully: Bool) {
         DispatchQueue.main.async {
             if successfully {
