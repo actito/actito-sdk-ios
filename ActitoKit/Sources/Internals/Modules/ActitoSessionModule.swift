@@ -28,7 +28,6 @@ internal class ActitoSessionModule {
 
     // MARK: - Internal API
 
-    @MainActor
     @objc internal func applicationDidBecomeActive() {
         guard UIApplication.shared.applicationState == .active else {
             logger.debug("The application is not active. Skipping...")
@@ -55,7 +54,6 @@ internal class ActitoSessionModule {
         }
     }
 
-    @MainActor
     @objc internal func applicationWillResignActive() {
         guard UIApplication.shared.applicationState == .active else {
             logger.debug("The application is not active. Skipping...")

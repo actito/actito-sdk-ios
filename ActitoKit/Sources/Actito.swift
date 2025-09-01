@@ -672,7 +672,6 @@ public class Actito {
     /// It should be called only after verifying deferred link eligibility with `canEvaluateDeferredLink`.
     ///
     /// - Returns: `true` if the deferred link was successfully evaluated, `false` otherwise.
-    @MainActor
     public func evaluateDeferredLink() async throws -> Bool {
         guard LocalStorage.deferredLinkChecked == false else {
             logger.debug("Deferred link already evaluated.")

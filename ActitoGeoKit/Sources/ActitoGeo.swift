@@ -84,7 +84,6 @@ public final class ActitoGeo: NSObject, @preconcurrency CLLocationManagerDelegat
     ///
     /// This property allows setting a delegate conforming to ``ActitoGeoDelegate`` to respond to various geo events,
     /// such as location updates, region monitoring events, and beacon proximity events.
-    @MainActor
     public weak var delegate: ActitoGeoDelegate?
 
     /// Indicates whether location services are enabled.
@@ -263,7 +262,6 @@ public final class ActitoGeo: NSObject, @preconcurrency CLLocationManagerDelegat
         checkBluetoothEnabled()
     }
 
-    @MainActor
     private func handleLocationUpdate(_ location: CLLocation) {
         guard shouldUpdateLocation(location) else {
             logger.debug("Received a location update. Skipping due to smallest displacement constraints...")
@@ -330,7 +328,6 @@ public final class ActitoGeo: NSObject, @preconcurrency CLLocationManagerDelegat
         }
     }
 
-    @MainActor
     private func shouldUpdateLocation(_ location: CLLocation) -> Bool {
         guard let lastKnownLocation else { return true }
 

@@ -556,7 +556,6 @@ public class ActitoInbox {
         cachedItems = await cache.items
     }
 
-    @MainActor
     private func setApplicationBadge(_ badge: Int) {
         UIApplication.shared.applicationIconBadgeNumber = badge
     }

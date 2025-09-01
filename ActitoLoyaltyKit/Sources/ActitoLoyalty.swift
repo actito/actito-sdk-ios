@@ -17,7 +17,6 @@ public final class ActitoLoyalty {
     /// - Parameters:
     ///   - pass: The ``ActitoPass`` to be presented to the user.
     ///   - controller: The ``UIViewController`` in which to present the pass.
-    @MainActor
     public func present(pass: ActitoPass, in controller: UIViewController) {
         guard let host = Actito.shared.servicesInfo?.hosts.restApi,
               let url = URL(string: "https://\(host)/pass/pkpass/\(pass.serial)")
@@ -110,12 +109,10 @@ public final class ActitoLoyalty {
 
     // MARK: - Actito Loyalty Integration
 
-    @MainActor
     internal var canPresentPasses: Bool {
         PKPassLibrary.isPassLibraryAvailable() && PKAddPassesViewController.canAddPasses()
     }
 
-    @MainActor
     internal func present(notification: ActitoNotification, in viewController: UIViewController) {
         guard let content = notification.content.first(where: { $0.type == "re.notifica.content.PKPass" }),
               let urlStr = content.data as? String,
@@ -206,7 +203,6 @@ public final class ActitoLoyalty {
         return try PKPass(data: data)
     }
 
-    @MainActor
     private func present(_ pass: PKPass, in controller: UIViewController) {
         guard let passController = PKAddPassesViewController(pass: pass) else {
             logger.warning("Failed to create pass view controller.")
