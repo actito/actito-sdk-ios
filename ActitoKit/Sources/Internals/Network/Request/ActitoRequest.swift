@@ -5,7 +5,7 @@
 import ActitoUtilitiesKit
 import UIKit
 
-public struct ActitoRequest {
+public struct ActitoRequest: Sendable {
     private static let session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.urlCredentialStorage = nil
@@ -27,7 +27,7 @@ public struct ActitoRequest {
         }
     }
 
-    public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type, _ completion: @escaping (Result<T, Error>) -> Void) {
+    public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type, _ completion: @Sendable @escaping (Result<T, Error>) -> Void) {
         response { result in
             switch result {
             case let .success((response, data)):
@@ -231,7 +231,7 @@ public struct ActitoRequest {
             }
         }
 
-        public func responseDecodable<T: Decodable>(_ type: T.Type, _ completion: @escaping (Result<T, Error>) -> Void) {
+        public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type, _ completion: @Sendable @escaping (Result<T, Error>) -> Void) {
             do {
                 try build().responseDecodable(type, completion)
             } catch {
@@ -239,7 +239,7 @@ public struct ActitoRequest {
             }
         }
 
-        public func responseDecodable<T: Decodable>(_ type: T.Type) async throws -> T {
+        public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type) async throws -> T {
             try await withCheckedThrowingContinuation { continuation in
                 responseDecodable(type) { result in
                     continuation.resume(with: result)

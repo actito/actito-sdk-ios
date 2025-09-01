@@ -16,15 +16,15 @@ internal actor InboxCache {
         items.insertSorted(item, by: { $0.time > $1.time})
     }
 
-    internal func update(_ item: ActitoInboxItem, _ block: (inout LocalInboxItem) -> Void) -> LocalInboxItem? {
+    internal func update(_ item: ActitoInboxItem, _ block: @Sendable (inout LocalInboxItem) -> Void) -> LocalInboxItem? {
         return update(item.id, block)
     }
 
-    internal func update(_ item: LocalInboxItem, _ block: (inout LocalInboxItem) -> Void) -> LocalInboxItem? {
+    internal func update(_ item: LocalInboxItem, _ block: @Sendable (inout LocalInboxItem) -> Void) -> LocalInboxItem? {
         return update(item.id, block)
     }
 
-    internal func update(_ id: String, _ block: (inout LocalInboxItem) -> Void) -> LocalInboxItem? {
+    internal func update(_ id: String, _ block: @Sendable (inout LocalInboxItem) -> Void) -> LocalInboxItem? {
         guard let index = items.firstIndex(where: { $0.id == id }) else {
             return nil
         }

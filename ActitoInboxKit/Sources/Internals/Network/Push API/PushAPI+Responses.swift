@@ -5,7 +5,7 @@
 import ActitoKit
 
 extension ActitoInternals.PushAPI.Responses {
-    internal struct RemoteInbox: Decodable {
+    internal struct RemoteInbox: Decodable, Sendable {
         internal let inboxItems: [ActitoInternals.PushAPI.Models.RemoteInboxItem]
         internal let count: Int
         internal let unread: Int

@@ -6,7 +6,7 @@ import ActitoUtilitiesKit
 import Foundation
 
 extension ActitoInternals.PushAPI.Models {
-    public struct Application: Decodable, Equatable {
+    public struct Application: Decodable, Equatable, Sendable {
         public let _id: String
         public let name: String
         public let category: String
@@ -17,7 +17,7 @@ extension ActitoInternals.PushAPI.Models {
         public let userDataFields: [ActitoApplication.UserDataField]
         public let actionCategories: [ActionCategory]
 
-        public struct ActionCategory: Decodable, Equatable {
+        public struct ActionCategory: Decodable, Equatable, Sendable {
             public let name: String
             public let description: String?
             public let type: String
@@ -46,7 +46,7 @@ extension ActitoInternals.PushAPI.Models {
         }
     }
 
-    public struct Notification: Equatable {
+    public struct Notification: Equatable, @unchecked Sendable {
         public let _id: String
         public let type: String
         public let time: Date
@@ -59,7 +59,7 @@ extension ActitoInternals.PushAPI.Models {
         @ActitoExtraEquatable public private(set) var extra: [String: Any]
         public let targetContentIdentifier: String?
 
-        public struct Action: Decodable, Equatable {
+        public struct Action: Decodable, Equatable, Sendable {
             public let type: String
             public let label: String?
             public let target: String?

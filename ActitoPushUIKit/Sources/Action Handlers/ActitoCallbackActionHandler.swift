@@ -257,7 +257,9 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
                 }
             }
 
-            self.logAction()
+            DispatchQueue.main.async {
+                self.logAction()
+            }
         }
     }
 

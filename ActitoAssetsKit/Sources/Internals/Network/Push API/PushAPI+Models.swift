@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoUtilitiesKit
 
 extension ActitoInternals.PushAPI.Models {
-    internal struct Asset: Decodable, Equatable {
+    internal struct Asset: Decodable, Equatable, @unchecked Sendable {
         internal let _id: String
         internal let key: String?
         internal let title: String

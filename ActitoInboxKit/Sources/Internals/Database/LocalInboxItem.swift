@@ -5,7 +5,7 @@
 import ActitoKit
 import Foundation
 
-internal struct LocalInboxItem {
+internal struct LocalInboxItem: Sendable {
     internal let id: String
     internal var notification: ActitoNotification
     internal let time: Date
