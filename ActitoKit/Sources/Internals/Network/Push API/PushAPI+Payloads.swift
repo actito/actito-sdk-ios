@@ -100,14 +100,14 @@ extension ActitoInternals.PushAPI.Payloads {
         internal let deviceID: String
     }
 
-    internal struct CreateEventPayload: Equatable, Codable {
+    internal struct CreateEventPayload: Codable {
         internal let type: String
         internal let timestamp: Int64
         internal let deviceId: String
         internal let sessionId: String?
         internal let notificationId: String?
         internal let userId: String?
-        @ActitoExtraEquatable internal private(set) var data: ActitoEventData?
+        internal private(set) var data: ActitoEventData?
 
         internal enum CodingKeys: String, CodingKey {
             case type
