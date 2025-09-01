@@ -335,19 +335,19 @@ public final class ActitoPush {
         if Actito.shared.options?.preserveExistingNotificationCategories == true {
             let existingCategories = await notificationCenter.notificationCategories()
 
-            let categories = await existingCategories.union(loadAvailableCategories())
+            let categories = existingCategories.union(loadAvailableCategories())
             notificationCenter.setNotificationCategories(categories)
 
             return
         } else {
-            let categories = await loadAvailableCategories()
+            let categories = loadAvailableCategories()
             notificationCenter.setNotificationCategories(categories)
 
             return
         }
     }
 
-    private func loadAvailableCategories() async -> Set<UNNotificationCategory> {
+    private func loadAvailableCategories() -> Set<UNNotificationCategory> {
         var categories = Set<UNNotificationCategory>()
 
         let categoryOptions = self.categoryOptions
