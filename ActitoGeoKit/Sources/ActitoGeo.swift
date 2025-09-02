@@ -802,7 +802,7 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
 
         let location = locationManager.location.flatMap { ActitoLocation(cl: $0) }
 
-        let session = ActitoRegionSession(
+        let session = ActitoInternals.PushAPI.Payloads.RegionSession(
             regionId: region.id,
             start: Date(),
             end: nil,
@@ -826,7 +826,7 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
 
             logger.debug("Updating region '\(region.name)' session.")
 
-            return ActitoRegionSession(
+            return ActitoInternals.PushAPI.Payloads.RegionSession(
                 regionId: session.regionId,
                 start: session.start,
                 end: session.end,
@@ -850,7 +850,7 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
             LocalStorage.regionSessions = sessions
 
             if session.locations.count > MAX_REGION_SESSION_LOCATIONS {
-                session = ActitoRegionSession(
+                session = ActitoInternals.PushAPI.Payloads.RegionSession(
                     regionId: session.regionId,
                     start: session.start,
                     end: session.end,
