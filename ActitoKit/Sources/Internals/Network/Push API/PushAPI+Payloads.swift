@@ -99,4 +99,74 @@ extension ActitoInternals.PushAPI.Payloads {
     internal struct TestDeviceRegistration: Encodable {
         internal let deviceID: String
     }
+
+    internal struct CreateEventPayload: Codable {
+        internal let type: String
+        internal let timestamp: Int64
+        internal let deviceId: String
+        internal let sessionId: String?
+        internal let notificationId: String?
+        internal let userId: String?
+        internal private(set) var data: ActitoEventData?
+
+        internal enum CodingKeys: String, CodingKey {
+            case type
+            case timestamp
+            case deviceId = "deviceID"
+            case sessionId = "sessionID"
+            case notificationId = "notification"
+            case userId = "userID"
+            case data
+        }
+
+        internal init(
+            type: String,
+            timestamp: Int64,
+            deviceId: String,
+            sessionId: String? = nil,
+            notificationId: String? = nil,
+            userId: String? = nil,
+            data: ActitoEventData? = nil
+        ) {
+            self.type = type
+            self.timestamp = timestamp
+            self.deviceId = deviceId
+            self.sessionId = sessionId
+            self.notificationId = notificationId
+            self.userId = userId
+            self.data = data
+        }
+
+        internal init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            type = try container.decode(String.self, forKey: .type)
+            timestamp = try container.decode(Int64.self, forKey: .timestamp)
+            deviceId = try container.decode(String.self, forKey: .deviceId)
+            sessionId = try container.decodeIfPresent(String.self, forKey: .sessionId)
+            notificationId = try container.decodeIfPresent(String.self, forKey: .notificationId)
+            userId = try container.decodeIfPresent(String.self, forKey: .userId)
+
+            if let data = try container.decodeIfPresent(ActitoAnyCodable.self, forKey: .data) {
+                self.data = data.value as? ActitoEventData
+            } else {
+                data = nil
+            }
+        }
+
+        internal func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try container.encode(type, forKey: .type)
+            try container.encode(timestamp, forKey: .timestamp)
+            try container.encode(deviceId, forKey: .deviceId)
+            try container.encodeIfPresent(sessionId, forKey: .sessionId)
+            try container.encodeIfPresent(notificationId, forKey: .notificationId)
+            try container.encodeIfPresent(userId, forKey: .userId)
+
+            if let data = data {
+                try container.encode(ActitoAnyCodable(data), forKey: .data)
+            }
+        }
+    }
 }

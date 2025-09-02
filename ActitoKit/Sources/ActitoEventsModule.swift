@@ -4,6 +4,8 @@
 
 import Foundation
 
+public typealias ActitoEventData = [String: Any]
+
 public protocol ActitoEventsModule: AnyObject {
     // func logApplicationException(_ error: Error, _ completion: @escaping ActitoCallback<Void>)
 

@@ -6,7 +6,7 @@ import ActitoUtilitiesKit
 import CoreData
 import Foundation
 
-extension ActitoEvent {
+extension ActitoInternals.PushAPI.Payloads.CreateEventPayload {
     internal init(from local: LocalEvent) {
         self.init(
             type: local.type,

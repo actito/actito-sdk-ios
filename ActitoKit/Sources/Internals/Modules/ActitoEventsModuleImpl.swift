@@ -57,7 +57,7 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
             throw ActitoError.deviceUnavailable
         }
 
-        let event = ActitoEvent(
+        let payload = ActitoInternals.PushAPI.Payloads.CreateEventPayload(
             type: event,
             timestamp: Int64(Date().timeIntervalSince1970 * 1000),
             deviceId: device.id,
@@ -67,7 +67,7 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
             data: data
         )
 
-        try await log(event)
+        try await log(payload)
     }
 
     // MARK: - Internal API
@@ -92,7 +92,7 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
         try await log("re.notifica.event.application.Close", data: ["length": String(sessionLength)], sessionId: sessionId)
     }
 
-    private func log(_ event: ActitoEvent) async throws {
+    private func log(_ payload: ActitoInternals.PushAPI.Payloads.CreateEventPayload) async throws {
         guard Actito.shared.isConfigured else {
             logger.debug("Actito is not configured. Cannot log the event.")
             throw ActitoError.notConfigured
@@ -100,17 +100,17 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
 
         do {
             try await ActitoRequest.Builder()
-                .post("/event", body: event)
+                .post("/event", body: payload)
                 .response()
 
-            logger.info("Event '\(event.type)' sent successfully.")
+            logger.info("Event '\(payload.type)' sent successfully.")
         } catch {
-            logger.warning("Failed to send the event '\(event.type)'.", error: error)
+            logger.warning("Failed to send the event '\(payload.type)'.", error: error)
 
-            if !discardableEvents.contains(event.type), let error = error as? ActitoNetworkError, error.recoverable {
+            if !discardableEvents.contains(payload.type), let error = error as? ActitoNetworkError, error.recoverable {
                 logger.info("Queuing event to be sent whenever possible.")
 
-                try await Actito.shared.database.add(event.toLocal())
+                try await Actito.shared.database.add(payload.toLocal())
                 processStoredEvents()
 
                 return
@@ -200,10 +200,10 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
         }
 
         do {
-            let event = ActitoEvent(from: localEvent)
+            let payload = ActitoInternals.PushAPI.Payloads.CreateEventPayload(from: localEvent)
 
             try await ActitoRequest.Builder()
-                .post("/event", body: event)
+                .post("/event", body: payload)
                 .response()
 
             logger.debug("Event processed. Removing from storage...")

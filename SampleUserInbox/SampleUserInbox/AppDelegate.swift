@@ -89,7 +89,7 @@ extension AppDelegate: ActitoPushDelegate {
         Logger.main.error("Actito: failed to register for remote notifications: \(error)")
     }
 
-    internal func actito(_ actitoPush: any ActitoPush, didChangeSubscription subscription: ActitoPushSubscription?) {
+    internal func actito(_: ActitoPush, didChangeSubscription subscription: ActitoPushSubscription?) {
         Logger.main.info("Actito: subscription changed: \(String(describing: subscription))")
     }
 

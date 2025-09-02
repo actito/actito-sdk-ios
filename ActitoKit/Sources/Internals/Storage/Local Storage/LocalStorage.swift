@@ -123,14 +123,17 @@ internal enum LocalStorage {
         }
     }
 
-    internal static var crashReport: ActitoEvent? {
+    internal static var crashReport: ActitoInternals.PushAPI.Payloads.CreateEventPayload? {
         get {
             guard let data = UserDefaults.standard.data(forKey: Keys.crashReport.rawValue) else {
                 return nil
             }
 
             do {
-                return try JSONDecoder.actito.decode(ActitoEvent.self, from: data)
+                return try JSONDecoder.actito.decode(
+                    ActitoInternals.PushAPI.Payloads.CreateEventPayload.self,
+                    from: data,
+                )
             } catch {
                 logger.warning("Failed to decode the stored crash report.", error: error)
 
