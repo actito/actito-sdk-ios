@@ -155,13 +155,13 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 return
 
             case .restricted, .denied:
-                self.handleLocationServicesUnauthorized()
+                handleLocationServicesUnauthorized()
 
             case .authorizedWhenInUse:
-                self.handleLocationServicesAuthorized(monitorSignificantLocationChanges: false)
+                handleLocationServicesAuthorized(monitorSignificantLocationChanges: false)
 
             case .authorizedAlways:
-                self.handleLocationServicesAuthorized(monitorSignificantLocationChanges: true)
+                handleLocationServicesAuthorized(monitorSignificantLocationChanges: true)
 
             @unknown default:
                 logger.warning("Unsupported authorization status: \(status)")
