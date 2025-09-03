@@ -111,12 +111,12 @@ public class ActitoInbox {
     public func refresh() async throws {
         guard let application = Actito.shared.application else {
             logger.warning("Actito application not yet available.")
-            return
+            throw ActitoError.applicationUnavailable
         }
 
         guard application.inboxConfig?.useInbox == true else {
             logger.warning("Actito inbox functionality is not enabled.")
-            return
+            throw ActitoError.serviceUnavailable(service: ActitoApplication.ServiceKey.inbox.rawValue)
         }
 
         do {
