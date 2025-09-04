@@ -92,7 +92,7 @@ public class ActitoInbox {
     /// A Publisher for observing changes to the badge count, providing real-time updates when the unread count changes.
     public let badgeStream: AnyPublisher<Int, Never>
 
-    /// Refreshes the inbox data, ensuring the items and badge count reflect the latest server state, whit a callback.
+    /// Refreshes the inbox data, ensuring the items and badge count reflect the latest server state, with a callback.
     ///
     ///  - Parameters:
     ///     - completion: A callback that will be invoked with the result of the refresh inbox operation.
@@ -109,22 +109,9 @@ public class ActitoInbox {
 
     /// Refreshes the inbox data, ensuring the items and badge count reflect the latest server state.
     public func refresh() async throws {
-        guard let application = Actito.shared.application else {
-            logger.warning("Actito application not yet available.")
-            throw ActitoError.applicationUnavailable
-        }
+        try checkPrerequisites()
 
-        guard application.inboxConfig?.useInbox == true else {
-            logger.warning("Actito inbox functionality is not enabled.")
-            throw ActitoError.serviceUnavailable(service: ActitoApplication.ServiceKey.inbox.rawValue)
-        }
-
-        do {
-            try await reloadInbox()
-        } catch {
-            logger.error("Failed to refresh the inbox data.", error: error)
-            throw error
-        }
+        try await reloadInbox()
     }
 
     /// Refreshes the current badge count to match the number of unread inbox items, with a callback.
@@ -655,7 +642,7 @@ public class ActitoInbox {
         logger.debug("Received a signal to reload the inbox.")
         Task {
             do {
-                try await self.reloadInbox()
+                try await reloadInbox()
             } catch {
                 logger.error("Failed to reload the inbox.", error: error)
             }
