@@ -16,7 +16,6 @@ public class ActitoInbox {
     internal static let reloadInboxNotification = NSNotification.Name(rawValue: "ActitoInboxKit.ReloadInbox")
 
     internal let database = InboxDatabase()
-    private let cache = InboxCache()
     private var cachedItems: [LocalInboxItem] = []
 
     private var _badgeStream = CurrentValueSubject<Int, Never>(0)
@@ -185,10 +184,14 @@ public class ActitoInbox {
         if item.notification.partial {
             let notification = try await Actito.shared.fetchNotification(item.id)
 
-            if let localItem = await cache.update(item, { $0.notification = notification}) {
-                await updateLocalItems()
-
+            if let index = self.cachedItems.firstIndex(where: { $0.id == item.id }) {
                 do {
+                    // Update the cache.
+                    var localItem = self.cachedItems[index]
+                    localItem.notification = notification
+                    self.cachedItems[index] = localItem
+
+                    // Update the database.
                     try await self.database.update(localItem)
                 } catch {
                     logger.warning("Unable to encode updated inbox item '\(item.id)' into the database.", error: error)
@@ -233,12 +236,15 @@ public class ActitoInbox {
             try await Actito.shared.events().logNotificationOpen(item.notification.id)
 
             // Update the cache.
-            if let updatedItem = await cache.update(item, { $0.opened = true}) {
-                await updateLocalItems()
-
+            if let index = self.cachedItems.firstIndex(where: { $0.id == item.id }) {
                 do {
+                    // Update the cache.
+                    var localItem = self.cachedItems[index]
+                    localItem.opened = true
+                    self.cachedItems[index] = localItem
+
                     // Update the database.
-                    try await self.database.update(updatedItem)
+                    try await self.database.update(localItem)
                 } catch {
                     logger.warning("Unable to encode updated inbox item '\(item.id)' into the database.", error: error)
                 }
@@ -282,18 +288,23 @@ public class ActitoInbox {
             .put("/notification/inbox/fordevice/\(device.id)")
             .response()
 
-        // Skip items where nothing changes.
-        for item in await cache.items.filter({ !$0.opened && $0.visible}) {
-            // Update the cache.
-            if let updatedItem = await cache.update(item, { $0.opened = true}) {
-                await updateLocalItems()
+        for index in self.cachedItems.indices {
+            var item = self.cachedItems[index]
 
-                do {
-                    // Update the database.
-                    try await self.database.update(updatedItem)
-                } catch {
-                    logger.warning("Unable to encode updated inbox item '\(item.id)' into the database.", error: error)
-                }
+            // Skip update when nothing changes.
+            if item.opened || !item.visible {
+                continue
+            }
+
+            do {
+                // Update the cache.
+                item.opened = true
+                self.cachedItems[index] = item
+
+                // Update the database.
+                try await self.database.update(item)
+            } catch {
+                logger.warning("Unable to encode updated inbox item '\(item.id)' into the database.", error: error)
             }
         }
 
@@ -332,8 +343,7 @@ public class ActitoInbox {
             .response()
 
         try await database.remove(id: item.id)
-        await cache.removeAll(id: item.id)
-        await updateLocalItems()
+        cachedItems.removeAll(where: { $0.id == item.id })
 
         Actito.shared.removeNotificationFromNotificationCenter(item.notification)
 
@@ -416,7 +426,7 @@ public class ActitoInbox {
         }
 
         Task {
-            guard let firstItem = await cache.items.first else {
+            guard let firstItem = cachedItems.first else {
                 logger.debug("The local inbox contains no items. Checking remotely.")
                 reloadInbox()
 
@@ -459,11 +469,9 @@ public class ActitoInbox {
         }
     }
 
-    internal func loadCache() async {
+    internal func loadCachedItems() async {
         do {
-            let items = try await database.find()
-            await cache.set(items)
-            await updateLocalItems()
+            cachedItems = try await database.find()
         } catch {
             logger.error("Failed to query the local database.", error: error)
         }
@@ -472,27 +480,24 @@ public class ActitoInbox {
     private func addToLocalInbox(_ item: LocalInboxItem) async throws {
         // NOTE: Remove duplicates for a given notification before adding the item to the inbox.
         // When receiving a triggered notification, we may receive it more than once.
-        await cache.removeAll(notificationId: item.notification.id)
+        cachedItems.removeAll(where: { $0.notification.id == item.notification.id })
         try await database.remove(notificationId: item.notification.id)
 
         do {
             try await database.add(item)
-            await cache.add(item)
+            cachedItems.insertSorted(item, by: { $0.time > $1.time})
         } catch {
             logger.warning("Unable to encode inbox item '\(item.id)' into the database.", error: error)
         }
-
-        await updateLocalItems()
     }
 
     internal func clearLocalInbox() async throws {
         try await database.clear()
-        await cache.removeAll()
-        await updateLocalItems()
+        cachedItems.removeAll()
     }
 
     private func removeExpiredItemsFromNotificationCenter() async {
-        await cache.items.forEach { item in
+        cachedItems.forEach { item in
             if item.isExpired {
                 Actito.shared.removeNotificationFromNotificationCenter(item.notification.id)
             }
@@ -552,10 +557,6 @@ public class ActitoInbox {
             .response()
     }
 
-    private func updateLocalItems() async {
-        cachedItems = await cache.items
-    }
-
     private func setApplicationBadge(_ badge: Int) {
         UIApplication.shared.applicationIconBadgeNumber = badge
     }
@@ -604,13 +605,15 @@ public class ActitoInbox {
         }
 
         Task {
-            // Update the cache.
-            if let updatedItem = await cache.update(inboxItemId, { $0.opened = true }) {
-                await updateLocalItems()
-
+            if let index = self.cachedItems.firstIndex(where: { $0.id == inboxItemId }) {
                 do {
+                    // Update the cache.
+                    var localItem = self.cachedItems[index]
+                    localItem.opened = true
+                    self.cachedItems[index] = localItem
+
                     // Update the database.
-                    try await self.database.update(updatedItem)
+                    try await self.database.update(localItem)
                 } catch {
                     logger.warning("Unable to encode updated inbox item '\(inboxItemId)' into the database.", error: error)
                 }
@@ -651,7 +654,7 @@ public class ActitoInbox {
                     return
                 }
 
-                guard await !self.cache.items.isEmpty else {
+                guard !self.cachedItems.isEmpty else {
                     logger.debug("The inbox is empty. No need to do a full sync.")
                     return
                 }

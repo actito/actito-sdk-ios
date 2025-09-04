@@ -18,7 +18,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         Actito.shared.inbox().database.configure(overrideDatabaseFileProtection: Actito.shared.options?.overrideDatabaseFileProtection ?? false)
 
         Task {
-            await Actito.shared.inbox().loadCache()
+            await Actito.shared.inbox().loadCachedItems()
         }
 
         // Listen to inbox addition requests.

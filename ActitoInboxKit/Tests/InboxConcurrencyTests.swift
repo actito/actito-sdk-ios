@@ -6,6 +6,7 @@ import Testing
 import ActitoKit
 @testable import ActitoInboxKit
 
+@MainActor
 internal struct InboxConcurrencyTests {
 
     @Test
@@ -14,7 +15,7 @@ internal struct InboxConcurrencyTests {
 
         await withTaskGroup(of: Void.self) { group in
             for _ in 0...10 {
-                group.addTask {
+                group.addTask { @MainActor in
                     Actito.shared.inbox().refresh()
                 }
             }
