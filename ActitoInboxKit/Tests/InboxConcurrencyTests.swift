@@ -16,7 +16,7 @@ internal struct InboxConcurrencyTests {
         await withTaskGroup(of: Void.self) { group in
             for _ in 0...10 {
                 group.addTask { @MainActor in
-                    Actito.shared.inbox().refresh()
+                    try! await Actito.shared.inbox().refresh()
                 }
             }
         }
@@ -43,7 +43,7 @@ internal struct InboxConcurrencyTests {
     }
 
     private func setupActito() async throws {
-        await Actito.shared.configure(
+        Actito.shared.configure(
             servicesInfo: ActitoServicesInfo(
                 applicationKey: "",
                 applicationSecret: ""
