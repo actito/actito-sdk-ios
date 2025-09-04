@@ -20,6 +20,13 @@ extension ActitoInternals.PushAPI.Payloads {
         @EncodeNull internal var locationServicesAccuracyAuth: ActitoGeo.AccuracyMode?
     }
 
+    internal struct RegionSession: Codable, Sendable {
+        internal let regionId: String
+        internal let start: Date
+        internal let end: Date?
+        internal let locations: [ActitoLocation]
+    }
+
     internal struct RegionTrigger: Encodable {
         internal let deviceID: String
         internal let region: String

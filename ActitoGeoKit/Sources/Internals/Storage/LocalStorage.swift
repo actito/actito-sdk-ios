@@ -2,6 +2,7 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+import ActitoKit
 import ActitoUtilitiesKit
 import Foundation
 
@@ -118,7 +119,7 @@ internal enum LocalStorage {
         }
     }
 
-    internal static var regionSessions: [ActitoRegionSession] {
+    internal static var regionSessions: [ActitoInternals.PushAPI.Payloads.RegionSession] {
         get {
             guard let data = UserDefaults.standard.object(forKey: KEY_REGION_SESSIONS) as? Data else {
                 return []
@@ -126,7 +127,7 @@ internal enum LocalStorage {
 
             do {
                 let decoder = JSONDecoder.actito
-                return try decoder.decode([ActitoRegionSession].self, from: data)
+                return try decoder.decode([ActitoInternals.PushAPI.Payloads.RegionSession].self, from: data)
             } catch {
                 logger.warning("Failed to decode the region sessions.", error: error)
 

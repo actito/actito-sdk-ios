@@ -3,6 +3,7 @@
 //
 
 import Foundation
+public typealias ActitoEventData = [String: Any]
 
 @MainActor
 public protocol ActitoEventsModule: AnyObject {

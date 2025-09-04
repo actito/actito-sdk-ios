@@ -37,7 +37,6 @@
 		F2CC441E26DD18E100740C06 /* ActitoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CC441D26DD18E100740C06 /* ActitoLocation.swift */; };
 		F2CDE01A26C672F200CC4867 /* MapKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE01926C672F200CC4867 /* MapKit+Extensions.swift */; };
 		F2CDE01C26C6AB7C00CC4867 /* ActitoGeo+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE01B26C6AB7C00CC4867 /* ActitoGeo+Events.swift */; };
-		F2CDE01E26C6B0BB00CC4867 /* ActitoRegionSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE01D26C6B0BB00CC4867 /* ActitoRegionSession.swift */; };
 		F2DAB395271F0C46002B5F27 /* ActitoGeo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DAB394271F0C46002B5F27 /* ActitoGeo.swift */; };
 		F2DAB39B271F0FCB002B5F27 /* ActitoGeo+Augment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DAB39A271F0FCB002B5F27 /* ActitoGeo+Augment.swift */; };
 		F2FC8BE126D67CE400089F1B /* ActitoVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FC8BE026D67CE400089F1B /* ActitoVisit.swift */; };
@@ -87,7 +86,6 @@
 		F2CC441D26DD18E100740C06 /* ActitoLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLocation.swift; sourceTree = "<group>"; };
 		F2CDE01926C672F200CC4867 /* MapKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapKit+Extensions.swift"; sourceTree = "<group>"; };
 		F2CDE01B26C6AB7C00CC4867 /* ActitoGeo+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoGeo+Events.swift"; sourceTree = "<group>"; };
-		F2CDE01D26C6B0BB00CC4867 /* ActitoRegionSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoRegionSession.swift; sourceTree = "<group>"; };
 		F2DAB394271F0C46002B5F27 /* ActitoGeo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoGeo.swift; sourceTree = "<group>"; };
 		F2DAB39A271F0FCB002B5F27 /* ActitoGeo+Augment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoGeo+Augment.swift"; sourceTree = "<group>"; };
 		F2FC8BE026D67CE400089F1B /* ActitoVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoVisit.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 				F2422E4826CC0FD800D035AD /* ActitoBeacon.swift */,
 				F24FF2F326D3DF1D00BB7B1C /* ActitoBeaconSession.swift */,
 				F26E6DD026C44C4A00FA67CB /* ActitoRegion.swift */,
-				F2CDE01D26C6B0BB00CC4867 /* ActitoRegionSession.swift */,
 				F2CC441B26DD15A400740C06 /* ActitoHeading.swift */,
 				F2FC8BE026D67CE400089F1B /* ActitoVisit.swift */,
 			);
@@ -354,7 +351,6 @@
 				F26E6DD126C44C4A00FA67CB /* ActitoRegion.swift in Sources */,
 				F2CC441C26DD15A400740C06 /* ActitoHeading.swift in Sources */,
 				F2FC8BE126D67CE400089F1B /* ActitoVisit.swift in Sources */,
-				F2CDE01E26C6B0BB00CC4867 /* ActitoRegionSession.swift in Sources */,
 				F24FF2F626D3FFFA00BB7B1C /* ActitoBeacon+Extensions.swift in Sources */,
 				1A52DE722CA45C2C00B5F56C /* Logger.swift in Sources */,
 				F2DAB395271F0C46002B5F27 /* ActitoGeo.swift in Sources */,

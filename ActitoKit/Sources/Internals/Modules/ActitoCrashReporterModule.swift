@@ -20,7 +20,7 @@ internal class ActitoCrashReporterModule {
 
         let timestamp = Int64(Date().timeIntervalSince1970 * 1000)
 
-        LocalStorage.crashReport = ActitoEvent(
+        LocalStorage.crashReport = ActitoInternals.PushAPI.Payloads.CreateEventPayload(
             type: "re.notifica.event.application.Exception",
             timestamp: timestamp,
             deviceId: device.id,
@@ -68,7 +68,7 @@ internal class ActitoCrashReporterModule {
         default: name = "Unknown"
         }
 
-        LocalStorage.crashReport = ActitoEvent(
+        LocalStorage.crashReport = ActitoInternals.PushAPI.Payloads.CreateEventPayload(
             type: "re.notifica.event.application.Exception",
             timestamp: timestamp,
             deviceId: device.id,
