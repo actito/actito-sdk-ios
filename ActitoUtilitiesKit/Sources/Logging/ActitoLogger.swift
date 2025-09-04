@@ -18,8 +18,7 @@ public final class ActitoLogger: Sendable {
         }
     }
 
-    @MainActor
-    public var hasDebugLoggingEnabled: Bool = false
+    public nonisolated(unsafe) var hasDebugLoggingEnabled: Bool = false
 
     private let labelIgnoreList: [String]
     private let osLog: OSLog
@@ -53,12 +52,9 @@ public final class ActitoLogger: Sendable {
             label = file
         }
 
-        Task {
-            await log(level: level, label: label, message: message, error: error)
-        }
+        log(level: level, label: label, message: message, error: error)
     }
 
-    @MainActor
     private func log(level: Level, label: String?, message: String, error: Error?) {
         guard level != .debug || hasDebugLoggingEnabled else {
             return
