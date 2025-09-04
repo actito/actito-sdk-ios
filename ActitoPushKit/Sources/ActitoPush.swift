@@ -350,8 +350,6 @@ public final class ActitoPush {
     private func loadAvailableCategories() -> Set<UNNotificationCategory> {
         var categories = Set<UNNotificationCategory>()
 
-        let categoryOptions = self.categoryOptions
-
         if #available(iOS 11.0, *) {
             categories.insert(
                 UNNotificationCategory(
