@@ -92,19 +92,26 @@ public class ActitoInbox {
     /// A Publisher for observing changes to the badge count, providing real-time updates when the unread count changes.
     public let badgeStream: AnyPublisher<Int, Never>
 
+    /// Refreshes the inbox data, ensuring the items and badge count reflect the latest server state, with a callback.
+    ///
+    ///  - Parameters:
+    ///     - completion: A callback that will be invoked with the result of the refresh inbox operation.
+    public func refresh(_ completion: @escaping ActitoCallback<Void>) {
+        Task {
+            do {
+                try await refresh()
+                completion(.success(()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
     /// Refreshes the inbox data, ensuring the items and badge count reflect the latest server state.
-    public func refresh() {
-        guard let application = Actito.shared.application else {
-            logger.warning("Actito application not yet available.")
-            return
-        }
+    public func refresh() async throws {
+        try checkPrerequisites()
 
-        guard application.inboxConfig?.useInbox == true else {
-            logger.warning("Actito inbox functionality is not enabled.")
-            return
-        }
-
-        reloadInbox()
+        try await reloadInbox()
     }
 
     /// Refreshes the current badge count to match the number of unread inbox items, with a callback.
@@ -417,7 +424,11 @@ public class ActitoInbox {
         Task {
             guard let firstItem = await cache.items.first else {
                 logger.debug("The local inbox contains no items. Checking remotely.")
-                reloadInbox()
+                do {
+                    try await reloadInbox()
+                } catch {
+                    logger.error("Failed to reload the inbox.", error: error)
+                }
 
                 return
             }
@@ -429,7 +440,11 @@ public class ActitoInbox {
                 _ = try await fetchRemoteInbox(for: device.id, since: timestamp)
 
                 logger.info("The inbox has been modified. Performing a full sync.")
-                reloadInbox()
+                do {
+                    try await reloadInbox()
+                } catch {
+                    logger.error("Failed to reload the inbox.", error: error)
+                }
             } catch {
                 if case let ActitoNetworkError.validationError(response, _, _) = error {
                     if response.statusCode == 304 {
@@ -447,15 +462,9 @@ public class ActitoInbox {
         }
     }
 
-    private func reloadInbox() {
-        Task {
-            do {
-                try await clearLocalInbox()
-                try await requestRemoteInboxItems()
-            } catch {
-                logger.error("Failed to reload the inbox.", error: error)
-            }
-        }
+    private func reloadInbox() async throws {
+        try await clearLocalInbox()
+        try await requestRemoteInboxItems()
     }
 
     internal func loadCache() async {
@@ -631,7 +640,13 @@ public class ActitoInbox {
 
     @objc internal func onReloadInboxNotification(_: Notification) {
         logger.debug("Received a signal to reload the inbox.")
-        reloadInbox()
+        Task {
+            do {
+                try await reloadInbox()
+            } catch {
+                logger.error("Failed to reload the inbox.", error: error)
+            }
+        }
     }
 
     @objc internal func onApplicationDidBecomeActiveNotification(_: Notification) {
@@ -664,7 +679,11 @@ public class ActitoInbox {
 
                     if response.count != total || response.unread != unread {
                         logger.debug("The inbox needs an update. The count/unread don't match with the local data.")
-                        self.reloadInbox()
+                        do {
+                            try await self.reloadInbox()
+                        } catch {
+                            logger.error("Failed to reload the inbox.", error: error)
+                        }
                     } else {
                         logger.debug("The inbox doesn't need an update. Proceeding as is.")
                     }
