@@ -13,15 +13,13 @@ internal struct InboxConcurrencyTests {
     internal func testMassiveRefreshOperations() async throws {
         try await setupActito()
 
-        await withTaskGroup(of: Void.self) { group in
+        await withThrowingTaskGroup(of: Void.self) { group in
             for _ in 0...10 {
                 group.addTask { @MainActor in
-                    try! await Actito.shared.inbox().refresh()
+                    try await Actito.shared.inbox().refresh()
                 }
             }
         }
-
-        try await Task.sleep(nanoseconds: 5_000_000_000)
     }
 
     @Test
