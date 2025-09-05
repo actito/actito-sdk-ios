@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 import UIKit
 
-public class ActitoImageCache {
+public final class ActitoImageCache {
     private let session = URLSession(configuration: .default)
 
     public private(set) var portraitImage: UIImage?

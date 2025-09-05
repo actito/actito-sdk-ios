@@ -7,7 +7,7 @@ import Foundation
 import MobileCoreServices
 @preconcurrency import UserNotifications
 
-public class ActitoNotificationServiceExtension {
+public final class ActitoNotificationServiceExtension {
     private init() {}
 
     public static func handleNotificationRequest(_ request: UNNotificationRequest, _ completion: @Sendable @escaping (Result<UNNotificationContent, Swift.Error>) -> Void) {

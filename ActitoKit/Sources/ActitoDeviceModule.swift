@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 @MainActor
-public class ActitoDeviceModule {
+public final class ActitoDeviceModule {
     public static let shared = ActitoDeviceModule()
 
     internal private(set) var storedDevice: StoredDevice? {

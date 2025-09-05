@@ -7,7 +7,7 @@ import Combine
 import UIKit
 
 @MainActor
-public class ActitoInbox {
+public final class ActitoInbox {
     public static let shared = ActitoInbox()
 
     internal static let addInboxItemNotification = NSNotification.Name(rawValue: "ActitoInboxKit.AddInboxItem")

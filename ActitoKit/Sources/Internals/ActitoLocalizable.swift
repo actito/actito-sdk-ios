@@ -4,7 +4,7 @@
 
 import UIKit
 
-public class ActitoLocalizable {
+public final class ActitoLocalizable {
     public static func string(resource: StringResource) -> String {
         string(resource: resource.rawValue, fallback: "")
     }

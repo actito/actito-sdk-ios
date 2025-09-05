@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 @MainActor
-public class ActitoInAppMessaging {
+public final class ActitoInAppMessaging {
     public static let shared = ActitoInAppMessaging()
 
     private var presentedView: ActitoInAppMessagingView?

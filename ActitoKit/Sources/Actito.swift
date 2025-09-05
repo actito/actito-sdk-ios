@@ -7,7 +7,7 @@ import UIKit
 public typealias ActitoCallback<T> = @Sendable (Result<T, Error>) -> Void
 
 @MainActor
-public class Actito {
+public final class Actito {
     public static let shared = Actito()
 
     public nonisolated static var SDK_VERSION: String {
