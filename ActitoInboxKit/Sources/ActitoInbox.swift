@@ -505,7 +505,7 @@ public final class ActitoInbox {
         cachedItems.removeAll()
     }
 
-    private func removeExpiredItemsFromNotificationCenter() async {
+    private func removeExpiredItemsFromNotificationCenter() {
         cachedItems.forEach { item in
             if item.isExpired {
                 Actito.shared.removeNotificationFromNotificationCenter(item.notification.id)
@@ -662,7 +662,7 @@ public final class ActitoInbox {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             Task {
                 // Clear expired items from the notification center.
-                await self.removeExpiredItemsFromNotificationCenter()
+                self.removeExpiredItemsFromNotificationCenter()
 
                 guard let device = Actito.shared.device().currentDevice else {
                     logger.warning("Actito has not been configured yet.")
