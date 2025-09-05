@@ -77,6 +77,14 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         max(0, MAX_MONITORED_REGIONS_LIMIT - monitoredRegionsLimit - 1)
     }
 
+    private var hasLocationManagerServicesEnabled: Bool {
+        get async {
+            await Task.detached(priority: .high) {
+                CLLocationManager.locationServicesEnabled()
+            }.value
+        }
+    }
+
     // MARK: - Public API
 
     /// Specifies the delegate that handles geo events
@@ -139,7 +147,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         }
 
         Task {
-            guard await hasLocationServicesEnabled() else {
+            guard await hasLocationManagerServicesEnabled else {
                 logger.warning("Location functionality is disabled by the user.")
                 return
             }
@@ -222,12 +230,6 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
             throw ActitoGeoError.permissionEntriesMissing
         }
-    }
-
-    private func hasLocationServicesEnabled() async -> Bool {
-        await Task.detached(priority: .high) {
-            CLLocationManager.locationServicesEnabled()
-        }.value
     }
 
     private func handleLocationServicesUnauthorized() {
@@ -1263,7 +1265,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         }
 
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
-            self.checkBluetoothEnabled()
+            checkBluetoothEnabled()
         }
     }
 
