@@ -5,7 +5,7 @@
 import Foundation
 
 @propertyWrapper
-public struct ActitoExtraEquatable<T>: Equatable {
+public struct ActitoExtraEquatable<T>: Equatable, @unchecked Sendable {
     public var wrappedValue: T
 
     public init(wrappedValue: T) {

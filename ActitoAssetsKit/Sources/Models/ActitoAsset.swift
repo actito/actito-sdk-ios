@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-public struct ActitoAsset: Codable, Equatable, @unchecked Sendable {
+public struct ActitoAsset: Codable, Equatable, Sendable {
     public let id: String
     public let title: String
     public let description: String?

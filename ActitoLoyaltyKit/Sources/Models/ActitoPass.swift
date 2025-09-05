@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoUtilitiesKit
 import Foundation
 
-public struct ActitoPass: Codable, Equatable, @unchecked Sendable {
+public struct ActitoPass: Codable, Equatable, Sendable {
     public let id: String
     public let type: PassType?
     public let version: Int

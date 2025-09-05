@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoUtilitiesKit
 
 extension ActitoInternals.PushAPI.Models {
-    internal struct RemoteInboxItem: Equatable, @unchecked Sendable {
+    internal struct RemoteInboxItem: Equatable, Sendable {
         internal let _id: String
         internal let notification: String
         internal let type: String

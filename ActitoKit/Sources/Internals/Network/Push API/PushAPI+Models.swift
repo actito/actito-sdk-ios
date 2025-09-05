@@ -46,7 +46,7 @@ extension ActitoInternals.PushAPI.Models {
         }
     }
 
-    public struct Notification: Equatable, @unchecked Sendable {
+    public struct Notification: Equatable, Sendable {
         public let _id: String
         public let type: String
         public let time: Date
