@@ -67,7 +67,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
 
         // No properties. Just send an empty reply.
         Task {
-            await send()
+            send()
         }
     }
 
@@ -87,7 +87,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
                 mediaUrl = url
                 mediaMimeType = "image/jpeg"
 
-                await send()
+                send()
             } catch {
                 DispatchQueue.main.async {
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
@@ -102,7 +102,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
                 mediaUrl = url
                 mediaMimeType = "video/quicktime"
 
-                await send()
+                send()
             } catch {
                 DispatchQueue.main.async {
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
@@ -111,7 +111,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
                 dismiss()
             }
         } else if message != nil {
-            await send()
+            send()
         }
     }
 
@@ -196,7 +196,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         sourceViewController.presentOrPush(navigationController)
     }
 
-    private func send() async {
+    private func send() {
         dismiss()
 
         guard let target = action.target, let url = URL(string: target), url.scheme != nil, url.host != nil else {
