@@ -7,7 +7,7 @@ import os
 
 public final class ActitoLogger: Sendable {
 
-    public init(subsystem: String = "com.actito", category: String = "Actito", labelIgnoreList: [String] = Array()) {
+    public init(subsystem: String = "com.actito", category: String = "Actito", labelIgnoreList: [String] = []) {
         self.labelIgnoreList = labelIgnoreList
         self.osLog = OSLog(subsystem: subsystem, category: category)
 
