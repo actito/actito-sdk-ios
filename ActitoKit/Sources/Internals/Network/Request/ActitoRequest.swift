@@ -201,7 +201,7 @@ public struct ActitoRequest: Sendable {
             request.setValue(language, forHTTPHeaderField: "Accept-Language")
             request.setValue(UIDevice.current.userAgent(sdkVersion: Actito.SDK_VERSION), forHTTPHeaderField: "User-Agent")
             request.setValue(Actito.SDK_VERSION, forHTTPHeaderField: "X-Notificare-SDK-Version")
-            request.setValue(Bundle.main.applicationVersion, forHTTPHeaderField: "X-J-App-Version")
+            request.setValue(Bundle.main.applicationVersion, forHTTPHeaderField: "X-Notificare-App-Version")
 
             // Add application authentication when available
             if let authentication = authentication {
