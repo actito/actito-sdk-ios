@@ -7,7 +7,8 @@ import SafariServices
 import StoreKit
 import UIKit
 
-public class ActitoPushUI {
+@MainActor
+public final class ActitoPushUI {
     public static let shared = ActitoPushUI()
 
     private var latestPresentableNotificationHandler: ActitoNotificationPresenter?

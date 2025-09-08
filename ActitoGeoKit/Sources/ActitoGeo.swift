@@ -15,7 +15,8 @@ private let FAKE_BEACON_IDENTIFIER = "ActitoFakeBeacon"
 private let SMALLEST_DISPLACEMENT_METERS = 100.0
 private let MAX_REGION_SESSION_LOCATIONS = 100
 
-public class ActitoGeo: NSObject, CLLocationManagerDelegate{
+@MainActor
+public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
     public static let shared = ActitoGeo()
 
     internal var locationManager: CLLocationManager!
@@ -74,6 +75,14 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
     private var monitoredBeaconsLimit: Int {
         // The fixed -1 is to reserve for the fake beacon (bluetooth check).
         max(0, MAX_MONITORED_REGIONS_LIMIT - monitoredRegionsLimit - 1)
+    }
+
+    private var hasLocationManagerServicesEnabled: Bool {
+        get async {
+            await Task.detached(priority: .high) {
+                CLLocationManager.locationServicesEnabled()
+            }.value
+        }
     }
 
     // MARK: - Public API
@@ -137,8 +146,8 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
             return
         }
 
-        hasLocationServicesEnabled { enabled in
-            guard enabled else {
+        Task {
+            guard await hasLocationManagerServicesEnabled else {
                 logger.warning("Location functionality is disabled by the user.")
                 return
             }
@@ -154,13 +163,13 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
                 return
 
             case .restricted, .denied:
-                self.handleLocationServicesUnauthorized()
+                handleLocationServicesUnauthorized()
 
             case .authorizedWhenInUse:
-                self.handleLocationServicesAuthorized(monitorSignificantLocationChanges: false)
+                handleLocationServicesAuthorized(monitorSignificantLocationChanges: false)
 
             case .authorizedAlways:
-                self.handleLocationServicesAuthorized(monitorSignificantLocationChanges: true)
+                handleLocationServicesAuthorized(monitorSignificantLocationChanges: true)
 
             @unknown default:
                 logger.warning("Unsupported authorization status: \(status)")
@@ -220,15 +229,6 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
             logger.warning("/==================================================================================/")
 
             throw ActitoGeoError.permissionEntriesMissing
-        }
-    }
-
-    private func hasLocationServicesEnabled(_ completion: @escaping (_ enabled: Bool) -> Void) {
-        DispatchQueue.global().async {
-            let enabled = CLLocationManager.locationServicesEnabled()
-            DispatchQueue.main.async {
-                completion(enabled)
-            }
         }
     }
 
@@ -359,7 +359,7 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
         }
 
         guard let placemark = placemarks.first,
-                let device = Actito.shared.device().currentDevice
+              let device = Actito.shared.device().currentDevice
         else {
             return
         }
@@ -1251,9 +1251,9 @@ public class ActitoGeo: NSObject, CLLocationManagerDelegate{
         // or when the background updates are not available.
         if
             CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-            UIApplication.shared.backgroundRefreshStatus == .denied ||
-            UIApplication.shared.backgroundRefreshStatus == .restricted ||
-            !CLLocationManager.significantLocationChangeMonitoringAvailable()
+                UIApplication.shared.backgroundRefreshStatus == .denied ||
+                UIApplication.shared.backgroundRefreshStatus == .restricted ||
+                !CLLocationManager.significantLocationChangeMonitoringAvailable()
         {
             logger.debug("Requesting user location. This might take a while. Please wait...")
             locationManager.requestLocation()

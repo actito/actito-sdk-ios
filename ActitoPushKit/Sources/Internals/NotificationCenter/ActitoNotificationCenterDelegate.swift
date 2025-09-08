@@ -6,8 +6,8 @@ import ActitoKit
 import Foundation
 import NotificationCenter
 
-internal class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate {
-    @MainActor
+@MainActor
+internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate {
     internal func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         let userInfo = response.notification.request.content.userInfo
 

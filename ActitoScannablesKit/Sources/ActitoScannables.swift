@@ -6,7 +6,8 @@ import ActitoKit
 import CoreNFC
 import UIKit
 
-public class ActitoScannables: NSObject {
+@MainActor
+public final class ActitoScannables: NSObject {
     public static let shared = ActitoScannables()
 
     // MARK: - Public API
@@ -126,11 +127,11 @@ public class ActitoScannables: NSObject {
 
     // MARK: - Private API
 
-    private func parseScannableTag(_ record: NFCNDEFPayload) -> String? {
+    private nonisolated func parseScannableTag(_ record: NFCNDEFPayload) -> String? {
         return record.wellKnownTypeURIPayload()?.absoluteString
     }
 
-    private func handleScannableTag(_ tag: String) {
+    private nonisolated func handleScannableTag(_ tag: String) {
         Task {
             do {
                 let scannable = try await fetch(tag: tag)
@@ -148,7 +149,7 @@ public class ActitoScannables: NSObject {
 }
 
 extension ActitoScannables: NFCNDEFReaderSessionDelegate {
-    public func readerSession(_: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
+    public nonisolated func readerSession(_: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         messages.forEach { message in
             message.records.forEach { record in
                 if
@@ -167,7 +168,7 @@ extension ActitoScannables: NFCNDEFReaderSessionDelegate {
         }
     }
 
-    public func readerSession(_: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
+    public nonisolated func readerSession(_: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         // When invalidateAfterFirstRead is YES, the reader session automatically terminates after the first NFC tag is successfully read.
         // In this scenario, the delegate receives the NFCReaderSessionInvalidationErrorFirstNDEFTagRead status.
         if let error = error as? NFCReaderError, error.code == .readerSessionInvalidationErrorFirstNDEFTagRead {

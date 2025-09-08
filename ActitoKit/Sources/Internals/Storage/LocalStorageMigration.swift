@@ -5,6 +5,7 @@
 import ActitoUtilitiesKit
 import Foundation
 
+@MainActor
 internal struct LocalStorageMigration {
     internal var hasLegacyData: Bool {
         UserDefaults.standard.object(forKey: "notificareDeviceToken") != nil

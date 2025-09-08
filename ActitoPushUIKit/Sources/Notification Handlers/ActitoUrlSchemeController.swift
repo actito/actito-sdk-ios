@@ -76,11 +76,9 @@ internal class ActitoUrlSchemeController: ActitoNotificationPresenter {
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
         }
 
-        DispatchQueue.main.async {
-            UIApplication.shared.open(url, options: [:]) { _ in
-                DispatchQueue.main.async {
-                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
-                }
+        UIApplication.shared.open(url, options: [:]) { _ in
+            DispatchQueue.main.async {
+                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
             }
         }
     }

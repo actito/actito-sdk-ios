@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoUtilitiesKit
 import StoreKit
 
-internal class ActitoStoreController: NSObject, SKStoreProductViewControllerDelegate, ActitoNotificationPresenter {
+internal class ActitoStoreController: NSObject, ActitoNotificationPresenter {
     private let notification: ActitoNotification
 
     internal init(notification: ActitoNotification) {
@@ -63,7 +63,9 @@ internal class ActitoStoreController: NSObject, SKStoreProductViewControllerDele
 
         controller.presentOrPush(storeController)
     }
+}
 
+extension ActitoStoreController: SKStoreProductViewControllerDelegate {
     public func productViewControllerDidFinish(_: SKStoreProductViewController) {
         UIApplication.shared.rootViewController?.dismiss(animated: true, completion: {
             DispatchQueue.main.async {

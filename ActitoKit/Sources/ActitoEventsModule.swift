@@ -6,6 +6,7 @@ import Foundation
 
 public typealias ActitoEventData = [String: Any]
 
+@MainActor
 public protocol ActitoEventsModule: AnyObject {
     // func logApplicationException(_ error: Error, _ completion: @escaping ActitoCallback<Void>)
 
@@ -76,6 +77,7 @@ extension ActitoEventsModule {
     }
 }
 
+@MainActor
 public protocol ActitoInternalEventsModule {
     func log(_ event: String, data: ActitoEventData?, sessionId: String?, notificationId: String?) async throws
 }

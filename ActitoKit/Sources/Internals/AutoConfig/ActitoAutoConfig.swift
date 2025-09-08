@@ -6,7 +6,7 @@ import Foundation
 import UIKit
 
 @MainActor
-public class ActitoAutoConfig: NSObject {
+public final class ActitoAutoConfig: NSObject {
     @objc public static func setup() {
         addApplicationLaunchListener()
     }

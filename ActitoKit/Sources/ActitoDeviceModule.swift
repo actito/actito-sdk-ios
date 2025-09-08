@@ -5,7 +5,9 @@
 import ActitoUtilitiesKit
 import Foundation
 import UIKit
-public class ActitoDeviceModule {
+
+@MainActor
+public final class ActitoDeviceModule {
     public static let shared = ActitoDeviceModule()
 
     internal private(set) var storedDevice: StoredDevice? {
@@ -528,9 +530,9 @@ public class ActitoDeviceModule {
     // TODO: check prerequisites
 
     internal func createDevice() async throws {
-        let backgroundRefreshStatus = await UIApplication.shared.backgroundRefreshStatus
+        let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
 
-        let payload = await ActitoInternals.PushAPI.Payloads.CreateDevice(
+        let payload = ActitoInternals.PushAPI.Payloads.CreateDevice(
             language: getDeviceLanguage(),
             region: getDeviceRegion(),
             platform: "iOS",
@@ -568,9 +570,9 @@ public class ActitoDeviceModule {
             throw ActitoError.deviceUnavailable
         }
 
-        let backgroundRefreshStatus = await UIApplication.shared.backgroundRefreshStatus
+        let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
 
-        let payload = await ActitoInternals.PushAPI.Payloads.UpdateDevice(
+        let payload = ActitoInternals.PushAPI.Payloads.UpdateDevice(
             language: getDeviceLanguage(),
             region: getDeviceRegion(),
             platform: "iOS",
@@ -716,7 +718,7 @@ public class ActitoDeviceModule {
             throw ActitoError.notReady
         }
 
-        let backgroundRefreshStatus = await UIApplication.shared.backgroundRefreshStatus
+        let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
 
         let payload = ActitoInternals.PushAPI.Payloads.Device.UpdateBackgroundAppRefresh(
             language: getDeviceLanguage(),

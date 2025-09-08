@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-public struct ActitoSystemNotification: Codable, Equatable, @unchecked Sendable {
+public struct ActitoSystemNotification: Codable, Equatable, Sendable {
     public let id: String
     public let type: String
     @ActitoExtraEquatable public private(set) var extra: [String: Any]

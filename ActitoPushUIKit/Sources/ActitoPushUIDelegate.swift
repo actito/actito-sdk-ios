@@ -4,6 +4,7 @@
 
 import ActitoKit
 
+@MainActor
 public protocol ActitoPushUIDelegate: AnyObject {
     // MARK: - Notifications
 

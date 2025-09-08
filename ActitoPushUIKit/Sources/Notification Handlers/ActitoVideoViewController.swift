@@ -202,7 +202,7 @@ public class ActitoVideoViewController: ActitoBaseNotificationViewController {
 }
 
 extension ActitoVideoViewController: WKNavigationDelegate, WKUIDelegate {
-    public func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @MainActor @escaping (WKNavigationActionPolicy) -> Void) {
         if
             let url = navigationAction.request.url,
             let scheme = url.scheme,

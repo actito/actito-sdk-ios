@@ -6,6 +6,7 @@ import ActitoUtilitiesKit
 import Foundation
 import UIKit
 
+@MainActor
 internal class ActitoCrashReporterModule {
     internal static let instance = ActitoCrashReporterModule()
 

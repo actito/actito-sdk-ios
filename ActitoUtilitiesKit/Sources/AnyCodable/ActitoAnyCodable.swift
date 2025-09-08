@@ -9,7 +9,7 @@
  - SeeAlso: `ActitoAnyDecodable`
  */
 #if swift(>=5.1)
-@frozen public struct ActitoAnyCodable: Codable {
+@frozen public struct ActitoAnyCodable: Codable, @unchecked Sendable {
     public let value: Any
 
     public init<T>(_ value: T?) {

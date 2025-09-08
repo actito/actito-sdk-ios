@@ -5,7 +5,7 @@
 import ActitoKit
 
 extension ActitoInternals.PushAPI.Responses {
-    internal struct Assets: Decodable {
+    internal struct Assets: Decodable, Sendable {
         internal let assets: [ActitoInternals.PushAPI.Models.Asset]
     }
 }

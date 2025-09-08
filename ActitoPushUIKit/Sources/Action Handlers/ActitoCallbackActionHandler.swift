@@ -20,7 +20,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     private var imageData: Data?
     private var videoData: Data?
 
-    @MainActor private var message: String? {
+    private var message: String? {
         viewController.message
     }
 
@@ -67,16 +67,16 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
 
         // No properties. Just send an empty reply.
         Task {
-            await send()
+            send()
         }
     }
 
     @objc private func onCloseClicked() {
         DispatchQueue.main.async {
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
-
-            self.dismiss()
         }
+
+        self.dismiss()
     }
 
     @objc private func onSendClicked() async {
@@ -87,31 +87,31 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
                 mediaUrl = url
                 mediaMimeType = "image/jpeg"
 
-                await send()
+                send()
             } catch {
-                await MainActor.run {
+                DispatchQueue.main.async {
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
-
-                    dismiss()
                 }
+
+                dismiss()
             }
-        } else  if let videoData = videoData {
+        } else if let videoData = videoData {
             do {
                 let url = try await Actito.shared.uploadNotificationReplyAsset(videoData, contentType: "video/quicktime")
 
                 mediaUrl = url
                 mediaMimeType = "video/quicktime"
 
-                await send()
+                send()
             } catch {
-                await MainActor.run {
+                DispatchQueue.main.async {
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
-
-                    dismiss()
                 }
+
+                dismiss()
             }
-        } else if await message != nil {
-            await send()
+        } else if message != nil {
+            send()
         }
     }
 
@@ -196,10 +196,8 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         sourceViewController.presentOrPush(navigationController)
     }
 
-    private func send() async {
-        await MainActor.run {
-            dismiss()
-        }
+    private func send() {
+        dismiss()
 
         guard let target = action.target, let url = URL(string: target), url.scheme != nil, url.host != nil else {
             DispatchQueue.main.async {
@@ -216,7 +214,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
             "notificationID": notification.id,
         ]
 
-        if let message = await message {
+        if let message = message {
             params["message"] = message
         }
 
@@ -261,7 +259,9 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
                 }
             }
 
-            self.logAction()
+            DispatchQueue.main.async {
+                self.logAction()
+            }
         }
     }
 

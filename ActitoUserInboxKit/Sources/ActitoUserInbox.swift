@@ -6,7 +6,8 @@ import ActitoKit
 import ActitoUtilitiesKit
 import Foundation
 
-public class ActitoUserInbox {
+@MainActor
+public final class ActitoUserInbox {
     public static let shared = ActitoUserInbox()
 
     // MARK: - Public API
@@ -19,7 +20,7 @@ public class ActitoUserInbox {
     ///   - string: The JSON string representing the user inbox response.
     ///
     /// - Returns: A ``ActitoUserInboxResponse`` object parsed from the provided JSON string.
-    public func parseResponse(string: String) throws -> ActitoUserInboxResponse {
+    public nonisolated func parseResponse(string: String) throws -> ActitoUserInboxResponse {
         guard let data = string.data(using: .utf8) else {
             throw ActitoUserInboxError.dataCorrupted
         }
@@ -35,7 +36,7 @@ public class ActitoUserInbox {
     ///   - json: The dictionary representing the user inbox response.
     ///
     /// - Returns: A ``ActitoUserInboxResponse`` object parsed from the provided string.
-    public func parseResponse(json: [String: Any]) throws -> ActitoUserInboxResponse {
+    public nonisolated func parseResponse(json: [String: Any]) throws -> ActitoUserInboxResponse {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try parseResponse(data: data)
     }
@@ -48,7 +49,7 @@ public class ActitoUserInbox {
     ///   - data: The ``Data`` object representing the user inbox response.
     ///
     /// - Returns: A ``ActitoUserInboxResponse`` object parsed from the provided ``Data`` object.
-    public func parseResponse(data: Data) throws -> ActitoUserInboxResponse {
+    public nonisolated func parseResponse(data: Data) throws -> ActitoUserInboxResponse {
         try JSONDecoder.actito.decode(ActitoUserInboxResponse.self, from: data)
     }
 

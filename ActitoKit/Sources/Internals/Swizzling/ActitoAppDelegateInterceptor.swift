@@ -5,6 +5,7 @@
 import UIKit
 
 @objc
+@MainActor
 public protocol ActitoAppDelegateInterceptor {
 //    @objc optional func applicationDidBecomeActive(_ application: UIApplication)
 //

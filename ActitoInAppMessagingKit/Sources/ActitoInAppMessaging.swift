@@ -6,7 +6,8 @@ import ActitoKit
 import Foundation
 import UIKit
 
-public class ActitoInAppMessaging {
+@MainActor
+public final class ActitoInAppMessaging {
     public static let shared = ActitoInAppMessaging()
 
     private var presentedView: ActitoInAppMessagingView?
@@ -22,16 +23,16 @@ public class ActitoInAppMessaging {
     public weak var delegate: ActitoInAppMessagingDelegate?
 
     /// Indicates wheter in-app messages are currently suppressed.
-    /// 
+    ///
     /// If *true*, message dispatching and the presentation of in-app messages are temporarily suspended.
     /// When *false*, in-app messages are allowed to be presented.
     public var hasMessagesSuppressed: Bool = false
 
     /// Sets the message suppression state
-    ///  
+    ///
     /// When messages are suppressed, in-app messages will not be presented to the user.
     /// By default, stopping the in-app message suppression does not re-evaluate the foreground context.
-    ///  
+    ///
     /// To trigger a new context evaluation after stopping in-app message suppression, set the `evaluateContext`
     /// parameter to `true`.
     ///
@@ -68,7 +69,7 @@ public class ActitoInAppMessaging {
             do {
                 let message = try await fetchInAppMessage(for: context)
 
-                await processInAppMessage(message)
+                processInAppMessage(message)
             } catch {
                 if case let ActitoNetworkError.validationError(response, _, _) = error, response.statusCode == 404 {
                     logger.debug("There is no in-app message for '\(context.rawValue)' context to process.")
@@ -85,7 +86,6 @@ public class ActitoInAppMessaging {
         }
     }
 
-    @MainActor
     private func processInAppMessage(_ message: ActitoInAppMessage) {
         logger.info("Processing in-app message '\(message.name)'.")
 
@@ -108,7 +108,6 @@ public class ActitoInAppMessaging {
         present(message)
     }
 
-    @MainActor
     private func present(_ message: ActitoInAppMessage) {
         Task {
             let cache = ActitoImageCache()
@@ -129,7 +128,6 @@ public class ActitoInAppMessaging {
         }
     }
 
-    @MainActor
     private func present(_ message: ActitoInAppMessage, cache: ActitoImageCache) {
         guard presentedView == nil else {
             logger.warning("Cannot display an in-app message while another is being presented.")
@@ -190,7 +188,6 @@ public class ActitoInAppMessaging {
         return response.message.toModel()
     }
 
-    @MainActor
     private func findParentView() -> UIView? {
         let window: UIWindow
 

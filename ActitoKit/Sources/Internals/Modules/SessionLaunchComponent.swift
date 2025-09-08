@@ -4,7 +4,7 @@
 
 import UIKit
 
-internal class SessionLaunchComponent: NSObject, ActitoLaunchComponent {
+internal final class SessionLaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = SessionLaunchComponent()
 
     internal func migrate() {
@@ -37,7 +37,7 @@ internal class SessionLaunchComponent: NSObject, ActitoLaunchComponent {
         if
             Actito.shared.session().sessionId == nil,
             Actito.shared.device().currentDevice != nil,
-            await UIApplication.shared.applicationState == .active
+            UIApplication.shared.applicationState == .active
         {
             // Launch is taking place after the application came to the foreground.
             // Start the application session.
@@ -54,7 +54,7 @@ internal class SessionLaunchComponent: NSObject, ActitoLaunchComponent {
         await Actito.shared.session().stopSession()
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {
+    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
         return nil
     }
 }

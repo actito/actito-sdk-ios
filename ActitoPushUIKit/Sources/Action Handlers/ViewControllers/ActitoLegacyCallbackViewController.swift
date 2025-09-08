@@ -15,7 +15,7 @@ internal class ActitoLegacyCallbackViewController: UIViewController, ActitoCallb
     private var closeButton: UIBarButtonItem!
     private var sendButton: UIBarButtonItem!
 
-    @MainActor internal var message: String? {
+    internal var message: String? {
         return messageField.text ?? messageView.text
     }
 

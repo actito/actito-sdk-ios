@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-public struct ActitoNotification: Codable, Equatable, @unchecked Sendable {
+public struct ActitoNotification: Codable, Equatable, Sendable {
     public let partial: Bool
     public let id: String
     public let type: String
@@ -49,7 +49,7 @@ public struct ActitoNotification: Codable, Equatable, @unchecked Sendable {
         case store = "re.notifica.notification.Store"
     }
 
-    public struct Content: Codable, Equatable, @unchecked Sendable {
+    public struct Content: Codable, Equatable, Sendable {
         public let type: String
         @ActitoExtraEquatable public private(set) var data: Any
 

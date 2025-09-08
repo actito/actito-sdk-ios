@@ -5,7 +5,7 @@
 import Foundation
 
 extension ActitoInternals.PushAPI.Responses {
-    internal struct Application: Decodable {
+    internal struct Application: Decodable, Sendable {
         internal let application: ActitoInternals.PushAPI.Models.Application
     }
 
@@ -33,7 +33,7 @@ extension ActitoInternals.PushAPI.Responses {
         internal let link: ActitoDynamicLink
     }
 
-    internal struct Notification: Decodable {
+    internal struct Notification: Decodable, Sendable {
         internal let notification: ActitoInternals.PushAPI.Models.Notification
     }
 

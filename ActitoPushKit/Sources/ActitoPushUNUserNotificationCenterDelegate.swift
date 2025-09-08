@@ -5,6 +5,7 @@
 import Foundation
 import UserNotifications
 
+@MainActor
 public protocol ActitoPushUNUserNotificationCenterDelegate {
     /// Called when a notification prompts the app to open its settings screen.
     ///

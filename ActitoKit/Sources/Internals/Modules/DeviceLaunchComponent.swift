@@ -4,7 +4,7 @@
 
 import UIKit
 
-internal class DeviceLaunchComponent: NSObject, ActitoLaunchComponent {
+internal final class DeviceLaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = DeviceLaunchComponent()
 
     internal func migrate() {
@@ -110,7 +110,7 @@ internal class DeviceLaunchComponent: NSObject, ActitoLaunchComponent {
         // no-op
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {
+    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
         return nil
     }
 }

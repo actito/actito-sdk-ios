@@ -6,11 +6,11 @@ import Foundation
 
 extension URLSession {
     /// Default number of retries to attempt on each `URLRequest` instance. To customize, supply desired value to `perform()`
-    public static var maximumNumberOfRetries: Int = 5
+    public static let maximumNumberOfRetries: Int = 5
 
     /// Output types
     public typealias DataResult = Result<(response: HTTPURLResponse, data: Data?), ActitoNetworkError>
-    public typealias Callback = (DataResult) -> Void
+    public typealias Callback = @Sendable (DataResult) -> Void
 
     /// Executes given URLRequest instance, possibly retrying the said number of times. Through `callback` returns either `Data` from the response or `NetworkError` instance.
     /// If any authentication needs to be done, it's handled internally by this methods and its derivatives.

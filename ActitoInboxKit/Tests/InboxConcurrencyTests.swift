@@ -6,21 +6,20 @@ import Testing
 import ActitoKit
 @testable import ActitoInboxKit
 
+@MainActor
 internal struct InboxConcurrencyTests {
 
     @Test
     internal func testMassiveRefreshOperations() async throws {
         try await setupActito()
 
-        await withTaskGroup(of: Void.self) { group in
+        await withThrowingTaskGroup(of: Void.self) { group in
             for _ in 0...10 {
-                group.addTask {
-                    Actito.shared.inbox().refresh()
+                group.addTask { @MainActor in
+                    try await Actito.shared.inbox().refresh()
                 }
             }
         }
-
-        try await Task.sleep(nanoseconds: 5_000_000_000)
     }
 
     @Test
@@ -42,7 +41,7 @@ internal struct InboxConcurrencyTests {
     }
 
     private func setupActito() async throws {
-        await Actito.shared.configure(
+        Actito.shared.configure(
             servicesInfo: ActitoServicesInfo(
                 applicationKey: "",
                 applicationSecret: ""

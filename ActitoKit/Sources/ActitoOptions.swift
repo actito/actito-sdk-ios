@@ -235,6 +235,7 @@ extension ActitoOptions.Theme {
 
 // Load the appropriate theme for a given view controller
 extension ActitoOptions {
+    @MainActor
     public func theme(for controller: UIViewController) -> ActitoOptions.Theme? {
         var theme = themes?.light
 

@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoUtilitiesKit
 
 extension ActitoInternals.PushAPI.Models {
-    internal struct Asset: Decodable, Equatable {
+    internal struct Asset: Decodable, Equatable, Sendable {
         internal let _id: String
         internal let key: String?
         internal let title: String
@@ -26,9 +26,9 @@ extension ActitoInternals.PushAPI.Models {
             internal let contentLength: Int
         }
 
-        internal func toModel() -> ActitoAsset {
+        internal func toModel(servicesInfo: ActitoServicesInfo?) -> ActitoAsset {
             let url: String?
-            if let key = key, let host = Actito.shared.servicesInfo?.hosts.restApi {
+            if let key = key, let host = servicesInfo?.hosts.restApi {
                 url = "https://\(host)/asset/file/\(key)"
             } else {
                 url = nil

@@ -6,6 +6,7 @@ import ActitoKit
 import Foundation
 import UIKit
 
+@MainActor
 public protocol ActitoInAppMessagingView: UIView {
     // MARK: - Properties
 
@@ -96,7 +97,7 @@ extension ActitoInAppMessagingView {
             return
         }
 
-        Task { @MainActor in
+        Task {
             do {
                 try await Actito.shared.events().logInAppMessageActionClicked(message, action: actionType)
 
@@ -122,15 +123,15 @@ extension ActitoInAppMessagingView {
                     }
                 }
 
-                self.dismiss()
+                dismiss()
             } catch {
                 logger.error("Failed to log in-app message action.", error: error)
-
             }
         }
     }
 }
 
+@MainActor
 public protocol ActitoInAppMessagingViewDelegate: AnyObject {
     func onViewDismissed()
 }

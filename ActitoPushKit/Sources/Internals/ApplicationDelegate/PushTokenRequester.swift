@@ -6,7 +6,8 @@ import ActitoKit
 import Foundation
 import UIKit
 
-internal class PushTokenRequester {
+@MainActor
+internal final class PushTokenRequester {
 
     private var task: Task<String, Error>?
     private var continuation: CheckedContinuation<String, Error>?
@@ -60,10 +61,8 @@ internal class PushTokenRequester {
             try await withCheckedThrowingContinuation { continuation in
                 self.continuation = continuation
 
-                DispatchQueue.main.async {
-                    logger.debug("Registering for remote notifications with the operative system.")
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
+                logger.debug("Registering for remote notifications with the operative system.")
+                UIApplication.shared.registerForRemoteNotifications()
             }
         }
 

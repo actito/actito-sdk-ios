@@ -4,7 +4,8 @@
 
 import ActitoKit
 
-public class ActitoAssets {
+@MainActor
+public final class ActitoAssets {
     public static let shared = ActitoAssets()
 
     // MARK: - Public API
@@ -44,7 +45,7 @@ public class ActitoAssets {
             .query(name: "userID", value: Actito.shared.device().currentDevice?.userId)
             .responseDecodable(ActitoInternals.PushAPI.Responses.Assets.self)
 
-        let assets = response.assets.map { $0.toModel() }
+        let assets = response.assets.map { $0.toModel(servicesInfo: Actito.shared.servicesInfo) }
 
         return assets
     }

@@ -5,13 +5,12 @@
 import ActitoUtilitiesKit
 import Foundation
 
-internal var logger: ActitoLogger = {
+internal let logger: ActitoLogger = {
     var logger = ActitoLogger(
         subsystem: "com.actito.loyalty",
-        category: "ActitoLoyalty"
+        category: "ActitoLoyalty",
+        labelIgnoreList: ["ActitoLoyalty"]
     )
-
-    logger.labelIgnoreList.append("ActitoLoyalty")
 
     return logger
 }()

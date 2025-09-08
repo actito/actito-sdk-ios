@@ -6,15 +6,22 @@
 @testable import ActitoKit
 import Testing
 
+private let TEST_REST_API_HOST = "test.actito.com"
+private let TEST_SHORT_LINKS_HOST = "actito.com"
+private let TEST_APP_LINKS_HOST = "applinks.actito.com"
+
+@MainActor
 internal struct AssetsPushAPIModelsTest {
     @Test
     internal func testAssetToModel() {
+        configureActito()
+
         let expectedAsset = ActitoAsset(
             id: "testId",
             title: "testTitle",
             description: "testDescription",
             key: "testKey",
-            url: nil,
+            url: "https://\(TEST_REST_API_HOST)/asset/file/testKey",
             button: ActitoAsset.Button(
                 label: "testLabel",
                 action: "testAction"
@@ -42,7 +49,7 @@ internal struct AssetsPushAPIModelsTest {
                 contentType: "testContentType",
                 contentLength: 1
             )
-        ).toModel()
+        ).toModel(servicesInfo: Actito.shared.servicesInfo)
 
         #expect(expectedAsset == asset)
     }
@@ -68,8 +75,26 @@ internal struct AssetsPushAPIModelsTest {
             extra: [:],
             button: nil,
             metaData: nil
-        ).toModel()
+        ).toModel(servicesInfo: nil)
 
         #expect(expectedAsset == asset)
+    }
+
+    private func configureActito() {
+        Actito.shared.configure(
+            servicesInfo: ActitoServicesInfo(
+                applicationKey: "",
+                applicationSecret: "",
+                hosts: ActitoServicesInfo.Hosts(
+                    restApi: TEST_REST_API_HOST,
+                    appLinks: TEST_APP_LINKS_HOST,
+                    shortLinks: TEST_SHORT_LINKS_HOST
+                )
+            ),
+
+            options: ActitoOptions(
+                debugLoggingEnabled: true
+            )
+        )
     }
 }

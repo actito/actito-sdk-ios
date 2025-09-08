@@ -5,7 +5,7 @@
 import ActitoUtilitiesKit
 import UIKit
 
-public struct ActitoRequest {
+public struct ActitoRequest: Sendable {
     private static let session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.urlCredentialStorage = nil
@@ -27,7 +27,7 @@ public struct ActitoRequest {
         }
     }
 
-    public func responseDecodable<T: Decodable>(_ type: T.Type, _ completion: @escaping (Result<T, Error>) -> Void) {
+    public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type, _ completion: @Sendable @escaping (Result<T, Error>) -> Void) {
         response { result in
             switch result {
             case let .success((response, data)):
@@ -58,6 +58,7 @@ public struct ActitoRequest {
         completion(.success((response, data)))
     }
 
+    @MainActor
     public class Builder {
         private var baseUrl: String?
         private var url: String?
@@ -200,7 +201,7 @@ public struct ActitoRequest {
             request.setValue(language, forHTTPHeaderField: "Accept-Language")
             request.setValue(UIDevice.current.userAgent(sdkVersion: Actito.SDK_VERSION), forHTTPHeaderField: "User-Agent")
             request.setValue(Actito.SDK_VERSION, forHTTPHeaderField: "X-Notificare-SDK-Version")
-            request.setValue(Bundle.main.applicationVersion, forHTTPHeaderField: "X-J-App-Version")
+            request.setValue(Bundle.main.applicationVersion, forHTTPHeaderField: "X-Notificare-App-Version")
 
             // Add application authentication when available
             if let authentication = authentication {
@@ -213,7 +214,7 @@ public struct ActitoRequest {
             )
         }
 
-        public func response(_ completion: @escaping (Result<(response: HTTPURLResponse, data: Data?), Error>) -> Void) {
+        public func response(_ completion: @Sendable @escaping (Result<(response: HTTPURLResponse, data: Data?), Error>) -> Void) {
             do {
                 try build().response(completion)
             } catch {
@@ -230,7 +231,7 @@ public struct ActitoRequest {
             }
         }
 
-        public func responseDecodable<T: Decodable>(_ type: T.Type, _ completion: @escaping (Result<T, Error>) -> Void) {
+        public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type, _ completion: @Sendable @escaping (Result<T, Error>) -> Void) {
             do {
                 try build().responseDecodable(type, completion)
             } catch {
@@ -238,7 +239,7 @@ public struct ActitoRequest {
             }
         }
 
-        public func responseDecodable<T: Decodable>(_ type: T.Type) async throws -> T {
+        public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type) async throws -> T {
             try await withCheckedThrowingContinuation { continuation in
                 responseDecodable(type) { result in
                     continuation.resume(with: result)

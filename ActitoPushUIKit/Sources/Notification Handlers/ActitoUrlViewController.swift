@@ -134,7 +134,7 @@ extension ActitoUrlViewController: WKScriptMessageHandler {
 }
 
 extension ActitoUrlViewController: WKNavigationDelegate, WKUIDelegate {
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @MainActor @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url else {
             decisionHandler(.cancel)
             return
@@ -203,7 +203,7 @@ extension ActitoUrlViewController: WKNavigationDelegate, WKUIDelegate {
         progressView.removeFromSuperview()
     }
 
-    public func webView(_: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @escaping () -> Void) {
+    public func webView(_: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @MainActor @escaping () -> Void) {
         let alert = UIAlertController(title: Bundle.main.applicationName,
                                       message: message,
                                       preferredStyle: .alert)
@@ -217,7 +217,7 @@ extension ActitoUrlViewController: WKNavigationDelegate, WKUIDelegate {
         present(alert, animated: true, completion: nil)
     }
 
-    public func webView(_: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+    public func webView(_: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @MainActor @escaping (Bool) -> Void) {
         let alert = UIAlertController(title: Bundle.main.applicationName,
                                       message: message,
                                       preferredStyle: .alert)
@@ -237,7 +237,7 @@ extension ActitoUrlViewController: WKNavigationDelegate, WKUIDelegate {
         present(alert, animated: true, completion: nil)
     }
 
-    public func webView(_: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame _: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+    public func webView(_: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame _: WKFrameInfo, completionHandler: @MainActor @escaping (String?) -> Void) {
         let alert = UIAlertController(title: Bundle.main.applicationName,
                                       message: prompt,
                                       preferredStyle: .alert)

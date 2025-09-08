@@ -5,7 +5,7 @@
 import ActitoKit
 import UIKit
 
-internal class LaunchComponent: NSObject, ActitoLaunchComponent {
+internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = LaunchComponent()
 
     internal func migrate() {
@@ -69,7 +69,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
 
     internal func unlaunch() async throws {
         // Unregister from APNS
-        await UIApplication.shared.unregisterForRemoteNotifications()
+        UIApplication.shared.unregisterForRemoteNotifications()
         logger.info("Unregistered from APNS.")
 
         // Reset local storage
@@ -84,7 +84,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
         Actito.shared.push().notifyAllowedUIUpdated(false)
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {
+    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
         return nil
     }
 }

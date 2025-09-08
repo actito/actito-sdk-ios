@@ -35,9 +35,7 @@ internal class ActitoRateController: ActitoNotificationPresenter {
                     let appStoreId = Actito.shared.application?.appStoreId,
                     let url = URL(string: "https://itunes.apple.com/app/id\(appStoreId)?action=write-review")
                 {
-                    DispatchQueue.main.async {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 } else {
                     logger.warning("Cannot open the App Store.")
                 }

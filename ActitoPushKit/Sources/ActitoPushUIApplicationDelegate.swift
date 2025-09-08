@@ -5,6 +5,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 public protocol ActitoPushUIApplicationDelegate {
     /// Called when the app successfully registers with Apple Push Notification Service (APNS).
     ///

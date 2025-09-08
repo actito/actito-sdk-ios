@@ -7,7 +7,7 @@ import ActitoUtilitiesKit
 import Foundation
 
 extension ActitoInternals.PushAPI.Models {
-    internal struct Pass: Decodable {
+    internal struct Pass: Decodable, Sendable {
         internal let _id: String
         internal let version: Int
         internal let passbook: String?

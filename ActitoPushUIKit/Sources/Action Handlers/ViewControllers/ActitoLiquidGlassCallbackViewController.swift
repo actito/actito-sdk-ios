@@ -16,7 +16,7 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
     private var closeButton: UIBarButtonItem!
     private var sendButton: UIButton!
 
-    @MainActor internal var message: String? {
+    internal var message: String? {
         return messageField.text ?? messageView.text
     }
 

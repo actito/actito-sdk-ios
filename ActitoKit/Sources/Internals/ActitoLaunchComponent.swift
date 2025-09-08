@@ -2,6 +2,7 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+@MainActor
 public protocol ActitoLaunchComponent {
     associatedtype Instance: ActitoLaunchComponent
 
@@ -19,5 +20,5 @@ public protocol ActitoLaunchComponent {
 
     func unlaunch() async throws
 
-    func executeCommand(_ command: String, data: Any?) async throws -> Any?
+    func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)?
 }

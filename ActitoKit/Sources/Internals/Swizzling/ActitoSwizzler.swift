@@ -12,15 +12,19 @@ private typealias ApplicationDidReceiveRemoteNotification = @convention(c) (Any,
 private typealias ApplicationOpenURL = @convention(c) (Any, Selector, UIApplication, URL, [UIApplication.OpenURLOptionsKey: Any]) -> Bool
 private typealias ApplicationContinueUserActivity = @convention(c) (Any, Selector, UIApplication, NSUserActivity, ([UIUserActivityRestoring]?) -> Void) -> Bool
 
+@MainActor
 private enum AssociatedObjectKeys {
     static var originalClass = "Actito_OriginalClass"
     static var originalImplementations = "Actito_OriginalImplementations"
     static var interceptors = "Actito_Interceptors"
 }
-
+@MainActor
 private var gOriginalAppDelegate: UIApplicationDelegate?
+
+@MainActor
 private var gAppDelegateSubClass: AnyClass?
 
+@MainActor
 public class ActitoSwizzler: NSProxy {
     private static var interceptors: [String: ActitoAppDelegateInterceptor] = [:]
 

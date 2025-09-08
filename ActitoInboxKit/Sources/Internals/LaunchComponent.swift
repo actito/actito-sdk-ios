@@ -5,7 +5,7 @@
 import ActitoKit
 import UIKit
 
-internal class LaunchComponent: NSObject, ActitoLaunchComponent {
+internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal static let instance = LaunchComponent()
 
     internal func migrate() {
@@ -15,10 +15,10 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
     internal func configure() {
         logger.hasDebugLoggingEnabled = Actito.shared.options?.debugLoggingEnabled ?? false
 
-        Actito.shared.inbox().database.configure()
+        Actito.shared.inbox().database.configure(overrideDatabaseFileProtection: Actito.shared.options?.overrideDatabaseFileProtection ?? false)
 
         Task {
-            await Actito.shared.inbox().loadCache()
+            await Actito.shared.inbox().loadCachedItems()
         }
 
         // Listen to inbox addition requests.
@@ -85,7 +85,7 @@ internal class LaunchComponent: NSObject, ActitoLaunchComponent {
         _ = try? await Actito.shared.inbox().refreshBadge()
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> Any? {
+    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
         return nil
     }
 }
