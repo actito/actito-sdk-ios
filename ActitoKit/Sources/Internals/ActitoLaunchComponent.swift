@@ -20,5 +20,5 @@ public protocol ActitoLaunchComponent {
 
     func unlaunch() async throws
 
-    func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)?
+    func executeCommand(_ command: String, data: Any?) throws -> (any Sendable)?
 }

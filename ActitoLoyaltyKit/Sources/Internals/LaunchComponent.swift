@@ -32,7 +32,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         // no-op
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
+    internal func executeCommand(_ command: String, data: Any?) throws -> (any Sendable)? {
         switch command {
         case "canPresentPasses":
             return Actito.shared.loyalty().canPresentPasses
