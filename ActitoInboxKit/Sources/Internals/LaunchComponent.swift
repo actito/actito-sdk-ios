@@ -85,7 +85,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         _ = try? await Actito.shared.inbox().refreshBadge()
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
+    internal func executeCommand(_ command: String, data: Any?) throws -> (any Sendable)? {
         return nil
     }
 }

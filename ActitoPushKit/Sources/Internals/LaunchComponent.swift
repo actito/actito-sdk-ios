@@ -84,7 +84,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         Actito.shared.push().notifyAllowedUIUpdated(false)
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
+    internal func executeCommand(_ command: String, data: Any?) throws -> (any Sendable)? {
         return nil
     }
 }

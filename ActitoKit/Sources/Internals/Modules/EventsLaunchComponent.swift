@@ -45,7 +45,7 @@ internal final class EventsLaunchComponent: NSObject, ActitoLaunchComponent {
         // no-op
     }
 
-    internal func executeCommand(_ command: String, data: Any?) async throws -> (any Sendable)? {
+    internal func executeCommand(_ command: String, data: Any?) throws -> (any Sendable)? {
         return nil
     }
 }

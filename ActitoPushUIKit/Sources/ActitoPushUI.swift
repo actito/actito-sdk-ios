@@ -106,35 +106,30 @@ public final class ActitoPushUI {
             latestPresentableNotificationHandler = notificationController
 
         case .passbook:
-            Task {
-                do {
-                    guard
-                        ActitoInternals.Module.loyalty.isAvailable,
-                        let module = ActitoInternals.Module.loyalty.klass?.instance,
-                        let canPresent = try await module.executeCommand("canPresentPasses", data: nil) as? Bool,
-                        canPresent
-                    else {
-                        await MainActor.run {
-                            let notificationController = ActitoWebPassViewController()
-                            notificationController.notification = notification
-
-                            latestPresentableNotificationHandler = notificationController
-                        }
-
-                        return
-                    }
-
+            do {
+                if
+                    ActitoInternals.Module.loyalty.isAvailable,
+                    let module = ActitoInternals.Module.loyalty.klass?.instance,
+                    let canPresent = try module.executeCommand("canPresentPasses", data: nil) as? Bool,
+                    canPresent
+                {
                     let data: [String: Any] = [
                         "controller": controller,
                         "notification": notification,
                     ]
 
-                    _ = try await module.executeCommand("present", data: data)
-                } catch {
-                    logger.error("Error executing loyalty commands", error: error)
+                    _ = try module.executeCommand("present", data: data)
+
                     return
                 }
+            } catch {
+                logger.error("Error executing loyalty commands", error: error)
             }
+
+            let notificationController = ActitoWebPassViewController()
+            notificationController.notification = notification
+
+            latestPresentableNotificationHandler = notificationController
 
         case .store:
             latestPresentableNotificationHandler = ActitoStoreController(notification: notification)
