@@ -9,7 +9,7 @@ internal typealias InboxItemEntityCoreDataPropertiesSet = NSSet
 
 extension InboxItemEntity {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<InboxItemEntity> {
+    @nonobjc internal class func fetchRequest() -> NSFetchRequest<InboxItemEntity> {
         return NSFetchRequest<InboxItemEntity>(entityName: "InboxItemEntity")
     }
 
