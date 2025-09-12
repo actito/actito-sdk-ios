@@ -586,9 +586,13 @@ public final class Actito {
             .post("/upload/reply", body: data, contentType: contentType)
             .responseDecodable(ActitoInternals.PushAPI.Responses.UploadAsset.self)
 
-        let host = Actito.shared.servicesInfo!.hosts.restApi
+        var host = Actito.shared.servicesInfo!.hosts.restApi
 
-        return "https://\(host)/upload\(response.filename)"
+        if !host.starts(with: "http://"), !host.starts(with: "https://") {
+            host = "https://\(host)"
+        }
+
+        return "\(host)/upload\(response.filename)"
     }
 
     /// Removes a notification from the Notification Center.
@@ -732,7 +736,13 @@ public final class Actito {
 
     private func configureReachability(servicesInfo: ActitoServicesInfo) {
         do {
-            let url = URL(string: "https://\(servicesInfo.hosts.restApi)")!
+            var host = servicesInfo.hosts.restApi
+
+            if !host.starts(with: "http://"), !host.starts(with: "https://") {
+                host = "https://\(host)"
+            }
+
+            let url = URL(string: host)!
             reachability = try ActitoReachability(hostname: url.host!)
 
             reachability?.whenReachable = { _ in

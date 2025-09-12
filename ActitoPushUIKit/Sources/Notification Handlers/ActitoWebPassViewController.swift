@@ -98,7 +98,7 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
     private func setupContent() {
         guard let content = notification.content.first,
               let passUrlStr = content.data as? String,
-              let host = Actito.shared.servicesInfo?.hosts.restApi
+              var host = Actito.shared.servicesInfo?.hosts.restApi
         else {
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
@@ -107,10 +107,14 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
             return
         }
 
+        if !host.starts(with: "http://"), !host.starts(with: "https://") {
+            host = "https://\(host)"
+        }
+
         let components = passUrlStr.components(separatedBy: "/")
         let id = components[components.count - 1]
 
-        guard let url = URL(string: "https://\(host)/pass/web/\(id)?showWebVersion=1") else {
+        guard let url = URL(string: "\(host)/pass/web/\(id)?showWebVersion=1") else {
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }

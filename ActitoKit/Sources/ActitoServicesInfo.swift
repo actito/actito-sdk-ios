@@ -8,7 +8,7 @@ private let DEFAULT_REST_API_HOST = "push.notifica.re"
 private let DEFAULT_SHORT_LINKS_HOST = "ntc.re"
 private let DEFAULT_APP_LINKS_HOST = "applinks.notifica.re"
 
-private let HOST_REGEX = "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])$".toRegex()
+private let HOST_REGEX = "^(https?://)?(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])(:[0-9]{1,5})?$".toRegex()
 
 public struct ActitoServicesInfo: Decodable, Sendable {
     internal static let fileName = "NotificareServices"
