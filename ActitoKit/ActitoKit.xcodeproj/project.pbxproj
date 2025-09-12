@@ -15,6 +15,7 @@
 		1A3274162C5A1B66002B78BA /* ActitoApplicationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */; };
 		1A3274182C5A8F13002B78BA /* PushAPIModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */; };
 		1A52DE6E2CA44B3500B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE6D2CA44B3500B5F56C /* Logger.swift */; };
+		1AB27BAF2E740609004F93B9 /* ActitoServicesInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */; };
 		1AD52A222DE75AF7006C7D88 /* LocalEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */; };
 		1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */; };
 		1AD52A262DE75BAC006C7D88 /* CreateEventPayload+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */; };
@@ -93,6 +94,7 @@
 		1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoApplicationTest.swift; sourceTree = "<group>"; };
 		1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAPIModelsTest.swift; sourceTree = "<group>"; };
 		1A52DE6D2CA44B3500B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoServicesInfoTest.swift; sourceTree = "<group>"; };
 		1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEvent.swift; sourceTree = "<group>"; };
 		1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalEvent+CoreData.swift"; sourceTree = "<group>"; };
 		1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateEventPayload+Local.swift"; sourceTree = "<group>"; };
@@ -272,12 +274,13 @@
 			isa = PBXGroup;
 			children = (
 				F258DD5C24BC4DBC006F9ABD /* Info.plist */,
-				1A32740B2C5A0FBF002B78BA /* ActitoNotificationTest.swift */,
-				1A32740D2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift */,
-				1A32740F2C5A158D002B78BA /* ActitoTimeTest.swift */,
-				1A3274112C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift */,
-				1A3274132C5A18C8002B78BA /* ActitoDeviceTest.swift */,
 				1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */,
+				1A3274132C5A18C8002B78BA /* ActitoDeviceTest.swift */,
+				1A3274112C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift */,
+				1A32740D2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift */,
+				1A32740B2C5A0FBF002B78BA /* ActitoNotificationTest.swift */,
+				1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */,
+				1A32740F2C5A158D002B78BA /* ActitoTimeTest.swift */,
 				1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */,
 			);
 			path = Tests;
@@ -592,6 +595,7 @@
 				1A3274142C5A18C8002B78BA /* ActitoDeviceTest.swift in Sources */,
 				1A3274122C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift in Sources */,
 				1A3274102C5A158D002B78BA /* ActitoTimeTest.swift in Sources */,
+				1AB27BAF2E740609004F93B9 /* ActitoServicesInfoTest.swift in Sources */,
 				1A32740C2C5A0FBF002B78BA /* ActitoNotificationTest.swift in Sources */,
 				1A3274182C5A8F13002B78BA /* PushAPIModelsTest.swift in Sources */,
 				1A3274162C5A1B66002B78BA /* ActitoApplicationTest.swift in Sources */,
