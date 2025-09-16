@@ -99,6 +99,17 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
             throw ActitoError.notConfigured
         }
 
+        if
+            Actito.shared.application?.enforceSizeLimit == true,
+            let data = payload.data
+        {
+            let serializedData = try JSONEncoder.actito.encode(ActitoAnyCodable(data))
+
+            if serializedData.count > 4 * 1024 {
+                throw ActitoNetworkError.largeEventDataError(eventType: payload.type, size: serializedData.count)
+            }
+        }
+
         do {
             try await ActitoRequest.Builder()
                 .post("/event", body: payload)

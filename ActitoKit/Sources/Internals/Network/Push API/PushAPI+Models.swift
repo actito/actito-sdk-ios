@@ -16,6 +16,7 @@ extension ActitoInternals.PushAPI.Models {
         public let regionConfig: ActitoApplication.RegionConfig?
         public let userDataFields: [ActitoApplication.UserDataField]
         public let actionCategories: [ActionCategory]
+        public let enforceSizeLimit: Bool
 
         public struct ActionCategory: Decodable, Equatable, Sendable {
             public let name: String
@@ -41,7 +42,8 @@ extension ActitoInternals.PushAPI.Models {
                         type: category.type,
                         actions: category.actions.compactMap { $0.toModel() }
                     )
-                }
+                },
+                enforceSizeLimit: enforceSizeLimit,
             )
         }
     }
