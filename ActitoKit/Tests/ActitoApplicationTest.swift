@@ -48,7 +48,8 @@ internal struct ActitoApplicationTest {
                         ),
                     ]
                 ),
-            ]
+            ],
+            enforceSizeLimit: true
         )
 
         do {
@@ -84,7 +85,8 @@ internal struct ActitoApplicationTest {
                     type: "testType",
                     actions: []
                 ),
-            ]
+            ],
+            enforceSizeLimit: true
         )
 
         do {
