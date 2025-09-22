@@ -48,7 +48,8 @@ internal struct PushAPIModelsTest {
                         ),
                     ]
                 ),
-            ]
+            ],
+            enforceSizeLimit: true
         )
 
         let application = ActitoInternals.PushAPI.Models.Application(
@@ -91,7 +92,8 @@ internal struct PushAPIModelsTest {
                         ),
                     ]
                 ),
-            ]
+            ],
+            enforceSizeLimit: true
         ).toModel()
 
         #expect(expectedApplication == application)
@@ -108,7 +110,8 @@ internal struct PushAPIModelsTest {
             inboxConfig: nil,
             regionConfig: nil,
             userDataFields: [],
-            actionCategories: []
+            actionCategories: [],
+            enforceSizeLimit: true
         )
 
         let application = ActitoInternals.PushAPI.Models.Application(
@@ -120,7 +123,8 @@ internal struct PushAPIModelsTest {
             inboxConfig: nil,
             regionConfig: nil,
             userDataFields: [],
-            actionCategories: []
+            actionCategories: [],
+            enforceSizeLimit: true
         ).toModel()
 
         #expect(expectedApplication == application)
