@@ -7,135 +7,99 @@ import Foundation
 extension URLSession {
     /// Default number of retries to attempt on each `URLRequest` instance. To customize, supply desired value to `perform()`
     public static let maximumNumberOfRetries: Int = 5
+    public static let initialDelay: UInt64 = 500_000_000 // 0.5s in nanoseconds
 
     /// Output types
-    public typealias DataResult = Result<(response: HTTPURLResponse, data: Data?), ActitoNetworkError>
-    public typealias Callback = @Sendable (DataResult) -> Void
+    public typealias DataResult = (response: HTTPURLResponse, data: Data?)
 
-    /// Executes given URLRequest instance, possibly retrying the said number of times. Through `callback` returns either `Data` from the response or `NetworkError` instance.
+    /// Executes a given `URLRequest` instance, possibly retrying the request up to `maxRetries`.
+    /// Returns either the response data or throws an `ActitoNetworkError`.
     /// If any authentication needs to be done, it's handled internally by this methods and its derivatives.
     /// - Parameters:
     ///   - urlRequest: URLRequest instance to execute.
     ///   - maxRetries: Number of automatic retries (default is 5).
-    ///   - callback: Closure to return the result of the request's execution.
-    public func perform(_ urlRequest: URLRequest,
-                        maxRetries: Int = URLSession.maximumNumberOfRetries,
-                        allowEmptyData: Bool = false,
-                        callback: @escaping Callback)
-    {
+    ///   - allowEmptyData: Allow the return of  empty `Data` or return nil instead.
+    public func perform(
+        _ urlRequest: URLRequest,
+        maxRetries: Int = URLSession.maximumNumberOfRetries,
+        allowEmptyData: Bool = false,
+    ) async throws -> DataResult {
         if maxRetries <= 0 {
             fatalError("maxRetries must be 1 or larger.")
         }
 
-        let networkRequest = NetworkRequest(urlRequest, 0, maxRetries, allowEmptyData, callback)
-        authenticate(networkRequest)
+        let networkRequest = NetworkRequest(urlRequest, maxRetries, allowEmptyData)
+
+        do {
+            return try await authenticate(networkRequest)
+        } catch let error as ActitoNetworkError where error.shouldRetry {
+            return try await retryPerform(networkRequest)
+        } catch {
+            throw error
+        }
+    }
+
+    private func retryPerform(_ networkRequest: NetworkRequest) async throws -> DataResult {
+        var attempt = 0
+        let maxRetries = networkRequest.maxRetries
+        var delay = URLSession.initialDelay
+
+        while attempt < maxRetries {
+            do {
+                return try await authenticate(networkRequest)
+            } catch let error as ActitoNetworkError where error.shouldRetry {
+                attempt += 1
+
+                guard attempt < maxRetries else { break }
+
+                try await Task.sleep(nanoseconds: delay)
+                delay *= 2
+            } catch {
+                throw error
+            }
+        }
+
+        throw ActitoNetworkError.inaccessible
     }
 }
 
 extension URLSession {
-    /// Helper type which groups `URLRequest` (input), `Callback` from the caller (output)
-    /// along with helpful processing properties, like number of retries.
+    /// Helper type which groups `URLRequest` (input) along with helpful processing properties, like number of retries.
     private typealias NetworkRequest = (
         // swiftlint:disable:previous large_tuple
         urlRequest: URLRequest,
-        currentRetries: Int,
         maxRetries: Int,
         allowEmptyData: Bool,
-        callback: Callback
     )
 
     /// Extra-step where `URLRequest`'s authorization should be handled, before actually performing the URLRequest in `execute()`
-    private func authenticate(_ networkRequest: NetworkRequest) {
-        let currentRetries = networkRequest.currentRetries
-        let maxRetries = networkRequest.maxRetries
-        let callback = networkRequest.callback
-
-        if currentRetries >= maxRetries {
-            // Too many unsuccessful attempts
-            DispatchQueue.main.async {
-                callback(.failure(.inaccessible))
-            }
-            return
-        }
-
+    private func authenticate(_ networkRequest: NetworkRequest) async throws -> DataResult {
         //    NOTE: this is the place to handle OAuth2
         //    or some other form of URLRequest‘s authorization
         //    now execute the request
-        execute(networkRequest)
+        return try await execute(networkRequest)
     }
 
-    ///    Creates the instance of `URLSessionDataTask`, performs it then lightly processes the response before calling `validate`.
-    private func execute(_ networkRequest: NetworkRequest) {
-        let urlRequest = networkRequest.urlRequest
+    /// Creates the instance of `URLSessionDataTask` and executes it, validating the result.
+    private func execute(_ networkRequest: NetworkRequest) async throws -> DataResult {
+        do {
+            let (data, response) = try await data(for: networkRequest.urlRequest)
 
-        let task = dataTask(with: urlRequest) { [unowned self] data, urlResponse, error in
-            let dataResult = process(data, urlResponse, error, for: networkRequest)
-            validate(dataResult, for: networkRequest)
-        }
+            guard let httpURLResponse = response as? HTTPURLResponse else {
+                throw ActitoNetworkError.invalidResponseType(response)
+            }
 
-        task.resume()
-    }
+            if data.isEmpty && !networkRequest.allowEmptyData {
+                return (httpURLResponse, nil)
+            }
 
-    ///    Process results of `URLSessionDataTask` and converts it into `DataResult` instance
-    private func process(_ data: Data?, _ urlResponse: URLResponse?, _ error: Error?, for _: NetworkRequest) -> DataResult {
-        if let urlError = error as? URLError {
-            return .failure(ActitoNetworkError.urlError(urlError))
-        } else if let otherError = error {
-            return .failure(ActitoNetworkError.genericError(otherError))
-        }
-
-        guard let httpURLResponse = urlResponse as? HTTPURLResponse else {
-            if let urlResponse = urlResponse {
-                return .failure(ActitoNetworkError.invalidResponseType(urlResponse))
+            return (httpURLResponse, data)
+        } catch {
+            if let urlError = error as? URLError {
+                throw ActitoNetworkError.urlError(urlError)
             } else {
-                return .failure(ActitoNetworkError.noResponse)
+                throw ActitoNetworkError.genericError(error)
             }
-        }
-
-        //        if httpURLResponse.statusCode >= 400 {
-        //            return .failure(ActitoNetworkError.endpointError(httpURLResponse, data))
-        //        }
-        //
-        //        guard let data = data, !data.isEmpty else {
-        //            if allowEmptyData {
-        //                return .success(Data())
-        //            }
-        //
-        //            return .failure(ActitoNetworkError.noResponseData(httpURLResponse))
-        //        }
-
-        return .success((response: httpURLResponse, data: data))
-    }
-
-    ///    Checks the result of URLSessionDataTask and if there were errors, should the URLRequest be retried.
-    private func validate(_ result: DataResult, for networkRequest: NetworkRequest) {
-        let callback = networkRequest.callback
-
-        switch result {
-        case .success:
-            break
-
-        case let .failure(networkError):
-            switch networkError {
-            case .inaccessible:
-                //    too many failed network calls
-                break
-
-            default:
-                if networkError.shouldRetry {
-                    //    update retries count and
-                    var newRequest = networkRequest
-                    newRequest.currentRetries += 1
-                    //    try again, going through authentication again
-                    //    (since it's quite possible that Auth token or whatever has expired)
-                    authenticate(newRequest)
-                    return
-                }
-            }
-        }
-
-        DispatchQueue.main.async {
-            callback(result)
         }
     }
 }
