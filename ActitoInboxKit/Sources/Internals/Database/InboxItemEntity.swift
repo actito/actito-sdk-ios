@@ -5,14 +5,8 @@
 import Foundation
 import CoreData
 
-internal typealias InboxItemEntityCoreDataPropertiesSet = NSSet
-
-extension InboxItemEntity {
-
-    @nonobjc internal class func fetchRequest() -> NSFetchRequest<InboxItemEntity> {
-        return NSFetchRequest<InboxItemEntity>(entityName: "InboxItemEntity")
-    }
-
+@objc(InboxItemEntity)
+internal class InboxItemEntity: NSManagedObject, Identifiable {
     @NSManaged internal var expires: Date?
     @NSManaged internal var id: String?
     @NSManaged internal var notification: Data?
@@ -20,7 +14,4 @@ extension InboxItemEntity {
     @NSManaged internal var opened: Bool
     @NSManaged internal var time: Date?
     @NSManaged internal var visible: Bool
-
 }
-
-extension InboxItemEntity: Identifiable {}
