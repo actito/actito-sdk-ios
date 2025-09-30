@@ -7,7 +7,8 @@ import Foundation
 extension URLSession {
     /// Default number of retries to attempt on each `URLRequest` instance. To customize, supply desired value to `perform()`
     public static let maximumNumberOfRetries: Int = 5
-    public static let initialDelay: UInt64 = 500_000_000 // 0.5s in nanoseconds
+    public static let initialDelayNanoseconds: UInt64 = 500_000_000 // 0.5s in nanoseconds
+    public static let backoffFactor: UInt64 = 2
 
     /// Output types
     public typealias DataResult = (response: HTTPURLResponse, data: Data?)
@@ -42,7 +43,8 @@ extension URLSession {
     private func retryPerform(_ networkRequest: NetworkRequest) async throws -> DataResult {
         var attempt = 0
         let maxRetries = networkRequest.maxRetries
-        var delay = URLSession.initialDelay
+        let backoffFactor = URLSession.backoffFactor
+        var delay = URLSession.initialDelayNanoseconds
 
         while attempt < maxRetries {
             do {
@@ -53,7 +55,7 @@ extension URLSession {
                 guard attempt < maxRetries else { break }
 
                 try await Task.sleep(nanoseconds: delay)
-                delay *= 2
+                delay *= backoffFactor
             } catch {
                 throw error
             }
