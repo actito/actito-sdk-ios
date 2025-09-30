@@ -588,10 +588,6 @@ public final class Actito {
 
         var host = Actito.shared.servicesInfo!.hosts.restApi
 
-        if !host.starts(with: "http://"), !host.starts(with: "https://") {
-            host = "https://\(host)"
-        }
-
         return "\(host)/upload\(response.filename)"
     }
 
@@ -737,10 +733,6 @@ public final class Actito {
     private func configureReachability(servicesInfo: ActitoServicesInfo) {
         do {
             var host = servicesInfo.hosts.restApi
-
-            if !host.starts(with: "http://"), !host.starts(with: "https://") {
-                host = "https://\(host)"
-            }
 
             let url = URL(string: host)!
             reachability = try ActitoReachability(hostname: url.host!)

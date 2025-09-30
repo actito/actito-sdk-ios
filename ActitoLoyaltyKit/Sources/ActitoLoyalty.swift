@@ -24,10 +24,6 @@ public final class ActitoLoyalty {
             return
         }
 
-        if !host.starts(with: "http://"), !host.starts(with: "https://") {
-            host = "https://\(host)"
-        }
-
         guard let url = URL(string: "\(host)/pass/pkpass/\(pass.serial)")
         else {
             logger.warning("Unable to determine the PKPass URL.")

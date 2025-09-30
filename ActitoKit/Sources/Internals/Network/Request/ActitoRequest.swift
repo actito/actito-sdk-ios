@@ -259,10 +259,6 @@ public struct ActitoRequest: Sendable {
                     throw ActitoError.invalidArgument(message: "Unable to determine the base url for the request.")
                 }
 
-                if !baseUrl.starts(with: "http://"), !baseUrl.starts(with: "https://") {
-                    baseUrl = "https://\(baseUrl)"
-                }
-
                 urlStr = !baseUrl.hasSuffix("/") && !urlStr.hasPrefix("/")
                     ? "\(baseUrl)/\(urlStr)"
                     : "\(baseUrl)\(urlStr)"

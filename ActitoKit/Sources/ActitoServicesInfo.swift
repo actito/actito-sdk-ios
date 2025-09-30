@@ -4,7 +4,7 @@
 
 import Foundation
 
-private let DEFAULT_REST_API_HOST = "push.notifica.re"
+private let DEFAULT_REST_API_HOST = "https://push.notifica.re"
 private let DEFAULT_SHORT_LINKS_HOST = "ntc.re"
 private let DEFAULT_APP_LINKS_HOST = "applinks.notifica.re"
 
@@ -54,7 +54,7 @@ public struct ActitoServicesInfo: Decodable, Sendable {
     }
 
     public struct Hosts: Decodable, Sendable {
-        public let restApi: String
+        public var restApi: String
         public let appLinks: String
         public let shortLinks: String
 
@@ -65,7 +65,10 @@ public struct ActitoServicesInfo: Decodable, Sendable {
         }
 
         public init(restApi: String, appLinks: String, shortLinks: String) {
-            self.restApi = restApi
+            self.restApi = (restApi.hasPrefix("http://") || restApi.hasPrefix("https://"))
+                ? restApi
+                : "https://\(restApi)"
+
             self.appLinks = appLinks
             self.shortLinks = shortLinks
         }

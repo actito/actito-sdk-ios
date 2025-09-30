@@ -107,10 +107,6 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
             return
         }
 
-        if !host.starts(with: "http://"), !host.starts(with: "https://") {
-            host = "https://\(host)"
-        }
-
         let components = passUrlStr.components(separatedBy: "/")
         let id = components[components.count - 1]
 
