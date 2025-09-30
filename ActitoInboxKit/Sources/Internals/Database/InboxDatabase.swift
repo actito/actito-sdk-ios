@@ -3,22 +3,40 @@
 //
 
 import ActitoKit
+import ActitoUtilitiesKit
 import CoreData
 import Foundation
 
-internal class InboxDatabase: ActitoAbstractDatabase {
-    internal init() {
-        super.init(
-            name: "NotificareInboxDatabase",
+@ActitoDatabaseActor
+internal final class InboxDatabase {
+    private nonisolated let name = "NotificareInboxDatabase"
+    private let database: ActitoVersionedDatabase
+
+    internal nonisolated init(overrideDatabaseFileProtection: Bool) {
+        let bundle = Bundle(for: type(of: self))
+
+        guard let path = bundle.url(forResource: name, withExtension: ".momd")
+        else {
+            logger.error("Failed to get \(name) path.")
+            fatalError("Failed to get \(name) path.")
+        }
+
+        database = ActitoVersionedDatabase(
+            name: name,
+            path: path,
             rebuildOnVersionChange: true,
-            mergePolicy: .overwrite
+            mergePolicy: .overwrite,
+            sdkVersion: Actito.SDK_VERSION,
+            shouldOverrideDatabaseFileProtection: overrideDatabaseFileProtection
         )
     }
 
     internal func find() async throws -> [LocalInboxItem] {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
-        return try await backgroundContext.performCompat {
+        let context = database.backgroundContext
+
+        return try await context.performCompat {
             let request = NSFetchRequest<InboxItemEntity>(entityName: "InboxItemEntity")
 
             // NOTE: Make sure the cached items are always sorted by date descending.
@@ -27,7 +45,7 @@ internal class InboxDatabase: ActitoAbstractDatabase {
                 NSSortDescriptor(key: #keyPath(InboxItemEntity.time), ascending: false),
             ]
 
-            let entities = try self.backgroundContext.fetch(request)
+            let entities = try context.fetch(request)
             return entities.compactMap { entity in
                 do {
                     return try entity.toLocal()
@@ -41,27 +59,31 @@ internal class InboxDatabase: ActitoAbstractDatabase {
 
     @discardableResult
     internal func add(_ item: LocalInboxItem) async throws -> NSManagedObjectID {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
-        let objectID = try await backgroundContext.performCompat {
-            let entity = try InboxItemEntity(from: item, context: self.backgroundContext)
+        let context = database.backgroundContext
+
+        let objectID = try await context.performCompat {
+            let entity = try InboxItemEntity(from: item, context: context)
             return entity.objectID
         }
 
-        await saveChanges()
+        await database.saveChanges()
 
         return objectID
     }
 
     internal func update(_ item: LocalInboxItem) async throws {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
-        try await backgroundContext.performCompat {
+        let context = database.backgroundContext
+
+        try await context.performCompat {
             let request = NSFetchRequest<InboxItemEntity>(entityName: "InboxItemEntity")
             request.predicate = NSPredicate(format: "id = %@", item.id)
             request.fetchLimit = 1
 
-            guard let entity = try self.backgroundContext.fetch(request).first else {
+            guard let entity = try context.fetch(request).first else {
                 return
             }
 
@@ -69,47 +91,54 @@ internal class InboxDatabase: ActitoAbstractDatabase {
             entity.opened = item.opened
         }
 
-        await saveChanges()
+        await database.saveChanges()
     }
 
     internal func remove(id: String) async throws {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
-        try await backgroundContext.performCompat {
+        let context = database.backgroundContext
+
+        try await context.performCompat {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "InboxItemEntity")
             request.predicate = NSPredicate(format: "id = %@", id)
 
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
 
-            try self.backgroundContext.execute(deleteRequest)
+            try context.execute(deleteRequest)
         }
 
-        await saveChanges()
+        await database.saveChanges()
     }
 
     internal func remove(notificationId: String) async throws {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
-        try await backgroundContext.performCompat {
+        let context = database.backgroundContext
+
+        try await context.performCompat {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "InboxItemEntity")
             request.predicate = NSPredicate(format: "notificationId = %@", notificationId)
 
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
 
-            try self.backgroundContext.execute(deleteRequest)
+            try context.execute(deleteRequest)
         }
 
-        await saveChanges()
+        await database.saveChanges()
     }
 
     internal func clear() async throws {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
-        try await backgroundContext.performCompat {
+        let context = database.backgroundContext
+        let persistentContainer = database.persistentContainer
+
+        try await context.performCompat {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "InboxItemEntity")
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
-            try self.persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: self.backgroundContext)
+            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: context)
         }
     }
 }

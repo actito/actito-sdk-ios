@@ -2,6 +2,7 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+import ActitoUtilitiesKit
 import UIKit
 
 public typealias ActitoCallback<T> = @Sendable (Result<T, Error>) -> Void
@@ -15,7 +16,10 @@ public final class Actito {
     }
 
     // Internal modules
-    internal let database = ActitoDatabase()
+    internal lazy var database: ActitoDatabase = {
+        ActitoDatabase(overrideDatabaseFileProtection: options?.overrideDatabaseFileProtection ?? false)
+    }()
+
     internal private(set) var reachability: ActitoReachability?
 
     // Configuration variables
@@ -114,6 +118,8 @@ public final class Actito {
 
         logger.hasDebugLoggingEnabled = self.options?.debugLoggingEnabled ?? false
 
+        ActitoUtilities.configureLogger(hasDebugLoggingEnabled: self.options?.debugLoggingEnabled ?? false)
+
         if !LocalStorage.migrated {
             logger.debug("Checking if there is legacy data that needs to be migrated.")
             let migration = LocalStorageMigration()
@@ -154,7 +160,7 @@ public final class Actito {
         }
 
         logger.debug("Configuring available modules.")
-        database.configure(overrideDatabaseFileProtection: self.options?.overrideDatabaseFileProtection ?? false)
+        _ = database
 
         ActitoInternals.Module.allCases.forEach { module in
             if let instance = module.klass?.instance {
@@ -462,7 +468,7 @@ public final class Actito {
     }
 
     /// Sends a reply to a notification action.
-    /// 
+    ///
     /// This method sends a reply to the specified ``ActitoNotification`` and ``ActitoNotification.Action``,
     /// optionally including a message and media.
     ///
@@ -519,9 +525,9 @@ public final class Actito {
     }
 
     /// Calls a notification reply webhook.
-    /// 
+    ///
     /// This method sends data to the specified webhook ``URL``.
-    /// 
+    ///
     /// - Parameters:
     ///   - url: The webhook URL.
     ///   - data: The data to send in the request.
@@ -569,9 +575,9 @@ public final class Actito {
     }
 
     /// Uploads an asset for a notification reply.
-    /// 
+    ///
     /// This method uploads a data object as part of a notification reply.
-    /// 
+    ///
     /// - Parameters:
     ///   - data: The ``Data`` object containing the asset data.
     ///   - contentType: The MIME type of the asset.

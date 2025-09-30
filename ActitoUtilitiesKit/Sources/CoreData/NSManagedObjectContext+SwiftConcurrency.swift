@@ -7,7 +7,7 @@ import CoreData
 
 @available(iOS, obsoleted: 15.0, message: "Use Core Data's native async function 'perform'.")
 extension NSManagedObjectContext {
-    public func performCompat<T>(_ block: @escaping () throws -> T) async throws -> T {
+    public func performCompat<T>(_ block: @Sendable @escaping () throws -> T) async throws -> T {
         if #available(iOS 15.0, *) {
             return try await perform(block)
         } else {
@@ -24,7 +24,7 @@ extension NSManagedObjectContext {
         }
     }
 
-    public func performCompat<T>(_ block: @escaping () -> T) async -> T {
+    public func performCompat<T>(_ block: @Sendable @escaping () -> T) async -> T {
         if #available(iOS 15.0, *) {
             return await perform(block)
         } else {

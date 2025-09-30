@@ -2,20 +2,41 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
+import ActitoUtilitiesKit
 import CoreData
 import Foundation
 
-internal class ActitoDatabase: ActitoAbstractDatabase {
-    internal init() {
-        super.init(name: "NotificareDatabase", rebuildOnVersionChange: true)
+@ActitoDatabaseActor
+internal final class ActitoDatabase {
+    private nonisolated let name = "NotificareDatabase"
+    private let database: ActitoVersionedDatabase
+
+    internal nonisolated init(overrideDatabaseFileProtection: Bool) {
+        let bundle = Bundle(for: type(of: self))
+
+        guard let path = bundle.url(forResource: name, withExtension: ".momd")
+        else {
+            logger.error("Failed to get \(name) path.")
+            fatalError("Failed to get \(name) path.")
+        }
+
+        database = ActitoVersionedDatabase(
+            name: name,
+            path: path,
+            rebuildOnVersionChange: true,
+            sdkVersion: Actito.SDK_VERSION,
+            shouldOverrideDatabaseFileProtection: overrideDatabaseFileProtection
+        )
     }
 
     internal func fetchEvents() async throws -> [LocalEvent] {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
-        return try await backgroundContext.performCompat {
+        let context = database.backgroundContext
+
+        return try await context.performCompat {
             let request = NSFetchRequest<NotificareCoreDataEvent>(entityName: "NotificareCoreDataEvent")
-            let events = try self.backgroundContext.fetch(request)
+            let events = try context.fetch(request)
             return events.compactMap { event in
                 do {
                     return try event.toLocal()
@@ -29,45 +50,51 @@ internal class ActitoDatabase: ActitoAbstractDatabase {
 
     @discardableResult
     internal func add(_ event: LocalEvent) async throws -> NSManagedObjectID {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
-        let objectID = try await backgroundContext.performCompat {
-            let entity = try NotificareCoreDataEvent(from: event, context: self.backgroundContext)
+        let context = database.backgroundContext
+
+        let objectID = try await context.performCompat {
+            let entity = try NotificareCoreDataEvent(from: event, context: context)
             return entity.objectID
         }
 
-        await saveChanges()
+        await database.saveChanges()
 
         return objectID
     }
 
     internal func update(_ event: LocalEvent) async throws {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
         guard let id = event.objectID else {
             return
         }
 
-        try await backgroundContext.performCompat {
-            let entity = try self.backgroundContext.existingObject(with: id) as! NotificareCoreDataEvent
+        let context = database.backgroundContext
+
+        try await context.performCompat {
+            let entity = try context.existingObject(with: id) as! NotificareCoreDataEvent
             entity.retries = event.retries
         }
 
-        await saveChanges()
+        await database.saveChanges()
     }
 
     internal func remove(_ event: LocalEvent) async {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
         guard let id = event.objectID else {
             return
         }
 
-        await backgroundContext.performCompat {
+        let context = database.backgroundContext
+
+        await context.performCompat {
             let entity: NSManagedObject
 
             do {
-                entity = try self.backgroundContext.existingObject(with: id)
+                entity = try context.existingObject(with: id)
             } catch {
                 // The event for the given was removed in the meantime.
                 return
@@ -77,23 +104,26 @@ internal class ActitoDatabase: ActitoAbstractDatabase {
                 return
             }
 
-            self.backgroundContext.delete(entity)
+            context.delete(entity)
         }
 
-        await saveChanges()
+        await database.saveChanges()
     }
 
     internal func clearEvents() async throws {
-        ensureLoadedStores()
+        await database.ensureLoadedStores()
 
-        try await backgroundContext.performCompat {
+        let context = database.backgroundContext
+        let persistentContainer = database.persistentContainer
+
+        try await context.performCompat {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "NotificareCoreDataEvent")
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
 
-            try self.persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: self.backgroundContext)
+            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: context)
         }
 
-        await saveChanges()
+        await database.saveChanges()
     }
 
     internal func clear() async throws {

@@ -15,7 +15,10 @@ public final class ActitoInbox {
     internal static let refreshBadgeNotification = NSNotification.Name(rawValue: "ActitoInboxKit.RefreshBadge")
     internal static let reloadInboxNotification = NSNotification.Name(rawValue: "ActitoInboxKit.ReloadInbox")
 
-    internal let database = InboxDatabase()
+    internal lazy var database: InboxDatabase = {
+        InboxDatabase(overrideDatabaseFileProtection: Actito.shared.options?.overrideDatabaseFileProtection ?? false)
+    }()
+
     private var cachedItems: [LocalInboxItem] = []
 
     private var _badgeStream = CurrentValueSubject<Int, Never>(0)
