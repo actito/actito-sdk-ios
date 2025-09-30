@@ -5,14 +5,8 @@
 import Foundation
 import CoreData
 
-internal typealias NotificareCoreDataEventCoreDataPropertiesSet = NSSet
-
-extension NotificareCoreDataEvent {
-
-    @nonobjc internal class func fetchRequest() -> NSFetchRequest<NotificareCoreDataEvent> {
-        return NSFetchRequest<NotificareCoreDataEvent>(entityName: "NotificareCoreDataEvent")
-    }
-
+@objc(NotificareCoreDataEvent)
+internal class NotificareCoreDataEvent: NSManagedObject, Identifiable {
     @NSManaged internal var data: Data?
     @NSManaged internal var deviceId: String?
     @NSManaged internal var notificationId: String?
@@ -22,7 +16,4 @@ extension NotificareCoreDataEvent {
     @NSManaged internal var ttl: Int32
     @NSManaged internal var type: String?
     @NSManaged internal var userId: String?
-
 }
-
-extension NotificareCoreDataEvent: Identifiable {}
