@@ -24,7 +24,7 @@
 		F289F5ED25B8651F0091AB97 /* ActitoInboxDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F289F5EC25B8651F0091AB97 /* ActitoInboxDelegate.swift */; };
 		F289F5F125B884EC0091AB97 /* ActitoInboxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F289F5F025B884EC0091AB97 /* ActitoInboxItem.swift */; };
 		F28E583B25C0401800C83537 /* InboxDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E583A25C0401800C83537 /* InboxDatabase.swift */; };
-		F28E584A25C041C900C83537 /* InboxItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E584925C041C900C83537 /* InboxItemEntity.swift */; };
+		F28E584A25C041C900C83537 /* LocalInboxItem+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28E584925C041C900C83537 /* LocalInboxItem+CoreData.swift */; };
 		F29017F02BD27923009DB80B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F29017EF2BD27923009DB80B /* PrivacyInfo.xcprivacy */; };
 		F293E2EA2630491E008C2010 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E2E92630491E008C2010 /* LocalStorage.swift */; };
 		F2B984C82850C123005CD6D6 /* InboxDatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B984C72850C123005CD6D6 /* InboxDatabaseError.swift */; };
@@ -64,7 +64,7 @@
 		F289F5EC25B8651F0091AB97 /* ActitoInboxDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInboxDelegate.swift; sourceTree = "<group>"; };
 		F289F5F025B884EC0091AB97 /* ActitoInboxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInboxItem.swift; sourceTree = "<group>"; };
 		F28E583A25C0401800C83537 /* InboxDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxDatabase.swift; sourceTree = "<group>"; };
-		F28E584925C041C900C83537 /* InboxItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxItemEntity.swift; sourceTree = "<group>"; };
+		F28E584925C041C900C83537 /* LocalInboxItem+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalInboxItem+CoreData.swift"; sourceTree = "<group>"; };
 		F29017EF2BD27923009DB80B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F293E2E92630491E008C2010 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		F2B984C72850C123005CD6D6 /* InboxDatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxDatabaseError.swift; sourceTree = "<group>"; };
@@ -93,14 +93,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1AD52A1E2DE74E1A006C7D88 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				F28E584925C041C900C83537 /* InboxItemEntity.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
 		F27DB199262F2B00000C024D /* Push API */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,11 +181,11 @@
 		F28E584825C041B000C83537 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				1AD52A1E2DE74E1A006C7D88 /* Entities */,
 				1AB27BA22E704487004F93B9 /* InboxItemEntity.swift */,
 				F28E583A25C0401800C83537 /* InboxDatabase.swift */,
 				F2B984C72850C123005CD6D6 /* InboxDatabaseError.swift */,
 				1AD52A1F2DE74ECA006C7D88 /* LocalInboxItem.swift */,
+				F28E584925C041C900C83537 /* LocalInboxItem+CoreData.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -328,7 +320,7 @@
 				F289F5F125B884EC0091AB97 /* ActitoInboxItem.swift in Sources */,
 				1AB27BA52E704487004F93B9 /* InboxItemEntity.swift in Sources */,
 				F21DD9EB27184CE500C88D7B /* ActitoInbox+Augment.swift in Sources */,
-				F28E584A25C041C900C83537 /* InboxItemEntity.swift in Sources */,
+				F28E584A25C041C900C83537 /* LocalInboxItem+CoreData.swift in Sources */,
 				F27DB1A3262F2B94000C024D /* PushAPI+Models.swift in Sources */,
 				F2B984C82850C123005CD6D6 /* InboxDatabaseError.swift in Sources */,
 				F289F5ED25B8651F0091AB97 /* ActitoInboxDelegate.swift in Sources */,
