@@ -16,15 +16,15 @@ internal final class ActitoDatabase {
 
         guard let path = bundle.url(forResource: name, withExtension: ".momd")
         else {
-            logger.error("Failed to get \(name) path.")
-            fatalError("Failed to get \(name) path.")
+            logger.error("Failed to load \(name) model definition.")
+            fatalError("Failed to load \(name) model definition.")
         }
 
         database = ActitoVersionedDatabase(
             name: name,
             path: path,
             rebuildOnVersionChange: true,
-            sdkVersion: Actito.SDK_VERSION,
+            version: Actito.SDK_VERSION,
             shouldOverrideDatabaseFileProtection: overrideDatabaseFileProtection
         )
     }

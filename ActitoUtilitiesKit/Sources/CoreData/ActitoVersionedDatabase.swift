@@ -11,7 +11,7 @@ public final class ActitoVersionedDatabase {
     private let path: URL
     private let rebuildOnVersionChange: Bool
     private let mergePolicy: ActitoDatabaseMergePolicy?
-    private let sdkVersion: String
+    private let version: String
     private let shouldOverrideDatabaseFileProtection: Bool
 
     private var isLoaded = false
@@ -21,7 +21,7 @@ public final class ActitoVersionedDatabase {
         "re.notifica.database_version.\(name)"
     }
 
-    nonisolated private var databaseUrl: URL {
+    private nonisolated var databaseUrl: URL {
         let directory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         return directory.appendingPathComponent("\(name).sqlite")
     }
@@ -63,14 +63,14 @@ public final class ActitoVersionedDatabase {
         path: URL,
         rebuildOnVersionChange: Bool,
         mergePolicy: ActitoDatabaseMergePolicy? = nil,
-        sdkVersion: String,
+        version: String,
         shouldOverrideDatabaseFileProtection: Bool
     ) {
         self.name = name
         self.path = path
         self.rebuildOnVersionChange = rebuildOnVersionChange
         self.mergePolicy = mergePolicy
-        self.sdkVersion = sdkVersion
+        self.version = version
         self.shouldOverrideDatabaseFileProtection = shouldOverrideDatabaseFileProtection
     }
 
@@ -86,7 +86,7 @@ public final class ActitoVersionedDatabase {
             // Force the container to be loaded.
             _ = persistentContainer
 
-            if let currentVersion = UserDefaults.standard.string(forKey: databaseVersionKey), currentVersion != sdkVersion {
+            if let currentVersion = UserDefaults.standard.string(forKey: databaseVersionKey), currentVersion != version {
                 logger.debug("Database version mismatch. Recreating...")
                 removeStore()
             }
@@ -150,7 +150,7 @@ public final class ActitoVersionedDatabase {
                     logger.error("Failed to load CoreData store '\(self.name)'.", error: error)
                 } else {
                     // Update the database version in local storage.
-                    UserDefaults.standard.set(self.sdkVersion, forKey: self.databaseVersionKey)
+                    UserDefaults.standard.set(self.version, forKey: self.databaseVersionKey)
                 }
 
                 continuation.resume()
