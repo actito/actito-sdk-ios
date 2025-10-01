@@ -54,7 +54,7 @@ public struct ActitoServicesInfo: Decodable, Sendable {
     }
 
     public struct Hosts: Decodable, Sendable {
-        public var restApi: String
+        public let restApi: String
         public let appLinks: String
         public let shortLinks: String
 
