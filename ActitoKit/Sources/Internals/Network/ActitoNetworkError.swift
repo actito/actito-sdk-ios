@@ -27,8 +27,6 @@ public enum ActitoNetworkError: Error {
     case endpointError(HTTPURLResponse, Data?)
 
     case validationError(response: HTTPURLResponse, data: Data?, validStatusCodes: ClosedRange<Int>)
-
-    case largeEventDataError(eventType: String, size: Int)
 }
 
 extension ActitoNetworkError {
@@ -85,9 +83,6 @@ extension ActitoNetworkError: LocalizedError {
 
         case .validationError:
             return NSLocalizedString("Invalid response code.", comment: "")
-
-        case let .largeEventDataError(eventType, _):
-            return NSLocalizedString("Large event data for '\(eventType)'.", comment: "")
         }
     }
 
@@ -117,9 +112,6 @@ extension ActitoNetworkError: LocalizedError {
 
         case .validationError:
             return NSLocalizedString("Request succeeded but returned an invalid responde code.", comment: "")
-
-        case let .largeEventDataError(_, size):
-            return NSLocalizedString(String(format: "Payload size %.2f KB exceeds 4KB.", Double(size) / 1024.0), comment: "")
         }
     }
 }

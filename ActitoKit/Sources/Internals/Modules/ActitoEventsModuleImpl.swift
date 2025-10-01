@@ -6,6 +6,7 @@ import ActitoUtilitiesKit
 import UIKit
 
 private let MAX_RETRIES = 5
+private let MAX_DATA_SIZE = 4 * 1024
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
 @MainActor
@@ -104,9 +105,12 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
             let data = payload.data
         {
             let serializedData = try JSONEncoder.actito.encode(ActitoAnyCodable(data))
+            let size = serializedData.count
 
-            if serializedData.count > 4 * 1024 {
-                throw ActitoNetworkError.largeEventDataError(eventType: payload.type, size: serializedData.count)
+            if size > MAX_DATA_SIZE {
+                throw ActitoError.contentSizeTooLarge(
+                    message: "Data for event '\(payload.type)' of size \(size)B exceeds max size of \(MAX_DATA_SIZE)B"
+                )
             }
         }
 

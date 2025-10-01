@@ -10,6 +10,7 @@ public enum ActitoError: Error {
     case deviceUnavailable
     case applicationUnavailable
     case serviceUnavailable(service: String)
+    case contentSizeTooLarge(message: String)
 
     // supporting errors
     case invalidArgument(message: String)
