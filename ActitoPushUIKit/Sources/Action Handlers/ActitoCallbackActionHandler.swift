@@ -247,13 +247,14 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         request.setActitoHeaders()
         request.setMethod("POST", payload: data)
 
-        URLSession.shared.perform(request) { result in
-            switch result {
-            case .success:
+        Task {
+            do {
+                _ = try await URLSession.shared.perform(request)
+
                 DispatchQueue.main.async {
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
                 }
-            case let .failure(error):
+            } catch {
                 DispatchQueue.main.async {
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
                 }

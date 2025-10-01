@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17162" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="NotificareCoreDataEvent" representedClassName="NotificareCoreDataEvent" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24295.2" systemVersion="24G90" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="NotificareCoreDataEvent" representedClassName="NotificareCoreDataEvent" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary"/>
         <attribute name="deviceId" optional="YES" attributeType="String"/>
         <attribute name="notificationId" optional="YES" attributeType="String"/>
@@ -11,7 +11,4 @@
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="userId" optional="YES" attributeType="String"/>
     </entity>
-    <elements>
-        <element name="NotificareCoreDataEvent" positionX="-54" positionY="-9" width="128" height="178"/>
-    </elements>
 </model>

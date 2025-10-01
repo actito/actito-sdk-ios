@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A1FE0632C465CB200468B84 /* ActitoInboxItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FE0622C465CB200468B84 /* ActitoInboxItemTest.swift */; };
 		1A52DE772CA4617500B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE762CA4617500B5F56C /* Logger.swift */; };
+		1AB27BA52E704487004F93B9 /* InboxItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB27BA22E704487004F93B9 /* InboxItemEntity.swift */; };
 		1AD265102E1C2A1700BE984E /* InboxConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2650F2E1C2A0C00BE984E /* InboxConcurrencyTests.swift */; };
 		1AD52A202DE74ED3006C7D88 /* LocalInboxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A1F2DE74ECA006C7D88 /* LocalInboxItem.swift */; };
 		1AD52A5C2DFFFE2C006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A5B2DFFFE28006C7D88 /* LaunchComponent.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		1A1FE0622C465CB200468B84 /* ActitoInboxItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInboxItemTest.swift; sourceTree = "<group>"; };
 		1A52DE762CA4617500B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1AB27BA22E704487004F93B9 /* InboxItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxItemEntity.swift; sourceTree = "<group>"; };
 		1AD2650F2E1C2A0C00BE984E /* InboxConcurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxConcurrencyTests.swift; sourceTree = "<group>"; };
 		1AD52A1F2DE74ECA006C7D88 /* LocalInboxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalInboxItem.swift; sourceTree = "<group>"; };
 		1AD52A5B2DFFFE28006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				1AD52A1E2DE74E1A006C7D88 /* Entities */,
+				1AB27BA22E704487004F93B9 /* InboxItemEntity.swift */,
 				F28E583A25C0401800C83537 /* InboxDatabase.swift */,
 				F2B984C72850C123005CD6D6 /* InboxDatabaseError.swift */,
 				1AD52A1F2DE74ECA006C7D88 /* LocalInboxItem.swift */,
@@ -323,6 +326,7 @@
 				F27FD26A2D7F341D00ED26AD /* ActitoInboxItem+Expiration.swift in Sources */,
 				F21DD9ED27185C4B00C88D7B /* ActitoInbox.swift in Sources */,
 				F289F5F125B884EC0091AB97 /* ActitoInboxItem.swift in Sources */,
+				1AB27BA52E704487004F93B9 /* InboxItemEntity.swift in Sources */,
 				F21DD9EB27184CE500C88D7B /* ActitoInbox+Augment.swift in Sources */,
 				F28E584A25C041C900C83537 /* InboxItemEntity.swift in Sources */,
 				F27DB1A3262F2B94000C024D /* PushAPI+Models.swift in Sources */,

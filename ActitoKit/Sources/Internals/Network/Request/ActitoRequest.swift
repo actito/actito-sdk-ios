@@ -16,46 +16,27 @@ public struct ActitoRequest: Sendable {
     private let request: URLRequest
     private let validStatusCodes: ClosedRange<Int>
 
-    public func response(_ completion: @escaping ActitoCallback<(response: HTTPURLResponse, data: Data?)>) {
-        ActitoRequest.session.perform(request) { result in
-            switch result {
-            case .success(let (response, data)):
-                handleResponse(response, data: data, completion)
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
+    public func response() async throws -> (response: HTTPURLResponse, data: Data?) {
+        let (response, data) = try await ActitoRequest.session.perform(request)
+        return try handleResponse(response, data)
     }
 
-    public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type, _ completion: @Sendable @escaping (Result<T, Error>) -> Void) {
-        response { result in
-            switch result {
-            case let .success((response, data)):
-                guard let data = data else {
-                    completion(.failure(ActitoNetworkError.noResponseData(response)))
-                    return
-                }
+    public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type) async throws -> T {
+        let (response, data) = try await response()
 
-                do {
-                    let model = try JSONDecoder.actito.decode(type, from: data)
-                    completion(.success(model))
-                } catch {
-                    completion(.failure(error))
-                }
-
-            case let .failure(error):
-                completion(.failure(error))
-            }
+        guard let data = data else {
+            throw ActitoNetworkError.noResponseData(response)
         }
+
+        return try JSONDecoder.actito.decode(type, from: data)
     }
 
-    private func handleResponse(_ response: HTTPURLResponse, data: Data?, _ completion: @escaping ActitoCallback<(response: HTTPURLResponse, data: Data?)>) {
+    private func handleResponse(_ response: HTTPURLResponse, _ data: Data?) throws -> (response: HTTPURLResponse, data: Data?) {
         guard validStatusCodes.contains(response.statusCode) else {
-            completion(.failure(ActitoNetworkError.validationError(response: response, data: data, validStatusCodes: validStatusCodes)))
-            return
+            throw ActitoNetworkError.validationError(response: response, data: data, validStatusCodes: validStatusCodes)
         }
 
-        completion(.success((response, data)))
+        return (response, data)
     }
 
     @MainActor
@@ -215,36 +196,34 @@ public struct ActitoRequest: Sendable {
         }
 
         public func response(_ completion: @Sendable @escaping (Result<(response: HTTPURLResponse, data: Data?), Error>) -> Void) {
-            do {
-                try build().response(completion)
-            } catch {
-                completion(.failure(error))
+            Task {
+                do {
+                    let result = try await response()
+                    completion(.success(result))
+                } catch {
+                    completion(.failure(error))
+                }
             }
         }
 
         @discardableResult
         public func response() async throws -> (response: HTTPURLResponse, data: Data?) {
-            try await withCheckedThrowingContinuation { continuation in
-                response { result in
-                    continuation.resume(with: result)
-                }
-            }
+            return try await build().response()
         }
 
         public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type, _ completion: @Sendable @escaping (Result<T, Error>) -> Void) {
-            do {
-                try build().responseDecodable(type, completion)
-            } catch {
-                completion(.failure(error))
+            Task {
+                do {
+                    let model = try await responseDecodable(type)
+                    completion(.success(model))
+                } catch {
+                    completion(.failure(error))
+                }
             }
         }
 
         public func responseDecodable<T: Decodable & Sendable>(_ type: T.Type) async throws -> T {
-            try await withCheckedThrowingContinuation { continuation in
-                responseDecodable(type) { result in
-                    continuation.resume(with: result)
-                }
-            }
+            return try await build().responseDecodable(type)
         }
 
         // MARK: - Private API
