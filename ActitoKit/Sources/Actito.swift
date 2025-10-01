@@ -586,7 +586,7 @@ public final class Actito {
             .post("/upload/reply", body: data, contentType: contentType)
             .responseDecodable(ActitoInternals.PushAPI.Responses.UploadAsset.self)
 
-        var host = Actito.shared.servicesInfo!.hosts.restApi
+        let host = Actito.shared.servicesInfo!.hosts.restApi
 
         return "\(host)/upload\(response.filename)"
     }
@@ -732,9 +732,7 @@ public final class Actito {
 
     private func configureReachability(servicesInfo: ActitoServicesInfo) {
         do {
-            var host = servicesInfo.hosts.restApi
-
-            let url = URL(string: host)!
+            let url = URL(string: servicesInfo.hosts.restApi)!
             reachability = try ActitoReachability(hostname: url.host!)
 
             reachability?.whenReachable = { _ in

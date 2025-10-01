@@ -28,7 +28,7 @@ extension ActitoInternals.PushAPI.Models {
 
         internal func toModel(servicesInfo: ActitoServicesInfo?) -> ActitoAsset {
             let url: String?
-            if let key = key, var host = servicesInfo?.hosts.restApi {
+            if let key = key, let host = servicesInfo?.hosts.restApi {
                 url = "\(host)/asset/file/\(key)"
             } else {
                 url = nil

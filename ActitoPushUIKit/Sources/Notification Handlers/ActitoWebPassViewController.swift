@@ -98,7 +98,7 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
     private func setupContent() {
         guard let content = notification.content.first,
               let passUrlStr = content.data as? String,
-              var host = Actito.shared.servicesInfo?.hosts.restApi
+              let host = Actito.shared.servicesInfo?.hosts.restApi
         else {
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)

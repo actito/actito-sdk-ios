@@ -18,13 +18,8 @@ public final class ActitoLoyalty {
     ///   - pass: The ``ActitoPass`` to be presented to the user.
     ///   - controller: The ``UIViewController`` in which to present the pass.
     public func present(pass: ActitoPass, in controller: UIViewController) {
-        guard var host = Actito.shared.servicesInfo?.hosts.restApi
-        else {
-            logger.warning("Unable to determine the PKPass URL.")
-            return
-        }
-
-        guard let url = URL(string: "\(host)/pass/pkpass/\(pass.serial)")
+        guard let host = Actito.shared.servicesInfo?.hosts.restApi,
+              let url = URL(string: "\(host)/pass/pkpass/\(pass.serial)")
         else {
             logger.warning("Unable to determine the PKPass URL.")
             return
