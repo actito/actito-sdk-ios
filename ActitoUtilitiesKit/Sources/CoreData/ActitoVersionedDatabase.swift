@@ -10,7 +10,7 @@ public final class ActitoVersionedDatabase {
     private let name: String
     private let path: URL
     private let rebuildOnVersionChange: Bool
-    private let mergePolicy: ActitoDatabaseMergePolicy?
+    private let mergePolicy: MergePolicy?
     private let version: String
     private let shouldOverrideDatabaseFileProtection: Bool
 
@@ -62,7 +62,7 @@ public final class ActitoVersionedDatabase {
         name: String,
         path: URL,
         rebuildOnVersionChange: Bool,
-        mergePolicy: ActitoDatabaseMergePolicy? = nil,
+        mergePolicy: MergePolicy? = nil,
         version: String,
         shouldOverrideDatabaseFileProtection: Bool
     ) {
@@ -172,7 +172,7 @@ public final class ActitoVersionedDatabase {
         }
     }
 
-    public enum ActitoDatabaseMergePolicy: Sendable {
+    public enum MergePolicy: Sendable {
         case overwrite
 
         public var policy: NSMergePolicy {
