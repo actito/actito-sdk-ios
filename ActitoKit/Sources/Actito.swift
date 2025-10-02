@@ -588,7 +588,7 @@ public final class Actito {
 
         let host = Actito.shared.servicesInfo!.hosts.restApi
 
-        return "https://\(host)/upload\(response.filename)"
+        return "\(host)/upload\(response.filename)"
     }
 
     /// Removes a notification from the Notification Center.
@@ -732,7 +732,7 @@ public final class Actito {
 
     private func configureReachability(servicesInfo: ActitoServicesInfo) {
         do {
-            let url = URL(string: "https://\(servicesInfo.hosts.restApi)")!
+            let url = URL(string: servicesInfo.hosts.restApi)!
             reachability = try ActitoReachability(hostname: url.host!)
 
             reachability?.whenReachable = { _ in

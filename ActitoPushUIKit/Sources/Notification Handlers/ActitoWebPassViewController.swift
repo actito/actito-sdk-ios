@@ -110,7 +110,7 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
         let components = passUrlStr.components(separatedBy: "/")
         let id = components[components.count - 1]
 
-        guard let url = URL(string: "https://\(host)/pass/web/\(id)?showWebVersion=1") else {
+        guard let url = URL(string: "\(host)/pass/web/\(id)?showWebVersion=1") else {
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
