@@ -60,7 +60,6 @@
 		F289993525C97D35008ADC7E /* ActitoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F289993425C97D35008ADC7E /* ActitoOptions.swift */; };
 		F293E27B26302C48008C2010 /* ModuleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E27A26302C48008C2010 /* ModuleUtils.swift */; };
 		F293E28A26302C76008C2010 /* ActitoLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E28926302C76008C2010 /* ActitoLocalizable.swift */; };
-		F293E2B226303008008C2010 /* ActitoAbstractDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E2B126303008008C2010 /* ActitoAbstractDatabase.swift */; };
 		F293E2BF26303056008C2010 /* ActitoSwizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E2BD26303055008C2010 /* ActitoSwizzler.swift */; };
 		F293E2C026303056008C2010 /* ActitoAppDelegateInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E2BE26303056008C2010 /* ActitoAppDelegateInterceptor.swift */; };
 		F293E2DB26304675008C2010 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E2DA26304675008C2010 /* LocalStorage.swift */; };
@@ -143,7 +142,6 @@
 		F289993425C97D35008ADC7E /* ActitoOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoOptions.swift; sourceTree = "<group>"; };
 		F293E27A26302C48008C2010 /* ModuleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleUtils.swift; sourceTree = "<group>"; };
 		F293E28926302C76008C2010 /* ActitoLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLocalizable.swift; sourceTree = "<group>"; };
-		F293E2B126303008008C2010 /* ActitoAbstractDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoAbstractDatabase.swift; sourceTree = "<group>"; };
 		F293E2BD26303055008C2010 /* ActitoSwizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoSwizzler.swift; sourceTree = "<group>"; };
 		F293E2BE26303056008C2010 /* ActitoAppDelegateInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoAppDelegateInterceptor.swift; sourceTree = "<group>"; };
 		F293E2DA26304675008C2010 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
@@ -338,14 +336,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F293E29C26302CDB008C2010 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				F293E2B126303008008C2010 /* ActitoAbstractDatabase.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
 		F293E2D9263043A0008C2010 /* Local Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,7 +362,6 @@
 			children = (
 				1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */,
 				42A20D17A4EF88ED36EA223F /* AutoConfig */,
-				F293E29C26302CDB008C2010 /* CoreData */,
 				F21DD9F22718665200C88D7B /* Modules */,
 				42A20E1B11DBCE03A4402205 /* Network */,
 				F2E4DBC82525EC6F003FE29B /* Storage */,
@@ -543,7 +532,6 @@
 				1AD52A682E002ECB006C7D88 /* CrashReporterLaunchComponent.swift in Sources */,
 				F27DB183262EDAC2000C024D /* PushAPI.swift in Sources */,
 				F21DD9F12718662000C88D7B /* ActitoEventsModule.swift in Sources */,
-				F293E2B226303008008C2010 /* ActitoAbstractDatabase.swift in Sources */,
 				F293E2DB26304675008C2010 /* LocalStorage.swift in Sources */,
 				F2E801E9269F021800582DB8 /* ActitoInternals.swift in Sources */,
 				1A52DE6E2CA44B3500B5F56C /* Logger.swift in Sources */,

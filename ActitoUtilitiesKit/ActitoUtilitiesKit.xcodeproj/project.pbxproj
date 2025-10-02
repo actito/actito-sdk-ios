@@ -46,6 +46,9 @@
 		1AD52A152DE749D1006C7D88 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A142DE749BD006C7D88 /* Arrays.swift */; };
 		1AD52A182DE74A13006C7D88 /* InsertedSortedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A172DE74A0D006C7D88 /* InsertedSortedTests.swift */; };
 		1AE8F7EC2D76213900462CAB /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8F7EB2D76212A00462CAB /* NotificationCenter.swift */; };
+		E57F4B8C2E86DFB900EE5E0D /* ActitoVersionedDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F4B8B2E86DFB300EE5E0D /* ActitoVersionedDatabase.swift */; };
+		E57F4B8E2E8AC49300EE5E0D /* ActitoDatabaseActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F4B8D2E8AC46000EE5E0D /* ActitoDatabaseActor.swift */; };
+		E57F4B952E8BEAC500EE5E0D /* ActitoUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F4B942E8BEAB600EE5E0D /* ActitoUtilities.swift */; };
 		F27FD2682D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FD2672D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +103,9 @@
 		1AD52A142DE749BD006C7D88 /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 		1AD52A172DE74A0D006C7D88 /* InsertedSortedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertedSortedTests.swift; sourceTree = "<group>"; };
 		1AE8F7EB2D76212A00462CAB /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
+		E57F4B8B2E86DFB300EE5E0D /* ActitoVersionedDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoVersionedDatabase.swift; sourceTree = "<group>"; };
+		E57F4B8D2E8AC46000EE5E0D /* ActitoDatabaseActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDatabaseActor.swift; sourceTree = "<group>"; };
+		E57F4B942E8BEAB600EE5E0D /* ActitoUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoUtilities.swift; sourceTree = "<group>"; };
 		F27FD2672D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+SwiftConcurrency.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +149,7 @@
 		1A0E1F432C982C3000E15FC7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E57F4B932E8BEAA400EE5E0D /* Internals */,
 				1A0E1F8E2C9B1C1D00E15FC7 /* AnyCodable */,
 				1A52DE8B2CA4683900B5F56C /* Application */,
 				1A0E1F962C9C11BB00E15FC7 /* Codable */,
@@ -162,7 +169,6 @@
 				1A52DE822CA4653800B5F56C /* UIColor */,
 				1A52DE842CA4655500B5F56C /* URL */,
 				1A52DE932CA4697B00B5F56C /* Views */,
-				1A52DEB92CA569D400B5F56C /* Logger.swift */,
 				1A0E1F442C982C3000E15FC7 /* ActitoUtilitiesKit.h */,
 			);
 			path = Sources;
@@ -441,9 +447,20 @@
 			path = NotificationCenter;
 			sourceTree = "<group>";
 		};
+		E57F4B932E8BEAA400EE5E0D /* Internals */ = {
+			isa = PBXGroup;
+			children = (
+				E57F4B942E8BEAB600EE5E0D /* ActitoUtilities.swift */,
+				1A52DEB92CA569D400B5F56C /* Logger.swift */,
+			);
+			path = Internals;
+			sourceTree = "<group>";
+		};
 		F27FD2662D7A3A2200ED26AD /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				E57F4B8D2E8AC46000EE5E0D /* ActitoDatabaseActor.swift */,
+				E57F4B8B2E86DFB300EE5E0D /* ActitoVersionedDatabase.swift */,
 				F27FD2672D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift */,
 			);
 			path = CoreData;
@@ -571,6 +588,7 @@
 				1A52DE522CA160BF00B5F56C /* UIColor+Hex.swift in Sources */,
 				1A52DE8D2CA4684700B5F56C /* Bundle+Application.swift in Sources */,
 				1A0E1F942C9B1C8E00E15FC7 /* ActitoAnyEncodable.swift in Sources */,
+				E57F4B8C2E86DFB900EE5E0D /* ActitoVersionedDatabase.swift in Sources */,
 				F27FD2682D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift in Sources */,
 				1A52DE6B2CA413B700B5F56C /* UserAgent.swift in Sources */,
 				1A0E1F692C982E8000E15FC7 /* ActitoExtraEquatable.swift in Sources */,
@@ -580,6 +598,7 @@
 				1A52DE952CA4698900B5F56C /* UIApplication+View.swift in Sources */,
 				1A52DECF2CAAA83A00B5F56C /* Timezone+Offset.swift in Sources */,
 				1A52DE5D2CA167A500B5F56C /* Date+IsoDate.swift in Sources */,
+				E57F4B8E2E8AC49300EE5E0D /* ActitoDatabaseActor.swift in Sources */,
 				1A0E1F902C9B1C3900E15FC7 /* ActitoAnyCodable.swift in Sources */,
 				1A52DE502CA15E7000B5F56C /* Data+Hex.swift in Sources */,
 				1A0E1F922C9B1C6600E15FC7 /* ActitoAnyDecodable.swift in Sources */,
@@ -588,6 +607,7 @@
 				1AE8F7EC2D76213900462CAB /* NotificationCenter.swift in Sources */,
 				1A52DECB2CAAA31700B5F56C /* UIDevice.swift in Sources */,
 				1A52DE5A2CA165F400B5F56C /* Dictionary.swift in Sources */,
+				E57F4B952E8BEAC500EE5E0D /* ActitoUtilities.swift in Sources */,
 				1A52DE542CA1612600B5F56C /* URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -3,17 +3,25 @@
 //
 
 import CoreData
+import Foundation
 
-open class ActitoAbstractDatabase {
+@ActitoDatabaseActor
+public final class ActitoVersionedDatabase {
     private let name: String
+    private let path: URL
     private let rebuildOnVersionChange: Bool
-    private let mergePolicy: NSMergePolicy?
+    private let mergePolicy: MergePolicy?
+    private let version: String
+    private let shouldOverrideDatabaseFileProtection: Bool
+
+    private var isLoaded = false
+    private var loadTask: Task<Void, Never>?
 
     private var databaseVersionKey: String {
         "re.notifica.database_version.\(name)"
     }
 
-    private var databaseUrl: URL {
+    private nonisolated var databaseUrl: URL {
         let directory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         return directory.appendingPathComponent("\(name).sqlite")
     }
@@ -21,8 +29,7 @@ open class ActitoAbstractDatabase {
     public lazy var persistentContainer: NSPersistentContainer = {
         let bundle = Bundle(for: type(of: self))
 
-        guard let path = bundle.url(forResource: name, withExtension: ".momd"),
-              let model = NSManagedObjectModel(contentsOf: path)
+        guard let model = NSManagedObjectModel(contentsOf: path)
         else {
             logger.error("Failed to load CoreData's models.")
             fatalError("Failed to load CoreData's models")
@@ -51,62 +58,77 @@ open class ActitoAbstractDatabase {
         !persistentContainer.persistentStoreCoordinator.persistentStores.isEmpty
     }
 
-    private var shouldOverrideDatabaseFileProtection: Bool = false
-
-    public init(name: String, rebuildOnVersionChange: Bool = true, mergePolicy: NSMergePolicy? = nil) {
+    public nonisolated init(
+        name: String,
+        path: URL,
+        rebuildOnVersionChange: Bool,
+        mergePolicy: MergePolicy? = nil,
+        version: String,
+        shouldOverrideDatabaseFileProtection: Bool
+    ) {
         self.name = name
+        self.path = path
         self.rebuildOnVersionChange = rebuildOnVersionChange
         self.mergePolicy = mergePolicy
+        self.version = version
+        self.shouldOverrideDatabaseFileProtection = shouldOverrideDatabaseFileProtection
     }
 
-    public func configure(overrideDatabaseFileProtection: Bool) {
-        shouldOverrideDatabaseFileProtection = overrideDatabaseFileProtection
+    public func ensureLoadedStores() async {
+        guard !isLoaded else { return }
 
-        // Force the container to be loaded.
-        _ = persistentContainer
-
-        if let currentVersion = UserDefaults.standard.string(forKey: databaseVersionKey), currentVersion != Actito.SDK_VERSION {
-            logger.debug("Database version mismatch. Recreating...")
-            removeStore()
-        }
-
-        logger.debug("Loading database: \(name)")
-        loadStore()
-
-        if let mergePolicy {
-            backgroundContext.mergePolicy = mergePolicy
-        }
-    }
-
-    public func ensureLoadedStores() {
-        guard !hasLoadedPersistentStores else {
+        if let loadTask {
+            await loadTask.value
             return
         }
 
-        logger.debug("Trying to load database: \(name)")
-        loadStore()
+        let task = Task {
+            // Force the container to be loaded.
+            _ = persistentContainer
+
+            if let currentVersion = UserDefaults.standard.string(forKey: databaseVersionKey), currentVersion != version {
+                logger.debug("Database version mismatch. Recreating...")
+                removeStore()
+            }
+
+            logger.debug("Loading database: \(name)")
+            await loadStore()
+
+            if let mergePolicy {
+                backgroundContext.mergePolicy = mergePolicy.policy
+            }
+
+            isLoaded = true
+        }
+
+        loadTask = task
+
+        await task.value
     }
 
     public func saveChanges() async {
-        await backgroundContext.performCompat {
-            guard self.backgroundContext.hasChanges else {
+        let context = self.backgroundContext
+        let hasLoadedPersistentStores = self.hasLoadedPersistentStores
+
+        await context.performCompat {
+            guard context.hasChanges else {
                 return
             }
 
-            guard self.hasLoadedPersistentStores else {
+            guard hasLoadedPersistentStores else {
                 logger.warning("Cannot save the database changes before the persistent stores are loaded.")
                 return
             }
 
             do {
-                try self.backgroundContext.save()
+                try context.save()
             } catch {
                 logger.error("Failed to persist changes to CoreData.", error: error)
             }
         }
     }
 
-    private func loadStore() {
+    private func loadStore() async {
         let stores = persistentContainer.persistentStoreCoordinator.persistentStores
 
         if !stores.isEmpty {
@@ -122,14 +144,17 @@ open class ActitoAbstractDatabase {
             }
         }
 
-        persistentContainer.loadPersistentStores { _, error in
-            if let error {
-                logger.error("Failed to load CoreData store '\(self.name)'.", error: error)
-                return
-            }
+        await withCheckedContinuation { continuation in
+            persistentContainer.loadPersistentStores { _, error in
+                if let error {
+                    logger.error("Failed to load CoreData store '\(self.name)'.", error: error)
+                } else {
+                    // Update the database version in local storage.
+                    UserDefaults.standard.set(self.version, forKey: self.databaseVersionKey)
+                }
 
-            // Update the database version in local storage.
-            UserDefaults.standard.set(Actito.SDK_VERSION, forKey: self.databaseVersionKey)
+                continuation.resume()
+            }
         }
     }
 
@@ -144,6 +169,16 @@ open class ActitoAbstractDatabase {
             logger.debug("Database removed.")
         } catch {
             logger.debug("Failed to remove database.")
+        }
+    }
+
+    public enum MergePolicy: Sendable {
+        case overwrite
+
+        public var policy: NSMergePolicy {
+            switch self {
+            case .overwrite: return NSMergePolicy.overwrite
+            }
         }
     }
 }
