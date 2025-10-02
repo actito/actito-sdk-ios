@@ -143,21 +143,21 @@ public final class ActitoInbox {
             throw ActitoError.deviceUnavailable
         }
 
-        guard Actito.shared.application?.inboxConfig?.autoBadge == true else {
-            logger.warning("Actito auto badge functionality is not enabled.")
-            throw ActitoInboxError.autoBadgeUnavailable
-        }
-
         do {
             let response = try await fetchRemoteInbox(for: device.id, skip: 0, limit: 1)
 
             // Keep a cached copy of the current badge.
             LocalStorage.currentBadge = response.unread
 
-            // Update the application badge.
-            setApplicationBadge(response.unread)
-
+            // Notify the badge update
             notifyBadgeUpdated(response.unread)
+
+            if Actito.shared.application?.inboxConfig?.autoBadge == true {
+                logger.warning("Actito auto badge functionality is not enabled.")
+
+                // Update the application badge.
+                setApplicationBadge(response.unread)
+            }
 
             return response.unread
         } catch {
