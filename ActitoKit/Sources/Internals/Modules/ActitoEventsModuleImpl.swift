@@ -49,6 +49,20 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
             throw ActitoError.notReady
         }
 
+        if
+            Actito.shared.application?.enforceSizeLimit == true,
+            let data = data
+        {
+            let serializedData = try JSONEncoder.actito.encode(ActitoAnyCodable(data))
+            let size = serializedData.count
+
+            if size > MAX_DATA_SIZE_BYTES {
+                throw ActitoError.contentTooLarge(
+                    message: "Data for event '\(event)' of size \(size)B exceeds max size of \(MAX_DATA_SIZE_BYTES)B"
+                )
+            }
+        }
+
         try await log("re.notifica.event.custom.\(event)", data: data)
     }
 
@@ -98,20 +112,6 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
         guard Actito.shared.isConfigured else {
             logger.debug("Actito is not configured. Cannot log the event.")
             throw ActitoError.notConfigured
-        }
-
-        if
-            Actito.shared.application?.enforceSizeLimit == true,
-            let data = payload.data
-        {
-            let serializedData = try JSONEncoder.actito.encode(ActitoAnyCodable(data))
-            let size = serializedData.count
-
-            if size > MAX_DATA_SIZE_BYTES {
-                throw ActitoError.contentTooLarge(
-                    message: "Data for event '\(payload.type)' of size \(size)B exceeds max size of \(MAX_DATA_SIZE_BYTES)B"
-                )
-            }
         }
 
         do {
