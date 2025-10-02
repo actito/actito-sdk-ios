@@ -6,7 +6,7 @@ import Foundation
 
 @globalActor
 public actor ActitoDatabaseActor {
-    static public let shared = ActitoDatabaseActor()
+    public static let shared = ActitoDatabaseActor()
 
     private init() {}
 }
