@@ -48,7 +48,6 @@
 		1AE8F7EC2D76213900462CAB /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8F7EB2D76212A00462CAB /* NotificationCenter.swift */; };
 		E57F4B8C2E86DFB900EE5E0D /* ActitoVersionedDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F4B8B2E86DFB300EE5E0D /* ActitoVersionedDatabase.swift */; };
 		E57F4B8E2E8AC49300EE5E0D /* ActitoDatabaseActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F4B8D2E8AC46000EE5E0D /* ActitoDatabaseActor.swift */; };
-		E57F4B902E8ACB4D00EE5E0D /* ActitoDatabaseMergePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F4B8F2E8ACB4600EE5E0D /* ActitoDatabaseMergePolicy.swift */; };
 		E57F4B952E8BEAC500EE5E0D /* ActitoUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57F4B942E8BEAB600EE5E0D /* ActitoUtilities.swift */; };
 		F27FD2682D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FD2672D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift */; };
 /* End PBXBuildFile section */
@@ -106,7 +105,6 @@
 		1AE8F7EB2D76212A00462CAB /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		E57F4B8B2E86DFB300EE5E0D /* ActitoVersionedDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoVersionedDatabase.swift; sourceTree = "<group>"; };
 		E57F4B8D2E8AC46000EE5E0D /* ActitoDatabaseActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDatabaseActor.swift; sourceTree = "<group>"; };
-		E57F4B8F2E8ACB4600EE5E0D /* ActitoDatabaseMergePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDatabaseMergePolicy.swift; sourceTree = "<group>"; };
 		E57F4B942E8BEAB600EE5E0D /* ActitoUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoUtilities.swift; sourceTree = "<group>"; };
 		F27FD2672D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+SwiftConcurrency.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -461,7 +459,6 @@
 		F27FD2662D7A3A2200ED26AD /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				E57F4B8F2E8ACB4600EE5E0D /* ActitoDatabaseMergePolicy.swift */,
 				E57F4B8D2E8AC46000EE5E0D /* ActitoDatabaseActor.swift */,
 				E57F4B8B2E86DFB300EE5E0D /* ActitoVersionedDatabase.swift */,
 				F27FD2672D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift */,
@@ -589,7 +586,6 @@
 				1AD52A152DE749D1006C7D88 /* Arrays.swift in Sources */,
 				1A52DED92CAB042500B5F56C /* JSONCoders.swift in Sources */,
 				1A52DE522CA160BF00B5F56C /* UIColor+Hex.swift in Sources */,
-				E57F4B902E8ACB4D00EE5E0D /* ActitoDatabaseMergePolicy.swift in Sources */,
 				1A52DE8D2CA4684700B5F56C /* Bundle+Application.swift in Sources */,
 				1A0E1F942C9B1C8E00E15FC7 /* ActitoAnyEncodable.swift in Sources */,
 				E57F4B8C2E86DFB900EE5E0D /* ActitoVersionedDatabase.swift in Sources */,

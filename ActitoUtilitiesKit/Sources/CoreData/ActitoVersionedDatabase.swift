@@ -171,4 +171,14 @@ public final class ActitoVersionedDatabase {
             logger.debug("Failed to remove database.")
         }
     }
+
+    public enum ActitoDatabaseMergePolicy: Sendable {
+        case overwrite
+
+        public var policy: NSMergePolicy {
+            switch self {
+            case .overwrite: return NSMergePolicy.overwrite
+            }
+        }
+    }
 }
