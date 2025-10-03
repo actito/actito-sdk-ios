@@ -6,7 +6,7 @@ import ActitoUtilitiesKit
 import UIKit
 
 private let MAX_RETRIES = 5
-private let MAX_DATA_SIZE_BYTES = 4 * 1024
+private let MAX_DATA_SIZE_BYTES = 2 * 1024
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
 @MainActor
