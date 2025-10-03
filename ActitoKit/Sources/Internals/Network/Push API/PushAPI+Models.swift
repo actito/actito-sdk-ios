@@ -97,7 +97,7 @@ extension ActitoInternals.PushAPI.Models {
                 content: content,
                 actions: actions.compactMap { $0.toModel() },
                 attachments: attachments,
-                extra: extra.compactMapValues { $0 is NSNull ? nil : $0 },
+                extra: extra.compactNestedMapValues { $0 is NSNull ? nil : $0 },
                 targetContentIdentifier: targetContentIdentifier
             )
         }
@@ -149,7 +149,7 @@ extension ActitoInternals.PushAPI.Models.Notification: Decodable {
 
         if container.contains(.extra) {
             let decoded = try container.decode(ActitoAnyCodable.self, forKey: .extra)
-            extra = (decoded.value as! [String: Any]).compactMapValues { $0 is NSNull ? nil : $0 }
+            extra = (decoded.value as! [String: Any]).compactNestedMapValues { $0 is NSNull ? nil : $0 }
         } else {
             extra = [:]
         }

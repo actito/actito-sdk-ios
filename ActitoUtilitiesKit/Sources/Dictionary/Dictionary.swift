@@ -19,4 +19,21 @@ extension Dictionary {
             }
         )
     }
+
+    public func compactNestedMapValues<T>(_ transform: (Value) throws -> T?) rethrows -> [Key: T] {
+        var result: [Key: T] = [:]
+
+        for (key, value) in self {
+            if let nested = value as? [Key: Value] {
+                let transformed = try nested.compactNestedMapValues(transform)
+                if !transformed.isEmpty, let casted = transformed as? T {
+                    result[key] = casted
+                }
+            } else if let transformed = try transform(value) {
+                result[key] = transformed
+            }
+        }
+
+        return result
+    }
 }

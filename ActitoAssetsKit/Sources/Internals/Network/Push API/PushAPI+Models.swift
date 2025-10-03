@@ -53,7 +53,7 @@ extension ActitoInternals.PushAPI.Models {
                         contentLength: $0.contentLength
                     )
                 },
-                extra: (extra?.value as? [String: Any])?.compactMapValues { $0 is NSNull ? nil : $0 } ?? [:]
+                extra: (extra?.value as? [String: Any])?.compactNestedMapValues { $0 is NSNull ? nil : $0 } ?? [:]
             )
         }
     }
