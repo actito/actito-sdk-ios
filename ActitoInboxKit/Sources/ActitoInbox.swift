@@ -84,11 +84,6 @@ public final class ActitoInbox {
             return 0
         }
 
-        guard application.inboxConfig?.autoBadge == true else {
-            logger.warning("Actito auto badge functionality is not enabled.")
-            return 0
-        }
-
         return LocalStorage.currentBadge
     }
 
@@ -153,10 +148,10 @@ public final class ActitoInbox {
             notifyBadgeUpdated(response.unread)
 
             if Actito.shared.application?.inboxConfig?.autoBadge == true {
-                logger.warning("Actito auto badge functionality is not enabled.")
-
                 // Update the application badge.
                 setApplicationBadge(response.unread)
+            } else {
+                logger.warning("Actito auto badge functionality is not enabled.")
             }
 
             return response.unread
