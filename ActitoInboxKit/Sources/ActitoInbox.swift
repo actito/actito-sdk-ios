@@ -151,7 +151,7 @@ public final class ActitoInbox {
                 // Update the application badge.
                 setApplicationBadge(response.unread)
             } else {
-                logger.warning("Actito auto badge functionality is not enabled.")
+                logger.debug("Actito auto badge functionality is not enabled. Skipping OS badge update...")
             }
 
             return response.unread
