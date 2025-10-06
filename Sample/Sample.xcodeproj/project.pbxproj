@@ -217,7 +217,6 @@
 		E5E5EB582DC10A9E00B00B6A /* AssetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetItemView.swift; sourceTree = "<group>"; };
 		E5E5EB592DC10A9E00B00B6A /* AssetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailsView.swift; sourceTree = "<group>"; };
 		E5E5EB5F2DC10B8A00B00B6A /* OtherFeaturesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFeaturesSection.swift; sourceTree = "<group>"; };
-		F22443D3286CBAFE0015CBD6 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		F22443D4286CBBBE0015CBD6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F236118E2C77581C0063C446 /* NotificareServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NotificareServices.plist; sourceTree = "<group>"; };
 		F23611902C77581C0063C446 /* NotificareServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NotificareServices.plist; sourceTree = "<group>"; };
@@ -595,7 +594,6 @@
 				F29FD20524CB1FE3004B166D /* Info.plist */,
 				E51FD38A29D6F2D2000897D9 /* Localizable.strings */,
 				F267DA49273E7CA900448A8F /* NotificareOptions.plist */,
-				F22443D3286CBAFE0015CBD6 /* Products.storekit */,
 				F28553C7258BA18C006674C1 /* Sample.entitlements */,
 				F2E8CF622AFD3CA300D7F2A0 /* Sample.dev.entitlements */,
 				F2E8CF632AFD3CA300D7F2A0 /* Sample.test.dev.entitlements */,
