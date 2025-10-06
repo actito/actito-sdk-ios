@@ -17,17 +17,17 @@ extension Array {
         return index
     }
 
-    public func compactNestedValues<T>(_ transform: (Element) throws -> T?) rethrows -> [T] {
+    public func compactValuesRecursive<T>(_ transform: (Element) throws -> T?) rethrows -> [T] {
         var result: [T] = []
 
         for element in self {
             if let nested = element as? [Element] {
-                let transformed = try nested.compactNestedValues(transform)
+                let transformed = try nested.compactValuesRecursive(transform)
                 if !transformed.isEmpty, let casted = transformed as? T {
                     result.append(casted)
                 }
             } else if let nested = element as? [String: Any] {
-                let transformed = try nested.compactNestedMapValues { try transform($0 as! Element) }
+                let transformed = try nested.compactMapValuesRecursive { try transform($0 as! Element) }
                 if !transformed.isEmpty, let casted = transformed as? T {
                     result.append(casted)
                 }

@@ -35,7 +35,7 @@ internal struct CompactTests {
             ],
         ]
 
-        let compactedDictionary = dictionary.compactNestedMapValues { $0 is NSNull ? nil : $0 }
+        let compactedDictionary = dictionary.compactMapValuesRecursive { $0 is NSNull ? nil : $0 }
 
         let firstObject = TestStruct(extra: compactedDictionary)
         let secondObject = TestStruct(extra: expectedDictionary)
@@ -64,7 +64,7 @@ internal struct CompactTests {
             6,
         ]
 
-        let compactedArray = array.compactNestedValues { $0 is NSNull ? nil : $0 }
+        let compactedArray = array.compactValuesRecursive { $0 is NSNull ? nil : $0 }
 
         let firstObject = TestArrayStruct(extra: compactedArray)
         let secondObject = TestArrayStruct(extra: expectedArray)
@@ -138,7 +138,7 @@ internal struct CompactTests {
             ],
         ]
 
-        let compactedDictionary = dictionary.compactNestedMapValues { $0 is NSNull ? nil : $0 }
+        let compactedDictionary = dictionary.compactMapValuesRecursive { $0 is NSNull ? nil : $0 }
 
         let firstObject = TestStruct(extra: compactedDictionary)
         let secondObject = TestStruct(extra: expectedDictionary)

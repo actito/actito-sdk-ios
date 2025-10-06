@@ -20,17 +20,17 @@ extension Dictionary {
         )
     }
 
-    public func compactNestedMapValues<T>(_ transform: (Value) throws -> T?) rethrows -> [Key: T] {
+    public func compactMapValuesRecursive<T>(_ transform: (Value) throws -> T?) rethrows -> [Key: T] {
         var result: [Key: T] = [:]
 
         for (key, value) in self {
             if let nested = value as? [Key: Value] {
-                let transformed = try nested.compactNestedMapValues(transform)
+                let transformed = try nested.compactMapValuesRecursive(transform)
                 if !transformed.isEmpty, let casted = transformed as? T {
                     result[key] = casted
                 }
             } else if let nested = value as? [Any] {
-                let transformed = try nested.compactNestedValues { try transform($0 as! Value) }
+                let transformed = try nested.compactValuesRecursive { try transform($0 as! Value) }
                 if !transformed.isEmpty, let casted = transformed as? T {
                     result[key] = casted
                 }
