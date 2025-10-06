@@ -24,6 +24,10 @@ public class ActitoSmsActionHandler: ActitoBaseActionHandler {
         composer.body = ""
 
         sourceViewController.presentOrPush(composer)
+
+        Task {
+            try? await Actito.shared.createNotificationReply(notification: notification, action: action)
+        }
     }
 }
 
