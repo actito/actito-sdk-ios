@@ -78,7 +78,7 @@ public actor ActitoRequest {
         private var body: RequestBody?
         private var validStatusCodes: ClosedRange<Int> = 200 ... 299
 
-        public init(
+        private init(
             userAgent: String,
             sdkVersion: String,
             preferredLanguage: String?,
@@ -90,6 +90,24 @@ public actor ActitoRequest {
             self.preferredLanguage = preferredLanguage
             self.baseUrl = baseUrl
             self.authentication = authentication
+        }
+
+        public convenience init() {
+            self.init(
+                userAgent: UIDevice.current.userAgent(sdkVersion: Actito.SDK_VERSION),
+                sdkVersion: Actito.SDK_VERSION,
+                preferredLanguage: Actito.shared.device().preferredLanguage,
+                baseUrl: Actito.shared.servicesInfo?.hosts.restApi,
+                authentication: {
+                    guard let applicationKey = Actito.shared.servicesInfo?.applicationKey,
+                          let applicationSecret = Actito.shared.servicesInfo?.applicationSecret else {
+                        logger.warning("Actito application authentication not configured.")
+                        return nil
+                    }
+
+                    return .basic(username: applicationKey, password: applicationSecret)
+                }()
+            )
         }
 
         public func baseUrl(url: String) -> Self {
@@ -266,8 +284,8 @@ public actor ActitoRequest {
                 }
 
                 urlStr = !baseUrl.hasSuffix("/") && !urlStr.hasPrefix("/")
-                    ? "\(baseUrl)/\(urlStr)"
-                    : "\(baseUrl)\(urlStr)"
+                ? "\(baseUrl)/\(urlStr)"
+                : "\(baseUrl)\(urlStr)"
             }
 
             guard var url = URL(string: urlStr) else {
