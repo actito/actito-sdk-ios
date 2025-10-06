@@ -29,9 +29,6 @@
       location = "group:ActitoPushUIKit/ActitoPushUIKit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ActitoScannablesKit/ActitoScannablesKit.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:ActitoUserInboxKit/ActitoUserInboxKit.xcodeproj">
    </FileRef>
    <FileRef
