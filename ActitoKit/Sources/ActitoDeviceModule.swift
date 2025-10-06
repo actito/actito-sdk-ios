@@ -6,6 +6,9 @@ import ActitoUtilitiesKit
 import Foundation
 import UIKit
 
+private let MIN_TAG_SIZE_CHAR = 3
+private let MAX_TAG_SIZE_CHAR = 64
+
 @MainActor
 public final class ActitoDeviceModule {
     public static let shared = ActitoDeviceModule()
@@ -263,6 +266,18 @@ public final class ActitoDeviceModule {
     public func addTags(_ tags: [String]) async throws {
         guard Actito.shared.isReady, let device = storedDevice else {
             throw ActitoError.notReady
+        }
+
+        if Actito.shared.application?.enforceTagRestrictions == true {
+            let regex = "^[a-zA-Z0-9]([a-zA-Z0-9_-]{0,62}[a-zA-Z0-9])?$".toRegex()
+
+            let invalidTags = tags.filter { $0.count < MIN_TAG_SIZE_CHAR || $0.count > MAX_TAG_SIZE_CHAR || !$0.matches(regex) }
+
+            if !invalidTags.isEmpty {
+                throw ActitoError.invalidArgument(
+                    message: "Invalid tags: \(invalidTags). Tags must have between \(MIN_TAG_SIZE_CHAR)-\(MAX_TAG_SIZE_CHAR) characters and match this pattern: \(regex.pattern)"
+                )
+            }
         }
 
         let payload = ActitoInternals.PushAPI.Payloads.Device.Tags(

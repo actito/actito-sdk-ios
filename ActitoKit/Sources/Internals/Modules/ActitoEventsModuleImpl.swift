@@ -7,6 +7,8 @@ import UIKit
 
 private let MAX_RETRIES = 5
 private let MAX_DATA_SIZE_BYTES = 2 * 1024
+private let MIN_EVENT_NAME_SIZE_CHAR = 3
+private let MAX_EVENT_NAME_SIZE_CHAR = 64
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
 @MainActor
@@ -47,6 +49,16 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
     internal func logCustom(_ event: String, data: ActitoEventData?) async throws {
         guard Actito.shared.isReady else {
             throw ActitoError.notReady
+        }
+
+        if Actito.shared.application?.enforceEventNameRestrictions == true {
+            let regex = "^[a-zA-Z0-9]([a-zA-Z0-9_-]{0,62}[a-zA-Z0-9])?$".toRegex()
+
+            if event.count < MIN_EVENT_NAME_SIZE_CHAR || event.count > MAX_EVENT_NAME_SIZE_CHAR || !event.matches(regex) {
+                throw ActitoError.invalidArgument(
+                    message: "Invalid event name '\(event)'. Event name must have between \(MIN_EVENT_NAME_SIZE_CHAR)-\(MAX_EVENT_NAME_SIZE_CHAR) characters and match this pattern: \(regex.pattern)"
+                )
+            }
         }
 
         if
