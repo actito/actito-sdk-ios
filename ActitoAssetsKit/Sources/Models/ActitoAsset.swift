@@ -90,7 +90,7 @@ extension ActitoAsset {
         metaData = try container.decodeIfPresent(MetaData.self, forKey: .metaData)
 
         if let extra = try container.decodeIfPresent(ActitoAnyCodable.self, forKey: .extra) {
-            self.extra = (extra.value as! [String: Any]).compactNestedMapValues { $0 is NSNull ? nil : $0 }
+            self.extra = (extra.value as! [String: Any]).compactMapValuesRecursive { $0 is NSNull ? nil : $0 }
         } else {
             extra = [:]
         }
