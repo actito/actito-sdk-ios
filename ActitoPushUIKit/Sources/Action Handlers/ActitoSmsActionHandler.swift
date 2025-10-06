@@ -39,10 +39,6 @@ extension ActitoSmsActionHandler: MFMessageComposeViewControllerDelegate {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
             }
 
-            Task {
-                try? await Actito.shared.createNotificationReply(notification: notification, action: action)
-            }
-
         case .cancelled:
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
