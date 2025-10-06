@@ -16,4 +16,32 @@ extension Array {
 
         return index
     }
+
+    public func compactNestedValues<T>(_ transform: (Any) throws -> T?) rethrows -> [Any] {
+        var result: [Any] = []
+
+        for element in self {
+            switch element {
+                case is NSNull:
+                    continue
+
+                case let nestedArray as [Any]:
+                    let nestedValues = try nestedArray.compactNestedValues(transform)
+                    result.append(contentsOf: nestedValues)
+
+                case let nestedDict as [String: Any]:
+                    let nestedValues = try nestedDict.compactNestedMapValues(transform)
+                    result.append(nestedValues)
+
+                default:
+                    // Apply transformation to leaf value
+                    if let transformed = try transform(element) {
+                        result.append(transformed)
+                    }
+                }
+        }
+
+        return result
+    }
+
 }

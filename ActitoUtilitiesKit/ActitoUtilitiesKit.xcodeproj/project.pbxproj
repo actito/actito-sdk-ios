@@ -15,6 +15,7 @@
 		1A0E1F942C9B1C8E00E15FC7 /* ActitoAnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E1F932C9B1C8E00E15FC7 /* ActitoAnyEncodable.swift */; };
 		1A0E1F952C9B1CE600E15FC7 /* ActitoExtraEquatableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E1F8C2C99EC2D00E15FC7 /* ActitoExtraEquatableTest.swift */; };
 		1A0E1F982C9C11DC00E15FC7 /* EncodeNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E1F972C9C11DC00E15FC7 /* EncodeNull.swift */; };
+		1A17B2462E93A88700B6B569 /* CompactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A17B2452E93A87C00B6B569 /* CompactTests.swift */; };
 		1A52DE502CA15E7000B5F56C /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE4F2CA15E6A00B5F56C /* Data+Hex.swift */; };
 		1A52DE522CA160BF00B5F56C /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE512CA160B800B5F56C /* UIColor+Hex.swift */; };
 		1A52DE542CA1612600B5F56C /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE532CA1612400B5F56C /* URL.swift */; };
@@ -72,6 +73,7 @@
 		1A0E1F912C9B1C6600E15FC7 /* ActitoAnyDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoAnyDecodable.swift; sourceTree = "<group>"; };
 		1A0E1F932C9B1C8E00E15FC7 /* ActitoAnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoAnyEncodable.swift; sourceTree = "<group>"; };
 		1A0E1F972C9C11DC00E15FC7 /* EncodeNull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeNull.swift; sourceTree = "<group>"; };
+		1A17B2452E93A87C00B6B569 /* CompactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactTests.swift; sourceTree = "<group>"; };
 		1A52DE4F2CA15E6A00B5F56C /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
 		1A52DE512CA160B800B5F56C /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		1A52DE532CA1612400B5F56C /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
@@ -157,7 +159,6 @@
 				F27FD2662D7A3A2200ED26AD /* CoreData */,
 				1A52DE832CA4654400B5F56C /* Data */,
 				1A52DE882CA4678D00B5F56C /* Device */,
-				1A52DE872CA4675F00B5F56C /* Dictionary */,
 				1A0E1F672C982E6700E15FC7 /* ExtraEquatable */,
 				1A52DE5B2CA1679500B5F56C /* IsoDate */,
 				1A52DF022CAC12DF00B5F56C /* JSON */,
@@ -284,14 +285,6 @@
 			path = String;
 			sourceTree = "<group>";
 		};
-		1A52DE872CA4675F00B5F56C /* Dictionary */ = {
-			isa = PBXGroup;
-			children = (
-				1A52DE592CA165EF00B5F56C /* Dictionary.swift */,
-			);
-			path = Dictionary;
-			sourceTree = "<group>";
-		};
 		1A52DE882CA4678D00B5F56C /* Device */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,7 +346,6 @@
 		1A52DEA22CA5467D00B5F56C /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
-				1A52DEA32CA5468A00B5F56C /* DictionaryTests.swift */,
 			);
 			path = Dictionary;
 			sourceTree = "<group>";
@@ -427,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				1AD52A142DE749BD006C7D88 /* Arrays.swift */,
+				1A52DE592CA165EF00B5F56C /* Dictionary.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -434,6 +427,8 @@
 		1AD52A162DE749F9006C7D88 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				1A17B2452E93A87C00B6B569 /* CompactTests.swift */,
+				1A52DEA32CA5468A00B5F56C /* DictionaryTests.swift */,
 				1AD52A172DE74A0D006C7D88 /* InsertedSortedTests.swift */,
 			);
 			path = Collections;
@@ -629,6 +624,7 @@
 				1A52DED22CAAF0A900B5F56C /* Bundle+ApplicationTests.swift in Sources */,
 				1A52DE642CA1AFF300B5F56C /* UIColor+HexTests.swift in Sources */,
 				1A52DEC02CA5AB1100B5F56C /* StringTests.swift in Sources */,
+				1A17B2462E93A88700B6B569 /* CompactTests.swift in Sources */,
 				1A52DE662CA1B59900B5F56C /* Data+HexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

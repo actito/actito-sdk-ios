@@ -29,6 +29,11 @@ extension Dictionary {
                 if !transformed.isEmpty, let casted = transformed as? T {
                     result[key] = casted
                 }
+            } else if let nested = value as? [Any] {
+                let transformed = try nested.compactNestedValues { try transform($0 as! Value) }
+                if !transformed.isEmpty, let casted = transformed as? T {
+                    result[key] = casted
+                }
             } else if let transformed = try transform(value) {
                 result[key] = transformed
             }
