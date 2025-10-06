@@ -60,8 +60,7 @@ internal struct CompactTests {
             2,
             ["foo": "bar"],
             3,
-            4,
-            ["nested": 5],
+            [4, ["nested": 5]],
             6,
         ]
 

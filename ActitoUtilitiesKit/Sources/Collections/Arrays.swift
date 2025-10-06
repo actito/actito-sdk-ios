@@ -17,31 +17,25 @@ extension Array {
         return index
     }
 
-    public func compactNestedValues<T>(_ transform: (Any) throws -> T?) rethrows -> [Any] {
-        var result: [Any] = []
+    public func compactNestedValues<T>(_ transform: (Element) throws -> T?) rethrows -> [T] {
+        var result: [T] = []
 
         for element in self {
-            switch element {
-                case is NSNull:
-                    continue
-
-                case let nestedArray as [Any]:
-                    let nestedValues = try nestedArray.compactNestedValues(transform)
-                    result.append(contentsOf: nestedValues)
-
-                case let nestedDict as [String: Any]:
-                    let nestedValues = try nestedDict.compactNestedMapValues(transform)
-                    result.append(nestedValues)
-
-                default:
-                    // Apply transformation to leaf value
-                    if let transformed = try transform(element) {
-                        result.append(transformed)
-                    }
+            if let nested = element as? [Element] {
+                let transformed = try nested.compactNestedValues(transform)
+                if !transformed.isEmpty, let casted = transformed as? T {
+                    result.append(casted)
                 }
+            } else if let nested = element as? [String: Any] {
+                let transformed = try nested.compactNestedMapValues { try transform($0 as! Element) }
+                if !transformed.isEmpty, let casted = transformed as? T {
+                    result.append(casted)
+                }
+            } else if let transformed = try transform(element) {
+                result.append(transformed)
+            }
         }
 
         return result
     }
-
 }
