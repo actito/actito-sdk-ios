@@ -20,7 +20,7 @@ public actor ActitoRequest {
     private var request: URLRequest {
         get throws {
             if let body {
-                _request.httpBody = try body.data
+                _request.httpBody = try body.encode()
                 self.body = nil
             }
 
@@ -126,15 +126,9 @@ public actor ActitoRequest {
             return self
         }
 
-        public func post(_ url: String, body: [URLQueryItem]) -> Self {
-            _ = post(url)
-            encode(body)
-            return self
-        }
-
         public func post(_ url: String, body: Data, contentType: String) -> Self {
             _ = post(url)
-            self.body = .applicationJsonData(body: body)
+            self.body = .data(body)
             headers["Content-Type"] = contentType
             return self
         }
@@ -290,14 +284,9 @@ public actor ActitoRequest {
 
         private func encode<T: Encodable & Sendable>(_ body: T?) {
             if let body {
-                self.body = .applicationJsonEncodable(body: body)
+                self.body = .encodable(body)
                 headers["Content-Type"] = "application/json"
             }
-        }
-
-        private func encode(_ body: [URLQueryItem]) {
-            self.body = .formUrlEncoded(body: body)
-            headers["Content-Type"] = "application/x-www-form-urlencoded"
         }
     }
 
@@ -317,31 +306,18 @@ public actor ActitoRequest {
     }
 
     private enum RequestBody: Sendable {
-        case applicationJsonData(body: Data)
-        case applicationJsonEncodable(body: (any Encodable & Sendable)?)
-        case formUrlEncoded(body: [URLQueryItem])
+        case data(_ data: Data)
+        case encodable(_ value: (any Encodable & Sendable)?)
 
-        var data: Data? {
-            get throws {
-                switch self {
-                case let .applicationJsonData(data):
-                    return data
+        internal func encode() throws -> Data? {
+            switch self {
+            case let .data(data):
+                return data
 
-                case let .applicationJsonEncodable(body):
-                    guard let body = body else { return nil }
+            case let .encodable(value):
+                guard let value = value else { return nil }
 
-                    return try JSONEncoder.actito.encode(body)
-
-                case let .formUrlEncoded(body):
-                    let parameters = body.map { item -> String in
-                        let key = item.name
-                        let value = item.value?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-
-                        return "\(key)=\(value ?? "")"
-                    }
-
-                    return parameters.joined(separator: "&").data(using: .utf8)
-                }
+                return try JSONEncoder.actito.encode(value)
             }
         }
     }
