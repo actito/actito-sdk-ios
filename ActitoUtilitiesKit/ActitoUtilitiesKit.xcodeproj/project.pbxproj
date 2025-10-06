@@ -182,7 +182,6 @@
 				1AD52A162DE749F9006C7D88 /* Collections */,
 				1A52DE972CA5429B00B5F56C /* Data */,
 				1A52DEAA2CA54F2800B5F56C /* Device */,
-				1A52DEA22CA5467D00B5F56C /* Dictionary */,
 				1A52DE982CA542E600B5F56C /* ExtraEquatable */,
 				1A52DEAE2CA54F6700B5F56C /* IsoDate */,
 				1A52DF032CAC130300B5F56C /* JSON */,
@@ -341,13 +340,6 @@
 				1A0E1F8C2C99EC2D00E15FC7 /* ActitoExtraEquatableTest.swift */,
 			);
 			path = ExtraEquatable;
-			sourceTree = "<group>";
-		};
-		1A52DEA22CA5467D00B5F56C /* Dictionary */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Dictionary;
 			sourceTree = "<group>";
 		};
 		1A52DEAA2CA54F2800B5F56C /* Device */ = {
