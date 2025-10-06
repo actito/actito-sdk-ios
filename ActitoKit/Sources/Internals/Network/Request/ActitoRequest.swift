@@ -63,9 +63,10 @@ public actor ActitoRequest {
 
     @MainActor
     public class Builder {
-        private var userAgent: String
-        private var preferredLanguage: String?
-        private var restApi: String?
+        private let userAgent: String
+        private let sdkVersion: String
+        private let preferredLanguage: String?
+        private let restApi: String?
         private var authentication: Authentication?
 
         private var baseUrl: String?
@@ -78,11 +79,13 @@ public actor ActitoRequest {
 
         public init(
             userAgent: String,
+            sdkVersion: String,
             preferredLanguage: String?,
             restApi: String?,
             authentication: Authentication?
         ) {
             self.userAgent = userAgent
+            self.sdkVersion = sdkVersion
             self.preferredLanguage = preferredLanguage
             self.restApi = restApi
             self.authentication = authentication

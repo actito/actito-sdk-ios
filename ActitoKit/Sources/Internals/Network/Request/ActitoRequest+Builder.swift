@@ -2,13 +2,13 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import ActitoUtilitiesKit
 import UIKit
 
 extension ActitoRequest.Builder {
     public convenience init() {
         self.init(
             userAgent: UIDevice.current.userAgent(sdkVersion: Actito.SDK_VERSION),
+            sdkVersion: Actito.SDK_VERSION,
             preferredLanguage: Actito.shared.device().preferredLanguage,
             restApi: Actito.shared.servicesInfo?.hosts.restApi,
             authentication: {
