@@ -5,7 +5,7 @@
 import Foundation
 
 @propertyWrapper
-public struct EncodeNull<T>: Encodable where T: Encodable {
+public struct EncodeNull<T>: Encodable & Sendable where T: Encodable & Sendable {
     public let wrappedValue: T?
 
     public init(wrappedValue: T?) {

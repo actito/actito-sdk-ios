@@ -30,7 +30,7 @@ extension ActitoInternals.PushAPI.Payloads {
         internal var backgroundAppRefresh: Bool
     }
 
-    internal struct UpdateDeviceUser: Encodable {
+    internal struct UpdateDeviceUser: Encodable, Sendable {
         @EncodeNull internal var userID: String?
         @EncodeNull internal var userName: String?
     }
