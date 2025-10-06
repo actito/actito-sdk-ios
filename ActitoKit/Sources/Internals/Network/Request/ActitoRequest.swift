@@ -5,6 +5,8 @@
 import ActitoUtilitiesKit
 import UIKit
 
+private typealias EncodableContent = (any Encodable & Sendable)
+
 public actor ActitoRequest {
     private static let session: URLSession = {
         let configuration = URLSessionConfiguration.default
@@ -307,7 +309,7 @@ public actor ActitoRequest {
 
     private enum RequestBody: Sendable {
         case data(_ data: Data)
-        case encodable(_ value: (any Encodable & Sendable)?)
+        case encodable(_ value: EncodableContent?)
 
         internal func encode() throws -> Data? {
             switch self {
