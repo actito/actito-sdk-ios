@@ -10,7 +10,7 @@ extension ActitoRequest.Builder {
             userAgent: UIDevice.current.userAgent(sdkVersion: Actito.SDK_VERSION),
             sdkVersion: Actito.SDK_VERSION,
             preferredLanguage: Actito.shared.device().preferredLanguage,
-            restApi: Actito.shared.servicesInfo?.hosts.restApi,
+            baseUrl: Actito.shared.servicesInfo?.hosts.restApi,
             authentication: {
                 guard let applicationKey = Actito.shared.servicesInfo?.applicationKey,
                       let applicationSecret = Actito.shared.servicesInfo?.applicationSecret else {

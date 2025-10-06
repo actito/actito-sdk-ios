@@ -68,10 +68,9 @@ public actor ActitoRequest {
         private let userAgent: String
         private let sdkVersion: String
         private let preferredLanguage: String?
-        private let restApi: String?
         private var authentication: Authentication?
-
         private var baseUrl: String?
+
         private var url: String?
         private var queryItems = [String: String]()
         private var headers = [String: String]()
@@ -83,13 +82,13 @@ public actor ActitoRequest {
             userAgent: String,
             sdkVersion: String,
             preferredLanguage: String?,
-            restApi: String?,
+            baseUrl: String?,
             authentication: Authentication?
         ) {
             self.userAgent = userAgent
             self.sdkVersion = sdkVersion
             self.preferredLanguage = preferredLanguage
-            self.restApi = restApi
+            self.baseUrl = baseUrl
             self.authentication = authentication
         }
 
@@ -262,7 +261,7 @@ public actor ActitoRequest {
             }
 
             if !urlStr.starts(with: "http://"), !urlStr.starts(with: "https://") {
-                guard let baseUrl = baseUrl ?? restApi else {
+                guard let baseUrl = baseUrl else {
                     throw ActitoError.invalidArgument(message: "Unable to determine the base url for the request.")
                 }
 
