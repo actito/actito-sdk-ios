@@ -17,6 +17,8 @@ extension ActitoInternals.PushAPI.Models {
         public let userDataFields: [ActitoApplication.UserDataField]
         public let actionCategories: [ActionCategory]
         public let enforceSizeLimit: Bool
+        public let enforceTagRestrictions: Bool?
+        public let enforceEventNameRestrictions: Bool?
 
         public struct ActionCategory: Decodable, Equatable, Sendable {
             public let name: String
@@ -44,6 +46,8 @@ extension ActitoInternals.PushAPI.Models {
                     )
                 },
                 enforceSizeLimit: enforceSizeLimit,
+                enforceTagRestrictions: enforceTagRestrictions,
+                enforceEventNameRestrictions: enforceEventNameRestrictions,
             )
         }
     }
