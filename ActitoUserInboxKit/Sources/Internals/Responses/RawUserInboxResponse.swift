@@ -38,7 +38,8 @@ internal struct RawUserInboxResponse: Decodable, Equatable {
                     content: [],
                     actions: [],
                     attachments: attachment.map { [$0] } ?? [],
-                    extra: extra.compactMapValuesRecursive { $0 is NSNull ? nil : $0 },
+                    extra: extra.compactMapValuesRecursive {_, value in
+                        value is NSNull ? nil : value },
                     targetContentIdentifier: nil
                 ),
                 time: time,
@@ -62,7 +63,8 @@ extension RawUserInboxResponse.RawUserInboxItem: Decodable {
         message = try container.decode(String.self, forKey: .message)
         attachment = try container.decodeIfPresent(ActitoNotification.Attachment.self, forKey: .attachment)
         if let extra = try container.decodeIfPresent(ActitoAnyCodable.self, forKey: .extra) {
-            self.extra = (extra.value as! [String: Any]).compactMapValuesRecursive { $0 is NSNull ? nil : $0 }
+            self.extra = (extra.value as! [String: Any]).compactMapValuesRecursive {_, value in
+                value is NSNull ? nil : value }
         } else {
             extra = [:]
         }

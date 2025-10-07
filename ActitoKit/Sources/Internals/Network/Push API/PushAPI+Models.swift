@@ -97,7 +97,8 @@ extension ActitoInternals.PushAPI.Models {
                 content: content,
                 actions: actions.compactMap { $0.toModel() },
                 attachments: attachments,
-                extra: extra.compactMapValuesRecursive { $0 is NSNull ? nil : $0 },
+                extra: extra.compactMapValuesRecursive {_, value in
+                    value is NSNull ? nil : value },
                 targetContentIdentifier: targetContentIdentifier
             )
         }
@@ -149,7 +150,8 @@ extension ActitoInternals.PushAPI.Models.Notification: Decodable {
 
         if container.contains(.extra) {
             let decoded = try container.decode(ActitoAnyCodable.self, forKey: .extra)
-            extra = (decoded.value as! [String: Any]).compactMapValuesRecursive { $0 is NSNull ? nil : $0 }
+            extra = (decoded.value as! [String: Any]).compactMapValuesRecursive {_, value in
+                value is NSNull ? nil : value }
         } else {
             extra = [:]
         }

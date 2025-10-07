@@ -53,7 +53,8 @@ extension ActitoInternals.PushAPI.Models {
                         contentLength: $0.contentLength
                     )
                 },
-                extra: (extra?.value as? [String: Any])?.compactMapValuesRecursive { $0 is NSNull ? nil : $0 } ?? [:]
+                extra: (extra?.value as? [String: Any])?.compactMapValuesRecursive {_, value in
+                    value is NSNull ? nil : value } ?? [:]
             )
         }
     }

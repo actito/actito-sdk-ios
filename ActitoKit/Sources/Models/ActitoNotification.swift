@@ -165,7 +165,8 @@ extension ActitoNotification {
         attachments = try container.decode([Attachment].self, forKey: .attachments)
 
         let decodedExtra = try container.decode(ActitoAnyCodable.self, forKey: .extra)
-        extra = (decodedExtra.value as! [String: Any]).compactMapValuesRecursive { $0 is NSNull ? nil : $0 }
+        extra = (decodedExtra.value as! [String: Any]).compactMapValuesRecursive {_, value in
+            value is NSNull ? nil : value }
 
         targetContentIdentifier = try container.decodeIfPresent(String.self, forKey: .targetContentIdentifier)
     }
