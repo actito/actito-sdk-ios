@@ -35,10 +35,14 @@ internal struct CompactTests {
             ],
         ]
 
-        let compactedDictionary = dictionary.compactMapValuesRecursive { $0 is NSNull ? nil : $0 }
+        let compactedDictionary = dictionary.compactMapValuesRecursive {_, value in
+            value is NSNull ? nil : value }
 
         let firstObject = TestStruct(extra: compactedDictionary)
         let secondObject = TestStruct(extra: expectedDictionary)
+
+        print(firstObject)
+        print(secondObject)
 
         #expect(firstObject == secondObject)
     }
@@ -68,6 +72,9 @@ internal struct CompactTests {
 
         let firstObject = TestArrayStruct(extra: compactedArray)
         let secondObject = TestArrayStruct(extra: expectedArray)
+
+        print(firstObject)
+        print(secondObject)
 
         #expect(firstObject == secondObject)
     }
@@ -138,10 +145,14 @@ internal struct CompactTests {
             ],
         ]
 
-        let compactedDictionary = dictionary.compactMapValuesRecursive { $0 is NSNull ? nil : $0 }
+        let compactedDictionary = dictionary.compactMapValuesRecursive {_, value in
+            value is NSNull ? nil : value }
 
         let firstObject = TestStruct(extra: compactedDictionary)
         let secondObject = TestStruct(extra: expectedDictionary)
+
+        print(firstObject)
+        print(secondObject)
 
         #expect(firstObject == secondObject)
     }
