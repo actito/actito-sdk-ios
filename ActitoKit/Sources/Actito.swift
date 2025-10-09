@@ -75,8 +75,8 @@ public final class Actito {
     /// Configures Actito, optionally  with the provided services info and options objects.
     ///
     /// This method configures the SDK with the provided ``ActitoServicesInfo`` and ``ActitoOptions`` objects.
-    /// If not provided, this method will try to auto-configure using the services info and options provided in the  `NotificareServices.plist` and
-    /// `NotificareOptions.plist` files, if they exist.
+    /// If not provided, this method will try to auto-configure using the services info and options provided in the  `ActitoServices.plist` and
+    /// `ActitoOptions.plist` files, if they exist.
     ///
     /// - Parameters:
     ///   - servicesInfo: The optional ``ActitoServicesInfo`` object to use for configuration.
@@ -774,7 +774,7 @@ public final class Actito {
         }
 
         guard let servicesInfo = ActitoServicesInfo(contentsOfFile: path) else {
-            fatalError("Could not parse the NotificareServices plist. Please check the contents are valid.")
+            fatalError("Could not parse the ActitoServices plist. Please check the contents are valid.")
         }
 
         return servicesInfo
@@ -783,7 +783,7 @@ public final class Actito {
     private func loadOptionsFile() -> ActitoOptions {
         if let path = Bundle.main.path(forResource: ActitoOptions.fileName, ofType: ActitoOptions.fileExtension) {
             guard let options = ActitoOptions(contentsOfFile: path) else {
-                fatalError("Could not parse the NotificareOptions plist. Please check the contents are valid.")
+                fatalError("Could not parse the ActitoOptions plist. Please check the contents are valid.")
             }
 
             return options

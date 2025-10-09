@@ -147,7 +147,7 @@ public class ActitoSwizzler: NSProxy {
         if object_setClass(originalDelegate, subClass) != nil {
             logger.info("""
             Successfully created the App Delegate Proxy. \
-            To disable automatic proxy, set the flag 'SWIZZLING_ENABLED' to NO on the NotificareOptions.plist.
+            To disable automatic proxy, set the flag 'SWIZZLING_ENABLED' to NO on the ActitoOptions.plist.
             """)
         }
 

@@ -11,7 +11,7 @@ private let DEFAULT_APP_LINKS_HOST = "applinks.notifica.re"
 private let HOST_REGEX = "^(https?://)?(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])(:[0-9]{1,5})?$".toRegex()
 
 public struct ActitoServicesInfo: Decodable, Sendable {
-    internal static let fileName = "NotificareServices"
+    internal static let fileName = "ActitoServices"
     internal static let fileExtension = "plist"
 
     public let applicationKey: String

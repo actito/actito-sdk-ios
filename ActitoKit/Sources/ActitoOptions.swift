@@ -5,7 +5,7 @@
 import UIKit
 
 public struct ActitoOptions: Decodable, Sendable {
-    internal static let fileName = "NotificareOptions"
+    internal static let fileName = "ActitoOptions"
     internal static let fileExtension = "plist"
 
     public static let DEFAULT_DEBUG_LOGGING_ENABLED = false
