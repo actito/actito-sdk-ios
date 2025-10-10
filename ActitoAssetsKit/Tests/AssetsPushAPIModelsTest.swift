@@ -13,7 +13,7 @@ private let TEST_APP_LINKS_HOST = "applinks.actito.com"
 @MainActor
 internal struct AssetsPushAPIModelsTest {
     @Test
-    internal func testAssetToModel() {
+    internal func testAssetToModel() throws {
         configureActito()
 
         let expectedAsset = ActitoAsset(
@@ -34,28 +34,36 @@ internal struct AssetsPushAPIModelsTest {
             extra: ["testExtraKey": "testExtraValue"]
         )
 
-        let asset = ActitoInternals.PushAPI.Models.Asset(
-            _id: "testId",
-            key: "testKey",
-            title: "testTitle",
-            description: "testDescription",
-            extra: ["testExtraKey": "testExtraValue"],
-            button: ActitoInternals.PushAPI.Models.Asset.Button(
-                label: "testLabel",
-                action: "testAction"
-            ),
-            metaData: ActitoInternals.PushAPI.Models.Asset.MetaData(
-                originalFileName: "testOriginalName",
-                contentType: "testContentType",
-                contentLength: 1
-            )
-        ).toModel(servicesInfo: Actito.shared.servicesInfo)
+        let jsonStr = """
+            {
+                "_id": "testId",
+                "key": "testKey",
+                "title": "testTitle",
+                "description": "testDescription",
+                "extra": {
+                    "testExtraKey": "testExtraValue"
+                },
+                "button": {
+                    "label": "testLabel",
+                    "action": "testAction"
+                },
+                "metaData": {
+                    "originalFileName": "testOriginalName",
+                    "contentType": "testContentType",
+                    "contentLength": 1
+                }
+            }
+            """
+
+        let decoded = try JSONDecoder.actito.decode(ActitoInternals.PushAPI.Models.Asset.self, from: jsonStr.data(using: .utf8)!)
+
+        let asset = decoded.toModel(servicesInfo: Actito.shared.servicesInfo)
 
         #expect(expectedAsset == asset)
     }
 
     @Test
-    internal func testAssetWithNilPropsToModel() {
+    internal func testAssetWithNilPropsToModel() throws {
         let expectedAsset = ActitoAsset(
             id: "testId",
             title: "testTitle",
@@ -67,15 +75,21 @@ internal struct AssetsPushAPIModelsTest {
             extra: [:]
         )
 
-        let asset = ActitoInternals.PushAPI.Models.Asset(
-            _id: "testId",
-            key: nil,
-            title: "testTitle",
-            description: nil,
-            extra: [:],
-            button: nil,
-            metaData: nil
-        ).toModel(servicesInfo: nil)
+        let jsonStr = """
+            {
+                "_id": "testId",
+                "key": null,
+                "title": "testTitle",
+                "description": null,
+                "extra": {},
+                "button": null,
+                "metaData": null
+            }
+            """
+
+        let decoded = try JSONDecoder.actito.decode(ActitoInternals.PushAPI.Models.Asset.self, from: jsonStr.data(using: .utf8)!)
+
+        let asset = decoded.toModel(servicesInfo: nil)
 
         #expect(expectedAsset == asset)
     }

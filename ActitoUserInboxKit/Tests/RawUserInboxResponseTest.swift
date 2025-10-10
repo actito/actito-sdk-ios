@@ -8,7 +8,7 @@ import Testing
 
 internal struct RawUserInboxResponseTest {
     @Test
-    internal func testRawUserInboxResponseToModel() {
+    internal func testRawUserInboxResponseToModel() throws {
         let expectedItem = ActitoUserInboxItem(
             id: "testId",
             notification: ActitoNotification(
@@ -35,28 +35,36 @@ internal struct RawUserInboxResponseTest {
             expires: Date(timeIntervalSince1970: 1)
         )
 
-        let item = RawUserInboxResponse.RawUserInboxItem(
-            _id: "testId",
-            notification: "testNotification",
-            type: "testType",
-            time: Date(timeIntervalSince1970: 1),
-            title: "testTitle",
-            subtitle: "testSubtitle",
-            message: "testMessage",
-            attachment: ActitoNotification.Attachment(
-                mimeType: "testMimeType",
-                uri: "testUri"
-            ),
-            extra: ["testKey": "testValue"],
-            opened: true,
-            expires: Date(timeIntervalSince1970: 1)
-        ).toModel()
+        let jsonStr = """
+            {
+                "_id": "testId",
+                "notification": "testNotification",
+                "type": "testType",
+                "time": "1970-01-01T00:00:01.000+0000",
+                "title": "testTitle",
+                "subtitle": "testSubtitle",
+                "message": "testMessage",
+                "attachment": {
+                    "mimeType": "testMimeType",
+                    "uri": "testUri"
+                },
+                "extra": {
+                    "testKey": "testValue"
+                },
+                "opened": true,
+                "expires": "1970-01-01T00:00:01.000+0000"
+            }
+            """
+
+        let decoded = try JSONDecoder.actito.decode(RawUserInboxResponse.RawUserInboxItem.self, from: jsonStr.data(using: .utf8)!)
+
+        let item = decoded.toModel()
 
         #expect(expectedItem == item)
     }
 
     @Test
-    internal func testRawUserInboxResponseWithNilPropsToModel() {
+    internal func testRawUserInboxResponseWithNilPropsToModel() throws {
         let expectedItem = ActitoUserInboxItem(
             id: "testId",
             notification: ActitoNotification(
@@ -78,19 +86,25 @@ internal struct RawUserInboxResponseTest {
             expires: nil
         )
 
-        let item = RawUserInboxResponse.RawUserInboxItem(
-            _id: "testId",
-            notification: "testNotification",
-            type: "testType",
-            time: Date(timeIntervalSince1970: 1),
-            title: nil,
-            subtitle: nil,
-            message: "testMessage",
-            attachment: nil,
-            extra: [:],
-            opened: true,
-            expires: nil
-        ).toModel()
+        let jsonStr = """
+            {
+                "_id": "testId",
+                "notification": "testNotification",
+                "type": "testType",
+                "time": "1970-01-01T00:00:01.000+0000",
+                "title": null,
+                "subtitle": null,
+                "message": "testMessage",
+                "attachment": null,
+                "extra": {},
+                "opened": true,
+                "expires": null
+            }
+            """
+
+        let decoded = try JSONDecoder.actito.decode(RawUserInboxResponse.RawUserInboxItem.self, from: jsonStr.data(using: .utf8)!)
+
+        let item = decoded.toModel()
 
         #expect(expectedItem == item)
     }

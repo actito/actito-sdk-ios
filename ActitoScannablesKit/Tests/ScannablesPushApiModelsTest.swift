@@ -8,7 +8,7 @@ import Testing
 
 internal struct ScannablesPushApiModelsTest {
     @Test
-    internal func testScannableToModel() {
+    internal func testScannableToModel() throws {
         let expectedScannable = ActitoScannable(
             id: "testId",
             name: "testName",
@@ -53,51 +53,59 @@ internal struct ScannablesPushApiModelsTest {
             )
         )
 
-        let scannable = ActitoInternals.PushAPI.Models.Scannable(
-            _id: "testId",
-            name: "testName",
-            type: "testType",
-            tag: "testTag",
-            data: ActitoInternals.PushAPI.Models.Scannable.ScannableData(
-                notification: ActitoInternals.PushAPI.Models.Notification(
-                    _id: "testId",
-                    type: "testType",
-                    time: Date(timeIntervalSince1970: 1),
-                    title: "testTitle",
-                    subtitle: "testSubtitle",
-                    message: "testMessage",
-                    content: [
-                        ActitoNotification.Content(
-                            type: "testType",
-                            data: "testData"
-                        ),
-                    ],
-                    actions: [
-                        ActitoInternals.PushAPI.Models.Notification.Action(
-                            type: "testType",
-                            label: "testLabel",
-                            target: "testTarget",
-                            keyboard: true,
-                            camera: true,
-                            destructive: true,
-                            icon: ActitoNotification.Action.Icon(
-                                android: "testAndroid",
-                                ios: "testIos",
-                                web: "testWeb"
-                            )
-                        ),
-                    ],
-                    attachments: [
-                        ActitoNotification.Attachment(
-                            mimeType: "testMimeType",
-                            uri: "testUri"
-                        ),
-                    ],
-                    extra: ["testExtraKey": "testExtraValue"],
-                    targetContentIdentifier: "testTargetIdentifier"
-                )
-            )
-        ).toModel()
+        let jsonStr = """
+            {
+                "_id": "testId",
+                "name": "testName",
+                "type": "testType",
+                "tag": "testTag",
+                "data": {
+                    "notification": {
+                        "_id": "testId",
+                        "type": "testType",
+                        "time": "1970-01-01T00:00:01.000+0000",
+                        "title": "testTitle",
+                        "subtitle": "testSubtitle",
+                        "message": "testMessage",
+                        "content": [
+                            {
+                                "type": "testType",
+                                "data": "testData"
+                            }
+                        ],
+                        "actions": [
+                            {
+                                "type": "testType",
+                                "label": "testLabel",
+                                "target": "testTarget",
+                                "keyboard": true,
+                                "camera": true,
+                                "destructive": true,
+                                "icon": {
+                                    "android": "testAndroid",
+                                    "ios": "testIos",
+                                    "web": "testWeb"
+                                }
+                            }
+                        ],
+                        "attachments": [
+                            {
+                                "mimeType": "testMimeType",
+                                "uri": "testUri"
+                            }
+                        ],
+                        "extra": {
+                            "testExtraKey": "testExtraValue"
+                        },
+                        "targetContentIdentifier": "testTargetIdentifier"
+                    }
+                }
+            }
+            """
+
+        let decoded = try JSONDecoder.actito.decode(ActitoInternals.PushAPI.Models.Scannable.self, from: jsonStr.data(using: .utf8)!)
+
+        let scannable = decoded.toModel()
 
         #expect(expectedScannable == scannable)
     }
