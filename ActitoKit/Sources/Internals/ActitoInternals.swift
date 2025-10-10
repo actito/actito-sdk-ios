@@ -18,7 +18,6 @@ public enum ActitoInternals {
         case inbox = "ActitoInboxKit.LaunchComponent"
         case loyalty = "ActitoLoyaltyKit.LaunchComponent"
         case assets = "ActitoAssetsKit.LaunchComponent"
-        case scannables = "ActitoScannablesKit.LaunchComponent"
         case geo = "ActitoGeoKit.LaunchComponent"
         case inAppMessaging = "ActitoInAppMessagingKit.LaunchComponent"
         case userInbox = "ActitoUserInboxKit.LaunchComponent"

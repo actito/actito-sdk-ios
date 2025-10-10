@@ -35,7 +35,7 @@ internal class ActitoCrashReporterModule {
                 "appVersion": Bundle.main.applicationVersion,
                 "timestamp": timestamp,
                 "name": exception.name.rawValue,
-                "reason": exception.reason as Any,
+                "reason": exception.reason as any Sendable,
                 "stackSymbols": exception.callStackSymbols.joined(separator: "\n"),
             ]
         )

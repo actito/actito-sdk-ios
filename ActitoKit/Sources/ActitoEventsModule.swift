@@ -4,7 +4,7 @@
 
 import Foundation
 
-public typealias ActitoEventData = [String: Any]
+public typealias ActitoEventData = [String: any Sendable]
 
 @MainActor
 public protocol ActitoEventsModule: AnyObject {

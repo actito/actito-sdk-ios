@@ -17,6 +17,10 @@ public class ActitoInAppBrowserActionHandler: ActitoBaseActionHandler {
             safariViewController.delegate = self
 
             self.sourceViewController.presentOrPush(safariViewController)
+
+            Task {
+                try? await Actito.shared.createNotificationReply(notification: notification, action: action)
+            }
         } else {
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.invalidUrl)
@@ -30,10 +34,6 @@ extension ActitoInAppBrowserActionHandler: SFSafariViewControllerDelegate {
         if successfully {
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
-            }
-
-            Task {
-                try? await Actito.shared.createNotificationReply(notification: notification, action: action)
             }
         } else {
             DispatchQueue.main.async {

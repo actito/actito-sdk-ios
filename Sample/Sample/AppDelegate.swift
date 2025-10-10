@@ -8,12 +8,10 @@ import ActitoInboxKit
 import ActitoKit
 import ActitoPushKit
 import ActitoPushUIKit
-import ActitoScannablesKit
 import ActivityKit
 import CoreLocation
 import Foundation
 import OSLog
-import StoreKit
 import SwiftUI
 import UIKit
 
@@ -38,7 +36,6 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
         Actito.shared.inAppMessaging().delegate = self
         Actito.shared.inbox().delegate = self
         Actito.shared.geo().delegate = self
-        Actito.shared.scannables().delegate = self
 
         Task {
             do {
@@ -341,20 +338,5 @@ extension AppDelegate: ActitoInAppMessagingDelegate {
     internal func actito(_: ActitoInAppMessaging, didFailToExecuteAction action: ActitoInAppMessage.Action, for message: ActitoInAppMessage, error _: Error?) {
         Logger.main.error("in-app message action failed to execute = \(String(describing: action))")
         Logger.main.error("for message = \(String(describing: message))")
-    }
-}
-
-extension AppDelegate: ActitoScannablesDelegate {
-    internal func actito(_: ActitoScannables, didDetectScannable scannable: ActitoScannable) {
-        guard let notification = scannable.notification else {
-            Logger.main.info("Cannot present a scannable without a notification.")
-            return
-        }
-
-        UIApplication.shared.present(notification)
-    }
-
-    internal func actito(_: ActitoScannables, didInvalidateScannerSession error: Error) {
-        Logger.main.error("Scannable session invalidated: \(error)")
     }
 }

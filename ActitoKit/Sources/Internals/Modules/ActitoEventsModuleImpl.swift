@@ -6,7 +6,10 @@ import ActitoUtilitiesKit
 import UIKit
 
 private let MAX_RETRIES = 5
-private let MAX_DATA_SIZE_BYTES = 4 * 1024
+private let MAX_DATA_SIZE_BYTES = 2 * 1024
+private let MIN_EVENT_NAME_SIZE_CHAR = 3
+private let MAX_EVENT_NAME_SIZE_CHAR = 64
+private let EVENT_NAME_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9_-]+[a-zA-Z0-9])?$".toRegex()
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
 @MainActor
@@ -47,6 +50,28 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
     internal func logCustom(_ event: String, data: ActitoEventData?) async throws {
         guard Actito.shared.isReady else {
             throw ActitoError.notReady
+        }
+
+        if Actito.shared.application?.enforceEventNameRestrictions == true {
+            if event.count < MIN_EVENT_NAME_SIZE_CHAR || event.count > MAX_EVENT_NAME_SIZE_CHAR || !event.matches(EVENT_NAME_REGEX) {
+                throw ActitoError.invalidArgument(
+                    message: "Invalid event name '\(event)'. Event name must have between \(MIN_EVENT_NAME_SIZE_CHAR)-\(MAX_EVENT_NAME_SIZE_CHAR) characters and match this pattern: \(EVENT_NAME_REGEX.pattern)"
+                )
+            }
+        }
+
+        if
+            Actito.shared.application?.enforceSizeLimit == true,
+            let data = data
+        {
+            let serializedData = try JSONEncoder.actito.encode(ActitoAnyCodable(data))
+            let size = serializedData.count
+
+            if size > MAX_DATA_SIZE_BYTES {
+                throw ActitoError.contentTooLarge(
+                    message: "Data for event '\(event)' of size \(size)B exceeds max size of \(MAX_DATA_SIZE_BYTES)B"
+                )
+            }
         }
 
         try await log("re.notifica.event.custom.\(event)", data: data)
@@ -98,20 +123,6 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
         guard Actito.shared.isConfigured else {
             logger.debug("Actito is not configured. Cannot log the event.")
             throw ActitoError.notConfigured
-        }
-
-        if
-            Actito.shared.application?.enforceSizeLimit == true,
-            let data = payload.data
-        {
-            let serializedData = try JSONEncoder.actito.encode(ActitoAnyCodable(data))
-            let size = serializedData.count
-
-            if size > MAX_DATA_SIZE_BYTES {
-                throw ActitoError.contentTooLarge(
-                    message: "Data for event '\(payload.type)' of size \(size)B exceeds max size of \(MAX_DATA_SIZE_BYTES)B"
-                )
-            }
         }
 
         do {

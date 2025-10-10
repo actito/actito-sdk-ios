@@ -15,8 +15,8 @@ extension ActitoEventsModule {
             "start": session.start,
             "end": sessionEnd,
             "length": length,
-            "locations": session.locations.map { location -> [String: Any] in
-                var result: [String: Any] = [
+            "locations": session.locations.map { location -> [String: any Sendable] in
+                var result: [String: any Sendable] = [
                     "latitude": location.latitude,
                     "longitude": location.longitude,
                     "altitude": location.altitude,
@@ -48,8 +48,8 @@ extension ActitoEventsModule {
             "start": session.start,
             "end": sessionEnd,
             "length": length,
-            "beacons": session.beacons.map { beacon -> [String: Any] in
-                var result: [String: Any] = [
+            "beacons": session.beacons.map { beacon -> [String: any Sendable] in
+                var result: [String: any Sendable] = [
                     "proximity": beacon.proximity,
                     "major": beacon.major,
                     "minor": beacon.minor,

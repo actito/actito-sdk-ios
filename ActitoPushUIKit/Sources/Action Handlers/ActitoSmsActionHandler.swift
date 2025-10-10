@@ -24,6 +24,10 @@ public class ActitoSmsActionHandler: ActitoBaseActionHandler {
         composer.body = ""
 
         sourceViewController.presentOrPush(composer)
+
+        Task {
+            try? await Actito.shared.createNotificationReply(notification: notification, action: action)
+        }
     }
 }
 
@@ -33,10 +37,6 @@ extension ActitoSmsActionHandler: MFMessageComposeViewControllerDelegate {
         case .sent:
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
-            }
-
-            Task {
-                try? await Actito.shared.createNotificationReply(notification: notification, action: action)
             }
 
         case .cancelled:

@@ -15,8 +15,10 @@ public struct ActitoApplication: Codable, Equatable, Sendable {
     public let userDataFields: [UserDataField]
     public let actionCategories: [ActionCategory]
     public let enforceSizeLimit: Bool?
+    public let enforceTagRestrictions: Bool?
+    public let enforceEventNameRestrictions: Bool?
 
-    public init(id: String, name: String, category: String, appStoreId: String?, services: [String: Bool], inboxConfig: ActitoApplication.InboxConfig?, regionConfig: ActitoApplication.RegionConfig?, userDataFields: [ActitoApplication.UserDataField], actionCategories: [ActitoApplication.ActionCategory], enforceSizeLimit: Bool?) {
+    public init(id: String, name: String, category: String, appStoreId: String?, services: [String: Bool], inboxConfig: ActitoApplication.InboxConfig?, regionConfig: ActitoApplication.RegionConfig?, userDataFields: [ActitoApplication.UserDataField], actionCategories: [ActitoApplication.ActionCategory], enforceSizeLimit: Bool?, enforceTagRestrictions: Bool?, enforceEventNameRestrictions: Bool?) {
         self.id = id
         self.name = name
         self.category = category
@@ -27,6 +29,8 @@ public struct ActitoApplication: Codable, Equatable, Sendable {
         self.userDataFields = userDataFields
         self.actionCategories = actionCategories
         self.enforceSizeLimit = enforceSizeLimit
+        self.enforceTagRestrictions = enforceTagRestrictions
+        self.enforceEventNameRestrictions = enforceEventNameRestrictions
     }
 
     public enum ServiceKey: String {
