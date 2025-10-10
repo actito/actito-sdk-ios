@@ -26,7 +26,6 @@ import Foundation
  let decoder = JSONDecoder()
  let dictionary = try! decoder.decode([String: ActitoAnyDecodable].self, from: json)
  */
-#if swift(>=5.1)
 @frozen public struct ActitoAnyDecodable: Decodable {
     public let value: Any
 
@@ -34,32 +33,15 @@ import Foundation
         self.value = value ?? ()
     }
 }
-#else
-public struct ActitoAnyDecodable: Decodable {
-    public let value: Any
 
-    public init<T>(_ value: T?) {
-        self.value = value ?? ()
-    }
-}
-#endif
-
-#if swift(>=4.2)
 @usableFromInline
 internal protocol _ActitoAnyDecodable {
     var value: Any { get }
     init<T>(_ value: T?)
 }
-#else
-internal protocol _ActitoAnyDecodable {
-    var value: Any { get }
-    init<T>(_ value: T?)
-}
-#endif
 
 extension ActitoAnyDecodable: _ActitoAnyDecodable {}
 
-// swiftformat:disable extensionAccessControl
 extension _ActitoAnyDecodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
@@ -68,7 +50,7 @@ extension _ActitoAnyDecodable {
 #if canImport(Foundation)
             self.init(NSNull())
 #else
-            self.init(Self?.none)
+            self.init(Optional<Self>.none)
 #endif
         } else if let bool = try? container.decode(Bool.self) {
             self.init(bool)
@@ -81,7 +63,7 @@ extension _ActitoAnyDecodable {
         } else if let string = try? container.decode(String.self) {
             self.init(string)
         } else if let array = try? container.decode([ActitoAnyDecodable].self) {
-            self.init(array.map(\.value))
+            self.init(array.map { $0.value })
         } else if let dictionary = try? container.decode([String: ActitoAnyDecodable].self) {
             self.init(dictionary.mapValues { $0.value })
         } else {
