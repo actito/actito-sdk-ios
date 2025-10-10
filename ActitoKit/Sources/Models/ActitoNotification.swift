@@ -15,7 +15,7 @@ public struct ActitoNotification: Codable, Equatable, Sendable {
     public let content: [Content]
     public let actions: [Action]
     public let attachments: [Attachment]
-    @ActitoExtraEquatable public private(set) var extra: [String: Any]
+    @ActitoExtraDictionary public private(set) var extra: [String: Any]
     public let targetContentIdentifier: String?
 
     public init(partial: Bool, id: String, type: String, time: Date, title: String?, subtitle: String?, message: String, content: [ActitoNotification.Content], actions: [ActitoNotification.Action], attachments: [ActitoNotification.Attachment], extra: [String: Any], targetContentIdentifier: String?) {
@@ -130,61 +130,6 @@ extension ActitoNotification {
     public static func fromJson(json: [String: Any]) throws -> ActitoNotification {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try JSONDecoder.actito.decode(ActitoNotification.self, from: data)
-    }
-}
-
-// Codable: ActitoNotification
-extension ActitoNotification {
-    internal enum CodingKeys: String, CodingKey {
-        case partial
-        case id
-        case type
-        case time
-        case title
-        case subtitle
-        case message
-        case content
-        case actions
-        case attachments
-        case extra
-        case targetContentIdentifier
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        partial = try container.decodeIfPresent(Bool.self, forKey: .partial) ?? false
-        id = try container.decode(String.self, forKey: .id)
-        type = try container.decode(String.self, forKey: .type)
-        time = try container.decode(Date.self, forKey: .time)
-        title = try container.decodeIfPresent(String.self, forKey: .title)
-        subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
-        message = try container.decode(String.self, forKey: .message)
-        content = try container.decode([Content].self, forKey: .content)
-        actions = try container.decode([Action].self, forKey: .actions)
-        attachments = try container.decode([Attachment].self, forKey: .attachments)
-
-        let decodedExtra = try container.decode(ActitoAnyCodable.self, forKey: .extra)
-        extra = decodedExtra.value as! [String: Any]
-
-        targetContentIdentifier = try container.decodeIfPresent(String.self, forKey: .targetContentIdentifier)
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        try container.encode(partial, forKey: .partial)
-        try container.encode(id, forKey: .id)
-        try container.encode(type, forKey: .type)
-        try container.encode(time, forKey: .time)
-        try container.encodeIfPresent(title, forKey: .title)
-        try container.encodeIfPresent(subtitle, forKey: .subtitle)
-        try container.encode(message, forKey: .message)
-        try container.encode(content, forKey: .content)
-        try container.encode(actions, forKey: .actions)
-        try container.encode(attachments, forKey: .attachments)
-        try container.encode(ActitoAnyCodable(extra), forKey: .extra)
-        try container.encode(targetContentIdentifier, forKey: .targetContentIdentifier)
     }
 }
 

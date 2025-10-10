@@ -5,7 +5,6 @@
 import Testing
 
 internal struct DictionaryExtensionsTests {
-
     @Test
     internal func testMapKeysWithBasicTransformation() throws {
         let originalDictionary = ["one": 1, "two": 2, "three": 3]
@@ -30,4 +29,5 @@ internal struct DictionaryExtensionsTests {
         #expect(transformedDictionary[5] == 1)
         #expect(transformedDictionary[6] == 2)
     }
+
 }

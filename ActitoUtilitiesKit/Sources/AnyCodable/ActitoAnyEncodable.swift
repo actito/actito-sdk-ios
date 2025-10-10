@@ -24,7 +24,6 @@ import Foundation
  let encoder = JSONEncoder()
  let json = try! encoder.encode(dictionary)
  */
-#if swift(>=5.1)
 @frozen public struct ActitoAnyEncodable: Encodable {
     public let value: Any
 
@@ -32,28 +31,12 @@ import Foundation
         self.value = value ?? ()
     }
 }
-#else
-public struct ActitoAnyEncodable: Encodable {
-    public let value: Any
 
-    public init<T>(_ value: T?) {
-        self.value = value ?? ()
-    }
-}
-#endif
-
-#if swift(>=4.2)
 @usableFromInline
 internal protocol _ActitoAnyEncodable {
     var value: Any { get }
     init<T>(_ value: T?)
 }
-#else
-internal protocol _ActitoAnyEncodable {
-    var value: Any { get }
-    init<T>(_ value: T?)
-}
-#endif
 
 extension ActitoAnyEncodable: _ActitoAnyEncodable {}
 
@@ -64,10 +47,6 @@ extension _ActitoAnyEncodable {
         var container = encoder.singleValueContainer()
 
         switch value {
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-        case let number as NSNumber:
-            try encode(nsnumber: number, into: &container)
-#endif
 #if canImport(Foundation)
         case is NSNull:
             try container.encodeNil()
@@ -102,55 +81,57 @@ extension _ActitoAnyEncodable {
             try container.encode(double)
         case let string as String:
             try container.encode(string)
-#if canImport(Foundation)
+        #if canImport(Foundation)
+        case let number as NSNumber:
+            try encode(nsnumber: number, into: &container)
         case let date as Date:
             try container.encode(date)
         case let url as URL:
             try container.encode(url)
-#endif
+        #endif
         case let array as [Any?]:
             try container.encode(array.map { ActitoAnyEncodable($0) })
         case let dictionary as [String: Any?]:
             try container.encode(dictionary.mapValues { ActitoAnyEncodable($0) })
+        case let encodable as Encodable:
+            try encodable.encode(to: encoder)
         default:
             let context = EncodingError.Context(codingPath: container.codingPath, debugDescription: "ActitoAnyEncodable value cannot be encoded")
             throw EncodingError.invalidValue(value, context)
         }
     }
 
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+    #if canImport(Foundation)
     private func encode(nsnumber: NSNumber, into container: inout SingleValueEncodingContainer) throws {
-        switch CFNumberGetType(nsnumber) {
-        case .charType:
+        switch Character(Unicode.Scalar(UInt8(nsnumber.objCType.pointee)))  {
+        case "B":
             try container.encode(nsnumber.boolValue)
-        case .sInt8Type:
+        case "c":
             try container.encode(nsnumber.int8Value)
-        case .sInt16Type:
+        case "s":
             try container.encode(nsnumber.int16Value)
-        case .sInt32Type:
+        case "i", "l":
             try container.encode(nsnumber.int32Value)
-        case .sInt64Type:
+        case "q":
             try container.encode(nsnumber.int64Value)
-        case .shortType:
+        case "C":
+            try container.encode(nsnumber.uint8Value)
+        case "S":
             try container.encode(nsnumber.uint16Value)
-        case .longType:
+        case "I", "L":
             try container.encode(nsnumber.uint32Value)
-        case .longLongType:
+        case "Q":
             try container.encode(nsnumber.uint64Value)
-        case .intType, .nsIntegerType, .cfIndexType:
-            try container.encode(nsnumber.intValue)
-        case .floatType, .float32Type:
+        case "f":
             try container.encode(nsnumber.floatValue)
-        case .doubleType, .float64Type, .cgFloatType:
+        case "d":
             try container.encode(nsnumber.doubleValue)
-#if swift(>=5.0)
-        @unknown default:
+        default:
             let context = EncodingError.Context(codingPath: container.codingPath, debugDescription: "NSNumber cannot be encoded because its type is not handled")
             throw EncodingError.invalidValue(nsnumber, context)
-#endif
         }
     }
-#endif
+    #endif
 }
 
 extension ActitoAnyEncodable: Equatable {
@@ -225,13 +206,10 @@ extension ActitoAnyEncodable: ExpressibleByBooleanLiteral {}
 extension ActitoAnyEncodable: ExpressibleByIntegerLiteral {}
 extension ActitoAnyEncodable: ExpressibleByFloatLiteral {}
 extension ActitoAnyEncodable: ExpressibleByStringLiteral {}
-#if swift(>=5.0)
 extension ActitoAnyEncodable: ExpressibleByStringInterpolation {}
-#endif
 extension ActitoAnyEncodable: ExpressibleByArrayLiteral {}
 extension ActitoAnyEncodable: ExpressibleByDictionaryLiteral {}
 
-// swiftformat:disable extensionAccessControl
 extension _ActitoAnyEncodable {
     public init(nilLiteral _: ()) {
         self.init(nil as Any?)

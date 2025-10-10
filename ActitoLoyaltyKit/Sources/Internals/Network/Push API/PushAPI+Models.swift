@@ -18,7 +18,7 @@ extension ActitoInternals.PushAPI.Models {
         internal let redeemHistory: [ActitoPass.Redemption]
         internal let limit: Int
         internal let token: String
-        internal let data: ActitoAnyCodable?
+        @ActitoExtraDictionary internal private(set) var data: [String: Any]?
         internal let date: Date
     }
 

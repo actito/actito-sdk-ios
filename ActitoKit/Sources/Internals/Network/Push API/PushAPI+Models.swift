@@ -52,17 +52,17 @@ extension ActitoInternals.PushAPI.Models {
         }
     }
 
-    public struct Notification: Equatable, Sendable {
+    public struct Notification: Decodable, Equatable, Sendable {
         public let _id: String
         public let type: String
         public let time: Date
         public let title: String?
         public let subtitle: String?
         public let message: String
-        public let content: [ActitoNotification.Content]
-        public let actions: [Action]
-        public let attachments: [ActitoNotification.Attachment]
-        @ActitoExtraEquatable public private(set) var extra: [String: Any]
+        public let content: [ActitoNotification.Content]?
+        public let actions: [Action]?
+        public let attachments: [ActitoNotification.Attachment]?
+        @ActitoExtraDictionary public private(set) var extra: [String: Any]?
         public let targetContentIdentifier: String?
 
         public struct Action: Decodable, Equatable, Sendable {
@@ -98,66 +98,12 @@ extension ActitoInternals.PushAPI.Models {
                 title: title,
                 subtitle: subtitle,
                 message: message,
-                content: content,
-                actions: actions.compactMap { $0.toModel() },
-                attachments: attachments,
-                extra: extra,
+                content: content ?? [],
+                actions: actions?.compactMap { $0.toModel() } ?? [],
+                attachments: attachments ?? [],
+                extra: extra ?? [:],
                 targetContentIdentifier: targetContentIdentifier
             )
         }
-    }
-}
-
-extension ActitoInternals.PushAPI.Models.Notification: Decodable {
-    internal enum CodingKeys: String, CodingKey {
-        case _id
-        case type
-        case time
-        case title
-        case subtitle
-        case message
-        case content
-        case actions
-        case attachments
-        case extra
-        case targetContentIdentifier
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        _id = try container.decode(String.self, forKey: ._id)
-        type = try container.decode(String.self, forKey: .type)
-        time = try container.decode(Date.self, forKey: .time)
-        title = try container.decodeIfPresent(String.self, forKey: .title)
-        subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
-        message = try container.decode(String.self, forKey: .message)
-
-        if container.contains(.content) {
-            content = try container.decode([ActitoNotification.Content].self, forKey: .content)
-        } else {
-            content = []
-        }
-
-        if container.contains(.actions) {
-            actions = try container.decode([Action].self, forKey: .actions)
-        } else {
-            actions = []
-        }
-
-        if container.contains(.attachments) {
-            attachments = try container.decode([ActitoNotification.Attachment].self, forKey: .attachments)
-        } else {
-            attachments = []
-        }
-
-        if container.contains(.extra) {
-            let decoded = try container.decode(ActitoAnyCodable.self, forKey: .extra)
-            extra = decoded.value as! [String: Any]
-        } else {
-            extra = [:]
-        }
-
-        targetContentIdentifier = try container.decodeIfPresent(String.self, forKey: .targetContentIdentifier)
     }
 }

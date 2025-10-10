@@ -8,23 +8,13 @@
  - SeeAlso: `ActitoAnyEncodable`
  - SeeAlso: `ActitoAnyDecodable`
  */
-#if swift(>=5.1)
-@frozen public struct ActitoAnyCodable: Codable, @unchecked Sendable {
+@frozen public struct ActitoAnyCodable: Codable {
     public let value: Any
 
     public init<T>(_ value: T?) {
         self.value = value ?? ()
     }
 }
-#else
-public struct ActitoAnyCodable: Codable {
-    public let value: Any
-
-    public init<T>(_ value: T?) {
-        self.value = value ?? ()
-    }
-}
-#endif
 
 extension ActitoAnyCodable: _ActitoAnyEncodable, _ActitoAnyDecodable {}
 
@@ -32,6 +22,8 @@ extension ActitoAnyCodable: Equatable {
     public static func == (lhs: ActitoAnyCodable, rhs: ActitoAnyCodable) -> Bool {
         switch (lhs.value, rhs.value) {
         case is (Void, Void):
+            return true
+        case is (NSNull, NSNull):
             return true
         case let (lhs as Bool, rhs as Bool):
             return lhs == rhs
@@ -65,6 +57,10 @@ extension ActitoAnyCodable: Equatable {
             return lhs == rhs
         case let (lhs as [ActitoAnyCodable], rhs as [ActitoAnyCodable]):
             return lhs == rhs
+        case let (lhs as [String: Any], rhs as [String: Any]):
+            return NSDictionary(dictionary: lhs) == NSDictionary(dictionary: rhs)
+        case let (lhs as [Any], rhs as [Any]):
+            return NSArray(array: lhs) == NSArray(array: rhs)
         default:
             return false
         }
@@ -100,5 +96,6 @@ extension ActitoAnyCodable: ExpressibleByBooleanLiteral {}
 extension ActitoAnyCodable: ExpressibleByIntegerLiteral {}
 extension ActitoAnyCodable: ExpressibleByFloatLiteral {}
 extension ActitoAnyCodable: ExpressibleByStringLiteral {}
+extension ActitoAnyCodable: ExpressibleByStringInterpolation {}
 extension ActitoAnyCodable: ExpressibleByArrayLiteral {}
 extension ActitoAnyCodable: ExpressibleByDictionaryLiteral {}

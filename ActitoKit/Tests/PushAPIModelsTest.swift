@@ -131,7 +131,7 @@ internal struct PushAPIModelsTest {
     }
 
     @Test
-    internal func testNotificationToModel() {
+    internal func testNotificationToModel() throws {
         let expectedNotification = ActitoNotification(
             partial: false,
             id: "testId",
@@ -171,49 +171,57 @@ internal struct PushAPIModelsTest {
             targetContentIdentifier: "testTargetIdentifier"
         )
 
-        let notification = ActitoInternals.PushAPI.Models.Notification(
-            _id: "testId",
-            type: "testType",
-            time: Date(timeIntervalSince1970: 1),
-            title: "testTitle",
-            subtitle: "testSubtitle",
-            message: "testMessage",
-            content: [
-                ActitoNotification.Content(
-                    type: "testType",
-                    data: "testData"
-                ),
+        let jsonStr = """
+            {
+                "_id": "testId",
+                "type": "testType",
+                "time": "1970-01-01T00:00:01.000+0000",
+                "title": "testTitle",
+                "subtitle": "testSubtitle",
+                "message": "testMessage",
+                "content": [
+                    {
+                        "type": "testType",
+                        "data": "testData"
+                    }
+                ],
+            "actions": [
+                {
+                    "type": "testType",
+                    "label": "testLabel",
+                    "target": "testTarget",
+                    "keyboard": true,
+                    "camera": true,
+                    "destructive": true,
+                    "icon": {
+                        "android": "testAndroid",
+                        "ios": "testIos",
+                        "web": "testWeb"
+                    }
+                }
             ],
-            actions: [
-                ActitoInternals.PushAPI.Models.Notification.Action(
-                    type: "testType",
-                    label: "testLabel",
-                    target: "testTarget",
-                    keyboard: true,
-                    camera: true,
-                    destructive: true,
-                    icon: ActitoNotification.Action.Icon(
-                        android: "testAndroid",
-                        ios: "testIos",
-                        web: "testWeb"
-                    )
-                ),
+            "attachments": [
+                {
+                    "mimeType": "testMimeType",
+                    "uri": "testUri"
+                }
             ],
-            attachments: [
-                ActitoNotification.Attachment(
-                    mimeType: "testMimeType",
-                    uri: "testUri"
-                ),
-            ],
-            extra: ["testExtraKey": "testExtraValue"],
-            targetContentIdentifier: "testTargetIdentifier"
-        ).toModel()
+            "extra": {
+                "testExtraKey": "testExtraValue"
+            },
+            "targetContentIdentifier": "testTargetIdentifier"
+        }
+        """
+
+        let decoded = try JSONDecoder.actito.decode(ActitoInternals.PushAPI.Models.Notification.self, from: jsonStr.data(using: .utf8)!)
+
+        let notification = decoded.toModel()
 
         #expect(expectedNotification == notification)
     }
 
     @Test
-    internal func testNotificationWithNilPropsToModel() {
+    internal func testNotificationWithNilPropsToModel() throws {
         let expectedNotification = ActitoNotification(
             partial: false,
             id: "testId",
@@ -229,19 +237,25 @@ internal struct PushAPIModelsTest {
             targetContentIdentifier: nil
         )
 
-        let notification = ActitoInternals.PushAPI.Models.Notification(
-            _id: "testId",
-            type: "testType",
-            time: Date(timeIntervalSince1970: 1),
-            title: nil,
-            subtitle: nil,
-            message: "testMessage",
-            content: [],
-            actions: [],
-            attachments: [],
-            extra: [:],
-            targetContentIdentifier: nil
-        ).toModel()
+        let jsonStr = """
+            {
+                "_id": "testId",
+                "type": "testType",
+                "time": "1970-01-01T00:00:01.000+0000",
+                "title": null,
+                "subtitle": null,
+                "message": "testMessage",
+                "content": [],
+                "actions": [],
+                "attachments": [],
+                "extra": {},
+                "targetContentIdentifier": null
+            }
+            """
+
+        let decoded = try JSONDecoder.actito.decode(ActitoInternals.PushAPI.Models.Notification.self, from: jsonStr.data(using: .utf8)!)
+
+        let notification = decoded.toModel()
 
         #expect(expectedNotification == notification)
     }

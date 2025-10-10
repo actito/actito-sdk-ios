@@ -7,7 +7,7 @@ import ActitoUtilitiesKit
 public struct ActitoSystemNotification: Codable, Equatable, Sendable {
     public let id: String
     public let type: String
-    @ActitoExtraEquatable public private(set) var extra: [String: Any]
+    @ActitoExtraDictionary public private(set) var extra: [String: Any]
 
     public init(id: String, type: String, extra: [String: Any]) {
         self.id = id
@@ -40,32 +40,5 @@ extension ActitoSystemNotification {
     public static func fromJson(json: [String: Any]) throws -> ActitoSystemNotification {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try JSONDecoder.actito.decode(ActitoSystemNotification.self, from: data)
-    }
-}
-
-// Codable: ActitoSystemNotification
-extension ActitoSystemNotification {
-    internal enum CodingKeys: String, CodingKey {
-        case id
-        case type
-        case extra
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        id = try container.decode(String.self, forKey: .id)
-        type = try container.decode(String.self, forKey: .type)
-
-        let decodedExtra = try container.decode(ActitoAnyCodable.self, forKey: .extra)
-        extra = decodedExtra.value as! [String: Any]
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        try container.encode(id, forKey: .id)
-        try container.encode(type, forKey: .type)
-        try container.encode(ActitoAnyCodable(extra), forKey: .extra)
     }
 }

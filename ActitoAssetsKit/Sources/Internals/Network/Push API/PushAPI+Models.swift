@@ -11,7 +11,7 @@ extension ActitoInternals.PushAPI.Models {
         internal let key: String?
         internal let title: String
         internal let description: String?
-        internal let extra: ActitoAnyCodable?
+        @ActitoExtraDictionary internal private(set) var extra: [String: Any]?
         internal let button: Button?
         internal let metaData: MetaData?
 
@@ -53,7 +53,7 @@ extension ActitoInternals.PushAPI.Models {
                         contentLength: $0.contentLength
                     )
                 },
-                extra: extra?.value as? [String: Any] ?? [:]
+                extra: extra ?? [:]
             )
         }
     }
