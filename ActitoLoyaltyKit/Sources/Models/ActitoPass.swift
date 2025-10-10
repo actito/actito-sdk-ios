@@ -18,7 +18,7 @@ public struct ActitoPass: Codable, Equatable, Sendable {
     public let redeemHistory: [Redemption]
     public let limit: Int
     public let token: String
-    @ActitoExtraEquatable public private(set) var data: [String: Any]
+    @ActitoExtraDictionary public private(set) var data: [String: Any]
     public let date: Date
     // public let googlePaySaveLink: String?
 
@@ -77,61 +77,6 @@ extension ActitoPass {
     public static func fromJson(json: [String: Any]) throws -> ActitoPass {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try JSONDecoder.actito.decode(ActitoPass.self, from: data)
-    }
-}
-
-// Codable: ActitoPass
-extension ActitoPass {
-    internal enum CodingKeys: String, CodingKey {
-        case id
-        case type
-        case version
-        case passbook
-        case template
-        case serial
-        case barcode
-        case redeem
-        case redeemHistory
-        case limit
-        case token
-        case data
-        case date
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        id = try container.decode(String.self, forKey: .id)
-        type = try container.decodeIfPresent(PassType.self, forKey: .type)
-        version = try container.decode(Int.self, forKey: .version)
-        passbook = try container.decodeIfPresent(String.self, forKey: .passbook)
-        template = try container.decodeIfPresent(String.self, forKey: .template)
-        serial = try container.decode(String.self, forKey: .serial)
-        barcode = try container.decode(String.self, forKey: .barcode)
-        redeem = try container.decode(Redeem.self, forKey: .redeem)
-        redeemHistory = try container.decode([Redemption].self, forKey: .redeemHistory)
-        limit = try container.decode(Int.self, forKey: .limit)
-        token = try container.decode(String.self, forKey: .token)
-        data = try container.decodeIfPresent(ActitoAnyCodable.self, forKey: .data)?.value as? [String: Any] ?? [:]
-        date = try container.decode(Date.self, forKey: .date)
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        try container.encode(id, forKey: .id)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encode(version, forKey: .version)
-        try container.encodeIfPresent(passbook, forKey: .passbook)
-        try container.encodeIfPresent(template, forKey: .template)
-        try container.encode(serial, forKey: .serial)
-        try container.encode(barcode, forKey: .barcode)
-        try container.encode(redeem, forKey: .redeem)
-        try container.encode(redeemHistory, forKey: .redeemHistory)
-        try container.encode(limit, forKey: .limit)
-        try container.encode(token, forKey: .token)
-        try container.encode(ActitoAnyCodable(data), forKey: .data)
-        try container.encode(date, forKey: .date)
     }
 }
 

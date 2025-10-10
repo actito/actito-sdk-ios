@@ -187,7 +187,7 @@ public final class ActitoLoyalty {
             redeemHistory: pass.redeemHistory,
             limit: pass.limit,
             token: pass.token,
-            data: pass.data?.value as? [String: Any] ?? [:],
+            data: pass.data ?? [:],
             date: pass.date
         )
     }

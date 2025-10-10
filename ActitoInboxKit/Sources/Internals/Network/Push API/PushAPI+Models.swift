@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoUtilitiesKit
 
 extension ActitoInternals.PushAPI.Models {
-    internal struct RemoteInboxItem: Equatable, Sendable {
+    internal struct RemoteInboxItem: Decodable, Equatable, Sendable {
         internal let _id: String
         internal let notification: String
         internal let type: String
@@ -15,9 +15,9 @@ extension ActitoInternals.PushAPI.Models {
         internal let subtitle: String?
         internal let message: String
         internal let attachment: ActitoNotification.Attachment?
-        @ActitoExtraEquatable internal private(set) var extra: [String: Any]
-        internal let opened: Bool
-        internal let visible: Bool
+        @ActitoExtraDictionary internal private(set) var extra: [String: Any]?
+        internal let opened: Bool?
+        internal let visible: Bool?
         internal let expires: Date?
 
         internal func toLocal() -> LocalInboxItem {
@@ -34,54 +34,14 @@ extension ActitoInternals.PushAPI.Models {
                     content: [],
                     actions: [],
                     attachments: attachment.map { [$0] } ?? [],
-                    extra: extra.compactMapValuesRecursive {_, value in
-                        value is NSNull ? nil : value },
+                    extra: extra ?? [:],
                     targetContentIdentifier: nil
                 ),
                 time: time,
-                opened: opened,
-                visible: visible,
+                opened: opened ?? false,
+                visible: visible ?? true,
                 expires: expires
             )
         }
-    }
-}
-
-extension ActitoInternals.PushAPI.Models.RemoteInboxItem: Decodable {
-    internal init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        _id = try container.decode(String.self, forKey: ._id)
-        notification = try container.decode(String.self, forKey: .notification)
-        type = try container.decode(String.self, forKey: .type)
-        time = try container.decode(Date.self, forKey: .time)
-        title = try container.decodeIfPresent(String.self, forKey: .title)
-        subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)
-        message = try container.decode(String.self, forKey: .message)
-        attachment = try container.decodeIfPresent(ActitoNotification.Attachment.self, forKey: .attachment)
-        if let extra = try container.decodeIfPresent(ActitoAnyCodable.self, forKey: .extra) {
-            self.extra = (extra.value as! [String: Any]).compactMapValuesRecursive {_, value in
-                value is NSNull ? nil : value }
-        } else {
-            extra = [:]
-        }
-        opened = try container.decodeIfPresent(Bool.self, forKey: .opened) ?? false
-        visible = try container.decodeIfPresent(Bool.self, forKey: .visible) ?? true
-        expires = try container.decodeIfPresent(Date.self, forKey: .expires)
-    }
-
-    internal enum CodingKeys: String, CodingKey {
-        case _id
-        case notification
-        case type
-        case time
-        case title
-        case subtitle
-        case message
-        case attachment
-        case extra
-        case opened
-        case visible
-        case expires
     }
 }
