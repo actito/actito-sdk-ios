@@ -1,7 +1,7 @@
 # Ignored files for the Sample project
 #
 
-Notificare.plist
-NotificareServices.plist
+Actito.plist
+ActitoServices.plist
 SampleUserInboxClient.plist
 Auth0.plist

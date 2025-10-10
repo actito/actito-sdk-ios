@@ -87,7 +87,7 @@
 		E5E5EB5D2DC10A9E00B00B6A /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB562DC10A9E00B00B6A /* AssetsView.swift */; };
 		E5E5EB5E2DC10A9E00B00B6A /* AssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB572DC10A9E00B00B6A /* AssetsViewModel.swift */; };
 		E5E5EB602DC10B8A00B00B6A /* OtherFeaturesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB5F2DC10B8A00B00B6A /* OtherFeaturesSection.swift */; };
-		F267DA4A273E7CA900448A8F /* NotificareOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F267DA49273E7CA900448A8F /* NotificareOptions.plist */; };
+		F267DA4A273E7CA900448A8F /* ActitoOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F267DA49273E7CA900448A8F /* ActitoOptions.plist */; };
 		F27C2FCB2B04DA3F005564F4 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C2FCA2B04DA3F005564F4 /* BannerView.swift */; };
 		F27C2FD22B0518A5005564F4 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C2FD12B0518A5005564F4 /* BannerModifier.swift */; };
 		F27C2FD42B051DA0005564F4 /* Identifiables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C2FD32B051DA0005564F4 /* Identifiables.swift */; };
@@ -218,11 +218,11 @@
 		E5E5EB592DC10A9E00B00B6A /* AssetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailsView.swift; sourceTree = "<group>"; };
 		E5E5EB5F2DC10B8A00B00B6A /* OtherFeaturesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFeaturesSection.swift; sourceTree = "<group>"; };
 		F22443D4286CBBBE0015CBD6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		F236118E2C77581C0063C446 /* NotificareServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NotificareServices.plist; sourceTree = "<group>"; };
-		F23611902C77581C0063C446 /* NotificareServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NotificareServices.plist; sourceTree = "<group>"; };
-		F23611932C77581C0063C446 /* NotificareServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NotificareServices.plist; sourceTree = "<group>"; };
-		F23611952C77581C0063C446 /* NotificareServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NotificareServices.plist; sourceTree = "<group>"; };
-		F267DA49273E7CA900448A8F /* NotificareOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NotificareOptions.plist; sourceTree = "<group>"; };
+		F236118E2C77581C0063C446 /* ActitoServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ActitoServices.plist; sourceTree = "<group>"; };
+		F23611902C77581C0063C446 /* ActitoServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ActitoServices.plist; sourceTree = "<group>"; };
+		F23611932C77581C0063C446 /* ActitoServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ActitoServices.plist; sourceTree = "<group>"; };
+		F23611952C77581C0063C446 /* ActitoServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ActitoServices.plist; sourceTree = "<group>"; };
+		F267DA49273E7CA900448A8F /* ActitoOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ActitoOptions.plist; sourceTree = "<group>"; };
 		F27C2FCA2B04DA3F005564F4 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F27C2FD12B0518A5005564F4 /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		F27C2FD32B051DA0005564F4 /* Identifiables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiables.swift; sourceTree = "<group>"; };
@@ -433,7 +433,7 @@
 		F236118F2C77581C0063C446 /* Production */ = {
 			isa = PBXGroup;
 			children = (
-				F236118E2C77581C0063C446 /* NotificareServices.plist */,
+				F236118E2C77581C0063C446 /* ActitoServices.plist */,
 			);
 			path = Production;
 			sourceTree = "<group>";
@@ -441,7 +441,7 @@
 		F23611912C77581C0063C446 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				F23611902C77581C0063C446 /* NotificareServices.plist */,
+				F23611902C77581C0063C446 /* ActitoServices.plist */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -458,7 +458,7 @@
 		F23611942C77581C0063C446 /* Production */ = {
 			isa = PBXGroup;
 			children = (
-				F23611932C77581C0063C446 /* NotificareServices.plist */,
+				F23611932C77581C0063C446 /* ActitoServices.plist */,
 			);
 			path = Production;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 		F23611962C77581C0063C446 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				F23611952C77581C0063C446 /* NotificareServices.plist */,
+				F23611952C77581C0063C446 /* ActitoServices.plist */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -593,7 +593,7 @@
 				F29FD20024CB1FE3004B166D /* Assets.xcassets */,
 				F29FD20524CB1FE3004B166D /* Info.plist */,
 				E51FD38A29D6F2D2000897D9 /* Localizable.strings */,
-				F267DA49273E7CA900448A8F /* NotificareOptions.plist */,
+				F267DA49273E7CA900448A8F /* ActitoOptions.plist */,
 				F28553C7258BA18C006674C1 /* Sample.entitlements */,
 				F2E8CF622AFD3CA300D7F2A0 /* Sample.dev.entitlements */,
 				F2E8CF632AFD3CA300D7F2A0 /* Sample.test.dev.entitlements */,
@@ -647,7 +647,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F29FD20824CB1FE3004B166D /* Build configuration list for PBXNativeTarget "Sample" */;
 			buildPhases = (
-				F2EAF9B02AF537F700A2CC0C /* Copy Notificare configuration file */,
+				F2EAF9B02AF537F700A2CC0C /* Copy Actito configuration file */,
 				F29FD1F024CB1FE1004B166D /* Sources */,
 				F29FD1F124CB1FE1004B166D /* Frameworks */,
 				F29FD1F224CB1FE1004B166D /* Resources */,
@@ -736,7 +736,7 @@
 			files = (
 				E51FD38C29D6F2D2000897D9 /* Localizable.strings in Resources */,
 				F29FD20124CB1FE3004B166D /* Assets.xcassets in Resources */,
-				F267DA4A273E7CA900448A8F /* NotificareOptions.plist in Resources */,
+				F267DA4A273E7CA900448A8F /* ActitoOptions.plist in Resources */,
 				E5C78F0229BB8905006BF1F6 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,7 +744,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F2EAF9B02AF537F700A2CC0C /* Copy Notificare configuration file */ = {
+		F2EAF9B02AF537F700A2CC0C /* Copy Actito configuration file */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -754,14 +754,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Notificare configuration file";
+			name = "Copy Actito configuration file";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CONFIGURATION_FILE_NAME=NotificareServices.plist\n\nBUILD_TYPE=$(echo $CONFIGURATION | cut -d \"-\" -f 1)\nENVIRONMENT=$(echo $CONFIGURATION | cut -d \"-\" -f 2)\n\nCONFIGURATION_FILE=${PROJECT_DIR}/${TARGET_NAME}/Configuration/${BUILD_TYPE}/${ENVIRONMENT}/${CONFIGURATION_FILE_NAME}\nCONFIGURATION_FILE_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n\necho \"Looking for ${CONFIGURATION_FILE_NAME} in ${CONFIGURATION_FILE}\"\nif [ ! -f $CONFIGURATION_FILE ] ; then\n    echo \"File not found.\"\n    exit 1\nfi\n\necho \"Copying ${CONFIGURATION_FILE_NAME} to final destination: ${CONFIGURATION_FILE}\"\ncp \"${CONFIGURATION_FILE}\" \"${CONFIGURATION_FILE_DESTINATION}\"\n";
+			shellScript = "CONFIGURATION_FILE_NAME=ActitoServices.plist\n\nBUILD_TYPE=$(echo $CONFIGURATION | cut -d \"-\" -f 1)\nENVIRONMENT=$(echo $CONFIGURATION | cut -d \"-\" -f 2)\n\nCONFIGURATION_FILE=${PROJECT_DIR}/${TARGET_NAME}/Configuration/${BUILD_TYPE}/${ENVIRONMENT}/${CONFIGURATION_FILE_NAME}\nCONFIGURATION_FILE_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n\necho \"Looking for ${CONFIGURATION_FILE_NAME} in ${CONFIGURATION_FILE}\"\nif [ ! -f $CONFIGURATION_FILE ] ; then\n    echo \"File not found.\"\n    exit 1\nfi\n\necho \"Copying ${CONFIGURATION_FILE_NAME} to final destination: ${CONFIGURATION_FILE}\"\ncp \"${CONFIGURATION_FILE}\" \"${CONFIGURATION_FILE_DESTINATION}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
