@@ -4,6 +4,7 @@
 
 import Foundation
 
+@MainActor
 public protocol ActitoInboxDelegate: AnyObject {
     /// Called when the inbox is successfully updated.
     ///
