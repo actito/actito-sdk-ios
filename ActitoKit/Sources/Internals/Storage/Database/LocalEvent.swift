@@ -5,7 +5,7 @@
 import ActitoUtilitiesKit
 import CoreData
 
-internal struct LocalEvent {
+internal struct LocalEvent: @unchecked Sendable {
     internal let objectID: NSManagedObjectID?
     internal let type: String
     internal let deviceId: String
