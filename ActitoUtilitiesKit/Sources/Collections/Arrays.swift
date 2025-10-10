@@ -16,29 +16,4 @@ extension Array {
 
         return index
     }
-
-    public func compactValuesRecursive<T>(_ transform: (Element) throws -> T?) rethrows -> [Element] {
-        var result: [Element] = []
-
-        for element in self {
-            if let nested = element as? [Element] {
-                let transformed = try nested.compactValuesRecursive(transform)
-                if !transformed.isEmpty, let casted = transformed as? Element {
-                    result.append(casted)
-                }
-            } else if let nested = element as? [AnyHashable: Element] {
-                let transformed = try nested.compactMapValuesRecursive { _, value in
-                    return try transform(value) }
-                if !transformed.isEmpty, let casted = transformed as? Element {
-                    result.append(casted)
-                }
-            } else if let transformed = try transform(element),
-                      let casted = transformed as? Element
-            {
-                result.append(casted)
-            }
-        }
-
-        return result
-    }
 }
