@@ -2,7 +2,7 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-internal protocol ActitoOptionalCodingWrapper {
+public protocol ActitoOptionalCodingWrapper {
     associatedtype WrappedType: ExpressibleByNilLiteral
     var wrappedValue: WrappedType { get }
     init(wrappedValue: WrappedType)
@@ -10,7 +10,7 @@ internal protocol ActitoOptionalCodingWrapper {
 
 extension KeyedDecodingContainer {
     // This is used to override the default decoding behavior for ActitoOptionalCodingWrapper to allow a value to avoid a missing key Error
-    internal func decode<T>(_ type: T.Type, forKey key: KeyedDecodingContainer<K>.Key) throws -> T where T: Decodable, T: ActitoOptionalCodingWrapper {
+    public func decode<T>(_ type: T.Type, forKey key: KeyedDecodingContainer<K>.Key) throws -> T where T: Decodable, T: ActitoOptionalCodingWrapper {
         return try decodeIfPresent(T.self, forKey: key) ?? T(wrappedValue: nil)
     }
 }

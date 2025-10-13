@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A1FE0632C465CB200468B84 /* ActitoInboxItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1FE0622C465CB200468B84 /* ActitoInboxItemTest.swift */; };
 		1A52DE772CA4617500B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE762CA4617500B5F56C /* Logger.swift */; };
+		1A8624F12E9CFE3500ED0A98 /* InboxPushAPIModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8624F02E9CFE2A00ED0A98 /* InboxPushAPIModelsTests.swift */; };
 		1AB27BA52E704487004F93B9 /* InboxItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB27BA22E704487004F93B9 /* InboxItemEntity.swift */; };
 		1AD265102E1C2A1700BE984E /* InboxConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2650F2E1C2A0C00BE984E /* InboxConcurrencyTests.swift */; };
 		1AD52A202DE74ED3006C7D88 /* LocalInboxItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A1F2DE74ECA006C7D88 /* LocalInboxItem.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		1A1FE0622C465CB200468B84 /* ActitoInboxItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInboxItemTest.swift; sourceTree = "<group>"; };
 		1A52DE762CA4617500B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1A8624F02E9CFE2A00ED0A98 /* InboxPushAPIModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxPushAPIModelsTests.swift; sourceTree = "<group>"; };
 		1AB27BA22E704487004F93B9 /* InboxItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxItemEntity.swift; sourceTree = "<group>"; };
 		1AD2650F2E1C2A0C00BE984E /* InboxConcurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxConcurrencyTests.swift; sourceTree = "<group>"; };
 		1AD52A1F2DE74ECA006C7D88 /* LocalInboxItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalInboxItem.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		F289F54225B85E020091AB97 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1A8624F02E9CFE2A00ED0A98 /* InboxPushAPIModelsTests.swift */,
 				F289F54525B85E020091AB97 /* Info.plist */,
 				1A1FE0622C465CB200468B84 /* ActitoInboxItemTest.swift */,
 				1AD2650F2E1C2A0C00BE984E /* InboxConcurrencyTests.swift */,
@@ -341,6 +344,7 @@
 			files = (
 				1A1FE0632C465CB200468B84 /* ActitoInboxItemTest.swift in Sources */,
 				1AD265102E1C2A1700BE984E /* InboxConcurrencyTests.swift in Sources */,
+				1A8624F12E9CFE3500ED0A98 /* InboxPushAPIModelsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
