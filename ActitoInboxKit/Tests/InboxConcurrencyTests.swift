@@ -15,7 +15,7 @@ internal struct InboxConcurrencyTests {
 
         await withThrowingTaskGroup(of: Void.self) { group in
             for _ in 0...10 {
-                group.addTask { @MainActor in
+                group.addTask {
                     try await Actito.shared.inbox().refresh()
                 }
             }
