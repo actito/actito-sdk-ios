@@ -49,7 +49,9 @@ internal struct ActitoApplicationTest {
                     ]
                 ),
             ],
-            enforceSizeLimit: true
+            enforceSizeLimit: true,
+            enforceTagRestrictions: true,
+            enforceEventNameRestrictions: true
         )
 
         do {
@@ -86,7 +88,9 @@ internal struct ActitoApplicationTest {
                     actions: []
                 ),
             ],
-            enforceSizeLimit: true
+            enforceSizeLimit: true,
+            enforceTagRestrictions: nil,
+            enforceEventNameRestrictions: nil
         )
 
         do {
