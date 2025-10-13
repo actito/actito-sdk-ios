@@ -116,8 +116,8 @@ internal struct PushAPIModelsTest {
             userDataFields: [],
             actionCategories: [],
             enforceSizeLimit: true,
-            enforceTagRestrictions: true,
-            enforceEventNameRestrictions: true
+            enforceTagRestrictions: nil,
+            enforceEventNameRestrictions: nil
         )
 
         let application = ActitoInternals.PushAPI.Models.Application(
@@ -131,8 +131,8 @@ internal struct PushAPIModelsTest {
             userDataFields: [],
             actionCategories: [],
             enforceSizeLimit: true,
-            enforceTagRestrictions: true,
-            enforceEventNameRestrictions: true
+            enforceTagRestrictions: nil,
+            enforceEventNameRestrictions: nil
         ).toModel()
 
         #expect(expectedApplication == application)
