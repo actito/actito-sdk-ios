@@ -49,7 +49,9 @@ internal struct PushAPIModelsTest {
                     ]
                 ),
             ],
-            enforceSizeLimit: true
+            enforceSizeLimit: true,
+            enforceTagRestrictions: true,
+            enforceEventNameRestrictions: true
         )
 
         let application = ActitoInternals.PushAPI.Models.Application(
@@ -93,7 +95,9 @@ internal struct PushAPIModelsTest {
                     ]
                 ),
             ],
-            enforceSizeLimit: true
+            enforceSizeLimit: true,
+            enforceTagRestrictions: true,
+            enforceEventNameRestrictions: true
         ).toModel()
 
         #expect(expectedApplication == application)
@@ -111,7 +115,9 @@ internal struct PushAPIModelsTest {
             regionConfig: nil,
             userDataFields: [],
             actionCategories: [],
-            enforceSizeLimit: true
+            enforceSizeLimit: true,
+            enforceTagRestrictions: nil,
+            enforceEventNameRestrictions: nil
         )
 
         let application = ActitoInternals.PushAPI.Models.Application(
@@ -124,7 +130,9 @@ internal struct PushAPIModelsTest {
             regionConfig: nil,
             userDataFields: [],
             actionCategories: [],
-            enforceSizeLimit: true
+            enforceSizeLimit: true,
+            enforceTagRestrictions: nil,
+            enforceEventNameRestrictions: nil
         ).toModel()
 
         #expect(expectedApplication == application)

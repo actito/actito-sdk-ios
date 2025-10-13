@@ -338,7 +338,7 @@ extension HomeViewModel {
 
 // Location
 
-extension HomeViewModel: CLLocationManagerDelegate {
+extension HomeViewModel: @MainActor CLLocationManagerDelegate {
     private func checkLocationStatus() {
         let whenInUse = checkLocationPermissionStatus(permission: .locationWhenInUse)
         let always = checkLocationPermissionStatus(permission: .locationAlways)

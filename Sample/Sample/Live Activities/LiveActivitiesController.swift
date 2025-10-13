@@ -9,6 +9,7 @@ import OSLog
 import UIKit
 
 @available(iOS 16.1, *)
+@MainActor
 internal class LiveActivitiesController {
     internal static let shared = LiveActivitiesController()
 

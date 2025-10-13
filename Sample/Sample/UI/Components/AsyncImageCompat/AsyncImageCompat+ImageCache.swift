@@ -6,11 +6,11 @@ import Foundation
 import SwiftUI
 import UIKit
 
-internal protocol ImageCache {
+internal protocol ImageCache: Sendable {
     subscript(_: URL) -> UIImage? { get set }
 }
 
-internal struct TemporaryImageCache: ImageCache {
+internal struct TemporaryImageCache: ImageCache, @unchecked Sendable {
     private let cache: NSCache<NSURL, UIImage> = {
         let cache = NSCache<NSURL, UIImage>()
         cache.countLimit = 100 // 100 items

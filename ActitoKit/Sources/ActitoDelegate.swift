@@ -4,6 +4,7 @@
 
 import Foundation
 
+@MainActor
 public protocol ActitoDelegate: AnyObject {
     /// Called when the Actito SDK is launched and fully ready.
     ///

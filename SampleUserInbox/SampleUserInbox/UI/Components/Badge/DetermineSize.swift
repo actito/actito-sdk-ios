@@ -18,7 +18,7 @@ internal struct DetermineSize: View {
 }
 
 internal struct SizePreferenceKey: PreferenceKey {
-    internal static var defaultValue: CGSize = .zero
+    internal static let defaultValue: CGSize = .zero
 
     internal static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
         value = nextValue()

@@ -3,10 +3,10 @@
 //
 
 import ActitoNotificationServiceExtensionKit
-import UserNotifications
+@preconcurrency import UserNotifications
 
 class NotificationService: UNNotificationServiceExtension {
-    override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+    override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @Sendable @escaping (UNNotificationContent) -> Void) {
         ActitoNotificationServiceExtension.handleNotificationRequest(request) { result in
             switch result {
             case let .success(content):
