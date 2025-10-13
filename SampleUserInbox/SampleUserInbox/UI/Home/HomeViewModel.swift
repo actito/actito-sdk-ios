@@ -6,7 +6,7 @@ import ActitoKit
 import ActitoPushKit
 import ActitoPushUIKit
 import Alamofire
-import Auth0
+@preconcurrency import Auth0
 import Combine
 import Foundation
 import OSLog
