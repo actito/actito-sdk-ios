@@ -45,7 +45,13 @@ public final class ActitoPush {
     }()
 
     /// Defines the presentation options for displaying notifications while the app is in the foreground.
-    public var presentationOptions: UNNotificationPresentationOptions = []
+    public var presentationOptions: UNNotificationPresentationOptions = {
+        if #available(iOS 14.0, *) {
+            return [.banner, .badge, .sound]
+        } else {
+            return [.alert, .badge, .sound]
+        }
+    }()
 
     /// Indicates whether remote notifications are enabled.
     ///

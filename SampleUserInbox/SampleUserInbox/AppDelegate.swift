@@ -18,12 +18,6 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
     internal func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        if #available(iOS 14.0, *) {
-            Actito.shared.push().presentationOptions = [.banner, .badge, .sound]
-        } else {
-            Actito.shared.push().presentationOptions = [.alert, .badge, .sound]
-        }
-
         Actito.shared.delegate = self
         Actito.shared.push().delegate = self
         Actito.shared.pushUI().delegate = self
