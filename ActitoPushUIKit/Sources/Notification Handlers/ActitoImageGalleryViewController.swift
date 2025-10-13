@@ -37,9 +37,7 @@ public class ActitoImageGalleryViewController: ActitoBaseNotificationViewControl
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: collectionViewLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.scrollIndicatorInsets = .zero
-        if #available(iOS 11.0, *) {
-            collectionView.contentInsetAdjustmentBehavior = .never
-        }
+        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = true
@@ -47,11 +45,7 @@ public class ActitoImageGalleryViewController: ActitoBaseNotificationViewControl
         if let colorStr = theme?.backgroundColor {
             collectionView.backgroundColor = UIColor(hexString: colorStr)
         } else {
-            if #available(iOS 13.0, *) {
-                collectionView.backgroundColor = .systemBackground
-            } else {
-                collectionView.backgroundColor = .white
-            }
+            collectionView.backgroundColor = .systemBackground
         }
 
         pageControl = UIPageControl()

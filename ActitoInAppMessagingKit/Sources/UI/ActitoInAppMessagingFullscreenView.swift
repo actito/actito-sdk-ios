@@ -17,11 +17,7 @@ public class ActitoInAppMessagingFullscreenView: UIView, ActitoInAppMessagingVie
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .tertiarySystemBackground
-        } else {
-            view.backgroundColor = .white
-        }
+        view.backgroundColor = .tertiarySystemBackground
 
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
@@ -249,7 +245,7 @@ public class ActitoInAppMessagingFullscreenView: UIView, ActitoInAppMessagingVie
     private func updateGradientColors(in layer: CAGradientLayer) {
         var gradientColor = UIColor.white
 
-        if #available(iOS 12.0, *), traitCollection.userInterfaceStyle == .dark {
+        if traitCollection.userInterfaceStyle == .dark {
             gradientColor = .black
         }
 

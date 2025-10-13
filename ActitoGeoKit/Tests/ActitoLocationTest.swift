@@ -8,7 +8,6 @@ import Testing
 
 internal struct ActitoLocationTest {
     @Test
-    @available(iOS 13.4, *)
     internal func testActitoLocationCLLocationInitialization() {
         let expectedLocation = ActitoLocation(
             latitude: 0.5,

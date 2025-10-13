@@ -32,11 +32,7 @@ public class ActitoBaseNotificationViewController: UIViewController {
         if let colorStr = theme?.backgroundColor {
             view.backgroundColor = UIColor(hexString: colorStr)
         } else {
-            if #available(iOS 13.0, *) {
-                view.backgroundColor = .systemBackground
-            } else {
-                view.backgroundColor = .white
-            }
+            view.backgroundColor = .systemBackground
         }
     }
 
