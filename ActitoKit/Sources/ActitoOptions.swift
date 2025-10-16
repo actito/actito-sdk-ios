@@ -239,10 +239,8 @@ extension ActitoOptions {
     public func theme(for controller: UIViewController) -> ActitoOptions.Theme? {
         var theme = themes?.light
 
-        if #available(iOS 13.0, *) {
-            if controller.traitCollection.userInterfaceStyle == .dark, let darkTheme = self.themes?.dark {
-                theme = darkTheme
-            }
+        if controller.traitCollection.userInterfaceStyle == .dark, let darkTheme = self.themes?.dark {
+            theme = darkTheme
         }
 
         return theme

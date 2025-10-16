@@ -17,11 +17,7 @@ public class ActitoInAppMessagingBannerView: UIView, ActitoInAppMessagingView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .tertiarySystemBackground
-        } else {
-            view.backgroundColor = .white
-        }
+        view.backgroundColor = .tertiarySystemBackground
 
         view.layer.cornerRadius = 8
         view.clipsToBounds = true

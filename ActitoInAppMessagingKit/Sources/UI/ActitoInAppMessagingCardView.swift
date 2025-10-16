@@ -31,11 +31,7 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .tertiarySystemBackground
-        } else {
-            view.backgroundColor = .white
-        }
+        view.backgroundColor = .tertiarySystemBackground
 
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
@@ -199,11 +195,7 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
         if message.primaryAction?.destructive == true {
             primaryActionButton.setTitleColor(.systemRed, for: .normal)
         } else {
-            if #available(iOS 13.0, *) {
-                primaryActionButton.setTitleColor(.label, for: .normal)
-            } else {
-                primaryActionButton.setTitleColor(.black, for: .normal)
-            }
+            primaryActionButton.setTitleColor(.label, for: .normal)
         }
 
         secondaryActionButton.isHidden = !canShowAction(message.secondaryAction)
@@ -212,11 +204,7 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
         if message.secondaryAction?.destructive == true {
             secondaryActionButton.setTitleColor(.systemRed, for: .normal)
         } else {
-            if #available(iOS 13.0, *) {
-                secondaryActionButton.setTitleColor(.label, for: .normal)
-            } else {
-                secondaryActionButton.setTitleColor(.black, for: .normal)
-            }
+            secondaryActionButton.setTitleColor(.label, for: .normal)
         }
     }
 

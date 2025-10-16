@@ -21,7 +21,7 @@ internal class ActitoRateController: ActitoNotificationPresenter {
 
         // Rate action
         alert.addAction(UIAlertAction(title: ActitoLocalizable.string(resource: .rateAlertYesButton), style: .default, handler: { _ in
-            if #available(iOS 10.3, *), !LocalStorage.hasReviewedCurrentVersion {
+            if !LocalStorage.hasReviewedCurrentVersion {
                 //                if #available(iOS 14.0, *), let scene = scene {
                 //                    SKStoreReviewController.requestReview(in: scene)
                 //                } else {

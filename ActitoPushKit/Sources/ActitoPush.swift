@@ -36,13 +36,7 @@ public final class ActitoPush {
     public var authorizationOptions: UNAuthorizationOptions = [.badge, .sound, .alert]
 
     /// Defines the notification category options for custom notification actions.
-    public var categoryOptions: UNNotificationCategoryOptions = {
-        if #available(iOS 11.0, *) {
-            return [.customDismissAction, .hiddenPreviewsShowTitle]
-        } else {
-            return [.customDismissAction]
-        }
-    }()
+    public var categoryOptions: UNNotificationCategoryOptions = [.customDismissAction, .hiddenPreviewsShowTitle]
 
     /// Defines the presentation options for displaying notifications while the app is in the foreground.
     public var presentationOptions: UNNotificationPresentationOptions = {
@@ -356,26 +350,15 @@ public final class ActitoPush {
     private func loadAvailableCategories() -> Set<UNNotificationCategory> {
         var categories = Set<UNNotificationCategory>()
 
-        if #available(iOS 11.0, *) {
-            categories.insert(
-                UNNotificationCategory(
-                    identifier: "ActitoDefaultCategory",
-                    actions: [],
-                    intentIdentifiers: [],
-                    hiddenPreviewsBodyPlaceholder: ActitoLocalizable.string(resource: .pushDefaultCategory),
-                    options: categoryOptions
-                )
+        categories.insert(
+            UNNotificationCategory(
+                identifier: "ActitoDefaultCategory",
+                actions: [],
+                intentIdentifiers: [],
+                hiddenPreviewsBodyPlaceholder: ActitoLocalizable.string(resource: .pushDefaultCategory),
+                options: categoryOptions
             )
-        } else {
-            categories.insert(
-                UNNotificationCategory(
-                    identifier: "ActitoDefaultCategory",
-                    actions: [],
-                    intentIdentifiers: [],
-                    options: categoryOptions
-                )
-            )
-        }
+        )
 
         // Loop over all the application info actionCategories list of Rich Push templates created for this application.
         Actito.shared.application?.actionCategories.forEach { category in
@@ -399,26 +382,15 @@ public final class ActitoPush {
                 }
             }
 
-            if #available(iOS 11.0, *) {
-                categories.insert(
-                    UNNotificationCategory(
-                        identifier: category.name,
-                        actions: actions,
-                        intentIdentifiers: [],
-                        hiddenPreviewsBodyPlaceholder: ActitoLocalizable.string(resource: category.name, fallback: category.name),
-                        options: categoryOptions
-                    )
+            categories.insert(
+                UNNotificationCategory(
+                    identifier: category.name,
+                    actions: actions,
+                    intentIdentifiers: [],
+                    hiddenPreviewsBodyPlaceholder: ActitoLocalizable.string(resource: category.name, fallback: category.name),
+                    options: categoryOptions
                 )
-            } else {
-                categories.insert(
-                    UNNotificationCategory(
-                        identifier: category.name,
-                        actions: actions,
-                        intentIdentifiers: [],
-                        options: categoryOptions
-                    )
-                )
-            }
+            )
         }
 
         return categories
@@ -620,10 +592,8 @@ public final class ActitoPush {
 
         var granted = settings.authorizationStatus == .authorized
 
-        if #available(iOS 12.0, *) {
-            if settings.authorizationStatus == .provisional {
-                granted = true
-            }
+        if settings.authorizationStatus == .provisional {
+            granted = true
         }
 
         return granted

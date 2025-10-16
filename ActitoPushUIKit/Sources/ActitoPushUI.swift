@@ -217,14 +217,10 @@ public final class ActitoPushUI {
     internal func createSafariViewController(url: URL, theme: ActitoOptions.Theme?) -> SFSafariViewController {
         let safariViewController: SFSafariViewController
 
-        if #available(iOS 11.0, *) {
-            let configuration = SFSafariViewController.Configuration()
-            configuration.entersReaderIfAvailable = true
+        let configuration = SFSafariViewController.Configuration()
+        configuration.entersReaderIfAvailable = true
 
-            safariViewController = SFSafariViewController(url: url, configuration: configuration)
-        } else {
-            safariViewController = SFSafariViewController(url: url)
-        }
+        safariViewController = SFSafariViewController(url: url, configuration: configuration)
 
         if let theme = theme {
             if let colorStr = theme.safariBarTintColor {
@@ -235,13 +231,11 @@ public final class ActitoPushUI {
                 safariViewController.preferredControlTintColor = UIColor(hexString: colorStr)
             }
 
-            if #available(iOS 11.0, *) {
-                if
-                    let styleInt = Actito.shared.options!.safariDismissButtonStyle,
-                    let style = SFSafariViewController.DismissButtonStyle(rawValue: styleInt)
-                {
-                    safariViewController.dismissButtonStyle = style
-                }
+            if
+                let styleInt = Actito.shared.options!.safariDismissButtonStyle,
+                let style = SFSafariViewController.DismissButtonStyle(rawValue: styleInt)
+            {
+                safariViewController.dismissButtonStyle = style
             }
         }
 

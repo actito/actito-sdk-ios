@@ -577,11 +577,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                     return
                 }
 
-                if #available(iOS 13.0, *) {
-                    locationManager.startRangingBeacons(satisfying: clr.beaconIdentityConstraint)
-                } else {
-                    locationManager.startRangingBeacons(in: clr)
-                }
+                locationManager.startRangingBeacons(satisfying: clr.beaconIdentityConstraint)
 
                 // TODO: self.ranging = true
                 startBeaconSession(beacon)
@@ -651,11 +647,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                     return
                 }
 
-                if #available(iOS 13.0, *) {
-                    locationManager.stopRangingBeacons(satisfying: clr.beaconIdentityConstraint)
-                } else {
-                    locationManager.stopRangingBeacons(in: clr)
-                }
+                locationManager.stopRangingBeacons(satisfying: clr.beaconIdentityConstraint)
 
                 // TODO: self.ranging = false
                 stopBeaconSession(beacon)
@@ -1024,40 +1016,23 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
         let clr: CLBeaconRegion
 
-        if #available(iOS 13.0, *) {
-            if let minor = beacon.minor {
-                clr = CLBeaconRegion(
-                    beaconIdentityConstraint: CLBeaconIdentityConstraint(
-                        uuid: uuid,
-                        major: UInt16(beacon.major),
-                        minor: UInt16(minor)
-                    ),
-                    identifier: beacon.id
-                )
-            } else {
-                clr = CLBeaconRegion(
-                    beaconIdentityConstraint: CLBeaconIdentityConstraint(
-                        uuid: uuid,
-                        major: UInt16(beacon.major)
-                    ),
-                    identifier: beacon.id
-                )
-            }
+        if let minor = beacon.minor {
+            clr = CLBeaconRegion(
+                beaconIdentityConstraint: CLBeaconIdentityConstraint(
+                    uuid: uuid,
+                    major: UInt16(beacon.major),
+                    minor: UInt16(minor)
+                ),
+                identifier: beacon.id
+            )
         } else {
-            if let minor = beacon.minor {
-                clr = CLBeaconRegion(
-                    proximityUUID: uuid,
-                    major: UInt16(beacon.major),
-                    minor: UInt16(minor),
-                    identifier: beacon.id
-                )
-            } else {
-                clr = CLBeaconRegion(
-                    proximityUUID: uuid,
-                    major: UInt16(beacon.major),
-                    identifier: beacon.id
-                )
-            }
+            clr = CLBeaconRegion(
+                beaconIdentityConstraint: CLBeaconIdentityConstraint(
+                    uuid: uuid,
+                    major: UInt16(beacon.major)
+                ),
+                identifier: beacon.id
+            )
         }
 
         clr.notifyEntryStateOnDisplay = true
@@ -1094,13 +1069,8 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                     // This is the main beacon region.
                     //
 
-                    if #available(iOS 13.0, *) {
-                        locationManager.stopRangingBeacons(satisfying: clr.beaconIdentityConstraint)
-                        locationManager(locationManager, didRange: [], satisfying: clr.beaconIdentityConstraint)
-                    } else {
-                        locationManager.stopRangingBeacons(in: clr)
-                        locationManager(locationManager, didRangeBeacons: [], in: clr)
-                    }
+                    locationManager.stopRangingBeacons(satisfying: clr.beaconIdentityConstraint)
+                    locationManager(locationManager, didRange: [], satisfying: clr.beaconIdentityConstraint)
 
                     stopBeaconSession(beacon)
                 }
@@ -1114,11 +1084,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         guard clr.identifier != FAKE_BEACON_IDENTIFIER else {
             locationManager.stopMonitoring(for: clr)
 
-            if #available(iOS 13.0, *) {
-                locationManager.stopRangingBeacons(satisfying: clr.beaconIdentityConstraint)
-            } else {
-                locationManager.stopRangingBeacons(in: clr)
-            }
+            locationManager.stopRangingBeacons(satisfying: clr.beaconIdentityConstraint)
 
             updateBluetoothState(enabled: true)
 
@@ -1172,11 +1138,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
         locationManager.stopMonitoring(for: clr)
 
-        if #available(iOS 13.0, *) {
-            locationManager.stopRangingBeacons(satisfying: clr.beaconIdentityConstraint)
-        } else {
-            locationManager.stopRangingBeacons(in: clr)
-        }
+        locationManager.stopRangingBeacons(satisfying: clr.beaconIdentityConstraint)
 
         updateBluetoothState(enabled: false)
     }
@@ -1186,17 +1148,10 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
         let clr: CLBeaconRegion
 
-        if #available(iOS 13.0, *) {
-            clr = CLBeaconRegion(
-                beaconIdentityConstraint: CLBeaconIdentityConstraint(uuid: fakeBeaconUUID),
-                identifier: FAKE_BEACON_IDENTIFIER
-            )
-        } else {
-            clr = CLBeaconRegion(
-                proximityUUID: fakeBeaconUUID,
-                identifier: FAKE_BEACON_IDENTIFIER
-            )
-        }
+        clr = CLBeaconRegion(
+            beaconIdentityConstraint: CLBeaconIdentityConstraint(uuid: fakeBeaconUUID),
+            identifier: FAKE_BEACON_IDENTIFIER
+        )
 
         clr.notifyEntryStateOnDisplay = false
         clr.notifyOnEntry = false
@@ -1339,11 +1294,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
     public func locationManager(_: CLLocationManager, didStartMonitoringFor clr: CLRegion) {
         if clr.identifier == FAKE_BEACON_IDENTIFIER, let clr = clr as? CLBeaconRegion {
-            if #available(iOS 13.0, *) {
-                locationManager.startRangingBeacons(satisfying: clr.beaconIdentityConstraint)
-            } else {
-                locationManager.startRangingBeacons(in: clr)
-            }
+            locationManager.startRangingBeacons(satisfying: clr.beaconIdentityConstraint)
 
             return
         }
@@ -1524,11 +1475,6 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    public func locationManager(_: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        handleRangingBeacons(beacons, in: region)
-    }
-
-    @available(iOS 13.0, *)
     public func locationManager(_: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint) {
         let region = locationManager.monitoredRegions
             .compactMap { $0 as? CLBeaconRegion }
@@ -1539,11 +1485,6 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         handleRangingBeacons(beacons, in: region)
     }
 
-    public func locationManager(_: CLLocationManager, rangingBeaconsDidFailFor region: CLBeaconRegion, withError error: Error) {
-        handleRangingBeaconsError(error, for: region)
-    }
-
-    @available(iOS 13.0, *)
     public func locationManager(_: CLLocationManager, didFailRangingFor beaconConstraint: CLBeaconIdentityConstraint, error: Error) {
         let region = locationManager.monitoredRegions
             .compactMap { $0 as? CLBeaconRegion }

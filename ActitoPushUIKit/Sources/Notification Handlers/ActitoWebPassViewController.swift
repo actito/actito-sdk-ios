@@ -74,11 +74,7 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
         if let colorStr = theme?.backgroundColor {
             loadingView.backgroundColor = UIColor(hexString: colorStr)
         } else {
-            if #available(iOS 13.0, *) {
-                loadingView.backgroundColor = .systemBackground
-            } else {
-                loadingView.backgroundColor = .white
-            }
+            loadingView.backgroundColor = .systemBackground
         }
         view.addSubview(loadingView)
 
