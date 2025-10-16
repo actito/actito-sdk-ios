@@ -11,7 +11,7 @@ import UserNotifications
 
 @MainActor
 public final class ActitoPush {
-    public static let shared = ActitoPush()
+    public nonisolated static let shared = ActitoPush()
 
     internal var notificationCenter: UNUserNotificationCenter {
         UNUserNotificationCenter.current()
@@ -95,6 +95,8 @@ public final class ActitoPush {
 
     /// This property returns a Publisher that can be observed to track any changes to whether the device can receive remote notifications.
     public var allowedUIStream: AnyPublisher<Bool, Never> { _allowedUIStream.eraseToAnyPublisher() }
+
+    private nonisolated init() {}
 
     /// Enables remote notifications, with a callback.
     ///

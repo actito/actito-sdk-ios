@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 
 extension Actito {
-    public func pushUI() -> ActitoPushUI {
+    public nonisolated func pushUI() -> ActitoPushUI {
         ActitoPushUI.shared
     }
 }

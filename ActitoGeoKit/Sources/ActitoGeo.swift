@@ -17,7 +17,7 @@ private let MAX_REGION_SESSION_LOCATIONS = 100
 
 @MainActor
 public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
-    public static let shared = ActitoGeo()
+    public nonisolated static let shared = ActitoGeo()
 
     internal var locationManager: CLLocationManager!
     private var lastKnownLocation: CLLocation?
@@ -131,6 +131,8 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             }
         }
     }
+
+    private nonisolated override init() {}
 
     /// Enables location updates, activating location tracking, region monitoring, and beacon detection.
     ///

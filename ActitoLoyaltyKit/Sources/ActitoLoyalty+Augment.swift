@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 
 extension Actito {
-    public func loyalty() -> ActitoLoyalty {
+    public nonisolated func loyalty() -> ActitoLoyalty {
         ActitoLoyalty.shared
     }
 }

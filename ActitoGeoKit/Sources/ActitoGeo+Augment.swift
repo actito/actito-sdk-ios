@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 
 extension Actito {
-    public func geo() -> ActitoGeo {
+    public nonisolated func geo() -> ActitoGeo {
         ActitoGeo.shared
     }
 }

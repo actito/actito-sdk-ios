@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 
 extension Actito {
-    public func assets() -> ActitoAssets {
+    public nonisolated func assets() -> ActitoAssets {
         ActitoAssets.shared
     }
 }

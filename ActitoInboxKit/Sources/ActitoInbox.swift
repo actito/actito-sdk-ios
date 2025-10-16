@@ -8,7 +8,7 @@ import UIKit
 
 @MainActor
 public final class ActitoInbox {
-    public static let shared = ActitoInbox()
+    public nonisolated static let shared = ActitoInbox()
 
     internal static let addInboxItemNotification = NSNotification.Name(rawValue: "ActitoInboxKit.AddInboxItem")
     internal static let readInboxItemNotification = NSNotification.Name(rawValue: "ActitoInboxKit.ReadInboxItem")
@@ -23,16 +23,6 @@ public final class ActitoInbox {
 
     private var _badgeStream = CurrentValueSubject<Int, Never>(0)
     private var _itemsStream = CurrentValueSubject<[ActitoInboxItem], Never>([])
-
-    internal init() {
-        itemsStream = _itemsStream
-            .map { items in
-                items.filter { !$0.isExpired }
-            }
-            .eraseToAnyPublisher()
-
-        badgeStream = _badgeStream.eraseToAnyPublisher()
-    }
 
     // MARK: - Public API
 
@@ -70,7 +60,13 @@ public final class ActitoInbox {
     }
 
     /// A Publisher for observing changes to inbox items, suitable for real-time UI updates to reflect inbox state changes.
-    public let itemsStream: AnyPublisher<[ActitoInboxItem], Never>
+    public var itemsStream: AnyPublisher<[ActitoInboxItem], Never> {
+        _itemsStream
+            .map { items in
+                items.filter { !$0.isExpired }
+            }
+            .eraseToAnyPublisher()
+    }
 
     /// The current badge count, representing the number of unread inbox items.
     public var badge: Int {
@@ -88,7 +84,9 @@ public final class ActitoInbox {
     }
 
     /// A Publisher for observing changes to the badge count, providing real-time updates when the unread count changes.
-    public let badgeStream: AnyPublisher<Int, Never>
+    public var badgeStream: AnyPublisher<Int, Never> { _badgeStream.eraseToAnyPublisher() }
+
+    private nonisolated init() {}
 
     /// Refreshes the inbox data, ensuring the items and badge count reflect the latest server state, with a callback.
     ///

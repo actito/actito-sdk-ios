@@ -8,7 +8,7 @@ import UIKit
 
 @MainActor
 public final class ActitoInAppMessaging {
-    public static let shared = ActitoInAppMessaging()
+    public nonisolated static let shared = ActitoInAppMessaging()
 
     private var presentedView: ActitoInAppMessagingView?
     private var presentedViewBackgroundTimestamp: Date?
@@ -27,6 +27,8 @@ public final class ActitoInAppMessaging {
     /// If *true*, message dispatching and the presentation of in-app messages are temporarily suspended.
     /// When *false*, in-app messages are allowed to be presented.
     public var hasMessagesSuppressed: Bool = false
+
+    private nonisolated init() {}
 
     /// Sets the message suppression state
     ///

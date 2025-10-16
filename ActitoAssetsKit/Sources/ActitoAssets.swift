@@ -6,7 +6,7 @@ import ActitoKit
 
 @MainActor
 public final class ActitoAssets {
-    public static let shared = ActitoAssets()
+    public nonisolated static let shared = ActitoAssets()
 
     // MARK: - Public API
 

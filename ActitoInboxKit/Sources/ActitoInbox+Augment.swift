@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 
 extension Actito {
-    public func inbox() -> ActitoInbox {
+    public nonisolated func inbox() -> ActitoInbox {
         ActitoInbox.shared
     }
 }

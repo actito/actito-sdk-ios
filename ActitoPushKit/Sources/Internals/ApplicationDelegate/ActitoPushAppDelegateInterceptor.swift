@@ -8,6 +8,8 @@ import UIKit
 
 @MainActor
 internal final class ActitoPushAppDelegateInterceptor: NSObject, ActitoAppDelegateInterceptor {
+    internal nonisolated override init() {}
+
     internal func application(_: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Actito.shared.push().pushTokenRequester.signalTokenReceived(deviceToken)
     }

@@ -8,6 +8,8 @@ import NotificationCenter
 
 @MainActor
 internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegate {
+    internal nonisolated override init() {}
+
     internal func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         let userInfo = response.notification.request.content.userInfo
 
