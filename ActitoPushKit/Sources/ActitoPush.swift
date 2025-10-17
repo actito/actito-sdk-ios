@@ -81,7 +81,9 @@ public final class ActitoPush {
     }
 
     /// This property returns a Publisher that can be observed to track changes to the device's push subscription token.
-    public var subscriptionStream: AnyPublisher<ActitoPushSubscription?, Never> { _subscriptionStream.eraseToAnyPublisher() }
+    public lazy var subscriptionStream: AnyPublisher<ActitoPushSubscription?, Never> = {
+        _subscriptionStream.eraseToAnyPublisher()
+    }()
 
     /// Indicates whether the device is capable of receiving remote notifications.
     ///
@@ -94,7 +96,9 @@ public final class ActitoPush {
     }
 
     /// This property returns a Publisher that can be observed to track any changes to whether the device can receive remote notifications.
-    public var allowedUIStream: AnyPublisher<Bool, Never> { _allowedUIStream.eraseToAnyPublisher() }
+    public lazy var allowedUIStream: AnyPublisher<Bool, Never> = {
+        _allowedUIStream.eraseToAnyPublisher()
+    }()
 
     private nonisolated init() {}
 

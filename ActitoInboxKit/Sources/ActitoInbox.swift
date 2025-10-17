@@ -60,13 +60,13 @@ public final class ActitoInbox {
     }
 
     /// A Publisher for observing changes to inbox items, suitable for real-time UI updates to reflect inbox state changes.
-    public var itemsStream: AnyPublisher<[ActitoInboxItem], Never> {
+    public lazy var itemsStream: AnyPublisher<[ActitoInboxItem], Never> = {
         _itemsStream
             .map { items in
                 items.filter { !$0.isExpired }
             }
             .eraseToAnyPublisher()
-    }
+    }()
 
     /// The current badge count, representing the number of unread inbox items.
     public var badge: Int {
@@ -84,7 +84,9 @@ public final class ActitoInbox {
     }
 
     /// A Publisher for observing changes to the badge count, providing real-time updates when the unread count changes.
-    public var badgeStream: AnyPublisher<Int, Never> { _badgeStream.eraseToAnyPublisher() }
+    public lazy var badgeStream: AnyPublisher<Int, Never> = {
+        _badgeStream.eraseToAnyPublisher()
+    }()
 
     private nonisolated init() {}
 
