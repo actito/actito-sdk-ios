@@ -9,7 +9,7 @@ public typealias ActitoCallback<T> = @Sendable (Result<T, Error>) -> Void
 
 @MainActor
 public final class Actito {
-    public static let shared = Actito()
+    public nonisolated static let shared = Actito()
 
     public nonisolated static var SDK_VERSION: String {
         ACTITO_VERSION
@@ -45,7 +45,7 @@ public final class Actito {
     /// such as sdk ready for use, and unlaunched.
     public weak var delegate: ActitoDelegate?
 
-    private init() {}
+    private nonisolated init() {}
 
     // MARK: - Public API
 

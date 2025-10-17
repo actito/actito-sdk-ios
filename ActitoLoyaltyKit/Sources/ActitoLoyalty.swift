@@ -8,7 +8,7 @@ import UIKit
 
 @MainActor
 public final class ActitoLoyalty {
-    public static let shared = ActitoLoyalty()
+    public nonisolated static let shared = ActitoLoyalty()
 
     // MARK: - Public API
 

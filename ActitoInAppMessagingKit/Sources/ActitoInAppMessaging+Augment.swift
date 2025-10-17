@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 
 extension Actito {
-    public func inAppMessaging() -> ActitoInAppMessaging {
+    public nonisolated func inAppMessaging() -> ActitoInAppMessaging {
         ActitoInAppMessaging.shared
     }
 }

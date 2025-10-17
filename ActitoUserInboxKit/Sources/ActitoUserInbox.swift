@@ -8,7 +8,7 @@ import Foundation
 
 @MainActor
 public final class ActitoUserInbox {
-    public static let shared = ActitoUserInbox()
+    public nonisolated static let shared = ActitoUserInbox()
 
     // MARK: - Public API
 

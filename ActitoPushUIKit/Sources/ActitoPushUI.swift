@@ -9,7 +9,7 @@ import UIKit
 
 @MainActor
 public final class ActitoPushUI {
-    public static let shared = ActitoPushUI()
+    public nonisolated static let shared = ActitoPushUI()
 
     private var latestPresentableNotificationHandler: ActitoNotificationPresenter?
     private var latestPresentableActionHandler: ActitoBaseActionHandler?
@@ -21,6 +21,8 @@ public final class ActitoPushUI {
     /// This property allows setting a delegate conforming to ``ActitoPushUIDelegate`` to respond to various notification lifecycle events,
     /// such as when a notification is presented, actions are executed, or errors occur.
     public weak var delegate: ActitoPushUIDelegate?
+
+    private nonisolated init() {}
 
     // MARK: Methods
 
