@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:ActitoKit/ActitoKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoAssetsKit/ActitoAssetsKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoGeoKit/ActitoGeoKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoInAppMessagingKit/ActitoInAppMessagingKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoInboxKit/ActitoInboxKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoLoyaltyKit/ActitoLoyaltyKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoNotificationServiceExtensionKit/ActitoNotificationServiceExtensionKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoPushKit/ActitoPushKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoPushUIKit/ActitoPushUIKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoUserInboxKit/ActitoUserInboxKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ActitoUtilitiesKit/ActitoUtilitiesKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Sample/Sample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SampleUserInbox/SampleUserInbox.xcodeproj">
+   </FileRef>
+</Workspace>

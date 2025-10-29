@@ -1,0 +1,1482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A32740C2C5A0FBF002B78BA /* ActitoNotificationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A32740B2C5A0FBF002B78BA /* ActitoNotificationTest.swift */; };
+		1A32740E2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A32740D2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift */; };
+		1A3274102C5A158D002B78BA /* ActitoTimeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A32740F2C5A158D002B78BA /* ActitoTimeTest.swift */; };
+		1A3274122C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274112C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift */; };
+		1A3274142C5A18C8002B78BA /* ActitoDeviceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274132C5A18C8002B78BA /* ActitoDeviceTest.swift */; };
+		1A3274162C5A1B66002B78BA /* ActitoApplicationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */; };
+		1A3274182C5A8F13002B78BA /* PushAPIModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */; };
+		1A52DE6E2CA44B3500B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE6D2CA44B3500B5F56C /* Logger.swift */; };
+		1AB27BA92E704528004F93B9 /* NotificareCoreDataEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB27BA62E704528004F93B9 /* NotificareCoreDataEvent.swift */; };
+		1AB27BAF2E740609004F93B9 /* ActitoServicesInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */; };
+		1AD52A222DE75AF7006C7D88 /* LocalEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */; };
+		1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */; };
+		1AD52A262DE75BAC006C7D88 /* CreateEventPayload+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */; };
+		1AD52A562DFFF75F006C7D88 /* ActitoLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */; };
+		1AD52A682E002ECB006C7D88 /* CrashReporterLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A672E002EBD006C7D88 /* CrashReporterLaunchComponent.swift */; };
+		1AD52A6A2E0030FB006C7D88 /* DeviceLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A692E0030ED006C7D88 /* DeviceLaunchComponent.swift */; };
+		1AD52A6C2E0036E2006C7D88 /* EventsLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A6B2E0036D8006C7D88 /* EventsLaunchComponent.swift */; };
+		1AD52A6E2E0038CC006C7D88 /* SessionLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A6D2E0038C5006C7D88 /* SessionLaunchComponent.swift */; };
+		42A2011DB7750225B7C9D3E2 /* ActitoBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A205DF5970468FB18808F5 /* ActitoBootstrap.m */; };
+		42A201A3F80D5668FF5D6759 /* ActitoBootstrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A20450A15AAC914DBC800F /* ActitoBootstrap.h */; };
+		42A20330821EAB78A0A5EB13 /* URLSession+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20F817E5D783B690400CF /* URLSession+Retry.swift */; };
+		42A204DF76302D72690E9F7A /* ActitoNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20ACD9317A7EB72200EA4 /* ActitoNetworkError.swift */; };
+		42A204EEDC52B164B27D6563 /* ActitoEventsModuleImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20EA7B3E0709119050294 /* ActitoEventsModuleImpl.swift */; };
+		42A207D529B7F7770917822D /* ActitoDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20DE51F956B3A8FBAB402 /* ActitoDevice.swift */; };
+		42A20AD28857EBCB0A86A104 /* ActitoLaunchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20C54DCF5011314943FAD /* ActitoLaunchState.swift */; };
+		42A20BCB911114B0BCBEF371 /* ActitoCrashReporterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A208E69A6C0B2C639FBFB4 /* ActitoCrashReporterModule.swift */; };
+		42A20BCDB5A9B47688D37655 /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20B124FB2C08F1A880DB2 /* URLRequest+Extensions.swift */; };
+		42A20F5A817E461AD741CEF0 /* ActitoAutoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20A542B5A23849B81C344 /* ActitoAutoConfig.swift */; };
+		42A20F732AE3E8130EA533BF /* ActitoReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20819BD36234AAE88DC4D /* ActitoReachability.swift */; };
+		42A20FD7791BD275D8A3A0E5 /* ActitoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20228EB70EA83D835BF01 /* ActitoError.swift */; };
+		E568CEC02DB6B05C00EAF72F /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E568CEBF2DB6B05C00EAF72F /* ActitoUtilitiesKit.framework */; };
+		F219FADD252DEB3900464B4E /* ActitoSessionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F219FADC252DEB3900464B4E /* ActitoSessionModule.swift */; };
+		F21DD9EF271863EB00C88D7B /* Actito+Augment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DD9EE271863EB00C88D7B /* Actito+Augment.swift */; };
+		F21DD9F12718662000C88D7B /* ActitoEventsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DD9F02718662000C88D7B /* ActitoEventsModule.swift */; };
+		F21DD9F427187BC000C88D7B /* ActitoDeviceModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21DD9F327187BC000C88D7B /* ActitoDeviceModule.swift */; };
+		F2323002252F3886007778AA /* ActitoApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2323001252F3886007778AA /* ActitoApplication.swift */; };
+		F23E3C3324D8267000044574 /* ActitoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23E3C3224D8267000044574 /* ActitoDelegate.swift */; };
+		F258DD5624BC4DBC006F9ABD /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F258DD4C24BC4DBB006F9ABD /* ActitoKit.framework */; };
+		F258DD5D24BC4DBC006F9ABD /* ActitoKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F258DD4F24BC4DBB006F9ABD /* ActitoKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F258DE4424BC68CB006F9ABD /* Actito.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258DE4324BC68CB006F9ABD /* Actito.swift */; };
+		F25A5A3527E89773004556E6 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A5A3427E89773004556E6 /* Version.swift */; };
+		F25E62F925CAA924007C1202 /* ActitoServicesInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E62F825CAA924007C1202 /* ActitoServicesInfo.swift */; };
+		F260F3822C11EFA2007D7A59 /* StoredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F260F3812C11EFA2007D7A59 /* StoredDevice.swift */; };
+		F268F8442BD02EA5008987AC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F268F8432BCD9BB7008987AC /* PrivacyInfo.xcprivacy */; };
+		F27DB17C262EDA9B000C024D /* PushAPI+Payloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27DB17B262EDA9B000C024D /* PushAPI+Payloads.swift */; };
+		F27DB180262EDAA5000C024D /* PushAPI+Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27DB17F262EDAA5000C024D /* PushAPI+Responses.swift */; };
+		F27DB183262EDAC2000C024D /* PushAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27DB182262EDAC2000C024D /* PushAPI.swift */; };
+		F27DB188262EDEB5000C024D /* PushAPI+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27DB187262EDEB5000C024D /* PushAPI+Models.swift */; };
+		F27DDD9A29266B5F0020036D /* ActitoLoyaltyIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27DDD9929266B5F0020036D /* ActitoLoyaltyIntegration.swift */; };
+		F286051E262D9A4300F6D582 /* ActitoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286051D262D9A4300F6D582 /* ActitoRequest.swift */; };
+		F289993525C97D35008ADC7E /* ActitoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F289993425C97D35008ADC7E /* ActitoOptions.swift */; };
+		F293E27B26302C48008C2010 /* ModuleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E27A26302C48008C2010 /* ModuleUtils.swift */; };
+		F293E28A26302C76008C2010 /* ActitoLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E28926302C76008C2010 /* ActitoLocalizable.swift */; };
+		F293E2BF26303056008C2010 /* ActitoSwizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E2BD26303055008C2010 /* ActitoSwizzler.swift */; };
+		F293E2C026303056008C2010 /* ActitoAppDelegateInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E2BE26303056008C2010 /* ActitoAppDelegateInterceptor.swift */; };
+		F293E2DB26304675008C2010 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F293E2DA26304675008C2010 /* LocalStorage.swift */; };
+		F293E3232630524B008C2010 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F293E3252630524B008C2010 /* Localizable.strings */; };
+		F293E32C263053C8008C2010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F293E32B263053C8008C2010 /* Assets.xcassets */; };
+		F29DA38125022170004CCB8F /* ActitoDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29DA38025022170004CCB8F /* ActitoDatabase.swift */; };
+		F2B1817C25BAFDFE00384991 /* ActitoNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1817B25BAFDFE00384991 /* ActitoNotification.swift */; };
+		F2D3894026664AAA00EAEF44 /* LocalStorageMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D3893F26664AAA00EAEF44 /* LocalStorageMigration.swift */; };
+		F2DAB3AE27202DEF002B5F27 /* NotificareDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2DAB3AC27202DEF002B5F27 /* NotificareDatabase.xcdatamodeld */; };
+		F2DB0C1325A8692C00AD93C7 /* ActitoDynamicLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB0C1225A8692C00AD93C7 /* ActitoDynamicLink.swift */; };
+		F2E07E5F25344D0700AF0C14 /* ActitoDoNotDisturb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E07E5E25344D0700AF0C14 /* ActitoDoNotDisturb.swift */; };
+		F2E07E7A2534B5DD00AF0C14 /* ActitoTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E07E792534B5DD00AF0C14 /* ActitoTime.swift */; };
+		F2E801E9269F021800582DB8 /* ActitoInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E801E8269F021800582DB8 /* ActitoInternals.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F258DD5724BC4DBC006F9ABD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F258DD4324BC4DBB006F9ABD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F258DD4B24BC4DBB006F9ABD;
+			remoteInfo = Core;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A32740B2C5A0FBF002B78BA /* ActitoNotificationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoNotificationTest.swift; sourceTree = "<group>"; };
+		1A32740D2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDynamicLinkTest.swift; sourceTree = "<group>"; };
+		1A32740F2C5A158D002B78BA /* ActitoTimeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoTimeTest.swift; sourceTree = "<group>"; };
+		1A3274112C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDoNotDisturbTest.swift; sourceTree = "<group>"; };
+		1A3274132C5A18C8002B78BA /* ActitoDeviceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDeviceTest.swift; sourceTree = "<group>"; };
+		1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoApplicationTest.swift; sourceTree = "<group>"; };
+		1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAPIModelsTest.swift; sourceTree = "<group>"; };
+		1A52DE6D2CA44B3500B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1AB27BA62E704528004F93B9 /* NotificareCoreDataEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificareCoreDataEvent.swift; sourceTree = "<group>"; };
+		1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoServicesInfoTest.swift; sourceTree = "<group>"; };
+		1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEvent.swift; sourceTree = "<group>"; };
+		1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalEvent+CoreData.swift"; sourceTree = "<group>"; };
+		1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateEventPayload+Local.swift"; sourceTree = "<group>"; };
+		1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLaunchComponent.swift; sourceTree = "<group>"; };
+		1AD52A672E002EBD006C7D88 /* CrashReporterLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashReporterLaunchComponent.swift; sourceTree = "<group>"; };
+		1AD52A692E0030ED006C7D88 /* DeviceLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLaunchComponent.swift; sourceTree = "<group>"; };
+		1AD52A6B2E0036D8006C7D88 /* EventsLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLaunchComponent.swift; sourceTree = "<group>"; };
+		1AD52A6D2E0038C5006C7D88 /* SessionLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLaunchComponent.swift; sourceTree = "<group>"; };
+		42A20228EB70EA83D835BF01 /* ActitoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoError.swift; sourceTree = "<group>"; };
+		42A20450A15AAC914DBC800F /* ActitoBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActitoBootstrap.h; sourceTree = "<group>"; };
+		42A205DF5970468FB18808F5 /* ActitoBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActitoBootstrap.m; sourceTree = "<group>"; };
+		42A20819BD36234AAE88DC4D /* ActitoReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoReachability.swift; sourceTree = "<group>"; };
+		42A208E69A6C0B2C639FBFB4 /* ActitoCrashReporterModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoCrashReporterModule.swift; sourceTree = "<group>"; };
+		42A20A542B5A23849B81C344 /* ActitoAutoConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoAutoConfig.swift; sourceTree = "<group>"; };
+		42A20ACD9317A7EB72200EA4 /* ActitoNetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoNetworkError.swift; sourceTree = "<group>"; };
+		42A20B124FB2C08F1A880DB2 /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
+		42A20C54DCF5011314943FAD /* ActitoLaunchState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoLaunchState.swift; sourceTree = "<group>"; };
+		42A20DE51F956B3A8FBAB402 /* ActitoDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoDevice.swift; sourceTree = "<group>"; };
+		42A20EA7B3E0709119050294 /* ActitoEventsModuleImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoEventsModuleImpl.swift; sourceTree = "<group>"; };
+		42A20F817E5D783B690400CF /* URLSession+Retry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+Retry.swift"; sourceTree = "<group>"; };
+		E568CEBF2DB6B05C00EAF72F /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F219FADC252DEB3900464B4E /* ActitoSessionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoSessionModule.swift; sourceTree = "<group>"; };
+		F21DD9EE271863EB00C88D7B /* Actito+Augment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actito+Augment.swift"; sourceTree = "<group>"; };
+		F21DD9F02718662000C88D7B /* ActitoEventsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoEventsModule.swift; sourceTree = "<group>"; };
+		F21DD9F327187BC000C88D7B /* ActitoDeviceModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDeviceModule.swift; sourceTree = "<group>"; };
+		F2323001252F3886007778AA /* ActitoApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoApplication.swift; sourceTree = "<group>"; };
+		F23E3C3224D8267000044574 /* ActitoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDelegate.swift; sourceTree = "<group>"; };
+		F258DD4C24BC4DBB006F9ABD /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F258DD4F24BC4DBB006F9ABD /* ActitoKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActitoKit.h; sourceTree = "<group>"; };
+		F258DD5024BC4DBB006F9ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F258DD5524BC4DBC006F9ABD /* ActitoKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActitoKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F258DD5C24BC4DBC006F9ABD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F258DE4324BC68CB006F9ABD /* Actito.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actito.swift; sourceTree = "<group>"; };
+		F25A5A3427E89773004556E6 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		F25E62F825CAA924007C1202 /* ActitoServicesInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoServicesInfo.swift; sourceTree = "<group>"; };
+		F260F3812C11EFA2007D7A59 /* StoredDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredDevice.swift; sourceTree = "<group>"; };
+		F268F8432BCD9BB7008987AC /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F27DB17B262EDA9B000C024D /* PushAPI+Payloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushAPI+Payloads.swift"; sourceTree = "<group>"; };
+		F27DB17F262EDAA5000C024D /* PushAPI+Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushAPI+Responses.swift"; sourceTree = "<group>"; };
+		F27DB182262EDAC2000C024D /* PushAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAPI.swift; sourceTree = "<group>"; };
+		F27DB187262EDEB5000C024D /* PushAPI+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushAPI+Models.swift"; sourceTree = "<group>"; };
+		F27DDD9929266B5F0020036D /* ActitoLoyaltyIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLoyaltyIntegration.swift; sourceTree = "<group>"; };
+		F286051D262D9A4300F6D582 /* ActitoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoRequest.swift; sourceTree = "<group>"; };
+		F289993425C97D35008ADC7E /* ActitoOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoOptions.swift; sourceTree = "<group>"; };
+		F293E27A26302C48008C2010 /* ModuleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleUtils.swift; sourceTree = "<group>"; };
+		F293E28926302C76008C2010 /* ActitoLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLocalizable.swift; sourceTree = "<group>"; };
+		F293E2BD26303055008C2010 /* ActitoSwizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoSwizzler.swift; sourceTree = "<group>"; };
+		F293E2BE26303056008C2010 /* ActitoAppDelegateInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoAppDelegateInterceptor.swift; sourceTree = "<group>"; };
+		F293E2DA26304675008C2010 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		F293E3242630524B008C2010 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F293E3282630531B008C2010 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F293E32B263053C8008C2010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F29DA38025022170004CCB8F /* ActitoDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDatabase.swift; sourceTree = "<group>"; };
+		F2B1817B25BAFDFE00384991 /* ActitoNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoNotification.swift; sourceTree = "<group>"; };
+		F2D3893F26664AAA00EAEF44 /* LocalStorageMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageMigration.swift; sourceTree = "<group>"; };
+		F2DAB3AD27202DEF002B5F27 /* NotificareDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotificareDatabase.xcdatamodel; sourceTree = "<group>"; };
+		F2DB0C1225A8692C00AD93C7 /* ActitoDynamicLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDynamicLink.swift; sourceTree = "<group>"; };
+		F2E07E5E25344D0700AF0C14 /* ActitoDoNotDisturb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDoNotDisturb.swift; sourceTree = "<group>"; };
+		F2E07E792534B5DD00AF0C14 /* ActitoTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoTime.swift; sourceTree = "<group>"; };
+		F2E801E8269F021800582DB8 /* ActitoInternals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInternals.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F258DD4924BC4DBB006F9ABD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E568CEC02DB6B05C00EAF72F /* ActitoUtilitiesKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258DD5224BC4DBC006F9ABD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F258DD5624BC4DBC006F9ABD /* ActitoKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		42A20D17A4EF88ED36EA223F /* AutoConfig */ = {
+			isa = PBXGroup;
+			children = (
+				42A20A542B5A23849B81C344 /* ActitoAutoConfig.swift */,
+				42A20450A15AAC914DBC800F /* ActitoBootstrap.h */,
+				42A205DF5970468FB18808F5 /* ActitoBootstrap.m */,
+			);
+			path = AutoConfig;
+			sourceTree = "<group>";
+		};
+		42A20E1B11DBCE03A4402205 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F286051C262D9A3400F6D582 /* Request */,
+				F2E4DBCD2525ECD9003FE29B /* Reachability */,
+				F2E4DBCC2525ECD4003FE29B /* Push API */,
+				42A20ACD9317A7EB72200EA4 /* ActitoNetworkError.swift */,
+				42A20B124FB2C08F1A880DB2 /* URLRequest+Extensions.swift */,
+				42A20F817E5D783B690400CF /* URLSession+Retry.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F21DD9F22718665200C88D7B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				F27DDD9829266B400020036D /* Integrations */,
+				42A208E69A6C0B2C639FBFB4 /* ActitoCrashReporterModule.swift */,
+				42A20EA7B3E0709119050294 /* ActitoEventsModuleImpl.swift */,
+				F219FADC252DEB3900464B4E /* ActitoSessionModule.swift */,
+				1AD52A672E002EBD006C7D88 /* CrashReporterLaunchComponent.swift */,
+				1AD52A692E0030ED006C7D88 /* DeviceLaunchComponent.swift */,
+				1AD52A6B2E0036D8006C7D88 /* EventsLaunchComponent.swift */,
+				1AD52A6D2E0038C5006C7D88 /* SessionLaunchComponent.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		F2323000252F37CC007778AA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F2323001252F3886007778AA /* ActitoApplication.swift */,
+				42A20DE51F956B3A8FBAB402 /* ActitoDevice.swift */,
+				F2E07E5E25344D0700AF0C14 /* ActitoDoNotDisturb.swift */,
+				F2E07E792534B5DD00AF0C14 /* ActitoTime.swift */,
+				F2DB0C1225A8692C00AD93C7 /* ActitoDynamicLink.swift */,
+				F2B1817B25BAFDFE00384991 /* ActitoNotification.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F258DD4224BC4DBB006F9ABD = {
+			isa = PBXGroup;
+			children = (
+				F258DD4E24BC4DBB006F9ABD /* Sources */,
+				F258DD5924BC4DBC006F9ABD /* Tests */,
+				F258DD4D24BC4DBB006F9ABD /* Products */,
+				F289F5B325B860B60091AB97 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F258DD4D24BC4DBB006F9ABD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F258DD4C24BC4DBB006F9ABD /* ActitoKit.framework */,
+				F258DD5524BC4DBC006F9ABD /* ActitoKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F258DD4E24BC4DBB006F9ABD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F2E4DBBD2525EC3C003FE29B /* Internals */,
+				F2323000252F37CC007778AA /* Models */,
+				F293E29526302CBA008C2010 /* Resources */,
+				F258DD5024BC4DBB006F9ABD /* Info.plist */,
+				F268F8432BCD9BB7008987AC /* PrivacyInfo.xcprivacy */,
+				F258DD4F24BC4DBB006F9ABD /* ActitoKit.h */,
+				F258DE4324BC68CB006F9ABD /* Actito.swift */,
+				F21DD9EE271863EB00C88D7B /* Actito+Augment.swift */,
+				F23E3C3224D8267000044574 /* ActitoDelegate.swift */,
+				F21DD9F327187BC000C88D7B /* ActitoDeviceModule.swift */,
+				F21DD9F02718662000C88D7B /* ActitoEventsModule.swift */,
+				42A20228EB70EA83D835BF01 /* ActitoError.swift */,
+				F289993425C97D35008ADC7E /* ActitoOptions.swift */,
+				F25E62F825CAA924007C1202 /* ActitoServicesInfo.swift */,
+				F2DAB3AC27202DEF002B5F27 /* NotificareDatabase.xcdatamodeld */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		F258DD5924BC4DBC006F9ABD /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F258DD5C24BC4DBC006F9ABD /* Info.plist */,
+				1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */,
+				1A3274132C5A18C8002B78BA /* ActitoDeviceTest.swift */,
+				1A3274112C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift */,
+				1A32740D2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift */,
+				1A32740B2C5A0FBF002B78BA /* ActitoNotificationTest.swift */,
+				1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */,
+				1A32740F2C5A158D002B78BA /* ActitoTimeTest.swift */,
+				1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		F260F3802C11EF95007D7A59 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				F260F3812C11EFA2007D7A59 /* StoredDevice.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		F27DDD9829266B400020036D /* Integrations */ = {
+			isa = PBXGroup;
+			children = (
+				F27DDD9929266B5F0020036D /* ActitoLoyaltyIntegration.swift */,
+			);
+			path = Integrations;
+			sourceTree = "<group>";
+		};
+		F286051C262D9A3400F6D582 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F286051D262D9A4300F6D582 /* ActitoRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F289F5B325B860B60091AB97 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E568CEBF2DB6B05C00EAF72F /* ActitoUtilitiesKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F293E29026302CAD008C2010 /* Swizzling */ = {
+			isa = PBXGroup;
+			children = (
+				F293E2BD26303055008C2010 /* ActitoSwizzler.swift */,
+				F293E2BE26303056008C2010 /* ActitoAppDelegateInterceptor.swift */,
+			);
+			path = Swizzling;
+			sourceTree = "<group>";
+		};
+		F293E29526302CBA008C2010 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F293E32B263053C8008C2010 /* Assets.xcassets */,
+				F293E3252630524B008C2010 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F293E2D9263043A0008C2010 /* Local Storage */ = {
+			isa = PBXGroup;
+			children = (
+				F260F3802C11EF95007D7A59 /* Entities */,
+				F293E2DA26304675008C2010 /* LocalStorage.swift */,
+			);
+			path = "Local Storage";
+			sourceTree = "<group>";
+		};
+		F29DA37F25022154004CCB8F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				1AB27BA62E704528004F93B9 /* NotificareCoreDataEvent.swift */,
+				1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */,
+				1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */,
+				1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */,
+				F29DA38025022170004CCB8F /* ActitoDatabase.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		F2E4DBBD2525EC3C003FE29B /* Internals */ = {
+			isa = PBXGroup;
+			children = (
+				1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */,
+				42A20D17A4EF88ED36EA223F /* AutoConfig */,
+				F21DD9F22718665200C88D7B /* Modules */,
+				42A20E1B11DBCE03A4402205 /* Network */,
+				F2E4DBC82525EC6F003FE29B /* Storage */,
+				F293E29026302CAD008C2010 /* Swizzling */,
+				F2E801E8269F021800582DB8 /* ActitoInternals.swift */,
+				42A20C54DCF5011314943FAD /* ActitoLaunchState.swift */,
+				F293E28926302C76008C2010 /* ActitoLocalizable.swift */,
+				F293E27A26302C48008C2010 /* ModuleUtils.swift */,
+				F25A5A3427E89773004556E6 /* Version.swift */,
+				1A52DE6D2CA44B3500B5F56C /* Logger.swift */,
+			);
+			path = Internals;
+			sourceTree = "<group>";
+		};
+		F2E4DBC82525EC6F003FE29B /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				F29DA37F25022154004CCB8F /* Database */,
+				F293E2D9263043A0008C2010 /* Local Storage */,
+				F2D3893F26664AAA00EAEF44 /* LocalStorageMigration.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		F2E4DBCC2525ECD4003FE29B /* Push API */ = {
+			isa = PBXGroup;
+			children = (
+				F27DB182262EDAC2000C024D /* PushAPI.swift */,
+				F27DB187262EDEB5000C024D /* PushAPI+Models.swift */,
+				F27DB17B262EDA9B000C024D /* PushAPI+Payloads.swift */,
+				F27DB17F262EDAA5000C024D /* PushAPI+Responses.swift */,
+			);
+			path = "Push API";
+			sourceTree = "<group>";
+		};
+		F2E4DBCD2525ECD9003FE29B /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				42A20819BD36234AAE88DC4D /* ActitoReachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F258DD4724BC4DBB006F9ABD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F258DD5D24BC4DBC006F9ABD /* ActitoKit.h in Headers */,
+				42A201A3F80D5668FF5D6759 /* ActitoBootstrap.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F258DD4B24BC4DBB006F9ABD /* ActitoKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F258DD6024BC4DBC006F9ABD /* Build configuration list for PBXNativeTarget "ActitoKit" */;
+			buildPhases = (
+				F258DD4724BC4DBB006F9ABD /* Headers */,
+				F258DD4824BC4DBB006F9ABD /* Sources */,
+				F258DD4924BC4DBB006F9ABD /* Frameworks */,
+				F258DD4A24BC4DBB006F9ABD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1AD52A422DE7672B006C7D88 /* PBXTargetDependency */,
+			);
+			name = ActitoKit;
+			productName = Core;
+			productReference = F258DD4C24BC4DBB006F9ABD /* ActitoKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F258DD5424BC4DBC006F9ABD /* ActitoKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F258DD6324BC4DBC006F9ABD /* Build configuration list for PBXNativeTarget "ActitoKitTests" */;
+			buildPhases = (
+				F258DD5124BC4DBC006F9ABD /* Sources */,
+				F258DD5224BC4DBC006F9ABD /* Frameworks */,
+				F258DD5324BC4DBC006F9ABD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A546F622C5B5D6A0059F095 /* PBXTargetDependency */,
+				F258DD5824BC4DBC006F9ABD /* PBXTargetDependency */,
+			);
+			name = ActitoKitTests;
+			productName = CoreTests;
+			productReference = F258DD5524BC4DBC006F9ABD /* ActitoKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F258DD4324BC4DBB006F9ABD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 2600;
+				ORGANIZATIONNAME = Actito;
+				TargetAttributes = {
+					F258DD4B24BC4DBB006F9ABD = {
+						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
+					};
+					F258DD5424BC4DBC006F9ABD = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = F258DD4624BC4DBB006F9ABD /* Build configuration list for PBXProject "ActitoKit" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				nl,
+				Base,
+			);
+			mainGroup = F258DD4224BC4DBB006F9ABD;
+			packageReferences = (
+				1A8C30E32BF639080000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
+			productRefGroup = F258DD4D24BC4DBB006F9ABD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F258DD4B24BC4DBB006F9ABD /* ActitoKit */,
+				F258DD5424BC4DBC006F9ABD /* ActitoKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F258DD4A24BC4DBB006F9ABD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F268F8442BD02EA5008987AC /* PrivacyInfo.xcprivacy in Resources */,
+				F293E32C263053C8008C2010 /* Assets.xcassets in Resources */,
+				F293E3232630524B008C2010 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258DD5324BC4DBC006F9ABD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F258DD4824BC4DBB006F9ABD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F258DE4424BC68CB006F9ABD /* Actito.swift in Sources */,
+				42A2011DB7750225B7C9D3E2 /* ActitoBootstrap.m in Sources */,
+				1AD52A562DFFF75F006C7D88 /* ActitoLaunchComponent.swift in Sources */,
+				1AD52A682E002ECB006C7D88 /* CrashReporterLaunchComponent.swift in Sources */,
+				F27DB183262EDAC2000C024D /* PushAPI.swift in Sources */,
+				F21DD9F12718662000C88D7B /* ActitoEventsModule.swift in Sources */,
+				F293E2DB26304675008C2010 /* LocalStorage.swift in Sources */,
+				F2E801E9269F021800582DB8 /* ActitoInternals.swift in Sources */,
+				1A52DE6E2CA44B3500B5F56C /* Logger.swift in Sources */,
+				1AD52A262DE75BAC006C7D88 /* CreateEventPayload+Local.swift in Sources */,
+				1AD52A222DE75AF7006C7D88 /* LocalEvent.swift in Sources */,
+				F2DAB3AE27202DEF002B5F27 /* NotificareDatabase.xcdatamodeld in Sources */,
+				F29DA38125022170004CCB8F /* ActitoDatabase.swift in Sources */,
+				F27DB188262EDEB5000C024D /* PushAPI+Models.swift in Sources */,
+				F2DB0C1325A8692C00AD93C7 /* ActitoDynamicLink.swift in Sources */,
+				F27DB17C262EDA9B000C024D /* PushAPI+Payloads.swift in Sources */,
+				F23E3C3324D8267000044574 /* ActitoDelegate.swift in Sources */,
+				42A20FD7791BD275D8A3A0E5 /* ActitoError.swift in Sources */,
+				1AD52A6A2E0030FB006C7D88 /* DeviceLaunchComponent.swift in Sources */,
+				F2323002252F3886007778AA /* ActitoApplication.swift in Sources */,
+				F21DD9EF271863EB00C88D7B /* Actito+Augment.swift in Sources */,
+				1AD52A6E2E0038CC006C7D88 /* SessionLaunchComponent.swift in Sources */,
+				F293E2C026303056008C2010 /* ActitoAppDelegateInterceptor.swift in Sources */,
+				42A204DF76302D72690E9F7A /* ActitoNetworkError.swift in Sources */,
+				42A20F5A817E461AD741CEF0 /* ActitoAutoConfig.swift in Sources */,
+				F2B1817C25BAFDFE00384991 /* ActitoNotification.swift in Sources */,
+				F27DB180262EDAA5000C024D /* PushAPI+Responses.swift in Sources */,
+				F2E07E7A2534B5DD00AF0C14 /* ActitoTime.swift in Sources */,
+				42A207D529B7F7770917822D /* ActitoDevice.swift in Sources */,
+				F2D3894026664AAA00EAEF44 /* LocalStorageMigration.swift in Sources */,
+				F293E27B26302C48008C2010 /* ModuleUtils.swift in Sources */,
+				F25E62F925CAA924007C1202 /* ActitoServicesInfo.swift in Sources */,
+				F293E2BF26303056008C2010 /* ActitoSwizzler.swift in Sources */,
+				F21DD9F427187BC000C88D7B /* ActitoDeviceModule.swift in Sources */,
+				42A20F732AE3E8130EA533BF /* ActitoReachability.swift in Sources */,
+				F260F3822C11EFA2007D7A59 /* StoredDevice.swift in Sources */,
+				F2E07E5F25344D0700AF0C14 /* ActitoDoNotDisturb.swift in Sources */,
+				42A20AD28857EBCB0A86A104 /* ActitoLaunchState.swift in Sources */,
+				42A20BCDB5A9B47688D37655 /* URLRequest+Extensions.swift in Sources */,
+				42A20330821EAB78A0A5EB13 /* URLSession+Retry.swift in Sources */,
+				F286051E262D9A4300F6D582 /* ActitoRequest.swift in Sources */,
+				F25A5A3527E89773004556E6 /* Version.swift in Sources */,
+				F293E28A26302C76008C2010 /* ActitoLocalizable.swift in Sources */,
+				F27DDD9A29266B5F0020036D /* ActitoLoyaltyIntegration.swift in Sources */,
+				F219FADD252DEB3900464B4E /* ActitoSessionModule.swift in Sources */,
+				1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */,
+				42A204EEDC52B164B27D6563 /* ActitoEventsModuleImpl.swift in Sources */,
+				1AD52A6C2E0036E2006C7D88 /* EventsLaunchComponent.swift in Sources */,
+				42A20BCB911114B0BCBEF371 /* ActitoCrashReporterModule.swift in Sources */,
+				1AB27BA92E704528004F93B9 /* NotificareCoreDataEvent.swift in Sources */,
+				F289993525C97D35008ADC7E /* ActitoOptions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F258DD5124BC4DBC006F9ABD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A3274142C5A18C8002B78BA /* ActitoDeviceTest.swift in Sources */,
+				1A3274122C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift in Sources */,
+				1A3274102C5A158D002B78BA /* ActitoTimeTest.swift in Sources */,
+				1AB27BAF2E740609004F93B9 /* ActitoServicesInfoTest.swift in Sources */,
+				1A32740C2C5A0FBF002B78BA /* ActitoNotificationTest.swift in Sources */,
+				1A3274182C5A8F13002B78BA /* PushAPIModelsTest.swift in Sources */,
+				1A3274162C5A1B66002B78BA /* ActitoApplicationTest.swift in Sources */,
+				1A32740E2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A546F622C5B5D6A0059F095 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1A546F612C5B5D6A0059F095 /* SwiftLintBuildToolPlugin */;
+		};
+		1AD52A422DE7672B006C7D88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AD52A412DE7672B006C7D88 /* SwiftLintBuildToolPlugin */;
+		};
+		F258DD5824BC4DBC006F9ABD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F258DD4B24BC4DBB006F9ABD /* ActitoKit */;
+			targetProxy = F258DD5724BC4DBC006F9ABD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F293E3252630524B008C2010 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F293E3242630524B008C2010 /* en */,
+				F293E3282630531B008C2010 /* nl */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F258DD5E24BC4DBC006F9ABD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F258DD5F24BC4DBC006F9ABD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F258DD6124BC4DBC006F9ABD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-beta.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
+				SWIFT_UPCOMING_FEATURE_DYNAMIC_ACTOR_ISOLATION = YES;
+				SWIFT_UPCOMING_FEATURE_FORWARD_TRAILING_CLOSURES = YES;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_IMPLICIT_OPEN_EXISTENTIALS = YES;
+				SWIFT_UPCOMING_FEATURE_IMPORT_OBJC_FORWARD_DECLS = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_NONFROZEN_ENUM_EXHAUSTIVITY = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F258DD6224BC4DBC006F9ABD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-beta.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
+				SWIFT_UPCOMING_FEATURE_DYNAMIC_ACTOR_ISOLATION = YES;
+				SWIFT_UPCOMING_FEATURE_FORWARD_TRAILING_CLOSURES = YES;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_IMPLICIT_OPEN_EXISTENTIALS = YES;
+				SWIFT_UPCOMING_FEATURE_IMPORT_OBJC_FORWARD_DECLS = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_NONFROZEN_ENUM_EXHAUSTIVITY = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F258DD6424BC4DBC006F9ABD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.CoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F258DD6524BC4DBC006F9ABD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.CoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F2EAF9A12AF51F0900A2CC0C /* Debug-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Debug-Test";
+		};
+		F2EAF9A22AF51F0900A2CC0C /* Debug-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-beta.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
+				SWIFT_UPCOMING_FEATURE_DYNAMIC_ACTOR_ISOLATION = YES;
+				SWIFT_UPCOMING_FEATURE_FORWARD_TRAILING_CLOSURES = YES;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_IMPLICIT_OPEN_EXISTENTIALS = YES;
+				SWIFT_UPCOMING_FEATURE_IMPORT_OBJC_FORWARD_DECLS = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_NONFROZEN_ENUM_EXHAUSTIVITY = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Test";
+		};
+		F2EAF9A32AF51F0900A2CC0C /* Debug-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.CoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Test";
+		};
+		F2EAF9A42AF51F0E00A2CC0C /* Debug-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Debug-Production";
+		};
+		F2EAF9A52AF51F0E00A2CC0C /* Debug-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-beta.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
+				SWIFT_UPCOMING_FEATURE_DYNAMIC_ACTOR_ISOLATION = YES;
+				SWIFT_UPCOMING_FEATURE_FORWARD_TRAILING_CLOSURES = YES;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_IMPLICIT_OPEN_EXISTENTIALS = YES;
+				SWIFT_UPCOMING_FEATURE_IMPORT_OBJC_FORWARD_DECLS = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_NONFROZEN_ENUM_EXHAUSTIVITY = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Production";
+		};
+		F2EAF9A62AF51F0E00A2CC0C /* Debug-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.CoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug-Production";
+		};
+		F2EAF9A72AF51F1300A2CC0C /* Release-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Release-Test";
+		};
+		F2EAF9A82AF51F1300A2CC0C /* Release-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-beta.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
+				SWIFT_UPCOMING_FEATURE_DYNAMIC_ACTOR_ISOLATION = YES;
+				SWIFT_UPCOMING_FEATURE_FORWARD_TRAILING_CLOSURES = YES;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_IMPLICIT_OPEN_EXISTENTIALS = YES;
+				SWIFT_UPCOMING_FEATURE_IMPORT_OBJC_FORWARD_DECLS = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_NONFROZEN_ENUM_EXHAUSTIVITY = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Test";
+		};
+		F2EAF9A92AF51F1300A2CC0C /* Release-Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.CoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Test";
+		};
+		F2EAF9AA2AF51F1A00A2CC0C /* Release-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = "Release-Production";
+		};
+		F2EAF9AB2AF51F1A00A2CC0C /* Release-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = "5.0.0-beta.1";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
+				SWIFT_UPCOMING_FEATURE_DYNAMIC_ACTOR_ISOLATION = YES;
+				SWIFT_UPCOMING_FEATURE_FORWARD_TRAILING_CLOSURES = YES;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_IMPLICIT_OPEN_EXISTENTIALS = YES;
+				SWIFT_UPCOMING_FEATURE_IMPORT_OBJC_FORWARD_DECLS = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_NONFROZEN_ENUM_EXHAUSTIVITY = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Production";
+		};
+		F2EAF9AC2AF51F1A00A2CC0C /* Release-Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.actito.CoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Release-Production";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F258DD4624BC4DBB006F9ABD /* Build configuration list for PBXProject "ActitoKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258DD5E24BC4DBC006F9ABD /* Debug */,
+				F2EAF9A42AF51F0E00A2CC0C /* Debug-Production */,
+				F2EAF9A12AF51F0900A2CC0C /* Debug-Test */,
+				F258DD5F24BC4DBC006F9ABD /* Release */,
+				F2EAF9AA2AF51F1A00A2CC0C /* Release-Production */,
+				F2EAF9A72AF51F1300A2CC0C /* Release-Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F258DD6024BC4DBC006F9ABD /* Build configuration list for PBXNativeTarget "ActitoKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258DD6124BC4DBC006F9ABD /* Debug */,
+				F2EAF9A52AF51F0E00A2CC0C /* Debug-Production */,
+				F2EAF9A22AF51F0900A2CC0C /* Debug-Test */,
+				F258DD6224BC4DBC006F9ABD /* Release */,
+				F2EAF9AB2AF51F1A00A2CC0C /* Release-Production */,
+				F2EAF9A82AF51F1300A2CC0C /* Release-Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F258DD6324BC4DBC006F9ABD /* Build configuration list for PBXNativeTarget "ActitoKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F258DD6424BC4DBC006F9ABD /* Debug */,
+				F2EAF9A62AF51F0E00A2CC0C /* Debug-Production */,
+				F2EAF9A32AF51F0900A2CC0C /* Debug-Test */,
+				F258DD6524BC4DBC006F9ABD /* Release */,
+				F2EAF9AC2AF51F1A00A2CC0C /* Release-Production */,
+				F2EAF9A92AF51F1300A2CC0C /* Release-Test */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A8C30E32BF639080000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A546F612C5B5D6A0059F095 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A8C30E32BF639080000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AD52A412DE7672B006C7D88 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A8C30E32BF639080000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		F2DAB3AC27202DEF002B5F27 /* NotificareDatabase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F2DAB3AD27202DEF002B5F27 /* NotificareDatabase.xcdatamodel */,
+			);
+			currentVersion = F2DAB3AD27202DEF002B5F27 /* NotificareDatabase.xcdatamodel */;
+			path = NotificareDatabase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F258DD4324BC4DBB006F9ABD /* Project object */;
+}

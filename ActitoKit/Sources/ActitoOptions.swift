@@ -1,0 +1,248 @@
+//
+// Copyright (c) 2025 Actito. All rights reserved.
+//
+
+import UIKit
+
+public struct ActitoOptions: Decodable, Sendable {
+    internal static let fileName = "ActitoOptions"
+    internal static let fileExtension = "plist"
+
+    public static let DEFAULT_DEBUG_LOGGING_ENABLED = false
+    public static let DEFAULT_AUTO_CONFIG = true
+    public static let DEFAULT_SWIZZLING_ENABLED = true
+    public static let DEFAULT_USER_NOTIFICATION_CENTER_DELEGATE_ENABLED = true
+    public static let DEFAULT_PRESERVE_EXISTING_NOTIFICATION_CATEGORIES = false
+    public static let DEFAULT_CRASH_REPORTS_ENABLED = false
+    public static let DEFAULT_HEADING_API_ENABLED = false
+    public static let DEFAULT_VISITS_API_ENABLED = false
+    public static let DEFAULT_IMAGE_SHARING_ENABLED = true
+    public static let DEFAULT_IAM_BACKGROUND_GRACE_PERIOD_MILLIS = 5 * 60 * 1000
+    public static let DEFAULT_OVERRIDE_DATABASE_FILE_PROTECTION = false
+    public static let DEFAULT_LEGACY_NOTIFICATIONS_USER_INTERFACE_ENABLED = false
+
+    public let debugLoggingEnabled: Bool
+    public let autoConfig: Bool
+    public let swizzlingEnabled: Bool
+    public let userNotificationCenterDelegateEnabled: Bool
+    public let preserveExistingNotificationCategories: Bool
+    public let crashReportsEnabled: Bool
+    public let headingApiEnabled: Bool
+    public let visitsApiEnabled: Bool
+    public let urlSchemes: [String]
+    public let closeWindowQueryParameter: String?
+    public let imageSharingEnabled: Bool
+    public let safariDismissButtonStyle: Int?
+    public let themes: Themes?
+    public let backgroundGracePeriodMillis: Int
+    public let overrideDatabaseFileProtection: Bool
+    public let monitoredRegionsLimit: Int?
+    public let legacyNotificationsUserInterfaceEnabled: Bool
+
+    public init(
+        debugLoggingEnabled: Bool = DEFAULT_DEBUG_LOGGING_ENABLED,
+        autoConfig: Bool = DEFAULT_AUTO_CONFIG,
+        swizzlingEnabled: Bool = DEFAULT_SWIZZLING_ENABLED,
+        userNotificationCenterDelegateEnabled: Bool = DEFAULT_USER_NOTIFICATION_CENTER_DELEGATE_ENABLED,
+        preserveExistingNotificationCategories: Bool = DEFAULT_PRESERVE_EXISTING_NOTIFICATION_CATEGORIES,
+        crashReportsEnabled: Bool = DEFAULT_CRASH_REPORTS_ENABLED,
+        headingApiEnabled: Bool = DEFAULT_HEADING_API_ENABLED,
+        visitsApiEnabled: Bool = DEFAULT_VISITS_API_ENABLED,
+        urlSchemes: [String] = [],
+        closeWindowQueryParameter: String? = nil,
+        imageSharingEnabled: Bool = DEFAULT_IMAGE_SHARING_ENABLED,
+        safariDismissButtonStyle: Int? = nil,
+        themes: ActitoOptions.Themes? = nil,
+        backgroundGracePeriodMillis: Int = DEFAULT_IAM_BACKGROUND_GRACE_PERIOD_MILLIS,
+        overrideDatabaseFileProtection: Bool = DEFAULT_OVERRIDE_DATABASE_FILE_PROTECTION,
+        monitoredRegionsLimit: Int? = nil,
+        legacyNotificationsUserInterfaceEnabled: Bool = DEFAULT_LEGACY_NOTIFICATIONS_USER_INTERFACE_ENABLED
+    ) {
+        self.debugLoggingEnabled = debugLoggingEnabled
+        self.autoConfig = autoConfig
+        self.swizzlingEnabled = swizzlingEnabled
+        self.userNotificationCenterDelegateEnabled = userNotificationCenterDelegateEnabled
+        self.preserveExistingNotificationCategories = preserveExistingNotificationCategories
+        self.crashReportsEnabled = crashReportsEnabled
+        self.headingApiEnabled = headingApiEnabled
+        self.visitsApiEnabled = visitsApiEnabled
+        self.urlSchemes = urlSchemes
+        self.closeWindowQueryParameter = closeWindowQueryParameter
+        self.imageSharingEnabled = imageSharingEnabled
+        self.safariDismissButtonStyle = safariDismissButtonStyle
+        self.themes = themes
+        self.backgroundGracePeriodMillis = backgroundGracePeriodMillis
+        self.overrideDatabaseFileProtection = overrideDatabaseFileProtection
+        self.monitoredRegionsLimit = monitoredRegionsLimit
+        self.legacyNotificationsUserInterfaceEnabled = legacyNotificationsUserInterfaceEnabled
+    }
+
+    public struct Themes: Decodable, Sendable {
+        public let light: ActitoOptions.Theme?
+        public let dark: ActitoOptions.Theme?
+
+        public init(light: ActitoOptions.Theme?, dark: ActitoOptions.Theme?) {
+            self.light = light
+            self.dark = dark
+        }
+    }
+
+    public struct Theme: Decodable, Sendable {
+        public let backgroundColor: String?
+        public let actionButtonTextColor: String?
+        public let toolbarBackgroundColor: String?
+        public let activityIndicatorColor: String?
+        public let buttonTextColor: String?
+        public let textFieldTextColor: String?
+        public let textFieldBackgroundColor: String?
+        public let safariBarTintColor: String?
+        public let safariControlsTintColor: String?
+
+        public init(backgroundColor: String?, actionButtonTextColor: String?, toolbarBackgroundColor: String?, activityIndicatorColor: String?, buttonTextColor: String?, textFieldTextColor: String?, textFieldBackgroundColor: String?, safariBarTintColor: String?, safariControlsTintColor: String?) {
+            self.backgroundColor = backgroundColor
+            self.actionButtonTextColor = actionButtonTextColor
+            self.toolbarBackgroundColor = toolbarBackgroundColor
+            self.activityIndicatorColor = activityIndicatorColor
+            self.buttonTextColor = buttonTextColor
+            self.textFieldTextColor = textFieldTextColor
+            self.textFieldBackgroundColor = textFieldBackgroundColor
+            self.safariBarTintColor = safariBarTintColor
+            self.safariControlsTintColor = safariControlsTintColor
+        }
+    }
+}
+
+// Load options from a file
+extension ActitoOptions {
+    public init?(contentsOfFile plistPath: String) {
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: plistPath))
+
+            let decoder = PropertyListDecoder()
+            let decoded = try decoder.decode(ActitoOptions.self, from: data)
+
+            debugLoggingEnabled = decoded.debugLoggingEnabled
+            autoConfig = decoded.autoConfig
+            swizzlingEnabled = decoded.swizzlingEnabled
+            userNotificationCenterDelegateEnabled = decoded.userNotificationCenterDelegateEnabled
+            preserveExistingNotificationCategories = decoded.preserveExistingNotificationCategories
+            crashReportsEnabled = decoded.crashReportsEnabled
+            headingApiEnabled = decoded.headingApiEnabled
+            visitsApiEnabled = decoded.visitsApiEnabled
+            urlSchemes = decoded.urlSchemes
+            closeWindowQueryParameter = decoded.closeWindowQueryParameter
+            imageSharingEnabled = decoded.imageSharingEnabled
+            safariDismissButtonStyle = decoded.safariDismissButtonStyle
+            themes = decoded.themes
+            backgroundGracePeriodMillis = decoded.backgroundGracePeriodMillis
+            overrideDatabaseFileProtection = decoded.overrideDatabaseFileProtection
+            monitoredRegionsLimit = decoded.monitoredRegionsLimit
+            legacyNotificationsUserInterfaceEnabled = decoded.legacyNotificationsUserInterfaceEnabled
+        } catch {
+            return nil
+        }
+    }
+}
+
+// Codable: ActitoOptions
+extension ActitoOptions {
+    public enum CodingKeys: String, CodingKey {
+        case debugLoggingEnabled = "DEBUG_LOGGING_ENABLED"
+        case autoConfig = "AUTO_CONFIG"
+        case swizzlingEnabled = "SWIZZLING_ENABLED"
+        case userNotificationCenterDelegateEnabled = "USER_NOTIFICATION_CENTER_DELEGATE_ENABLED"
+        case preserveExistingNotificationCategories = "PRESERVE_EXISTING_NOTIFICATION_CATEGORIES"
+        case crashReportsEnabled = "CRASH_REPORTING_ENABLED"
+        case headingApiEnabled = "HEADING_API_ENABLED"
+        case visitsApiEnabled = "VISITS_API_ENABLED"
+        case urlSchemes = "URL_SCHEMES"
+        case closeWindowQueryParameter = "CLOSE_WINDOW_QUERY_PARAMETER"
+        case imageSharingEnabled = "IMAGE_SHARING_ENABLED"
+        case safariDismissButtonStyle = "SAFARI_DISMISS_BUTTON_STYLE"
+        case themes = "THEMES"
+        case backgroundGracePeriodMillis = "IAM_BACKGROUND_GRACE_PERIOD_MILLIS"
+        case overrideDatabaseFileProtection = "OVERRIDE_DATABASE_FILE_PROTECTION"
+        case monitoredRegionsLimit = "MONITORED_REGIONS_LIMIT"
+        case legacyNotificationsUserInterfaceEnabled = "LEGACY_NOTIFICATIONS_USER_INTERFACE_ENABLED"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        debugLoggingEnabled = try container.decodeIfPresent(Bool.self, forKey: .debugLoggingEnabled) ?? ActitoOptions.DEFAULT_DEBUG_LOGGING_ENABLED
+        autoConfig = try container.decodeIfPresent(Bool.self, forKey: .autoConfig) ?? ActitoOptions.DEFAULT_AUTO_CONFIG
+        swizzlingEnabled = try container.decodeIfPresent(Bool.self, forKey: .swizzlingEnabled) ?? ActitoOptions.DEFAULT_SWIZZLING_ENABLED
+        userNotificationCenterDelegateEnabled = try container.decodeIfPresent(Bool.self, forKey: .userNotificationCenterDelegateEnabled) ?? ActitoOptions.DEFAULT_USER_NOTIFICATION_CENTER_DELEGATE_ENABLED
+        preserveExistingNotificationCategories = try container.decodeIfPresent(Bool.self, forKey: .preserveExistingNotificationCategories) ?? ActitoOptions.DEFAULT_PRESERVE_EXISTING_NOTIFICATION_CATEGORIES
+        crashReportsEnabled = try container.decodeIfPresent(Bool.self, forKey: .crashReportsEnabled) ?? ActitoOptions.DEFAULT_CRASH_REPORTS_ENABLED
+        headingApiEnabled = try container.decodeIfPresent(Bool.self, forKey: .headingApiEnabled) ?? ActitoOptions.DEFAULT_HEADING_API_ENABLED
+        visitsApiEnabled = try container.decodeIfPresent(Bool.self, forKey: .visitsApiEnabled) ?? ActitoOptions.DEFAULT_VISITS_API_ENABLED
+        urlSchemes = try container.decodeIfPresent([String].self, forKey: .urlSchemes) ?? []
+        closeWindowQueryParameter = try container.decodeIfPresent(String.self, forKey: .closeWindowQueryParameter)
+        imageSharingEnabled = try container.decodeIfPresent(Bool.self, forKey: .imageSharingEnabled) ?? ActitoOptions.DEFAULT_IMAGE_SHARING_ENABLED
+        safariDismissButtonStyle = try container.decodeIfPresent(Int.self, forKey: .safariDismissButtonStyle)
+        themes = try container.decodeIfPresent(Themes.self, forKey: .themes)
+        backgroundGracePeriodMillis = try container.decodeIfPresent(Int.self, forKey: .backgroundGracePeriodMillis) ?? ActitoOptions.DEFAULT_IAM_BACKGROUND_GRACE_PERIOD_MILLIS
+        overrideDatabaseFileProtection = try container.decodeIfPresent(Bool.self, forKey: .overrideDatabaseFileProtection) ?? ActitoOptions.DEFAULT_OVERRIDE_DATABASE_FILE_PROTECTION
+        monitoredRegionsLimit = try container.decodeIfPresent(Int.self, forKey: .monitoredRegionsLimit)
+        legacyNotificationsUserInterfaceEnabled = try container.decodeIfPresent(Bool.self, forKey: .legacyNotificationsUserInterfaceEnabled) ?? ActitoOptions.DEFAULT_LEGACY_NOTIFICATIONS_USER_INTERFACE_ENABLED
+    }
+}
+
+// Codable: ActitoOptions.Themes
+extension ActitoOptions.Themes {
+    public enum CodingKeys: String, CodingKey {
+        case light = "LIGHT"
+        case dark = "DARK"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        light = try container.decodeIfPresent(ActitoOptions.Theme.self, forKey: .light)
+        dark = try container.decodeIfPresent(ActitoOptions.Theme.self, forKey: .dark)
+    }
+}
+
+// Codable: ActitoOptions.Theme
+extension ActitoOptions.Theme {
+    public enum CodingKeys: String, CodingKey {
+        case backgroundColor = "BACKGROUND_COLOR"
+        case actionButtonTextColor = "ACTION_BUTTON_TEXT_COLOR"
+        case toolbarBackgroundColor = "TOOLBAR_BACKGROUND_COLOR"
+        case activityIndicatorColor = "ACTIVITY_INDICATOR_COLOR"
+        case buttonTextColor = "BUTTON_TEXT_COLOR"
+        case textFieldTextColor = "TEXT_FIELD_TEXT_COLOR"
+        case textFieldBackgroundColor = "TEXT_FIELD_BACKGROUND_COLOR"
+        case safariBarTintColor = "SAFARI_BAR_TINT_COLOR"
+        case safariControlsTintColor = "SAFARI_CONTROLS_TINT_COLOR"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        backgroundColor = try container.decodeIfPresent(String.self, forKey: .backgroundColor)
+        actionButtonTextColor = try container.decodeIfPresent(String.self, forKey: .actionButtonTextColor)
+        toolbarBackgroundColor = try container.decodeIfPresent(String.self, forKey: .toolbarBackgroundColor)
+        activityIndicatorColor = try container.decodeIfPresent(String.self, forKey: .activityIndicatorColor)
+        buttonTextColor = try container.decodeIfPresent(String.self, forKey: .buttonTextColor)
+        textFieldTextColor = try container.decodeIfPresent(String.self, forKey: .textFieldTextColor)
+        textFieldBackgroundColor = try container.decodeIfPresent(String.self, forKey: .textFieldBackgroundColor)
+        safariBarTintColor = try container.decodeIfPresent(String.self, forKey: .safariBarTintColor)
+        safariControlsTintColor = try container.decodeIfPresent(String.self, forKey: .safariControlsTintColor)
+    }
+}
+
+// Load the appropriate theme for a given view controller
+extension ActitoOptions {
+    @MainActor
+    public func theme(for controller: UIViewController) -> ActitoOptions.Theme? {
+        var theme = themes?.light
+
+        if controller.traitCollection.userInterfaceStyle == .dark, let darkTheme = self.themes?.dark {
+            theme = darkTheme
+        }
+
+        return theme
+    }
+}
