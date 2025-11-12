@@ -769,7 +769,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CONFIGURATION_FILE_NAME=ActitoServices.plist\n\nBUILD_TYPE=$(echo $CONFIGURATION | cut -d \"-\" -f 1)\nENVIRONMENT=$(echo $CONFIGURATION | cut -d \"-\" -f 2)\n\nCONFIGURATION_FILE=${PROJECT_DIR}/${TARGET_NAME}/Configuration/${BUILD_TYPE}/${ENVIRONMENT}/${CONFIGURATION_FILE_NAME}\nCONFIGURATION_FILE_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n\necho \"Looking for ${CONFIGURATION_FILE_NAME} in ${CONFIGURATION_FILE}\"\nif [ ! -f $CONFIGURATION_FILE ] ; then\n    echo \"File not found.\"\n    exit 1\nfi\n\necho \"Copying ${CONFIGURATION_FILE_NAME} to final destination: ${CONFIGURATION_FILE}\"\ncp \"${CONFIGURATION_FILE}\" \"${CONFIGURATION_FILE_DESTINATION}\"\n";
+			shellScript = "CONFIGURATION_FILE_NAME=ActitoServices.plist\n\nBUILD_TYPE=$(echo $CONFIGURATION | cut -d \"-\" -f 1)\nENVIRONMENT=$(echo $CONFIGURATION | cut -d \"-\" -f 2)\n\nCONFIGURATION_FILE=${PROJECT_DIR}/${TARGET_NAME}/Configuration/${BUILD_TYPE}/${ENVIRONMENT}/${CONFIGURATION_FILE_NAME}\nCONFIGURATION_FILE_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n\necho \"Looking for ${CONFIGURATION_FILE_NAME} in ${CONFIGURATION_FILE}\"\nif [ ! -f $CONFIGURATION_FILE ] ; then\n    echo \"File not found.\"\n    exit 1\nfi\n\necho \"Copying ${CONFIGURATION_FILE_NAME} to final destination: ${CONFIGURATION_FILE_DESTINATION}\"\ncp \"${CONFIGURATION_FILE}\" \"${CONFIGURATION_FILE_DESTINATION}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
