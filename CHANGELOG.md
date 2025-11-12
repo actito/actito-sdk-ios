@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Upcoming release
+
+- Add required referrer for embedded YouTube videos
+
 ## 5.0.0-beta.1
 
 - Align with Swift 6 and its Strict Concurrency requirements
