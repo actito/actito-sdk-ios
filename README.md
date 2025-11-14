@@ -7,18 +7,16 @@
 
 The Actito iOS SDK makes it quick and easy to communicate efficiently with many of the Actito API services and enables you to seamlessly integrate our various features, from Push Notifications to Contextualised Storage.
 
-Get started with our [📚 integration guides](https://developers.actito.com/docs/push-implementation/ios/implementation/) and [example projects](#examples).
-
 
 Table of contents
 =================
 
 * [Features](#features)
-* [Installation](#installation)
-    * [Requirements](#requirements)
-    * [Configuration](#configuration)
+* [Requirements](#requirements)
 * [Getting Started](#getting-started)
-* [Examples](#examples)
+    * [Integration](#integration)
+    * [Examples](#examples)
+
 
 
 ## Features
@@ -38,52 +36,21 @@ Table of contents
 **Assets**: Add powerful contextual marketing features to your apps. Show the right content to the right users at the right time or location. Maximise the content you're already creating without increasing development costs.
 
 
-## Installation
-
-### Requirements
+## Requirements
 
 * iOS 13 and above
-
-### Configuration
-
-##### Swift Package Manager
-If you are using SPM, open the following menu item in Xcode:
-
-**File > Swift Packages > Add Package Dependency...**
-
-In the **Choose Package Repository** prompt, add the following URL and complete the next steps.
-
-```
-https://github.com/actito/actito-sdk-ios.git
-```
-
-> For more information on SPM, check their [official documentation](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
-
-##### Cocoapods
-If you are using [Cocoapods](https://cocoapods.org), add the following lines to your `Podfile` and then run `pod install`:
-
-```ruby
-# Required
-pod 'Actito/ActitoKit'
-
-# Optional modules
-pod 'Actito/ActitoAssetsKit'
-pod 'Actito/ActitoGeoKit'
-pod 'Actito/ActitoInboxKit'
-pod 'Actito/ActitoLoyaltyKit'
-pod 'Actito/ActitoPushKit'
-pod 'Actito/ActitoPushUIKit'
-```
-
-> For more information on Cocoapods, check their [official documentation](https://guides.cocoapods.org/using/getting-started.html).
 
 
 ## Getting Started
 
 ### Integration
-Get started with our [📚 integration guides](https://developers.actito.com/docs/push-implementation/ios/implementation/) and [example projects](#examples).
+
+To integrate the Actito iOS SDK into your application, follow the full setup and implementation guides available in our [official documentation](https://developers.actito.com/docs/push-implementation/ios/implementation/)
+
+The documentation includes step-by-step instructions for installation, configuration, and advanced customization across all supported platforms.
 
 
 ### Examples
+
 - The [example project](https://github.com/actito/actito-sdk-ios/tree/main/sample) demonstrates integrations in a simplified fashion, to quickly understand how a given feature should be implemented.
 - The [Actito Go](https://github.com/actito/actito-go-ios) app demonstrates the integration of the libraries and Actito's suite of features in a real-world app.
