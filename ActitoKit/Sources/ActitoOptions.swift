@@ -17,6 +17,7 @@ public struct ActitoOptions: Decodable, Sendable {
     public static let DEFAULT_HEADING_API_ENABLED = false
     public static let DEFAULT_VISITS_API_ENABLED = false
     public static let DEFAULT_IMAGE_SHARING_ENABLED = true
+    public static let DEFAULT_ENTERS_READER_MODE_IF_AVAILABLE_ENABLED = false
     public static let DEFAULT_IAM_BACKGROUND_GRACE_PERIOD_MILLIS = 5 * 60 * 1000
     public static let DEFAULT_OVERRIDE_DATABASE_FILE_PROTECTION = false
     public static let DEFAULT_LEGACY_NOTIFICATIONS_USER_INTERFACE_ENABLED = false
@@ -33,6 +34,7 @@ public struct ActitoOptions: Decodable, Sendable {
     public let closeWindowQueryParameter: String?
     public let imageSharingEnabled: Bool
     public let safariDismissButtonStyle: Int?
+    public let entersReaderModeIfAvailableEnabled: Bool
     public let themes: Themes?
     public let backgroundGracePeriodMillis: Int
     public let overrideDatabaseFileProtection: Bool
@@ -52,6 +54,7 @@ public struct ActitoOptions: Decodable, Sendable {
         closeWindowQueryParameter: String? = nil,
         imageSharingEnabled: Bool = DEFAULT_IMAGE_SHARING_ENABLED,
         safariDismissButtonStyle: Int? = nil,
+        entersReaderModeIfAvailableEnabled: Bool = DEFAULT_ENTERS_READER_MODE_IF_AVAILABLE_ENABLED,
         themes: ActitoOptions.Themes? = nil,
         backgroundGracePeriodMillis: Int = DEFAULT_IAM_BACKGROUND_GRACE_PERIOD_MILLIS,
         overrideDatabaseFileProtection: Bool = DEFAULT_OVERRIDE_DATABASE_FILE_PROTECTION,
@@ -70,6 +73,7 @@ public struct ActitoOptions: Decodable, Sendable {
         self.closeWindowQueryParameter = closeWindowQueryParameter
         self.imageSharingEnabled = imageSharingEnabled
         self.safariDismissButtonStyle = safariDismissButtonStyle
+        self.entersReaderModeIfAvailableEnabled = entersReaderModeIfAvailableEnabled
         self.themes = themes
         self.backgroundGracePeriodMillis = backgroundGracePeriodMillis
         self.overrideDatabaseFileProtection = overrideDatabaseFileProtection
@@ -133,6 +137,7 @@ extension ActitoOptions {
             closeWindowQueryParameter = decoded.closeWindowQueryParameter
             imageSharingEnabled = decoded.imageSharingEnabled
             safariDismissButtonStyle = decoded.safariDismissButtonStyle
+            entersReaderModeIfAvailableEnabled = decoded.entersReaderModeIfAvailableEnabled
             themes = decoded.themes
             backgroundGracePeriodMillis = decoded.backgroundGracePeriodMillis
             overrideDatabaseFileProtection = decoded.overrideDatabaseFileProtection
@@ -159,6 +164,7 @@ extension ActitoOptions {
         case closeWindowQueryParameter = "CLOSE_WINDOW_QUERY_PARAMETER"
         case imageSharingEnabled = "IMAGE_SHARING_ENABLED"
         case safariDismissButtonStyle = "SAFARI_DISMISS_BUTTON_STYLE"
+        case entersReaderModeIfAvailableEnabled = "ENTERS_READER_MODE_IF_AVAILABLE_ENABLED"
         case themes = "THEMES"
         case backgroundGracePeriodMillis = "IAM_BACKGROUND_GRACE_PERIOD_MILLIS"
         case overrideDatabaseFileProtection = "OVERRIDE_DATABASE_FILE_PROTECTION"
@@ -181,6 +187,7 @@ extension ActitoOptions {
         closeWindowQueryParameter = try container.decodeIfPresent(String.self, forKey: .closeWindowQueryParameter)
         imageSharingEnabled = try container.decodeIfPresent(Bool.self, forKey: .imageSharingEnabled) ?? ActitoOptions.DEFAULT_IMAGE_SHARING_ENABLED
         safariDismissButtonStyle = try container.decodeIfPresent(Int.self, forKey: .safariDismissButtonStyle)
+        entersReaderModeIfAvailableEnabled = try container.decodeIfPresent(Bool.self, forKey: .entersReaderModeIfAvailableEnabled) ?? ActitoOptions.DEFAULT_ENTERS_READER_MODE_IF_AVAILABLE_ENABLED
         themes = try container.decodeIfPresent(Themes.self, forKey: .themes)
         backgroundGracePeriodMillis = try container.decodeIfPresent(Int.self, forKey: .backgroundGracePeriodMillis) ?? ActitoOptions.DEFAULT_IAM_BACKGROUND_GRACE_PERIOD_MILLIS
         overrideDatabaseFileProtection = try container.decodeIfPresent(Bool.self, forKey: .overrideDatabaseFileProtection) ?? ActitoOptions.DEFAULT_OVERRIDE_DATABASE_FILE_PROTECTION
