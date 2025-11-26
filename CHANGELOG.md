@@ -3,6 +3,7 @@
 ## Upcoming release
 
 - Add required referrer for embedded YouTube videos
+- Add option to enable reader mode in in-app browser
 
 ## 5.0.0-beta.1
 
