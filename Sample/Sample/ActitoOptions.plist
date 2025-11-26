@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ENTERS_READER_MODE_IF_AVAILABLE_ENABLED</key>
-	<false/>
 	<key>DEBUG_LOGGING_ENABLED</key>
 	<true/>
     <key>URL_SCHEMES</key>
