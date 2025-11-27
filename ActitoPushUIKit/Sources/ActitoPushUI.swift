@@ -220,7 +220,7 @@ public final class ActitoPushUI {
         let safariViewController: SFSafariViewController
 
         let configuration = SFSafariViewController.Configuration()
-        configuration.entersReaderIfAvailable = true
+        configuration.entersReaderIfAvailable = Actito.shared.options?.entersReaderModeIfAvailableEnabled ?? ActitoOptions.DEFAULT_ENTERS_READER_MODE_IF_AVAILABLE_ENABLED
 
         safariViewController = SFSafariViewController(url: url, configuration: configuration)
 
