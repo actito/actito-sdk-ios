@@ -21,6 +21,28 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
 
     // MARK: - Actito Events
 
+    internal func configure() {
+        // Listen to application did become active events.
+        NotificationCenter.default.upsertObserver(
+            Actito.shared.eventsImplementation(),
+            selector: #selector(Actito.shared.eventsImplementation().onApplicationDidBecomeActiveNotification(_:)),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+
+        // Listen to reachability changed events.
+        NotificationCenter.default.upsertObserver(
+            Actito.shared.eventsImplementation(),
+            selector: #selector(Actito.shared.eventsImplementation().onReachabilityChanged(_:)),
+            name: .reachabilityChanged,
+            object: nil
+        )
+    }
+
+    internal func launch() async throws {
+        Actito.shared.eventsImplementation().processStoredEvents()
+    }
+
     internal func logNotificationOpen(_ id: String, _ completion: @escaping ActitoCallback<Void>) {
         Task {
             do {

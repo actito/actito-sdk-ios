@@ -6,12 +6,6 @@ import Foundation
 
 public enum ActitoInternals {
     public enum Module: String, CaseIterable {
-        // Embedded modules
-        case device = "ActitoKit.DeviceLaunchComponent"
-        case session = "ActitoKit.SessionLaunchComponent"
-        case events = "ActitoKit.EventsLaunchComponent"
-        case crashReporter = "ActitoKit.CrashReporterLaunchComponent"
-
         // Peer modules
         case push = "ActitoPushKit.LaunchComponent"
         case pushUI = "ActitoPushUIKit.LaunchComponent"
@@ -32,8 +26,6 @@ public enum ActitoInternals {
 
         internal var isPeer: Bool {
             switch self {
-            case .device, .events, .session, .crashReporter:
-                return false
             default:
                 return true
             }

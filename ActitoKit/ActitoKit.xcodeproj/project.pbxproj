@@ -21,10 +21,6 @@
 		1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */; };
 		1AD52A262DE75BAC006C7D88 /* CreateEventPayload+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */; };
 		1AD52A562DFFF75F006C7D88 /* ActitoLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */; };
-		1AD52A682E002ECB006C7D88 /* CrashReporterLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A672E002EBD006C7D88 /* CrashReporterLaunchComponent.swift */; };
-		1AD52A6A2E0030FB006C7D88 /* DeviceLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A692E0030ED006C7D88 /* DeviceLaunchComponent.swift */; };
-		1AD52A6C2E0036E2006C7D88 /* EventsLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A6B2E0036D8006C7D88 /* EventsLaunchComponent.swift */; };
-		1AD52A6E2E0038CC006C7D88 /* SessionLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A6D2E0038C5006C7D88 /* SessionLaunchComponent.swift */; };
 		42A2011DB7750225B7C9D3E2 /* ActitoBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A205DF5970468FB18808F5 /* ActitoBootstrap.m */; };
 		42A201A3F80D5668FF5D6759 /* ActitoBootstrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A20450A15AAC914DBC800F /* ActitoBootstrap.h */; };
 		42A20330821EAB78A0A5EB13 /* URLSession+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20F817E5D783B690400CF /* URLSession+Retry.swift */; };
@@ -100,10 +96,6 @@
 		1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalEvent+CoreData.swift"; sourceTree = "<group>"; };
 		1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateEventPayload+Local.swift"; sourceTree = "<group>"; };
 		1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLaunchComponent.swift; sourceTree = "<group>"; };
-		1AD52A672E002EBD006C7D88 /* CrashReporterLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashReporterLaunchComponent.swift; sourceTree = "<group>"; };
-		1AD52A692E0030ED006C7D88 /* DeviceLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLaunchComponent.swift; sourceTree = "<group>"; };
-		1AD52A6B2E0036D8006C7D88 /* EventsLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsLaunchComponent.swift; sourceTree = "<group>"; };
-		1AD52A6D2E0038C5006C7D88 /* SessionLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLaunchComponent.swift; sourceTree = "<group>"; };
 		42A20228EB70EA83D835BF01 /* ActitoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoError.swift; sourceTree = "<group>"; };
 		42A20450A15AAC914DBC800F /* ActitoBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActitoBootstrap.h; sourceTree = "<group>"; };
 		42A205DF5970468FB18808F5 /* ActitoBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActitoBootstrap.m; sourceTree = "<group>"; };
@@ -208,10 +200,6 @@
 				42A208E69A6C0B2C639FBFB4 /* ActitoCrashReporterModule.swift */,
 				42A20EA7B3E0709119050294 /* ActitoEventsModuleImpl.swift */,
 				F219FADC252DEB3900464B4E /* ActitoSessionModule.swift */,
-				1AD52A672E002EBD006C7D88 /* CrashReporterLaunchComponent.swift */,
-				1AD52A692E0030ED006C7D88 /* DeviceLaunchComponent.swift */,
-				1AD52A6B2E0036D8006C7D88 /* EventsLaunchComponent.swift */,
-				1AD52A6D2E0038C5006C7D88 /* SessionLaunchComponent.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -529,7 +517,6 @@
 				F258DE4424BC68CB006F9ABD /* Actito.swift in Sources */,
 				42A2011DB7750225B7C9D3E2 /* ActitoBootstrap.m in Sources */,
 				1AD52A562DFFF75F006C7D88 /* ActitoLaunchComponent.swift in Sources */,
-				1AD52A682E002ECB006C7D88 /* CrashReporterLaunchComponent.swift in Sources */,
 				F27DB183262EDAC2000C024D /* PushAPI.swift in Sources */,
 				F21DD9F12718662000C88D7B /* ActitoEventsModule.swift in Sources */,
 				F293E2DB26304675008C2010 /* LocalStorage.swift in Sources */,
@@ -544,10 +531,8 @@
 				F27DB17C262EDA9B000C024D /* PushAPI+Payloads.swift in Sources */,
 				F23E3C3324D8267000044574 /* ActitoDelegate.swift in Sources */,
 				42A20FD7791BD275D8A3A0E5 /* ActitoError.swift in Sources */,
-				1AD52A6A2E0030FB006C7D88 /* DeviceLaunchComponent.swift in Sources */,
 				F2323002252F3886007778AA /* ActitoApplication.swift in Sources */,
 				F21DD9EF271863EB00C88D7B /* Actito+Augment.swift in Sources */,
-				1AD52A6E2E0038CC006C7D88 /* SessionLaunchComponent.swift in Sources */,
 				F293E2C026303056008C2010 /* ActitoAppDelegateInterceptor.swift in Sources */,
 				42A204DF76302D72690E9F7A /* ActitoNetworkError.swift in Sources */,
 				42A20F5A817E461AD741CEF0 /* ActitoAutoConfig.swift in Sources */,
@@ -573,7 +558,6 @@
 				F219FADD252DEB3900464B4E /* ActitoSessionModule.swift in Sources */,
 				1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */,
 				42A204EEDC52B164B27D6563 /* ActitoEventsModuleImpl.swift in Sources */,
-				1AD52A6C2E0036E2006C7D88 /* EventsLaunchComponent.swift in Sources */,
 				42A20BCB911114B0BCBEF371 /* ActitoCrashReporterModule.swift in Sources */,
 				1AB27BA92E704528004F93B9 /* NotificareCoreDataEvent.swift in Sources */,
 				F289993525C97D35008ADC7E /* ActitoOptions.swift in Sources */,

@@ -159,9 +159,14 @@ public final class Actito {
             """)
         }
 
-        logger.debug("Configuring available modules.")
         _ = database
 
+        Actito.shared.device().configure()
+        Actito.shared.session().configure()
+        Actito.shared.eventsImplementation().configure()
+        Actito.shared.crashReporter().configure()
+
+        logger.debug("Configuring available modules.")
         ActitoInternals.Module.allCases.forEach { module in
             if let instance = module.klass?.instance {
                 logger.debug("Configuring module: \(module)")
@@ -246,6 +251,16 @@ public final class Actito {
 
             self.application = application
 
+            do {
+                try await Actito.shared.device().launch()
+                try await Actito.shared.session().launch()
+                try await Actito.shared.eventsImplementation().launch()
+                try await Actito.shared.crashReporter().launch()
+            } catch {
+                logger.debug("Failed to launch core components.", error: error)
+                throw error
+            }
+
             // Loop all possible modules and launch the available ones.
             for module in ActitoInternals.Module.allCases {
                 if let instance = module.klass?.instance {
@@ -274,6 +289,12 @@ public final class Actito {
         }
 
         Task {
+            do {
+                try await Actito.shared.device().postLaunch()
+            } catch {
+                logger.error("Failed to post-launch device component.", error: error)
+            }
+
             // Loop all possible modules and post-launch the available ones.
             for module in ActitoInternals.Module.allCases {
                 if let instance = module.klass?.instance {
@@ -317,6 +338,15 @@ public final class Actito {
         }
 
         logger.info("Un-launching Actito.")
+
+        // TODO: unlaunch components (device, session, events and crash)
+
+        do {
+            try await Actito.shared.session().unlaunch()
+        } catch {
+            logger.debug("Failed to un-launch session module.", error: error)
+            throw error
+        }
 
         // Loop all possible modules and un-launch the available ones.
         for module in ActitoInternals.Module.allCases.reversed() {
