@@ -6,7 +6,6 @@ import Foundation
 
 public enum ActitoInternals {
     public enum Module: String, CaseIterable {
-        // Peer modules
         case push = "ActitoPushKit.LaunchComponent"
         case pushUI = "ActitoPushUIKit.LaunchComponent"
         case inbox = "ActitoInboxKit.LaunchComponent"
@@ -22,13 +21,6 @@ public enum ActitoInternals {
 
         public var klass: (any ActitoLaunchComponent.Type)? {
             NSClassFromString(rawValue) as? any ActitoLaunchComponent.Type
-        }
-
-        internal var isPeer: Bool {
-            switch self {
-            default:
-                return true
-            }
         }
     }
 }

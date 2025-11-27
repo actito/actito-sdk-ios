@@ -785,7 +785,7 @@ public final class Actito {
 
     private func printLaunchSummary(application: ActitoApplication) {
         let enabledServices = application.services.filter(\.value).map(\.key)
-        let enabledModules = ModuleUtils.getEnabledPeerModules()
+        let enabledModules = ModuleUtils.getEnabledModules()
 
         logger.info("Actito is ready to use for application.")
         logger.debug("/==================================================================================/")
