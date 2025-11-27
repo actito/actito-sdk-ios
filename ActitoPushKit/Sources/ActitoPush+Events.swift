@@ -5,7 +5,7 @@
 import ActitoKit
 import Foundation
 
-extension ActitoEventsModule {
+extension ActitoEventsComponent {
     public func logNotificationReceived(_ id: String) async throws {
         let this = self as! ActitoInternalEventsModule
         try await this.log("re.notifica.event.notification.Receive", notificationId: id)

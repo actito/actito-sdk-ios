@@ -11,8 +11,8 @@ private let MAX_TAG_SIZE_CHAR = 64
 private let TAG_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9_-]+[a-zA-Z0-9])?$".toRegex()
 
 @MainActor
-public final class ActitoDeviceModule {
-    public static let shared = ActitoDeviceModule()
+public final class ActitoDeviceComponent {
+    public static let shared = ActitoDeviceComponent()
 
     internal private(set) var storedDevice: StoredDevice? {
         get { LocalStorage.device }

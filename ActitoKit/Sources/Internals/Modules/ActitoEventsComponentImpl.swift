@@ -13,8 +13,8 @@ private let EVENT_NAME_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9_-]+[a-zA-Z0-9])?$".toReg
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
 @MainActor
-internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsModule {
-    internal static let instance = ActitoEventsModuleImpl()
+internal class ActitoEventsComponentImpl: ActitoEventsComponent, ActitoInternalEventsModule {
+    internal static let instance = ActitoEventsComponentImpl()
 
     private let discardableEvents = [String]()
     private var processEventsTaskIdentifier: UIBackgroundTaskIdentifier?

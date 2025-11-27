@@ -7,8 +7,8 @@ import Foundation
 import UIKit
 
 @MainActor
-internal class ActitoCrashReporterModule {
-    internal static let instance = ActitoCrashReporterModule()
+internal class ActitoCrashReporterComponent {
+    internal static let instance = ActitoCrashReporterComponent()
 
     // MARK: - Internal API
 

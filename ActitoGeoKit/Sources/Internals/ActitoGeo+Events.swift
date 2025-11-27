@@ -5,7 +5,7 @@
 import ActitoKit
 import Foundation
 
-extension ActitoEventsModule {
+extension ActitoEventsComponent {
     internal func logRegionSession(_ session: ActitoInternals.PushAPI.Payloads.RegionSession) async throws {
         let sessionEnd = session.end ?? Date()
         let length = sessionEnd.timeIntervalSince(session.start)
