@@ -569,6 +569,7 @@ public final class ActitoDeviceComponent {
         )
     }
 
+    // Launches device and session components
     internal func launch() async throws {
         try await Actito.shared.device().upgradeToLongLivedDeviceWhenNeeded()
 
@@ -624,7 +625,7 @@ public final class ActitoDeviceComponent {
         }
     }
 
-    internal func postLaunch() async throws {
+    internal func postLaunch() {
         if
             let storedDevice = Actito.shared.device().storedDevice, Actito.shared.device().hasPendingDeviceRegistrationEvent == true
         {

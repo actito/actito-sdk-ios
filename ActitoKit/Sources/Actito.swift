@@ -253,13 +253,13 @@ public final class Actito {
 
             do {
                 try await Actito.shared.device().launch()
-                try await Actito.shared.session().launch()
-                try await Actito.shared.eventsImplementation().launch()
-                try await Actito.shared.crashReporter().launch()
             } catch {
-                logger.debug("Failed to launch core components.", error: error)
+                logger.debug("Failed to launch device component.", error: error)
                 throw error
             }
+
+            Actito.shared.eventsImplementation().launch()
+            await Actito.shared.crashReporter().launch()
 
             // Loop all possible modules and launch the available ones.
             for module in ActitoInternals.Module.allCases {
@@ -289,11 +289,7 @@ public final class Actito {
         }
 
         Task {
-            do {
-                try await Actito.shared.device().postLaunch()
-            } catch {
-                logger.error("Failed to post-launch device component.", error: error)
-            }
+            Actito.shared.device().postLaunch()
 
             // Loop all possible modules and post-launch the available ones.
             for module in ActitoInternals.Module.allCases {

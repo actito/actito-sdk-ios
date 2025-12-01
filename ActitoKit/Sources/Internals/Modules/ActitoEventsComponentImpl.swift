@@ -39,7 +39,7 @@ internal class ActitoEventsComponentImpl: ActitoEventsComponent, ActitoInternalE
         )
     }
 
-    internal func launch() async throws {
+    internal func launch() {
         Actito.shared.eventsImplementation().processStoredEvents()
     }
 

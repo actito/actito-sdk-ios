@@ -40,7 +40,7 @@ internal class ActitoCrashReporterComponent {
         signal(SIGXFSZ, Actito.shared.crashReporter().signalReceiver)
     }
 
-    internal func launch() async throws {
+    internal func launch() async {
         guard let event = LocalStorage.crashReport else {
             logger.debug("No crash report to process.")
             return
@@ -57,7 +57,6 @@ internal class ActitoCrashReporterComponent {
             LocalStorage.crashReport = nil
         } catch {
             logger.error("Failed to process a crash report.", error: error)
-
         }
     }
 
