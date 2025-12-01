@@ -334,15 +334,7 @@ public final class Actito {
         }
 
         logger.info("Un-launching Actito.")
-
-        // TODO: unlaunch components (device, session, events and crash)
-
-        do {
-            try await Actito.shared.session().unlaunch()
-        } catch {
-            logger.debug("Failed to un-launch session module.", error: error)
-            throw error
-        }
+        await Actito.shared.session().unlaunch()
 
         // Loop all possible modules and un-launch the available ones.
         for module in ActitoInternals.Module.allCases.reversed() {

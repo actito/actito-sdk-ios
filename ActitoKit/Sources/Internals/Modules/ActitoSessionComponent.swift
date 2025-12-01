@@ -58,7 +58,7 @@ internal class ActitoSessionComponent {
         }
     }
 
-    internal func unlaunch() async throws {
+    internal func unlaunch() async {
         Actito.shared.session().sessionEnd = Date()
         await Actito.shared.session().stopSession()
     }
