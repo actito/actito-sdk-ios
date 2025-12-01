@@ -193,7 +193,7 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		F21DD9F22718665200C88D7B /* Modules */ = {
+		F21DD9F22718665200C88D7B /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				F27DDD9829266B400020036D /* Integrations */,
@@ -201,7 +201,7 @@
 				42A20EA7B3E0709119050294 /* ActitoEventsComponentImpl.swift */,
 				F219FADC252DEB3900464B4E /* ActitoSessionComponent.swift */,
 			);
-			path = Modules;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		F2323000252F37CC007778AA /* Models */ = {
@@ -350,7 +350,7 @@
 			children = (
 				1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */,
 				42A20D17A4EF88ED36EA223F /* AutoConfig */,
-				F21DD9F22718665200C88D7B /* Modules */,
+				F21DD9F22718665200C88D7B /* Components */,
 				42A20E1B11DBCE03A4402205 /* Network */,
 				F2E4DBC82525EC6F003FE29B /* Storage */,
 				F293E29026302CAD008C2010 /* Swizzling */,

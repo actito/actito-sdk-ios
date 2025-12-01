@@ -546,24 +546,24 @@ public final class ActitoDeviceComponent {
     internal func configure() {
         // Listen to timezone changes
         NotificationCenter.default.upsertObserver(
-            Actito.shared.device(),
-            selector: #selector(Actito.shared.device().updateDeviceTimezone),
+            self,
+            selector: #selector(updateDeviceTimezone),
             name: UIApplication.significantTimeChangeNotification,
             object: nil
         )
 
         // Listen to language changes
         NotificationCenter.default.upsertObserver(
-            Actito.shared.device(),
-            selector: #selector(Actito.shared.device().updateDeviceLanguage),
+            self,
+            selector: #selector(updateDeviceLanguage),
             name: NSLocale.currentLocaleDidChangeNotification,
             object: nil
         )
 
         // Listen to 'background refresh status' changes
         NotificationCenter.default.upsertObserver(
-            Actito.shared.device(),
-            selector: #selector(Actito.shared.device().updateDeviceBackgroundAppRefresh),
+            self,
+            selector: #selector(updateDeviceBackgroundAppRefresh),
             name: UIApplication.backgroundRefreshStatusDidChangeNotification,
             object: nil
         )
@@ -571,23 +571,23 @@ public final class ActitoDeviceComponent {
 
     // Launches device and session components
     internal func launch() async throws {
-        try await Actito.shared.device().upgradeToLongLivedDeviceWhenNeeded()
+        try await upgradeToLongLivedDeviceWhenNeeded()
 
-        if let storedDevice = Actito.shared.device().storedDevice {
+        if let storedDevice = storedDevice {
             let isApplicationUpgrade = storedDevice.appVersion != Bundle.main.applicationVersion
 
             do {
-                try await Actito.shared.device().updateDevice()
+                try await updateDevice()
             } catch {
                 if case let ActitoNetworkError.validationError(response, _, _) = error, response.statusCode == 404 {
                     logger.warning("The device was removed from Actito. Recovering...")
 
                     logger.debug("Resetting local storage.")
-                    try await Actito.shared.device().resetLocalStorage()
+                    try await resetLocalStorage()
 
                     logger.debug("Creating a new device")
-                    try await Actito.shared.device().createDevice()
-                    Actito.shared.device().hasPendingDeviceRegistrationEvent = true
+                    try await createDevice()
+                    hasPendingDeviceRegistrationEvent = true
 
                     // Ensure a session exists for the current device.
                     try await Actito.shared.session().launch()
@@ -613,8 +613,8 @@ public final class ActitoDeviceComponent {
         } else {
             logger.debug("New install detected")
 
-            try await Actito.shared.device().createDevice()
-            Actito.shared.device().hasPendingDeviceRegistrationEvent = true
+            try await createDevice()
+            hasPendingDeviceRegistrationEvent = true
 
             // Ensure a session exists for the current device.
             try await Actito.shared.session().launch()
@@ -627,7 +627,7 @@ public final class ActitoDeviceComponent {
 
     internal func postLaunch() {
         if
-            let storedDevice = Actito.shared.device().storedDevice, Actito.shared.device().hasPendingDeviceRegistrationEvent == true
+            let storedDevice = storedDevice, hasPendingDeviceRegistrationEvent == true
         {
             DispatchQueue.main.async {
                 Actito.shared.delegate?.actito(Actito.shared, didRegisterDevice: storedDevice.asPublic())

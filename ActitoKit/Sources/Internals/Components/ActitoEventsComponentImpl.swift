@@ -24,23 +24,23 @@ internal class ActitoEventsComponentImpl: ActitoEventsComponent, ActitoInternalE
     internal func configure() {
         // Listen to application did become active events.
         NotificationCenter.default.upsertObserver(
-            Actito.shared.eventsImplementation(),
-            selector: #selector(Actito.shared.eventsImplementation().onApplicationDidBecomeActiveNotification(_:)),
+            self,
+            selector: #selector(onApplicationDidBecomeActiveNotification(_:)),
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
 
         // Listen to reachability changed events.
         NotificationCenter.default.upsertObserver(
-            Actito.shared.eventsImplementation(),
-            selector: #selector(Actito.shared.eventsImplementation().onReachabilityChanged(_:)),
+            self,
+            selector: #selector(onReachabilityChanged(_:)),
             name: .reachabilityChanged,
             object: nil
         )
     }
 
     internal func launch() {
-        Actito.shared.eventsImplementation().processStoredEvents()
+        processStoredEvents()
     }
 
     internal func logNotificationOpen(_ id: String, _ completion: @escaping ActitoCallback<Void>) {

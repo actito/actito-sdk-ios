@@ -31,16 +31,16 @@ internal class ActitoSessionComponent {
     internal func configure() {
         // Listen to 'application did become active'
         NotificationCenter.default.upsertObserver(
-            Actito.shared.session(),
-            selector: #selector(Actito.shared.session().applicationDidBecomeActive),
+            self,
+            selector: #selector(applicationDidBecomeActive),
             name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
 
         // Listen to 'application will resign active'
         NotificationCenter.default.upsertObserver(
-            Actito.shared.session(),
-            selector: #selector(Actito.shared.session().applicationWillResignActive),
+            self,
+            selector: #selector(applicationWillResignActive),
             name: UIApplication.willResignActiveNotification,
             object: nil
         )
@@ -48,19 +48,19 @@ internal class ActitoSessionComponent {
 
     internal func launch() async throws {
         if
-            Actito.shared.session().sessionId == nil,
+            sessionId == nil,
             Actito.shared.device().currentDevice != nil,
             UIApplication.shared.applicationState == .active
         {
             // Launch is taking place after the application came to the foreground.
             // Start the application session.
-            await Actito.shared.session().startSession()
+            await startSession()
         }
     }
 
     internal func unlaunch() async {
-        Actito.shared.session().sessionEnd = Date()
-        await Actito.shared.session().stopSession()
+        sessionEnd = Date()
+        await stopSession()
     }
 
     @objc internal func applicationDidBecomeActive() {
