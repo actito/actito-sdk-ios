@@ -35,7 +35,7 @@ extension ActitoEventsComponent {
             },
         ]
 
-        let this = self as! ActitoInternalEventsModule
+        let this = self as! ActitoInternalEventsComponent
         try await this.log("re.notifica.event.region.Session", data: data)
     }
 
@@ -67,7 +67,7 @@ extension ActitoEventsComponent {
             },
         ]
 
-        let this = self as! ActitoInternalEventsModule
+        let this = self as! ActitoInternalEventsComponent
         try await this.log("re.notifica.event.beacon.Session", data: data)
     }
 
@@ -79,7 +79,7 @@ extension ActitoEventsComponent {
             "longitude": visit.longitude,
         ]
 
-        let this = self as! ActitoInternalEventsModule
+        let this = self as! ActitoInternalEventsComponent
         try await this.log("re.notifica.event.location.Visit", data: data)
     }
 }

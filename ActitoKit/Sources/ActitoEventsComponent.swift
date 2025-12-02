@@ -78,11 +78,11 @@ extension ActitoEventsComponent {
 }
 
 @MainActor
-public protocol ActitoInternalEventsModule {
+public protocol ActitoInternalEventsComponent {
     func log(_ event: String, data: ActitoEventData?, sessionId: String?, notificationId: String?) async throws
 }
 
-extension ActitoInternalEventsModule {
+extension ActitoInternalEventsComponent {
     public func log(_ event: String, data: ActitoEventData? = nil, sessionId: String? = nil, notificationId: String? = nil) async throws {
         try await log(event, data: data, sessionId: sessionId, notificationId: notificationId)
     }
