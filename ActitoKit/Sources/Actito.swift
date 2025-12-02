@@ -159,9 +159,14 @@ public final class Actito {
             """)
         }
 
-        logger.debug("Configuring available modules.")
         _ = database
 
+        Actito.shared.device().configure()
+        Actito.shared.session().configure()
+        Actito.shared.eventsImplementation().configure()
+        Actito.shared.crashReporter().configure()
+
+        logger.debug("Configuring available modules.")
         ActitoInternals.Module.allCases.forEach { module in
             if let instance = module.klass?.instance {
                 logger.debug("Configuring module: \(module)")
@@ -246,6 +251,16 @@ public final class Actito {
 
             self.application = application
 
+            do {
+                try await Actito.shared.device().launch()
+            } catch {
+                logger.debug("Failed to launch device component.", error: error)
+                throw error
+            }
+
+            Actito.shared.eventsImplementation().launch()
+            await Actito.shared.crashReporter().launch()
+
             // Loop all possible modules and launch the available ones.
             for module in ActitoInternals.Module.allCases {
                 if let instance = module.klass?.instance {
@@ -274,6 +289,8 @@ public final class Actito {
         }
 
         Task {
+            Actito.shared.device().postLaunch()
+
             // Loop all possible modules and post-launch the available ones.
             for module in ActitoInternals.Module.allCases {
                 if let instance = module.klass?.instance {
@@ -317,6 +334,7 @@ public final class Actito {
         }
 
         logger.info("Un-launching Actito.")
+        await Actito.shared.session().unlaunch()
 
         // Loop all possible modules and un-launch the available ones.
         for module in ActitoInternals.Module.allCases.reversed() {
@@ -755,7 +773,7 @@ public final class Actito {
 
     private func printLaunchSummary(application: ActitoApplication) {
         let enabledServices = application.services.filter(\.value).map(\.key)
-        let enabledModules = ModuleUtils.getEnabledPeerModules()
+        let enabledModules = ModuleUtils.getEnabledModules()
 
         logger.info("Actito is ready to use for application.")
         logger.debug("/==================================================================================/")

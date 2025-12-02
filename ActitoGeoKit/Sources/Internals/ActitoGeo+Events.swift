@@ -5,7 +5,7 @@
 import ActitoKit
 import Foundation
 
-extension ActitoEventsModule {
+extension ActitoEventsComponent {
     internal func logRegionSession(_ session: ActitoInternals.PushAPI.Payloads.RegionSession) async throws {
         let sessionEnd = session.end ?? Date()
         let length = sessionEnd.timeIntervalSince(session.start)
@@ -35,7 +35,7 @@ extension ActitoEventsModule {
             },
         ]
 
-        let this = self as! ActitoInternalEventsModule
+        let this = self as! ActitoInternalEventsComponent
         try await this.log("re.notifica.event.region.Session", data: data)
     }
 
@@ -67,7 +67,7 @@ extension ActitoEventsModule {
             },
         ]
 
-        let this = self as! ActitoInternalEventsModule
+        let this = self as! ActitoInternalEventsComponent
         try await this.log("re.notifica.event.beacon.Session", data: data)
     }
 
@@ -79,7 +79,7 @@ extension ActitoEventsModule {
             "longitude": visit.longitude,
         ]
 
-        let this = self as! ActitoInternalEventsModule
+        let this = self as! ActitoInternalEventsComponent
         try await this.log("re.notifica.event.location.Visit", data: data)
     }
 }

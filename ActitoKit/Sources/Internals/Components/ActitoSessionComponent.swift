@@ -9,8 +9,8 @@ import UIKit
 private let SESSION_CLOSE_TASK_NAME = "re.notifica.tasks.session.Close"
 
 @MainActor
-internal class ActitoSessionModule {
-    internal static let instance = ActitoSessionModule()
+internal class ActitoSessionComponent {
+    internal static let instance = ActitoSessionComponent()
 
     internal private(set) var sessionId: String?
     private var sessionStart: Date?
@@ -27,6 +27,41 @@ internal class ActitoSessionModule {
     }()
 
     // MARK: - Internal API
+
+    internal func configure() {
+        // Listen to 'application did become active'
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+
+        // Listen to 'application will resign active'
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(applicationWillResignActive),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+    }
+
+    internal func launch() async throws {
+        if
+            sessionId == nil,
+            Actito.shared.device().currentDevice != nil,
+            UIApplication.shared.applicationState == .active
+        {
+            // Launch is taking place after the application came to the foreground.
+            // Start the application session.
+            await startSession()
+        }
+    }
+
+    internal func unlaunch() async {
+        sessionEnd = Date()
+        await stopSession()
+    }
 
     @objc internal func applicationDidBecomeActive() {
         guard UIApplication.shared.applicationState == .active else {

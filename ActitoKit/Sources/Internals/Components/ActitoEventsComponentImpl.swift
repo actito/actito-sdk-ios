@@ -13,13 +13,35 @@ private let EVENT_NAME_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9_-]+[a-zA-Z0-9])?$".toReg
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
 @MainActor
-internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsModule {
-    internal static let instance = ActitoEventsModuleImpl()
+internal class ActitoEventsComponentImpl: ActitoEventsComponent, ActitoInternalEventsComponent {
+    internal static let instance = ActitoEventsComponentImpl()
 
     private let discardableEvents = [String]()
     private var processEventsTaskIdentifier: UIBackgroundTaskIdentifier?
 
     // MARK: - Actito Events
+
+    internal func configure() {
+        // Listen to application did become active events.
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(onApplicationDidBecomeActiveNotification(_:)),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+
+        // Listen to reachability changed events.
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(onReachabilityChanged(_:)),
+            name: .reachabilityChanged,
+            object: nil
+        )
+    }
+
+    internal func launch() {
+        processStoredEvents()
+    }
 
     internal func logNotificationOpen(_ id: String, _ completion: @escaping ActitoCallback<Void>) {
         Task {

@@ -6,13 +6,6 @@ import Foundation
 
 public enum ActitoInternals {
     public enum Module: String, CaseIterable {
-        // Embedded modules
-        case device = "ActitoKit.DeviceLaunchComponent"
-        case session = "ActitoKit.SessionLaunchComponent"
-        case events = "ActitoKit.EventsLaunchComponent"
-        case crashReporter = "ActitoKit.CrashReporterLaunchComponent"
-
-        // Peer modules
         case push = "ActitoPushKit.LaunchComponent"
         case pushUI = "ActitoPushUIKit.LaunchComponent"
         case inbox = "ActitoInboxKit.LaunchComponent"
@@ -28,15 +21,6 @@ public enum ActitoInternals {
 
         public var klass: (any ActitoLaunchComponent.Type)? {
             NSClassFromString(rawValue) as? any ActitoLaunchComponent.Type
-        }
-
-        internal var isPeer: Bool {
-            switch self {
-            case .device, .events, .session, .crashReporter:
-                return false
-            default:
-                return true
-            }
         }
     }
 }

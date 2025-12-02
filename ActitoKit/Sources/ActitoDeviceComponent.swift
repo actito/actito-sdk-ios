@@ -11,8 +11,8 @@ private let MAX_TAG_SIZE_CHAR = 64
 private let TAG_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9_-]+[a-zA-Z0-9])?$".toRegex()
 
 @MainActor
-public final class ActitoDeviceModule {
-    public static let shared = ActitoDeviceModule()
+public final class ActitoDeviceComponent {
+    public static let shared = ActitoDeviceComponent()
 
     internal private(set) var storedDevice: StoredDevice? {
         get { LocalStorage.device }
@@ -542,6 +542,98 @@ public final class ActitoDeviceModule {
     // MARK: - Internal API
 
     // TODO: check prerequisites
+
+    internal func configure() {
+        // Listen to timezone changes
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(updateDeviceTimezone),
+            name: UIApplication.significantTimeChangeNotification,
+            object: nil
+        )
+
+        // Listen to language changes
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(updateDeviceLanguage),
+            name: NSLocale.currentLocaleDidChangeNotification,
+            object: nil
+        )
+
+        // Listen to 'background refresh status' changes
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(updateDeviceBackgroundAppRefresh),
+            name: UIApplication.backgroundRefreshStatusDidChangeNotification,
+            object: nil
+        )
+    }
+
+    // Launches device and session components
+    internal func launch() async throws {
+        try await upgradeToLongLivedDeviceWhenNeeded()
+
+        if let storedDevice = storedDevice {
+            let isApplicationUpgrade = storedDevice.appVersion != Bundle.main.applicationVersion
+
+            do {
+                try await updateDevice()
+            } catch {
+                if case let ActitoNetworkError.validationError(response, _, _) = error, response.statusCode == 404 {
+                    logger.warning("The device was removed from Actito. Recovering...")
+
+                    logger.debug("Resetting local storage.")
+                    try await resetLocalStorage()
+
+                    logger.debug("Creating a new device")
+                    try await createDevice()
+                    hasPendingDeviceRegistrationEvent = true
+
+                    // Ensure a session exists for the current device.
+                    try await Actito.shared.session().launch()
+
+                    // We will log the Install & Registration events here since this will execute only one time at the start.
+                    try? await Actito.shared.eventsImplementation().logApplicationInstall()
+                    try? await Actito.shared.eventsImplementation().logApplicationRegistration()
+
+                    return
+                }
+
+                throw error
+            }
+
+            // Ensure a session exists for the current device.
+            try await Actito.shared.session().launch()
+
+            if isApplicationUpgrade {
+                // It's not the same version, let's log it as an upgrade.
+                logger.debug("New version detected")
+                try? await Actito.shared.eventsImplementation().logApplicationUpgrade()
+            }
+        } else {
+            logger.debug("New install detected")
+
+            try await createDevice()
+            hasPendingDeviceRegistrationEvent = true
+
+            // Ensure a session exists for the current device.
+            try await Actito.shared.session().launch()
+
+            // We will log the Install & Registration events here since this will execute only one time at the start.
+            try? await Actito.shared.eventsImplementation().logApplicationInstall()
+            try? await Actito.shared.eventsImplementation().logApplicationRegistration()
+        }
+    }
+
+    internal func postLaunch() {
+        if
+            let storedDevice = storedDevice, hasPendingDeviceRegistrationEvent == true
+        {
+            DispatchQueue.main.async {
+                Actito.shared.delegate?.actito(Actito.shared, didRegisterDevice: storedDevice.asPublic())
+            }
+        }
+    }
 
     internal func createDevice() async throws {
         let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus

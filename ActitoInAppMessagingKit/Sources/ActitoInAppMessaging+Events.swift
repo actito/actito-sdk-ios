@@ -5,14 +5,14 @@
 import ActitoKit
 import Foundation
 
-extension ActitoEventsModule {
+extension ActitoEventsComponent {
     internal func logInAppMessageViewed(_ message: ActitoInAppMessage) async throws {
-        let this = self as! ActitoInternalEventsModule
+        let this = self as! ActitoInternalEventsComponent
         try await this.log("re.notifica.event.inappmessage.View", data: ["message": message.id])
     }
 
     internal func logInAppMessageActionClicked(_ message: ActitoInAppMessage, action: ActitoInAppMessage.ActionType) async throws {
-        let this = self as! ActitoInternalEventsModule
+        let this = self as! ActitoInternalEventsComponent
         try await this.log(
             "re.notifica.event.inappmessage.Action",
             data: [

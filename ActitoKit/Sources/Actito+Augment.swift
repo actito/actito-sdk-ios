@@ -5,25 +5,25 @@
 import Foundation
 
 extension Actito {
-    public func device() -> ActitoDeviceModule {
-        ActitoDeviceModule.shared
+    public func device() -> ActitoDeviceComponent {
+        ActitoDeviceComponent.shared
     }
 
-    public func events() -> ActitoEventsModule {
-        ActitoEventsModuleImpl.instance
+    public func events() -> ActitoEventsComponent {
+        ActitoEventsComponentImpl.instance
     }
 }
 
 extension Actito {
-    internal func eventsImplementation() -> ActitoEventsModuleImpl {
-        ActitoEventsModuleImpl.instance
+    internal func eventsImplementation() -> ActitoEventsComponentImpl {
+        ActitoEventsComponentImpl.instance
     }
 
-    internal func session() -> ActitoSessionModule {
-        ActitoSessionModule.instance
+    internal func session() -> ActitoSessionComponent {
+        ActitoSessionComponent.instance
     }
 
-    internal func crashReporter() -> ActitoCrashReporterModule {
-        ActitoCrashReporterModule.instance
+    internal func crashReporter() -> ActitoCrashReporterComponent {
+        ActitoCrashReporterComponent.instance
     }
 }

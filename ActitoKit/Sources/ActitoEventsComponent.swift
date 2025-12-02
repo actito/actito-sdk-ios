@@ -7,7 +7,7 @@ import Foundation
 public typealias ActitoEventData = [String: any Sendable]
 
 @MainActor
-public protocol ActitoEventsModule: AnyObject {
+public protocol ActitoEventsComponent: AnyObject {
     // func logApplicationException(_ error: Error, _ completion: @escaping ActitoCallback<Void>)
 
     /// Logs in Actito when a notification has been opened by the user, with a callback.
@@ -50,7 +50,7 @@ public protocol ActitoEventsModule: AnyObject {
     func logCustom(_ event: String, data: ActitoEventData?) async throws
 }
 
-extension ActitoEventsModule {
+extension ActitoEventsComponent {
     /// Logs in Actito a custom event in the application, with a callback.
     ///
     /// This function allows logging, in Actito, of application-specific events, optionally associating structured
@@ -78,11 +78,11 @@ extension ActitoEventsModule {
 }
 
 @MainActor
-public protocol ActitoInternalEventsModule {
+public protocol ActitoInternalEventsComponent {
     func log(_ event: String, data: ActitoEventData?, sessionId: String?, notificationId: String?) async throws
 }
 
-extension ActitoInternalEventsModule {
+extension ActitoInternalEventsComponent {
     public func log(_ event: String, data: ActitoEventData? = nil, sessionId: String? = nil, notificationId: String? = nil) async throws {
         try await log(event, data: data, sessionId: sessionId, notificationId: notificationId)
     }
