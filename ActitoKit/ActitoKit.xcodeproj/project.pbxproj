@@ -348,13 +348,13 @@
 		F2E4DBBD2525EC3C003FE29B /* Internals */ = {
 			isa = PBXGroup;
 			children = (
-				1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */,
 				42A20D17A4EF88ED36EA223F /* AutoConfig */,
 				F21DD9F22718665200C88D7B /* Components */,
 				42A20E1B11DBCE03A4402205 /* Network */,
 				F2E4DBC82525EC6F003FE29B /* Storage */,
 				F293E29026302CAD008C2010 /* Swizzling */,
 				F2E801E8269F021800582DB8 /* ActitoInternals.swift */,
+				1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */,
 				42A20C54DCF5011314943FAD /* ActitoLaunchState.swift */,
 				F293E28926302C76008C2010 /* ActitoLocalizable.swift */,
 				F293E27A26302C48008C2010 /* ModuleUtils.swift */,
