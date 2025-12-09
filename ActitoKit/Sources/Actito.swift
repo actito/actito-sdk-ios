@@ -72,6 +72,16 @@ public final class Actito {
         return UIPasteboard.general.hasURLs
     }
 
+    /// Returns the device component. Use this to access device-related functionality.
+    public func device() -> ActitoDeviceComponent {
+        ActitoDeviceComponent.shared
+    }
+
+    /// Returns theevents component. Use this to access event-related functionality.
+    public func events() -> ActitoEventsComponent {
+        ActitoEventsComponentImpl.instance
+    }
+
     /// Configures Actito, optionally  with the provided services info and options objects.
     ///
     /// This method configures the SDK with the provided ``ActitoServicesInfo`` and ``ActitoOptions`` objects.

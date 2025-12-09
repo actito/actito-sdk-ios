@@ -5,16 +5,6 @@
 import Foundation
 
 extension Actito {
-    public func device() -> ActitoDeviceComponent {
-        ActitoDeviceComponent.shared
-    }
-
-    public func events() -> ActitoEventsComponent {
-        ActitoEventsComponentImpl.instance
-    }
-}
-
-extension Actito {
     internal func eventsImplementation() -> ActitoEventsComponentImpl {
         ActitoEventsComponentImpl.instance
     }
