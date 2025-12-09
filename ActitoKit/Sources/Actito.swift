@@ -892,4 +892,25 @@ public final class Actito {
 
         return application
     }
+
+    internal func resetLocalStorage() async throws {
+        for module in ActitoInternals.Module.allCases {
+            if let instance = module.klass?.instance {
+                logger.debug("Resetting module: \(module)")
+
+                do {
+                    try await instance.clearStorage()
+                } catch {
+                    logger.debug("Failed to reset '\(module)'.", error: error)
+                    throw error
+                }
+            }
+        }
+
+        try await database.clear()
+
+        LocalStorage.device = nil
+        LocalStorage.preferredLanguage = nil
+        LocalStorage.preferredRegion = nil
+    }
 }

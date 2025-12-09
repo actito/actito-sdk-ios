@@ -12,36 +12,15 @@ private let TAG_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9_-]+[a-zA-Z0-9])?$".toRegex()
 
 @MainActor
 public final class ActitoDeviceComponent {
-    public static let shared = ActitoDeviceComponent()
+    internal static let shared = ActitoDeviceComponent()
 
-    internal private(set) var storedDevice: StoredDevice? {
+    private var storedDevice: StoredDevice? {
         get { LocalStorage.device }
         set { LocalStorage.device = newValue }
     }
+    private var hasPendingDeviceRegistrationEvent: Bool?
 
-    internal var hasPendingDeviceRegistrationEvent: Bool?
-
-    internal func resetLocalStorage() async throws {
-        for module in ActitoInternals.Module.allCases {
-            if let instance = module.klass?.instance {
-                logger.debug("Resetting module: \(module)")
-
-                do {
-                    try await instance.clearStorage()
-                } catch {
-                    logger.debug("Failed to reset '\(module)'.", error: error)
-                    throw error
-                }
-            }
-        }
-
-        try await Actito.shared.database.clear()
-
-        // Should only clear device-related local storage properties.
-        LocalStorage.device = nil
-        LocalStorage.preferredLanguage = nil
-        LocalStorage.preferredRegion = nil
-    }
+    private nonisolated init() {}
 
     // MARK: - Public API
 
@@ -569,7 +548,6 @@ public final class ActitoDeviceComponent {
         )
     }
 
-    // Launches device and session components
     internal func launch() async throws {
         try await upgradeToLongLivedDeviceWhenNeeded()
 
@@ -583,7 +561,7 @@ public final class ActitoDeviceComponent {
                     logger.warning("The device was removed from Actito. Recovering...")
 
                     logger.debug("Resetting local storage.")
-                    try await resetLocalStorage()
+                    try await Actito.shared.resetLocalStorage()
 
                     logger.debug("Creating a new device")
                     try await createDevice()
@@ -627,7 +605,7 @@ public final class ActitoDeviceComponent {
 
     internal func postLaunch() {
         if
-            let storedDevice = storedDevice, hasPendingDeviceRegistrationEvent == true
+            let storedDevice, hasPendingDeviceRegistrationEvent == true
         {
             DispatchQueue.main.async {
                 Actito.shared.delegate?.actito(Actito.shared, didRegisterDevice: storedDevice.asPublic())
@@ -635,7 +613,7 @@ public final class ActitoDeviceComponent {
         }
     }
 
-    internal func createDevice() async throws {
+    private func createDevice() async throws {
         let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
 
         let payload = ActitoInternals.PushAPI.Payloads.CreateDevice(
@@ -671,7 +649,7 @@ public final class ActitoDeviceComponent {
         )
     }
 
-    internal func updateDevice() async throws {
+    private func updateDevice() async throws {
         guard var device = storedDevice else {
             throw ActitoError.deviceUnavailable
         }
@@ -706,7 +684,7 @@ public final class ActitoDeviceComponent {
         self.storedDevice = device
     }
 
-    internal func upgradeToLongLivedDeviceWhenNeeded() async throws {
+    private func upgradeToLongLivedDeviceWhenNeeded() async throws {
         guard let device = LocalStorage.device, !device.isLongLived else {
             return
         }
@@ -781,7 +759,7 @@ public final class ActitoDeviceComponent {
         storedDevice = nil
     }
 
-    internal func updateTimezone() async throws {
+    private func updateTimezone() async throws {
         guard Actito.shared.isReady, let device = storedDevice else {
             throw ActitoError.notReady
         }
@@ -800,7 +778,7 @@ public final class ActitoDeviceComponent {
         storedDevice?.timeZoneOffset = payload.timeZoneOffset
     }
 
-    internal func updateLanguage(_ language: String, region: String) async throws {
+    private func updateLanguage(_ language: String, region: String) async throws {
         guard Actito.shared.isReady, let device = storedDevice else {
             throw ActitoError.notReady
         }
@@ -819,7 +797,7 @@ public final class ActitoDeviceComponent {
         storedDevice?.region = payload.region
     }
 
-    internal func updateBackgroundAppRefresh() async throws {
+    private func updateBackgroundAppRefresh() async throws {
         guard Actito.shared.isReady, let device = storedDevice else {
             throw ActitoError.notReady
         }
@@ -864,7 +842,7 @@ public final class ActitoDeviceComponent {
 
     // MARK: - Notification Center listeners
 
-    @objc internal func updateDeviceTimezone() {
+    @objc private func updateDeviceTimezone() {
         logger.info("Device timezone changed.")
 
         Task {
@@ -873,7 +851,7 @@ public final class ActitoDeviceComponent {
         }
     }
 
-    @objc internal func updateDeviceLanguage() {
+    @objc private func updateDeviceLanguage() {
         logger.info("Device language changed.")
 
         let language = getDeviceLanguage()
@@ -885,7 +863,7 @@ public final class ActitoDeviceComponent {
         }
     }
 
-    @objc internal func updateDeviceBackgroundAppRefresh() {
+    @objc private func updateDeviceBackgroundAppRefresh() {
         logger.info("Device background app refresh status changed.")
 
         Task {
