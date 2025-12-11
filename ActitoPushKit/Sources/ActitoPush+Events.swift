@@ -7,17 +7,14 @@ import Foundation
 
 extension ActitoEventsComponent {
     public func logNotificationReceived(_ id: String) async throws {
-        let this = self as! ActitoInternalEventsComponent
-        try await this.log("re.notifica.event.notification.Receive", notificationId: id)
+        try await log("re.notifica.event.notification.Receive", notificationId: id)
     }
 
     public func logNotificationInfluenced(_ id: String) async throws {
-        let this = self as! ActitoInternalEventsComponent
-        try await this.log("re.notifica.event.notification.Influenced", notificationId: id)
+        try await log("re.notifica.event.notification.Influenced", notificationId: id)
     }
 
     public func logPushRegistration() async throws {
-        let this = self as! ActitoInternalEventsComponent
-        try await this.log("re.notifica.event.push.Registration", notificationId: nil)
+        try await log("re.notifica.event.push.Registration", notificationId: nil)
     }
 }

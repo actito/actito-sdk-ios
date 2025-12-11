@@ -5,8 +5,8 @@
 import Foundation
 
 extension Actito {
-    internal func eventsImplementation() -> ActitoEventsComponentImpl {
-        ActitoEventsComponentImpl.instance
+    internal func eventsImplementation() -> ActitoEventsComponent {
+        ActitoEventsComponent.instance
     }
 
     internal func session() -> ActitoSessionComponent {
