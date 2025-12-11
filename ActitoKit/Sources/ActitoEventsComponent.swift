@@ -21,6 +21,8 @@ public final class ActitoEventsComponent {
     private let discardableEvents = [String]()
     private var processEventsTaskIdentifier: UIBackgroundTaskIdentifier?
 
+    private nonisolated init() {}
+
     // MARK: - Actito Events
 
     /// Logs in Actito when a notification has been opened by the user, with a callback.
