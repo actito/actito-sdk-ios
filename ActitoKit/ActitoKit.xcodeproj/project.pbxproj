@@ -196,7 +196,6 @@
 			children = (
 				F27DDD9829266B400020036D /* Integrations */,
 				42A208E69A6C0B2C639FBFB4 /* ActitoCrashReporterComponent.swift */,
-				42A20EA7B3E0709119050294 /* ActitoEventsComponent.swift */,
 				F219FADC252DEB3900464B4E /* ActitoSessionComponent.swift */,
 			);
 			path = Components;
@@ -247,6 +246,7 @@
 				F21DD9EE271863EB00C88D7B /* Actito+Augment.swift */,
 				F23E3C3224D8267000044574 /* ActitoDelegate.swift */,
 				F21DD9F327187BC000C88D7B /* ActitoDeviceComponent.swift */,
+				42A20EA7B3E0709119050294 /* ActitoEventsComponent.swift */,
 				42A20228EB70EA83D835BF01 /* ActitoError.swift */,
 				F289993425C97D35008ADC7E /* ActitoOptions.swift */,
 				F25E62F825CAA924007C1202 /* ActitoServicesInfo.swift */,
