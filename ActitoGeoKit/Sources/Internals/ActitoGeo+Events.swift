@@ -35,7 +35,7 @@ extension ActitoEventsComponent {
             },
         ]
 
-        try await log("re.notifica.event.region.Session", data: data)
+        try await logInternalEvent("re.notifica.event.region.Session", data: data)
     }
 
     internal func logBeaconSession(_ session: ActitoBeaconSession) async throws {
@@ -66,7 +66,7 @@ extension ActitoEventsComponent {
             },
         ]
 
-        try await log("re.notifica.event.beacon.Session", data: data)
+        try await logInternalEvent("re.notifica.event.beacon.Session", data: data)
     }
 
     internal func logVisit(_ visit: ActitoVisit) async throws {
@@ -77,6 +77,6 @@ extension ActitoEventsComponent {
             "longitude": visit.longitude,
         ]
 
-        try await log("re.notifica.event.location.Visit", data: data)
+        try await logInternalEvent("re.notifica.event.location.Visit", data: data)
     }
 }

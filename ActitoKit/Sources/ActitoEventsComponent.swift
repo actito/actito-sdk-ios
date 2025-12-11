@@ -51,7 +51,7 @@ public final class ActitoEventsComponent {
     ///
     /// - Parameter id: The unique identifier of the opened notification.
     public func logNotificationOpen(_ id: String) async throws {
-        try await log("re.notifica.event.notification.Open", data: nil, notificationId: id)
+        try await logInternalEvent("re.notifica.event.notification.Open", data: nil, notificationId: id)
     }
 
     /// Logs in Actito a custom event in the application, with a callback.
@@ -109,13 +109,13 @@ public final class ActitoEventsComponent {
             }
         }
 
-        try await log("re.notifica.event.custom.\(event)", data: data)
+        try await logInternalEvent("re.notifica.event.custom.\(event)", data: data)
     }
 
     // MARK: - Actito Internal Events
 
     /// - Warning: For internal use only.
-    public func log(_ event: String, data: ActitoEventData? = nil, sessionId: String? = nil, notificationId: String? = nil) async throws {
+    public func logInternalEvent(_ event: String, data: ActitoEventData? = nil, sessionId: String? = nil, notificationId: String? = nil) async throws {
         guard let device = Actito.shared.device().currentDevice else {
             throw ActitoError.deviceUnavailable
         }
@@ -158,23 +158,23 @@ public final class ActitoEventsComponent {
     }
 
     internal func logApplicationInstall() async throws {
-        try await log("re.notifica.event.application.Install")
+        try await logInternalEvent("re.notifica.event.application.Install")
     }
 
     internal func logApplicationRegistration() async throws {
-        try await log("re.notifica.event.application.Registration")
+        try await logInternalEvent("re.notifica.event.application.Registration")
     }
 
     internal func logApplicationUpgrade() async throws {
-        try await log("re.notifica.event.application.Upgrade")
+        try await logInternalEvent("re.notifica.event.application.Upgrade")
     }
 
     internal func logApplicationOpen(sessionId: String) async throws {
-        try await log("re.notifica.event.application.Open", sessionId: sessionId)
+        try await logInternalEvent("re.notifica.event.application.Open", sessionId: sessionId)
     }
 
     internal func logApplicationClose(sessionId: String, sessionLength: Double) async throws {
-        try await log("re.notifica.event.application.Close", data: ["length": String(sessionLength)], sessionId: sessionId)
+        try await logInternalEvent("re.notifica.event.application.Close", data: ["length": String(sessionLength)], sessionId: sessionId)
     }
 
     private func log(_ payload: ActitoInternals.PushAPI.Payloads.CreateEventPayload) async throws {
