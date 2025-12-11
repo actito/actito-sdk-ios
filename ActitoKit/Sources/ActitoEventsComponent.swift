@@ -315,13 +315,13 @@ public final class ActitoEventsComponent {
         }
     }
 
-    @objc internal func onApplicationDidBecomeActiveNotification(_: Notification) {
+    @objc private func onApplicationDidBecomeActiveNotification(_: Notification) {
         guard Actito.shared.isReady else { return }
 
         processStoredEvents()
     }
 
-    @objc internal func onReachabilityChanged(_: Notification) {
+    @objc private func onReachabilityChanged(_: Notification) {
         guard let reachability = Actito.shared.reachability else {
             logger.debug("Reachbility module not configure.")
             return
