@@ -5,6 +5,7 @@
 - Simplify core component loading and align naming conventions
 - Add required referrer for embedded YouTube videos
 - Add option to enable reader mode in in-app browser
+- Fix APNS token registration race condition
 
 ## 5.0.0-beta.1
 
