@@ -571,8 +571,8 @@ public final class ActitoDeviceComponent {
                     try await Actito.shared.session().launch()
 
                     // We will log the Install & Registration events here since this will execute only one time at the start.
-                    try? await Actito.shared.eventsImplementation().logApplicationInstall()
-                    try? await Actito.shared.eventsImplementation().logApplicationRegistration()
+                    try? await Actito.shared.events().logApplicationInstall()
+                    try? await Actito.shared.events().logApplicationRegistration()
 
                     return
                 }
@@ -586,7 +586,7 @@ public final class ActitoDeviceComponent {
             if isApplicationUpgrade {
                 // It's not the same version, let's log it as an upgrade.
                 logger.debug("New version detected")
-                try? await Actito.shared.eventsImplementation().logApplicationUpgrade()
+                try? await Actito.shared.events().logApplicationUpgrade()
             }
         } else {
             logger.debug("New install detected")
@@ -598,8 +598,8 @@ public final class ActitoDeviceComponent {
             try await Actito.shared.session().launch()
 
             // We will log the Install & Registration events here since this will execute only one time at the start.
-            try? await Actito.shared.eventsImplementation().logApplicationInstall()
-            try? await Actito.shared.eventsImplementation().logApplicationRegistration()
+            try? await Actito.shared.events().logApplicationInstall()
+            try? await Actito.shared.events().logApplicationRegistration()
         }
     }
 

@@ -173,7 +173,7 @@ public final class Actito {
 
         Actito.shared.device().configure()
         Actito.shared.session().configure()
-        Actito.shared.eventsImplementation().configure()
+        Actito.shared.events().configure()
         Actito.shared.crashReporter().configure()
 
         logger.debug("Configuring available modules.")
@@ -268,7 +268,7 @@ public final class Actito {
                 throw error
             }
 
-            Actito.shared.eventsImplementation().launch()
+            Actito.shared.events().launch()
             await Actito.shared.crashReporter().launch()
 
             // Loop all possible modules and launch the available ones.

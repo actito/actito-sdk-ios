@@ -120,7 +120,7 @@ internal class ActitoSessionComponent {
         logger.debug("Session '\(sessionId)' started at \(dateFormatter.string(from: sessionStart)).")
 
         do {
-            try await Actito.shared.eventsImplementation().logApplicationOpen(sessionId: sessionId)
+            try await Actito.shared.events().logApplicationOpen(sessionId: sessionId)
         } catch {
             logger.warning("Failed to process an application session start.", error: error)
         }
@@ -152,7 +152,7 @@ internal class ActitoSessionComponent {
         let length = sessionEnd.timeIntervalSince(sessionStart)
 
         do {
-            try await Actito.shared.eventsImplementation().logApplicationClose(sessionId: sessionId, sessionLength: length)
+            try await Actito.shared.events().logApplicationClose(sessionId: sessionId, sessionLength: length)
         } catch {
             logger.warning("Failed to process an application session stop.", error: error)
         }
