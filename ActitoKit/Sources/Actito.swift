@@ -79,7 +79,7 @@ public final class Actito {
 
     /// Returns theevents component. Use this to access event-related functionality.
     public func events() -> ActitoEventsComponent {
-        ActitoEventsComponent.instance
+        ActitoEventsComponent.shared
     }
 
     /// Configures Actito, optionally  with the provided services info and options objects.

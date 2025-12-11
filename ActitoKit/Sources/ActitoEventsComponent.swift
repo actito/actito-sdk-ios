@@ -16,7 +16,7 @@ private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
 @MainActor
 public final class ActitoEventsComponent {
-    internal static let instance = ActitoEventsComponent()
+    internal static let shared = ActitoEventsComponent()
 
     private let discardableEvents = [String]()
     private var processEventsTaskIdentifier: UIBackgroundTaskIdentifier?
