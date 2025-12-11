@@ -5,6 +5,8 @@
 import ActitoUtilitiesKit
 import UIKit
 
+public typealias ActitoEventData = [String: any Sendable]
+
 private let MAX_RETRIES = 5
 private let MAX_DATA_SIZE_BYTES = 2 * 1024
 private let MIN_EVENT_NAME_SIZE_CHAR = 3
@@ -13,15 +15,25 @@ private let EVENT_NAME_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9_-]+[a-zA-Z0-9])?$".toReg
 private let UPLOAD_TASK_NAME = "re.notifica.tasks.events.Upload"
 
 @MainActor
-internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsModule {
-    internal static let instance = ActitoEventsModuleImpl()
+public final class ActitoEventsComponent {
+    internal static let shared = ActitoEventsComponent()
 
     private let discardableEvents = [String]()
     private var processEventsTaskIdentifier: UIBackgroundTaskIdentifier?
 
+    private nonisolated init() {}
+
     // MARK: - Actito Events
 
-    internal func logNotificationOpen(_ id: String, _ completion: @escaping ActitoCallback<Void>) {
+    /// Logs in Actito when a notification has been opened by the user, with a callback.
+    ///
+    /// This function logs in Actito the opening of a notification, enabling insight into user engagement with
+    /// specific notifications.
+    ///
+    /// - Parameters:
+    ///   - id: The unique identifier of the opened notification.
+    ///   - completion: A callback that will be invoked with the result of the log notification open operation.
+    public func logNotificationOpen(_ id: String, _ completion: @escaping ActitoCallback<Void>) {
         Task {
             do {
                 try await logNotificationOpen(id)
@@ -32,11 +44,26 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
         }
     }
 
-    internal func logNotificationOpen(_ id: String) async throws {
-        try await log("re.notifica.event.notification.Open", data: nil, notificationId: id)
+    /// Logs in Actito when a notification has been opened by the user.
+    ///
+    /// This function logs in Actito the opening of a notification, enabling insight into user engagement with
+    /// specific notifications.
+    ///
+    /// - Parameter id: The unique identifier of the opened notification.
+    public func logNotificationOpen(_ id: String) async throws {
+        try await logInternalEvent("re.notifica.event.notification.Open", data: nil, notificationId: id)
     }
 
-    internal func logCustom(_ event: String, data: ActitoEventData?, _ completion: @escaping ActitoCallback<Void>) {
+    /// Logs in Actito a custom event in the application, with a callback.
+    ///
+    /// This function allows logging, in Actito, of application-specific events, optionally associating structured
+    /// data for more detailed event tracking and analysis.
+    ///
+    /// - Parameters:
+    ///   - event: The name of the custom event to log.
+    ///   - data: Optional structured event data for further details.
+    ///   - completion: A callback that will be invoke with the result of the log custom operation.
+    public func logCustom(_ event: String, data: ActitoEventData? = nil, _ completion: @escaping ActitoCallback<Void>) {
         Task {
             do {
                 try await logCustom(event, data: data)
@@ -47,7 +74,15 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
         }
     }
 
-    internal func logCustom(_ event: String, data: ActitoEventData?) async throws {
+    /// Logs in Actito a custom event in the application.
+    ///
+    /// This function allows logging, in Actito, of application-specific events, optionally associating structured
+    /// data for more detailed event tracking and analysis.
+    ///
+    /// - Parameters:
+    ///   - event: The name of the custom event to log.
+    ///   - data: Optional structured event data for further details.
+    public func logCustom(_ event: String, data: ActitoEventData? = nil) async throws {
         guard Actito.shared.isReady else {
             throw ActitoError.notReady
         }
@@ -74,12 +109,13 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
             }
         }
 
-        try await log("re.notifica.event.custom.\(event)", data: data)
+        try await logInternalEvent("re.notifica.event.custom.\(event)", data: data)
     }
 
     // MARK: - Actito Internal Events
 
-    internal func log(_ event: String, data: ActitoEventData?, sessionId: String?, notificationId: String?) async throws {
+    /// - Warning: For internal use only.
+    public func logInternalEvent(_ event: String, data: ActitoEventData? = nil, sessionId: String? = nil, notificationId: String? = nil) async throws {
         guard let device = Actito.shared.device().currentDevice else {
             throw ActitoError.deviceUnavailable
         }
@@ -99,24 +135,46 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
 
     // MARK: - Internal API
 
+    internal func configure() {
+        // Listen to application did become active events.
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(onApplicationDidBecomeActiveNotification(_:)),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+
+        // Listen to reachability changed events.
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(onReachabilityChanged(_:)),
+            name: .reachabilityChanged,
+            object: nil
+        )
+    }
+
+    internal func launch() {
+        processStoredEvents()
+    }
+
     internal func logApplicationInstall() async throws {
-        try await log("re.notifica.event.application.Install")
+        try await logInternalEvent("re.notifica.event.application.Install")
     }
 
     internal func logApplicationRegistration() async throws {
-        try await log("re.notifica.event.application.Registration")
+        try await logInternalEvent("re.notifica.event.application.Registration")
     }
 
     internal func logApplicationUpgrade() async throws {
-        try await log("re.notifica.event.application.Upgrade")
+        try await logInternalEvent("re.notifica.event.application.Upgrade")
     }
 
     internal func logApplicationOpen(sessionId: String) async throws {
-        try await log("re.notifica.event.application.Open", sessionId: sessionId)
+        try await logInternalEvent("re.notifica.event.application.Open", sessionId: sessionId)
     }
 
     internal func logApplicationClose(sessionId: String, sessionLength: Double) async throws {
-        try await log("re.notifica.event.application.Close", data: ["length": String(sessionLength)], sessionId: sessionId)
+        try await logInternalEvent("re.notifica.event.application.Close", data: ["length": String(sessionLength)], sessionId: sessionId)
     }
 
     private func log(_ payload: ActitoInternals.PushAPI.Payloads.CreateEventPayload) async throws {
@@ -147,7 +205,7 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
         }
     }
 
-    internal func processStoredEvents() {
+    private func processStoredEvents() {
         // Check that Actito is ready to process the events.
         guard Actito.shared.state >= .configured else {
             logger.debug("Actito is not ready yet. Skipping...")
@@ -257,13 +315,13 @@ internal class ActitoEventsModuleImpl: ActitoEventsModule, ActitoInternalEventsM
         }
     }
 
-    @objc internal func onApplicationDidBecomeActiveNotification(_: Notification) {
+    @objc private func onApplicationDidBecomeActiveNotification(_: Notification) {
         guard Actito.shared.isReady else { return }
 
         processStoredEvents()
     }
 
-    @objc internal func onReachabilityChanged(_: Notification) {
+    @objc private func onReachabilityChanged(_: Notification) {
         guard let reachability = Actito.shared.reachability else {
             logger.debug("Reachbility module not configure.")
             return

@@ -72,6 +72,16 @@ public final class Actito {
         return UIPasteboard.general.hasURLs
     }
 
+    /// Returns the device component. Use this to access device-related functionality.
+    public func device() -> ActitoDeviceComponent {
+        ActitoDeviceComponent.shared
+    }
+
+    /// Returns theevents component. Use this to access event-related functionality.
+    public func events() -> ActitoEventsComponent {
+        ActitoEventsComponent.shared
+    }
+
     /// Configures Actito, optionally  with the provided services info and options objects.
     ///
     /// This method configures the SDK with the provided ``ActitoServicesInfo`` and ``ActitoOptions`` objects.
@@ -159,9 +169,14 @@ public final class Actito {
             """)
         }
 
-        logger.debug("Configuring available modules.")
         _ = database
 
+        Actito.shared.device().configure()
+        Actito.shared.session().configure()
+        Actito.shared.events().configure()
+        Actito.shared.crashReporter().configure()
+
+        logger.debug("Configuring available modules.")
         ActitoInternals.Module.allCases.forEach { module in
             if let instance = module.klass?.instance {
                 logger.debug("Configuring module: \(module)")
@@ -246,6 +261,16 @@ public final class Actito {
 
             self.application = application
 
+            do {
+                try await Actito.shared.device().launch()
+            } catch {
+                logger.debug("Failed to launch device component.", error: error)
+                throw error
+            }
+
+            Actito.shared.events().launch()
+            await Actito.shared.crashReporter().launch()
+
             // Loop all possible modules and launch the available ones.
             for module in ActitoInternals.Module.allCases {
                 if let instance = module.klass?.instance {
@@ -274,6 +299,8 @@ public final class Actito {
         }
 
         Task {
+            Actito.shared.device().postLaunch()
+
             // Loop all possible modules and post-launch the available ones.
             for module in ActitoInternals.Module.allCases {
                 if let instance = module.klass?.instance {
@@ -317,6 +344,7 @@ public final class Actito {
         }
 
         logger.info("Un-launching Actito.")
+        await Actito.shared.session().unlaunch()
 
         // Loop all possible modules and un-launch the available ones.
         for module in ActitoInternals.Module.allCases.reversed() {
@@ -755,7 +783,7 @@ public final class Actito {
 
     private func printLaunchSummary(application: ActitoApplication) {
         let enabledServices = application.services.filter(\.value).map(\.key)
-        let enabledModules = ModuleUtils.getEnabledPeerModules()
+        let enabledModules = ModuleUtils.getEnabledModules()
 
         logger.info("Actito is ready to use for application.")
         logger.debug("/==================================================================================/")
@@ -863,5 +891,26 @@ public final class Actito {
         }
 
         return application
+    }
+
+    internal func resetLocalStorage() async throws {
+        for module in ActitoInternals.Module.allCases {
+            if let instance = module.klass?.instance {
+                logger.debug("Resetting module: \(module)")
+
+                do {
+                    try await instance.clearStorage()
+                } catch {
+                    logger.debug("Failed to reset '\(module)'.", error: error)
+                    throw error
+                }
+            }
+        }
+
+        try await database.clear()
+
+        LocalStorage.device = nil
+        LocalStorage.preferredLanguage = nil
+        LocalStorage.preferredRegion = nil
     }
 }
