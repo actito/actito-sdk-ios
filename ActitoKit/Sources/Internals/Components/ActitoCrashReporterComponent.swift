@@ -60,7 +60,7 @@ internal class ActitoCrashReporterComponent {
         }
     }
 
-    internal let uncaughtExceptionHandler: @convention(c) (NSException) -> Void = { exception in
+    private let uncaughtExceptionHandler: @convention(c) (NSException) -> Void = { exception in
         guard let device = Actito.shared.device().currentDevice else {
             logger.warning("Cannot process a crash report before the device becomes available.")
             return
@@ -89,7 +89,7 @@ internal class ActitoCrashReporterComponent {
         )
     }
 
-    internal let signalReceiver: @convention(c) (Int32) -> Void = { signal in
+    private let signalReceiver: @convention(c) (Int32) -> Void = { signal in
         guard let device = Actito.shared.device().currentDevice else {
             logger.warning("Cannot process a crash report before the device becomes available.")
             return

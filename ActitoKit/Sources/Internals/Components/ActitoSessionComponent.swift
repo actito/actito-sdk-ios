@@ -14,7 +14,7 @@ internal class ActitoSessionComponent {
 
     internal private(set) var sessionId: String?
     private var sessionStart: Date?
-    internal var sessionEnd: Date?
+    private var sessionEnd: Date?
 
     private var backgroundTask: DispatchWorkItem?
     private var backgroundTaskIdentifier: UIBackgroundTaskIdentifier = .invalid
