@@ -63,7 +63,7 @@ internal class ActitoSessionComponent {
         await stopSession()
     }
 
-    @objc internal func applicationDidBecomeActive() {
+    @objc private func applicationDidBecomeActive() {
         guard UIApplication.shared.applicationState == .active else {
             logger.debug("The application is not active. Skipping...")
             return
@@ -89,7 +89,7 @@ internal class ActitoSessionComponent {
         }
     }
 
-    @objc internal func applicationWillResignActive() {
+    @objc private func applicationWillResignActive() {
         guard UIApplication.shared.applicationState == .active else {
             logger.debug("The application is not active. Skipping...")
             return
@@ -109,7 +109,7 @@ internal class ActitoSessionComponent {
         }
     }
 
-    internal func startSession() async {
+    private func startSession() async {
         let sessionId = UUID().uuidString.lowercased()
         let sessionStart = Date()
 
@@ -133,7 +133,7 @@ internal class ActitoSessionComponent {
         }
     }
 
-    internal func stopSession() async {
+    private func stopSession() async {
         guard let sessionId = sessionId,
               let sessionStart = sessionStart,
               let sessionEnd = sessionEnd
