@@ -77,7 +77,7 @@ public final class Actito {
         ActitoDeviceComponent.shared
     }
 
-    /// Returns theevents component. Use this to access event-related functionality.
+    /// Returns the events component. Use this to access event-related functionality.
     public func events() -> ActitoEventsComponent {
         ActitoEventsComponent.shared
     }
