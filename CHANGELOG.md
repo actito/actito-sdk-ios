@@ -1,10 +1,9 @@
 # CHANGELOG
 
-## Upcoming release
+## 5.0.0-beta.2
 
-- Simplify core component loading and align naming conventions
 - Add required referrer for embedded YouTube videos
-- Add option to enable reader mode in in-app browser
+- Add an option to enable reader mode in the in-app browser notification UI
 - Fix APNS token registration race condition
 
 ## 5.0.0-beta.1
