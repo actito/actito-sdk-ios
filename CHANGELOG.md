@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 5.0.0-beta.2
+
+- Add required referrer for embedded YouTube videos
+- Add an option to enable reader mode in the in-app browser notification UI
+- Fix APNS token registration race condition
+
 ## 5.0.0-beta.1
 
 - Align with Swift 6 and its Strict Concurrency requirements

@@ -70,7 +70,12 @@ public class ActitoWebViewController: ActitoBaseNotificationViewController {
         }
 
         let html = content.data as! String
-        webView.loadHTMLString(html, baseURL: URL(string: ""))
+
+        if let bundleId = Bundle.main.bundleIdentifier, let referrerUrl = URL(string: "https://\(bundleId)".lowercased()) {
+            webView.loadHTMLString(html, baseURL: referrerUrl)
+        } else {
+            webView.loadHTMLString(html, baseURL: nil)
+        }
 
         DispatchQueue.main.async {
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)

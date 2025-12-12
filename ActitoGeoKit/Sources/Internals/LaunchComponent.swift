@@ -63,6 +63,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
 
     internal func unlaunch() async throws {
         LocalStorage.locationServicesEnabled = false
+        LocalStorage.bluetoothEnabled = false
 
         Actito.shared.geo().stopMonitoringGeofences()
         Actito.shared.geo().stopMonitoringLocationUpdates()

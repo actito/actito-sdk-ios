@@ -9,12 +9,12 @@ import UIKit
 private let SESSION_CLOSE_TASK_NAME = "re.notifica.tasks.session.Close"
 
 @MainActor
-internal class ActitoSessionModule {
-    internal static let instance = ActitoSessionModule()
+internal class ActitoSessionComponent {
+    internal static let instance = ActitoSessionComponent()
 
     internal private(set) var sessionId: String?
     private var sessionStart: Date?
-    internal var sessionEnd: Date?
+    private var sessionEnd: Date?
 
     private var backgroundTask: DispatchWorkItem?
     private var backgroundTaskIdentifier: UIBackgroundTaskIdentifier = .invalid
@@ -28,7 +28,42 @@ internal class ActitoSessionModule {
 
     // MARK: - Internal API
 
-    @objc internal func applicationDidBecomeActive() {
+    internal func configure() {
+        // Listen to 'application did become active'
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+
+        // Listen to 'application will resign active'
+        NotificationCenter.default.upsertObserver(
+            self,
+            selector: #selector(applicationWillResignActive),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+    }
+
+    internal func launch() async throws {
+        if
+            sessionId == nil,
+            Actito.shared.device().currentDevice != nil,
+            UIApplication.shared.applicationState == .active
+        {
+            // Launch is taking place after the application came to the foreground.
+            // Start the application session.
+            await startSession()
+        }
+    }
+
+    internal func unlaunch() async {
+        sessionEnd = Date()
+        await stopSession()
+    }
+
+    @objc private func applicationDidBecomeActive() {
         guard UIApplication.shared.applicationState == .active else {
             logger.debug("The application is not active. Skipping...")
             return
@@ -54,7 +89,7 @@ internal class ActitoSessionModule {
         }
     }
 
-    @objc internal func applicationWillResignActive() {
+    @objc private func applicationWillResignActive() {
         guard UIApplication.shared.applicationState == .active else {
             logger.debug("The application is not active. Skipping...")
             return
@@ -74,7 +109,7 @@ internal class ActitoSessionModule {
         }
     }
 
-    internal func startSession() async {
+    private func startSession() async {
         let sessionId = UUID().uuidString.lowercased()
         let sessionStart = Date()
 
@@ -85,7 +120,7 @@ internal class ActitoSessionModule {
         logger.debug("Session '\(sessionId)' started at \(dateFormatter.string(from: sessionStart)).")
 
         do {
-            try await Actito.shared.eventsImplementation().logApplicationOpen(sessionId: sessionId)
+            try await Actito.shared.events().logApplicationOpen(sessionId: sessionId)
         } catch {
             logger.warning("Failed to process an application session start.", error: error)
         }
@@ -98,7 +133,7 @@ internal class ActitoSessionModule {
         }
     }
 
-    internal func stopSession() async {
+    private func stopSession() async {
         guard let sessionId = sessionId,
               let sessionStart = sessionStart,
               let sessionEnd = sessionEnd
@@ -117,7 +152,7 @@ internal class ActitoSessionModule {
         let length = sessionEnd.timeIntervalSince(sessionStart)
 
         do {
-            try await Actito.shared.eventsImplementation().logApplicationClose(sessionId: sessionId, sessionLength: length)
+            try await Actito.shared.events().logApplicationClose(sessionId: sessionId, sessionLength: length)
         } catch {
             logger.warning("Failed to process an application session stop.", error: error)
         }

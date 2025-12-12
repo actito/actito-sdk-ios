@@ -7,12 +7,60 @@ import Foundation
 import UIKit
 
 @MainActor
-internal class ActitoCrashReporterModule {
-    internal static let instance = ActitoCrashReporterModule()
+internal class ActitoCrashReporterComponent {
+    internal static let instance = ActitoCrashReporterComponent()
 
     // MARK: - Internal API
 
-    internal let uncaughtExceptionHandler: @convention(c) (NSException) -> Void = { exception in
+    internal func configure() {
+        let crashReportsEnabled = Actito.shared.options!.crashReportsEnabled
+
+        guard crashReportsEnabled else {
+            return
+        }
+
+        logger.warning("Crash reporting is deprecated. We recommend using another solution to collect crash analytics.")
+
+        // Catch NSExceptions
+        NSSetUncaughtExceptionHandler(Actito.shared.crashReporter().uncaughtExceptionHandler)
+
+        // Catch Swift exceptions
+        signal(SIGQUIT, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGILL, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGTRAP, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGABRT, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGEMT, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGFPE, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGBUS, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGSEGV, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGSYS, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGPIPE, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGALRM, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGXCPU, Actito.shared.crashReporter().signalReceiver)
+        signal(SIGXFSZ, Actito.shared.crashReporter().signalReceiver)
+    }
+
+    internal func launch() async {
+        guard let event = LocalStorage.crashReport else {
+            logger.debug("No crash report to process.")
+            return
+        }
+
+        do {
+            try await ActitoRequest.Builder()
+                .post("/event", body: event)
+                .response()
+
+            logger.info("Crash report processed.")
+
+            // Clean up the stored crash report
+            LocalStorage.crashReport = nil
+        } catch {
+            logger.error("Failed to process a crash report.", error: error)
+        }
+    }
+
+    private let uncaughtExceptionHandler: @convention(c) (NSException) -> Void = { exception in
         guard let device = Actito.shared.device().currentDevice else {
             logger.warning("Cannot process a crash report before the device becomes available.")
             return
@@ -41,7 +89,7 @@ internal class ActitoCrashReporterModule {
         )
     }
 
-    internal let signalReceiver: @convention(c) (Int32) -> Void = { signal in
+    private let signalReceiver: @convention(c) (Int32) -> Void = { signal in
         guard let device = Actito.shared.device().currentDevice else {
             logger.warning("Cannot process a crash report before the device becomes available.")
             return
