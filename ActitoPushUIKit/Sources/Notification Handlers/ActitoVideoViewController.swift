@@ -206,7 +206,7 @@ public class ActitoVideoViewController: ActitoBaseNotificationViewController {
 }
 
 extension ActitoVideoViewController: WKNavigationDelegate, WKUIDelegate {
-    public func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @MainActor @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
         if
             let url = navigationAction.request.url,
             let scheme = url.scheme,
@@ -216,9 +216,9 @@ extension ActitoVideoViewController: WKNavigationDelegate, WKUIDelegate {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
             }
 
-            decisionHandler(.cancel)
+            return .cancel
         } else {
-            decisionHandler(.allow)
+            return .allow
         }
     }
 
