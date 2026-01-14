@@ -159,7 +159,7 @@ extension ActitoWebViewController: WKNavigationDelegate, WKUIDelegate {
             preferredStyle: .alert
         )
 
-        return await withCheckedContinuation { (continuation: CheckedContinuation<Bool, Never>) in
+        return await withCheckedContinuation { continuation in
             alert.addAction(
                 UIAlertAction(title: ActitoLocalizable.string(resource: .okButton), style: .default) { _ in
                     continuation.resume(returning: true)
@@ -187,7 +187,7 @@ extension ActitoWebViewController: WKNavigationDelegate, WKUIDelegate {
             textField.text = defaultText
         }
 
-        return await withCheckedContinuation { (continuation: CheckedContinuation<String?, Never>) in
+        return await withCheckedContinuation { continuation in
             alert.addAction(
                 UIAlertAction(title: ActitoLocalizable.string(resource: .okButton), style: .default) { _ in
                     if let text = alert.textFields?.first?.text, !text.isEmpty {
