@@ -95,10 +95,9 @@ extension ActitoWebViewController: WKNavigationDelegate, WKUIDelegate {
         }
     }
 
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @MainActor @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
         guard let url = navigationAction.request.url else {
-            decisionHandler(.cancel)
-            return
+            return .cancel
         }
 
         if let scheme = url.scheme, Actito.shared.options!.urlSchemes.contains(scheme) {
@@ -108,10 +107,10 @@ extension ActitoWebViewController: WKNavigationDelegate, WKUIDelegate {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
             }
 
-            decisionHandler(.cancel)
+            return .cancel
         } else if navigationAction.targetFrame == nil {
             webView.load(navigationAction.request)
-            decisionHandler(.allow)
+            return .allow
         } else {
             handleActitoQueryParameters(for: url)
 
@@ -122,81 +121,91 @@ extension ActitoWebViewController: WKNavigationDelegate, WKUIDelegate {
                 urlScheme != "http", urlScheme != "https",
                 Bundle.main.getSupportedUrlSchemes().contains(urlScheme) || UIApplication.shared.canOpenURL(url)
             {
-                UIApplication.shared.open(url, options: [:]) { _ in
-                    decisionHandler(.cancel)
-                }
+                await UIApplication.shared.open(url, options: [:])
 
-                return
+                return .cancel
             }
 
             if hasActitoQueryParameters(in: url) {
-                decisionHandler(.cancel)
+                return .cancel
             } else {
-                decisionHandler(.allow)
+                return .allow
             }
         }
     }
 
-    public func webView(_: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @MainActor @escaping () -> Void) {
-        let alert = UIAlertController(title: Bundle.main.applicationName,
-                                      message: message,
-                                      preferredStyle: .alert)
-
-        alert.addAction(
-            UIAlertAction(title: ActitoLocalizable.string(resource: .okButton), style: .default, handler: { _ in
-                completionHandler()
-            })
+    public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo) async {
+        let alert = UIAlertController(
+            title: Bundle.main.applicationName,
+            message: message,
+            preferredStyle: .alert
         )
 
-        present(alert, animated: true, completion: nil)
+        await withCheckedContinuation { continuation in
+            alert.addAction(
+                UIAlertAction(title: ActitoLocalizable.string(resource: .okButton), style: .default) { _ in
+                    continuation.resume()
+                }
+            )
+
+            present(alert, animated: true, completion: nil)
+        }
     }
 
-    public func webView(_: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame _: WKFrameInfo, completionHandler: @MainActor @escaping (Bool) -> Void) {
-        let alert = UIAlertController(title: Bundle.main.applicationName,
-                                      message: message,
-                                      preferredStyle: .alert)
-
-        alert.addAction(
-            UIAlertAction(title: ActitoLocalizable.string(resource: .okButton), style: .default, handler: { _ in
-                completionHandler(true)
-            })
+    public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo) async -> Bool {
+        let alert = UIAlertController(
+            title: Bundle.main.applicationName,
+            message: message,
+            preferredStyle: .alert
         )
 
-        alert.addAction(
-            UIAlertAction(title: ActitoLocalizable.string(resource: .cancelButton), style: .cancel, handler: { _ in
-                completionHandler(false)
-            })
-        )
+        return await withCheckedContinuation { continuation in
+            alert.addAction(
+                UIAlertAction(title: ActitoLocalizable.string(resource: .okButton), style: .default) { _ in
+                    continuation.resume(returning: true)
+                }
+            )
 
-        present(alert, animated: true, completion: nil)
+            alert.addAction(
+                UIAlertAction(title: ActitoLocalizable.string(resource: .cancelButton), style: .cancel) { _ in
+                    continuation.resume(returning: false)
+                }
+            )
+
+            present(alert, animated: true, completion: nil)
+        }
     }
 
-    public func webView(_: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame _: WKFrameInfo, completionHandler: @MainActor @escaping (String?) -> Void) {
-        let alert = UIAlertController(title: Bundle.main.applicationName,
-                                      message: prompt,
-                                      preferredStyle: .alert)
+    public func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo) async -> String? {
+        let alert = UIAlertController(
+            title: Bundle.main.applicationName,
+            message: prompt,
+            preferredStyle: .alert
+        )
 
         alert.addTextField { textField in
             textField.text = defaultText
         }
 
-        alert.addAction(
-            UIAlertAction(title: ActitoLocalizable.string(resource: .okButton), style: .default, handler: { _ in
-                if let text = alert.textFields?.first?.text, !text.isEmpty {
-                    completionHandler(text)
-                } else {
-                    completionHandler(defaultText)
+        return await withCheckedContinuation { continuation in
+            alert.addAction(
+                UIAlertAction(title: ActitoLocalizable.string(resource: .okButton), style: .default) { _ in
+                    if let text = alert.textFields?.first?.text, !text.isEmpty {
+                        continuation.resume(returning: text)
+                    } else {
+                        continuation.resume(returning: defaultText)
+                    }
                 }
-            })
-        )
+            )
 
-        alert.addAction(
-            UIAlertAction(title: ActitoLocalizable.string(resource: .cancelButton), style: .cancel, handler: { _ in
-                completionHandler(nil)
-            })
-        )
+            alert.addAction(
+                UIAlertAction(title: ActitoLocalizable.string(resource: .cancelButton), style: .cancel) { _ in
+                    continuation.resume(returning: nil)
+                }
+            )
 
-        present(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
 
