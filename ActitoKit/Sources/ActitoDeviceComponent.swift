@@ -12,15 +12,13 @@ private let TAG_REGEX = "^[a-zA-Z0-9]([a-zA-Z0-9_-]+[a-zA-Z0-9])?$".toRegex()
 
 @MainActor
 public final class ActitoDeviceComponent {
-    internal static let shared = ActitoDeviceComponent()
-
     private var storedDevice: StoredDevice? {
         get { LocalStorage.device }
         set { LocalStorage.device = newValue }
     }
     private var hasPendingDeviceRegistrationEvent: Bool?
 
-    private nonisolated init() {}
+    internal nonisolated init() {}
 
     // MARK: - Public API
 
