@@ -17,22 +17,12 @@ extension ActitoAnyValue: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
 
-        if container.decodeNil() {
-            self.wrappedValue = NSNull()
-            return
-        }
-
         let boxed = try container.decode(ActitoAnyDecodable.self)
         self.wrappedValue = boxed.value
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-
-        if wrappedValue is NSNull {
-            try container.encodeNil()
-            return
-        }
 
         try container.encode(ActitoAnyEncodable(wrappedValue))
     }
