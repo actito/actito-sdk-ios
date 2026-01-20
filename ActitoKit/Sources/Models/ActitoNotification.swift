@@ -51,7 +51,7 @@ public struct ActitoNotification: Codable, Equatable, Sendable {
 
     public struct Content: Codable, Equatable, Sendable {
         public let type: String
-        @ActitoExtraEquatable public private(set) var data: Any
+        @ActitoAnyValue public private(set) var data: Any
 
         public init(type: String, data: Any) {
             self.type = type
@@ -143,29 +143,6 @@ extension ActitoNotification.Content {
     public static func fromJson(json: [String: Any]) throws -> ActitoNotification.Content {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
         return try JSONDecoder.actito.decode(ActitoNotification.Content.self, from: data)
-    }
-}
-
-// Codable: ActitoNotification.Content
-extension ActitoNotification.Content {
-    internal enum CodingKeys: String, CodingKey {
-        case type
-        case data
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        type = try container.decode(String.self, forKey: .type)
-
-        let decoded = try container.decode(ActitoAnyCodable.self, forKey: .data)
-        data = decoded.value
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        try container.encode(type, forKey: .type)
-        try container.encode(ActitoAnyCodable(data), forKey: .data)
     }
 }
 
