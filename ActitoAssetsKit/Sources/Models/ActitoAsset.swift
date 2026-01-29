@@ -31,7 +31,7 @@ public struct ActitoAsset: Codable, Equatable, Sendable {
     /// Optional metadata associated with the asset.
     public let metaData: MetaData?
 
-    /// Additional unstructured fields not explicitly modeled.
+    /// Collection of key-value pairs used to add extra information to the asset.
     @ActitoExtraDictionary public private(set) var extra: [String: Any]
 
     /// Constructor for ``ActitoAsset``.

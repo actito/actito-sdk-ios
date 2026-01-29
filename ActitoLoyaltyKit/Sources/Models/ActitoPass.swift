@@ -45,7 +45,7 @@ public struct ActitoPass: Codable, Equatable, Sendable {
     /// Token associated with the pass for secure validation.
     public let token: String
 
-    /// Additional custom data associated with the pass.
+    /// Collection of key-value pairs used to add extra information to the pass.
     @ActitoExtraDictionary public private(set) var data: [String: Any]
 
     /// Timestamp indicating when the pass was created or issued.

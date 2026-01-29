@@ -4,7 +4,7 @@
 
 import ActitoUtilitiesKit
 
-/// Represents an Actito application configuration.
+/// Represents an Actito application.
 ///
 /// An ``ActitoApplication`` describes the capabilities, services, and configuration
 /// of an application as defined in Actito. It includes enabled services, region
@@ -97,7 +97,7 @@ public struct ActitoApplication: Codable, Equatable, Sendable {
         case storage
     }
 
-    /// Configuration related to the Actito inbox feature.
+    /// Configuration related to inbox-based features.
     public struct InboxConfig: Codable, Equatable, Sendable {
 
         /// Whether the inbox feature is enabled for the application.
@@ -106,7 +106,7 @@ public struct ActitoApplication: Codable, Equatable, Sendable {
         /// Whether the user inbox feature is enabled for the application.
         public let useUserInbox: Bool
 
-        /// Whether unread inbox messages should automatically update the application badge count.
+        /// Whether inbox messages should automatically update the application badge count.
         public let autoBadge: Bool
 
         /// Constructor for ``InboxConfig``.

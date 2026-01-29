@@ -6,7 +6,7 @@ import ActitoUtilitiesKit
 
 /// Defines a do-not-disturb time window for an Actito device.
 ///
-/// During this period, notifications or communications may be suppressed
+/// During this period, notifications or communications may be suppressed.
 public struct ActitoDoNotDisturb: Codable, Equatable, Sendable {
     /// Start time of the do-not-disturb period.
     public let start: ActitoTime

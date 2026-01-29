@@ -46,7 +46,7 @@ public struct ActitoNotification: Codable, Equatable, Sendable {
     /// List of attachments included with the notification.
     public let attachments: [Attachment]
 
-    /// Additional unstructured fields not explicitly modeled.
+    /// Collection of key-value pairs used to add extra information to the notification.
     @ActitoExtraDictionary public private(set) var extra: [String: Any]
 
     /// Optional identifier of the target content related to the notification.

@@ -16,7 +16,7 @@ public struct ActitoSystemNotification: Codable, Equatable, Sendable {
     /// Type of the system notification.
     public let type: String
 
-    /// Additional unstructured fields not explicitly modeled.
+    /// Collection of key-value pairs used to add extra information to the notification.
     @ActitoExtraDictionary public private(set) var extra: [String: Any]
 
     /// Constructor for ``ActitoSystemNotification``.
