@@ -119,21 +119,21 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
 }
 
 extension ActitoWebPassViewController: WKNavigationDelegate, WKUIDelegate {
-    public func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @MainActor @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
         if navigationAction.targetFrame == nil, let url = navigationAction.request.url {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            decisionHandler(.cancel)
+            return .cancel
         } else {
-            decisionHandler(.allow)
+            return .allow
         }
     }
 
-    public func webView(_: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @MainActor @escaping (WKNavigationResponsePolicy) -> Void) {
+    public func webView(_: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse) async -> WKNavigationResponsePolicy {
         if navigationResponse.response.mimeType == "application/vnd.apple.pkpass", let url = navigationResponse.response.url {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            decisionHandler(.cancel)
+            return .cancel
         } else {
-            decisionHandler(.allow)
+            return .allow
         }
     }
 

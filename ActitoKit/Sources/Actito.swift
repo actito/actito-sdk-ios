@@ -22,6 +22,10 @@ public final class Actito {
 
     internal private(set) var reachability: ActitoReachability?
 
+    // Components singleton
+    private lazy var deviceComponent = ActitoDeviceComponent()
+    private lazy var eventsComponent = ActitoEventsComponent()
+
     // Configuration variables
     public private(set) var servicesInfo: ActitoServicesInfo?
     public private(set) var options: ActitoOptions?
@@ -74,12 +78,12 @@ public final class Actito {
 
     /// Returns the device component. Use this to access device-related functionality.
     public func device() -> ActitoDeviceComponent {
-        ActitoDeviceComponent.shared
+        deviceComponent
     }
 
     /// Returns the events component. Use this to access event-related functionality.
     public func events() -> ActitoEventsComponent {
-        ActitoEventsComponent.shared
+        eventsComponent
     }
 
     /// Configures Actito, optionally  with the provided services info and options objects.
