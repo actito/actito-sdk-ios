@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name               = "Actito"
-  spec.version            = "5.0.0-beta.2"
+  spec.version            = "5.0.0"
   spec.summary            = "Actito Library for iOS apps"
   spec.description        = <<-DESC
 The Actito iOS Library implements the power of smart notifications, location services, contextual marketing and powerful loyalty solutions provided by the Actito platform in iOS applications.
