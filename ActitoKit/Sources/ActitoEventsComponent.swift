@@ -210,6 +210,11 @@ public final class ActitoEventsComponent {
             return
         }
 
+        guard Actito.shared.reachability?.connection != .unavailable else {
+            logger.debug("No network. Skipping event processing.")
+            return
+        }
+
         // Ensure there is no running task.
         guard processEventsTaskIdentifier == nil else {
             logger.debug("There's an upload task running. Skipping...")
@@ -263,7 +268,11 @@ public final class ActitoEventsComponent {
             }
 
             logger.debug("\(eventsRemaining) events remaining. Processing...")
-            await process(event)
+            let shouldContinue = await process(event)
+            if !shouldContinue {
+                logger.debug("Stopping processing due to recoverable failure.")
+                return
+            }
 
             eventsRemaining -= 1
         }
@@ -271,7 +280,7 @@ public final class ActitoEventsComponent {
         logger.debug("Finished processing all the events.")
     }
 
-    private func process(_ localEvent: LocalEvent) async {
+    private func process(_ localEvent: LocalEvent) async -> Bool {
         let createdAt = Date(timeIntervalSince1970: Double(localEvent.timestamp / 1000))
         let expiresAt = createdAt.addingTimeInterval(Double(localEvent.ttl))
         let now = Date()
@@ -279,7 +288,7 @@ public final class ActitoEventsComponent {
         if now > expiresAt {
             logger.debug("Event expired. Removing...")
             await Actito.shared.database.remove(localEvent)
-            return
+            return true
         }
 
         do {
@@ -291,6 +300,8 @@ public final class ActitoEventsComponent {
 
             logger.debug("Event processed. Removing from storage...")
             await Actito.shared.database.remove(localEvent)
+
+            return true
         } catch {
             if let error = error as? ActitoNetworkError, error.recoverable {
                 logger.debug("Failed to process event.")
@@ -306,9 +317,13 @@ public final class ActitoEventsComponent {
                     logger.debug("Event was retried too many times. Removing...")
                     await Actito.shared.database.remove(updatedLocalEvent)
                 }
+
+                return false
             } else {
                 logger.debug("Failed to process event due to an unrecoverable error. Discarding it...")
                 await Actito.shared.database.remove(localEvent)
+
+                return true
             }
         }
     }
@@ -354,6 +369,10 @@ private extension ActitoNetworkError {
                 .inaccessible,
                 .urlError:
             return true
+
+        case let .validationError(response: response, data: _, validStatusCodes: _):
+            return (500...599).contains(response.statusCode)
+
         default:
             return false
         }
