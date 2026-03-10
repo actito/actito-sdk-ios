@@ -17,6 +17,7 @@ disabled_rules:
   - unused_optional_binding
   - non_optional_string_data_conversion
   - opening_brace
+  - inclusive_language
 
 opt_in_rules:
   - explicit_top_level_acl
