@@ -20,7 +20,7 @@ internal struct ActitoTestRestApiClient {
     }
 
     private func getAuthentication() -> (key: String, secret: String) {
-        guard let path = Bundle(identifier: "com.actito.CoreTests")?.path(forResource: "TestActitoServices", ofType: "plist") else {
+        guard let path = Bundle(identifier: "com.actito.ActitoTestSupportKit")?.path(forResource: "TestActitoServices", ofType: "plist") else {
             fatalError("TestActitoServices.plist is missing.")
         }
 

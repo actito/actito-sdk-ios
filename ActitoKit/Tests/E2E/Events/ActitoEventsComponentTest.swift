@@ -3,10 +3,11 @@
 //
 
 @testable import ActitoKit
+import ActitoTestSupportKit
 import Testing
 
-@Suite(.serialized, ActitoConfigurationTrait(workflow: .launch, mode: .perSuite))
 @MainActor
+@Suite(.serialized, ActitoConfigurationTrait(workflow: .launch, mode: .perSuite))
 internal struct ActitoEventsComponentTest {
 
     @Test("events test invalid formats")

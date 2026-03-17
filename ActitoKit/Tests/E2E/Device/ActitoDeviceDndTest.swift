@@ -3,6 +3,7 @@
 //
 
 @testable import ActitoKit
+import ActitoTestSupportKit
 import Testing
 
 @MainActor

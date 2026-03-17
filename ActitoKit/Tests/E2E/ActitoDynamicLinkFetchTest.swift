@@ -3,6 +3,7 @@
 //
 
 @testable import ActitoKit
+import ActitoTestSupportKit
 import Testing
 
 private let TEST_DYNAMIC_LINK = "https://actito-sample-app-dev.test.ntc.re/0z4juv8466"

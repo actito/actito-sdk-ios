@@ -2,31 +2,36 @@
 // Copyright (c) 2026 Actito. All rights reserved.
 //
 
-@testable import ActitoKit
+import ActitoKit
 import Testing
 
 @MainActor
-internal struct ActitoConfigurationTrait: SuiteTrait, TestTrait, TestScoping {
-    internal enum Workflow {
+public struct ActitoConfigurationTrait: SuiteTrait, TestTrait, TestScoping {
+    public enum Workflow: Sendable{
         case configurationOnly
         case launch
     }
 
-    internal enum ExecutionMode {
+    public enum ExecutionMode: Sendable{
         case perSuite
         case perTest
     }
 
-    internal let workflow: Workflow
-    internal let mode: ExecutionMode
+    nonisolated public let workflow: Workflow
+    nonisolated public let mode: ExecutionMode
 
-    nonisolated internal var isRecursive: Bool {
+    nonisolated public var isRecursive: Bool {
         mode == .perTest
     }
 
     private static var isConfigured = false
 
-    internal func provideScope(for test: Test, testCase: Test.Case?, performing function: @Sendable () async throws -> Void) async throws {
+    public init(workflow: Workflow, mode: ExecutionMode) {
+        self.workflow = workflow
+        self.mode = mode
+    }
+
+    public func provideScope(for test: Test, testCase: Test.Case?, performing function: @concurrent @Sendable () async throws -> Void) async throws {
         try await beforeSuite()
 
         try await function()
@@ -56,7 +61,7 @@ internal struct ActitoConfigurationTrait: SuiteTrait, TestTrait, TestScoping {
     }
 
     private func loadActitoServices() -> ActitoServicesInfo {
-        guard let path = Bundle(identifier: "com.actito.CoreTests")?.path(forResource: "TestActitoServices", ofType: "plist") else {
+        guard let path = Bundle(identifier: "com.actito.ActitoTestSupportKit")?.path(forResource: "TestActitoServices", ofType: "plist") else {
             fatalError("TestActitoServices.plist is missing.")
         }
 

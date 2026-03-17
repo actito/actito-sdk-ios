@@ -19,8 +19,6 @@
 		1AB27BAF2E740609004F93B9 /* ActitoServicesInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */; };
 		1AC273C12F5195830051D79D /* ActitoConfigureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273C02F51957A0051D79D /* ActitoConfigureTest.swift */; };
 		1AC273C42F572E360051D79D /* ActitoNotificationFetchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273C32F572E2D0051D79D /* ActitoNotificationFetchTest.swift */; };
-		1AC273C72F5730C50051D79D /* ActitoConfigurationTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273C62F5730A80051D79D /* ActitoConfigurationTrait.swift */; };
-		1AC273CB2F5745E40051D79D /* TestActitoServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AC273CA2F5745E40051D79D /* TestActitoServices.plist */; };
 		1AC273CF2F582E300051D79D /* ActitoDynamicLinkFetchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273CE2F582E2A0051D79D /* ActitoDynamicLinkFetchTest.swift */; };
 		1AC273D32F597DD10051D79D /* ActitoTestRestApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273D22F597DC70051D79D /* ActitoTestRestApiClient.swift */; };
 		1AC273D62F5980220051D79D /* ActitoDeviceDndTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273D52F5980160051D79D /* ActitoDeviceDndTest.swift */; };
@@ -30,6 +28,7 @@
 		1AC273DE2F5F17280051D79D /* ActitoDeviceUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273DD2F5F17210051D79D /* ActitoDeviceUserTest.swift */; };
 		1AC273E12F5F1DD30051D79D /* ActitoEventsComponentTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273E02F5F1DCB0051D79D /* ActitoEventsComponentTest.swift */; };
 		1AC273EB2F60422F0051D79D /* ActitoDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273EA2F6042290051D79D /* ActitoDelegateTest.swift */; };
+		1AC2750F2F6815DA0051D79D /* ActitoTestSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC2750E2F6815DA0051D79D /* ActitoTestSupportKit.framework */; };
 		1AD52A222DE75AF7006C7D88 /* LocalEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */; };
 		1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */; };
 		1AD52A262DE75BAC006C7D88 /* CreateEventPayload+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */; };
@@ -105,8 +104,6 @@
 		1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoServicesInfoTest.swift; sourceTree = "<group>"; };
 		1AC273C02F51957A0051D79D /* ActitoConfigureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoConfigureTest.swift; sourceTree = "<group>"; };
 		1AC273C32F572E2D0051D79D /* ActitoNotificationFetchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoNotificationFetchTest.swift; sourceTree = "<group>"; };
-		1AC273C62F5730A80051D79D /* ActitoConfigurationTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoConfigurationTrait.swift; sourceTree = "<group>"; };
-		1AC273CA2F5745E40051D79D /* TestActitoServices.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestActitoServices.plist; sourceTree = "<group>"; };
 		1AC273CE2F582E2A0051D79D /* ActitoDynamicLinkFetchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDynamicLinkFetchTest.swift; sourceTree = "<group>"; };
 		1AC273D22F597DC70051D79D /* ActitoTestRestApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoTestRestApiClient.swift; sourceTree = "<group>"; };
 		1AC273D52F5980160051D79D /* ActitoDeviceDndTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDeviceDndTest.swift; sourceTree = "<group>"; };
@@ -116,6 +113,7 @@
 		1AC273DD2F5F17210051D79D /* ActitoDeviceUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDeviceUserTest.swift; sourceTree = "<group>"; };
 		1AC273E02F5F1DCB0051D79D /* ActitoEventsComponentTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoEventsComponentTest.swift; sourceTree = "<group>"; };
 		1AC273EA2F6042290051D79D /* ActitoDelegateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDelegateTest.swift; sourceTree = "<group>"; };
+		1AC2750E2F6815DA0051D79D /* ActitoTestSupportKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoTestSupportKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEvent.swift; sourceTree = "<group>"; };
 		1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalEvent+CoreData.swift"; sourceTree = "<group>"; };
 		1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateEventPayload+Local.swift"; sourceTree = "<group>"; };
@@ -186,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F258DD5624BC4DBC006F9ABD /* ActitoKit.framework in Frameworks */,
+				1AC2750F2F6815DA0051D79D /* ActitoTestSupportKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,14 +201,6 @@
 				1AC273C32F572E2D0051D79D /* ActitoNotificationFetchTest.swift */,
 			);
 			path = E2E;
-			sourceTree = "<group>";
-		};
-		1AC273C52F57308D0051D79D /* TestTraits */ = {
-			isa = PBXGroup;
-			children = (
-				1AC273C62F5730A80051D79D /* ActitoConfigurationTrait.swift */,
-			);
-			path = TestTraits;
 			sourceTree = "<group>";
 		};
 		1AC273D02F597DB30051D79D /* Common */ = {
@@ -386,11 +377,9 @@
 				1AC273E92F60420A0051D79D /* Events */,
 				1AC273E32F6026C70051D79D /* Internal */,
 				1AC273E22F60269C0051D79D /* Models */,
-				1AC273C52F57308D0051D79D /* TestTraits */,
 				1AC273C02F51957A0051D79D /* ActitoConfigureTest.swift */,
 				1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */,
 				F258DD5C24BC4DBC006F9ABD /* Info.plist */,
-				1AC273CA2F5745E40051D79D /* TestActitoServices.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -414,6 +403,7 @@
 		F289F5B325B860B60091AB97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1AC2750E2F6815DA0051D79D /* ActitoTestSupportKit.framework */,
 				E568CEBF2DB6B05C00EAF72F /* ActitoUtilitiesKit.framework */,
 			);
 			name = Frameworks;
@@ -617,7 +607,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AC273CB2F5745E40051D79D /* TestActitoServices.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,7 +672,6 @@
 				1A3274142C5A18C8002B78BA /* ActitoDeviceTest.swift in Sources */,
 				1AC273D32F597DD10051D79D /* ActitoTestRestApiClient.swift in Sources */,
 				1AC273DA2F5B38A70051D79D /* ActitoDeviceLanguageTest.swift in Sources */,
-				1AC273C72F5730C50051D79D /* ActitoConfigurationTrait.swift in Sources */,
 				1AC273D82F5ADB230051D79D /* ActitoDeviceTagsTest.swift in Sources */,
 				1A3274122C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift in Sources */,
 				1AC273D62F5980220051D79D /* ActitoDeviceDndTest.swift in Sources */,

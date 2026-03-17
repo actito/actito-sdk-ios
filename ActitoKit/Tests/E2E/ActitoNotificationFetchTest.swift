@@ -3,8 +3,10 @@
 //
 
 @testable import ActitoKit
+import ActitoTestSupportKit
 import Testing
 
+@MainActor
 @Suite(ActitoConfigurationTrait(workflow: .launch, mode: .perSuite))
 internal struct ActitoNotificationFetchTest {
 
