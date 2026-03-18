@@ -7,12 +7,12 @@ import Testing
 
 @MainActor
 public struct ActitoConfigurationTrait: SuiteTrait, TestTrait, TestScoping {
-    public enum Workflow: Sendable{
+    public enum Workflow: Sendable {
         case configurationOnly
         case launch
     }
 
-    public enum ExecutionMode: Sendable{
+    public enum ExecutionMode: Sendable {
         case perSuite
         case perTest
     }
@@ -31,7 +31,11 @@ public struct ActitoConfigurationTrait: SuiteTrait, TestTrait, TestScoping {
         self.mode = mode
     }
 
-    public func provideScope(for test: Test, testCase: Test.Case?, performing function: @concurrent @Sendable () async throws -> Void) async throws {
+    public func provideScope(
+        for test: Test,
+        testCase: Test.Case?,
+        performing function: @concurrent @Sendable () async throws -> Void
+    ) async throws {
         try await beforeSuite()
 
         try await function()
@@ -61,7 +65,10 @@ public struct ActitoConfigurationTrait: SuiteTrait, TestTrait, TestScoping {
     }
 
     private func loadActitoServices() -> ActitoServicesInfo {
-        guard let path = Bundle(identifier: "com.actito.ActitoTestSupportKit")?.path(forResource: "TestActitoServices", ofType: "plist") else {
+        guard
+            let path = Bundle(identifier: "com.actito.ActitoTestSupportKit")?
+                .path(forResource: "TestActitoServices", ofType: "plist")
+        else {
             fatalError("TestActitoServices.plist is missing.")
         }
 
