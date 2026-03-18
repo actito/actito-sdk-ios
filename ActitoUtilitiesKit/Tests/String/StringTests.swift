@@ -7,14 +7,6 @@ import Testing
 
 internal struct StringTests {
     @Test
-    internal func testToRegexValidPattern() {
-        let pattern = "^[a-zA-Z]+$"
-        let regex = pattern.toRegex()
-
-        #expect(regex != nil)
-    }
-
-    @Test
     internal func testMatchesWithMatchingPattern() {
         let string = "abc"
         let regex = "^[a-z]+$".toRegex()
