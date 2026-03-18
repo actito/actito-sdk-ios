@@ -45,6 +45,7 @@
 		1A52DEE62CABE23F00B5F56C /* Bundle+PlistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DEE52CABE23600B5F56C /* Bundle+PlistTests.swift */; };
 		1AC273B92F1780BA0051D79D /* ActitoAnyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273B82F1780B40051D79D /* ActitoAnyValue.swift */; };
 		1AC273BD2F17858D0051D79D /* AnyValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273BC2F1785880051D79D /* AnyValueTests.swift */; };
+		1AC275242F6A9BEA0051D79D /* ActitoNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC275232F6A9BE40051D79D /* ActitoNotificationCenter.swift */; };
 		1AD52A152DE749D1006C7D88 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A142DE749BD006C7D88 /* Arrays.swift */; };
 		1AD52A182DE74A13006C7D88 /* InsertedSortedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A172DE74A0D006C7D88 /* InsertedSortedTests.swift */; };
 		1AE8F7EC2D76213900462CAB /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8F7EB2D76212A00462CAB /* NotificationCenter.swift */; };
@@ -107,6 +108,7 @@
 		1A52DEE52CABE23600B5F56C /* Bundle+PlistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+PlistTests.swift"; sourceTree = "<group>"; };
 		1AC273B82F1780B40051D79D /* ActitoAnyValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoAnyValue.swift; sourceTree = "<group>"; };
 		1AC273BC2F1785880051D79D /* AnyValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyValueTests.swift; sourceTree = "<group>"; };
+		1AC275232F6A9BE40051D79D /* ActitoNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoNotificationCenter.swift; sourceTree = "<group>"; };
 		1AD52A142DE749BD006C7D88 /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 		1AD52A172DE74A0D006C7D88 /* InsertedSortedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertedSortedTests.swift; sourceTree = "<group>"; };
 		1AE8F7EB2D76212A00462CAB /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 		1AE8F7EA2D761FF600462CAB /* NotificationCenter */ = {
 			isa = PBXGroup;
 			children = (
+				1AC275232F6A9BE40051D79D /* ActitoNotificationCenter.swift */,
 				1AE8F7EB2D76212A00462CAB /* NotificationCenter.swift */,
 			);
 			path = NotificationCenter;
@@ -615,6 +618,7 @@
 			files = (
 				F27621E12E96796F006F752C /* ActitoExtraDictionary.swift in Sources */,
 				1A52DE902CA468D200B5F56C /* Bundle+Plist.swift in Sources */,
+				1AC275242F6A9BEA0051D79D /* ActitoNotificationCenter.swift in Sources */,
 				1AD52A152DE749D1006C7D88 /* Arrays.swift in Sources */,
 				1A52DED92CAB042500B5F56C /* JSONCoders.swift in Sources */,
 				1A52DE522CA160BF00B5F56C /* UIColor+Hex.swift in Sources */,
@@ -836,7 +840,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.0.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito.utilities;
@@ -887,7 +891,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.0.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito.utilities;
@@ -1032,7 +1036,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.0.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito.utilities;
@@ -1164,7 +1168,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.0.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito.utilities;
@@ -1289,7 +1293,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.0.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito.utilities;
@@ -1413,7 +1417,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.0.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito.utilities;

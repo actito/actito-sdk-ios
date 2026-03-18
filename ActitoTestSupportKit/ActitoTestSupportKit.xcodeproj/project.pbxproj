@@ -12,6 +12,8 @@
 		1AC2750B2F680BF90051D79D /* Testing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC2750A2F680BF90051D79D /* Testing.framework */; platformFilter = ios; };
 		1AC275192F686B890051D79D /* TestActitoServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1AC275182F686B200051D79D /* TestActitoServices.plist */; };
 		1AC2751B2F69AF510051D79D /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC2751A2F69AF510051D79D /* ActitoKit.framework */; };
+		1AC275212F69C36C0051D79D /* MockNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC275202F69C3660051D79D /* MockNotificationCenter.swift */; };
+		1AC275262F6A9C820051D79D /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC275252F6A9C820051D79D /* ActitoUtilitiesKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 		1AC2750A2F680BF90051D79D /* Testing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Testing.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/Testing.framework; sourceTree = DEVELOPER_DIR; };
 		1AC275182F686B200051D79D /* TestActitoServices.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestActitoServices.plist; sourceTree = "<group>"; };
 		1AC2751A2F69AF510051D79D /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AC275202F69C3660051D79D /* MockNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationCenter.swift; sourceTree = "<group>"; };
+		1AC275252F6A9C820051D79D /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AC275262F6A9C820051D79D /* ActitoUtilitiesKit.framework in Frameworks */,
 				1AC2750B2F680BF90051D79D /* Testing.framework in Frameworks */,
 				1AC2751B2F69AF510051D79D /* ActitoKit.framework in Frameworks */,
 			);
@@ -84,6 +89,7 @@
 		1AC275092F680BF90051D79D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1AC275252F6A9C820051D79D /* ActitoUtilitiesKit.framework */,
 				1AC2751A2F69AF510051D79D /* ActitoKit.framework */,
 				1AC2750A2F680BF90051D79D /* Testing.framework */,
 			);
@@ -93,6 +99,7 @@
 		1AC275122F681B260051D79D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1AC275202F69C3660051D79D /* MockNotificationCenter.swift */,
 				1AC275072F680A2F0051D79D /* TestTraits */,
 			);
 			path = Sources;
@@ -213,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AC275082F680A2F0051D79D /* ActitoConfigurationTrait.swift in Sources */,
+				1AC275212F69C36C0051D79D /* MockNotificationCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
