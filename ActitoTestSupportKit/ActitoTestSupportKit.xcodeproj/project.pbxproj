@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AAD8B0C2F6AB10D00008299 /* ActitoTests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD8B0B2F6AB10D00008299 /* ActitoTests.xctestplan */; };
 		1AC274F42F6809FB0051D79D /* ActitoTestSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC274EA2F6809FB0051D79D /* ActitoTestSupportKit.framework */; };
 		1AC275082F680A2F0051D79D /* ActitoConfigurationTrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC275062F680A2F0051D79D /* ActitoConfigurationTrait.swift */; };
 		1AC2750B2F680BF90051D79D /* Testing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC2750A2F680BF90051D79D /* Testing.framework */; platformFilter = ios; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1AAD8B0B2F6AB10D00008299 /* ActitoTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ActitoTests.xctestplan; sourceTree = "<group>"; };
 		1AC274EA2F6809FB0051D79D /* ActitoTestSupportKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActitoTestSupportKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC274F32F6809FB0051D79D /* ActitoTestSupportKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActitoTestSupportKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC275062F680A2F0051D79D /* ActitoConfigurationTrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoConfigurationTrait.swift; sourceTree = "<group>"; };
@@ -62,9 +64,10 @@
 		1AC274E02F6809FB0051D79D = {
 			isa = PBXGroup;
 			children = (
-				1AC275182F686B200051D79D /* TestActitoServices.plist */,
 				1AC275122F681B260051D79D /* Sources */,
 				1AC275092F680BF90051D79D /* Frameworks */,
+				1AAD8B0B2F6AB10D00008299 /* ActitoTests.xctestplan */,
+				1AC275182F686B200051D79D /* TestActitoServices.plist */,
 				1AC274EB2F6809FB0051D79D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AC275192F686B890051D79D /* TestActitoServices.plist in Resources */,
+				1AAD8B0C2F6AB10D00008299 /* ActitoTests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +306,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -362,6 +367,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -373,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3J9DDFVP4;
@@ -383,6 +390,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3J9DDFVP4;
@@ -419,6 +428,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

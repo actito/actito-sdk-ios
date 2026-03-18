@@ -1,0 +1,35 @@
+#!/bin/sh
+
+WORKSPACE="Actito.xcworkspace"
+SCHEME="TestRunner"
+TEST_PLAN="ActitoTests"
+
+echo "Finding latest iPhone simulator..."
+
+DESTINATION=$(xcodebuild -showdestinations -scheme "$SCHEME" \
+  | grep 'platform:iOS Simulator' \
+  | grep 'iPhone' \
+  | sort -t ':' -k4 -Vr \
+  | head -n 1 \
+  | sed -n 's/.*id:\([A-F0-9-]*\).*/\1/p')
+
+echo "Using destination: $DESTINATION"
+
+echo "Running tests with test plan: $TEST_PLAN"
+
+xcodebuild clean test \
+  -workspace "$WORKSPACE" \
+  -scheme "$SCHEME" \
+  -testPlan "$TEST_PLAN" \
+  -destination "platform=iOS Simulator,id=$DESTINATION,arch=arm64" \
+  -quiet
+
+RESULT=$?
+
+if [ $RESULT -ne 0 ]; then
+  echo "Tests failed"
+  exit 1
+fi
+
+echo "Tests passed"
+exit 0
