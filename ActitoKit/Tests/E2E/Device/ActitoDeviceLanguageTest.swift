@@ -15,7 +15,7 @@ internal struct ActitoDeviceLanguageTest {
     @Test("ensure no preferred language set initially")
     internal func ensureNoPreferredLanguageSetInitially() async throws {
         let localPreferredLanguage = Actito.shared.device().preferredLanguage
-        let remoteLanguage = try await getRemoteLanguage()
+        let remoteLanguage = try await ActitoTestRestApiClient.getRemoteDevice().language
 
         #expect(localPreferredLanguage == nil)
         #expect(remoteLanguage == Locale.current.deviceLanguage())
@@ -26,7 +26,7 @@ internal struct ActitoDeviceLanguageTest {
         try await Actito.shared.device().updatePreferredLanguage("\(samplePreferredLanguage)-\(sampleLanguageRegion)")
 
         let localPreferredLanguage = Actito.shared.device().preferredLanguage
-        let remoteLanguage = try await getRemoteLanguage()
+        let remoteLanguage = try await ActitoTestRestApiClient.getRemoteDevice().language
 
         #expect(localPreferredLanguage == "\(samplePreferredLanguage)-\(sampleLanguageRegion)")
         #expect(remoteLanguage == samplePreferredLanguage)
@@ -38,31 +38,9 @@ internal struct ActitoDeviceLanguageTest {
         try await Actito.shared.device().updatePreferredLanguage(nil)
 
         let localPreferredLanguage = Actito.shared.device().preferredLanguage
-        let remoteLanguage = try await getRemoteLanguage()
+        let remoteLanguage = try await ActitoTestRestApiClient.getRemoteDevice().language
 
         #expect(localPreferredLanguage == nil)
         #expect(remoteLanguage == Locale.current.deviceLanguage())
-    }
-
-    private func getRemoteLanguage() async throws -> String {
-        guard let localDevice = Actito.shared.device().currentDevice else {
-            throw ActitoError.deviceUnavailable
-        }
-
-        let api = ActitoTestRestApiClient()
-        let result = try await api.get(url: "/device/\(localDevice.id)")
-
-        guard let data = result.data else {
-            throw ActitoError.invalidArgument(message: "Empty response")
-        }
-
-        guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-              let device = json["device"] as? [String: Any],
-              let language = device["language"] as? String
-        else {
-            throw ActitoError.invalidArgument(message: "Missing language in response")
-        }
-
-        return language
     }
 }

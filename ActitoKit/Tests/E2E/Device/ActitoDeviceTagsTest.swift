@@ -44,7 +44,6 @@ internal struct ActitoDeviceTagsTest {
 
         #expect(tags.count == sampleTags.count)
         #expect(sampleTags.allSatisfy { tags.contains($0) })
-        // #expect(tags.contains(sampleTags))
     }
 
     @Test("remove one tag")
@@ -57,8 +56,6 @@ internal struct ActitoDeviceTagsTest {
 
         #expect(sampleTags.count > tags.count)
         #expect(expectedTags.allSatisfy { tags.contains($0) })
-
-        // #expect(tags.contains(expectedTags))
         #expect(!tags.contains(sampleTagToRemove))
     }
 

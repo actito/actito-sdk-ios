@@ -54,21 +54,12 @@ internal struct ActitoEventsComponentTest {
 
         try await Actito.shared.events().logCustom(eventName, data: eventData)
 
-        let api = ActitoTestRestApiClient()
-        let result = try await api.get(url: "/event/fortype/re.notifica.event.custom.test_event_data")
+        let deviceId = try #require(Actito.shared.device().currentDevice?.id)
 
-        guard let data = result.data else {
-            throw ActitoError.invalidArgument(message: "Empty response")
-        }
+        let result = try await ActitoTestRestApiClient.getDeviceCustomEvents(deviceId: deviceId, event: eventName)
 
-        guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-              let events = json["events"] as? [[String: Any]],
-              let lastEvent = events.first,
-              let lastEventSessionId = lastEvent["sessionID"] as? String
-        else {
-            throw ActitoError.invalidArgument(message: "Missing userID in response")
-        }
-
-        #expect(lastEventSessionId == Actito.shared.session().sessionId)
+        #expect(result.count == 1)
+        #expect(result.events.first?.type == "re.notifica.event.custom.\(eventName)")
+        #expect(result.events.first?.data == eventData)
     }
 }

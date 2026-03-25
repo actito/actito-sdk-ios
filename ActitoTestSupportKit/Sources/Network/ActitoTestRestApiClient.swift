@@ -4,8 +4,8 @@
 
 import ActitoKit
 
-internal struct ActitoTestRestApiClient {
-    internal func get(url: String) async throws -> (response: HTTPURLResponse, data: Data?) {
+public struct ActitoTestRestApiClient {
+    public static func get(url: String, query: [String: String?] = [:]) async throws -> (response: HTTPURLResponse, data: Data?) {
         let auth = getAuthentication()
 
         return try await ActitoRequest.Builder()
@@ -15,11 +15,12 @@ internal struct ActitoTestRestApiClient {
                     password: auth.secret,
                 ),
             )
+            .query(items: query)
             .get(url)
             .response()
     }
 
-    private func getAuthentication() -> (key: String, secret: String) {
+    private static func getAuthentication() -> (key: String, secret: String) {
         guard let path = Bundle(identifier: "com.actito.ActitoTestSupportKit")?.path(forResource: "TestActitoServices", ofType: "plist") else {
             fatalError("TestActitoServices.plist is missing.")
         }

@@ -15,6 +15,7 @@
 		1AC2751B2F69AF510051D79D /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC2751A2F69AF510051D79D /* ActitoKit.framework */; };
 		1AC275212F69C36C0051D79D /* MockNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC275202F69C3660051D79D /* MockNotificationCenter.swift */; };
 		1AC275262F6A9C820051D79D /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC275252F6A9C820051D79D /* ActitoUtilitiesKit.framework */; };
+		1AC93DB52F73CE8F00772D41 /* ActitoTestRestApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC93DB42F73CE8F00772D41 /* ActitoTestRestApiClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		1AC2751A2F69AF510051D79D /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC275202F69C3660051D79D /* MockNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationCenter.swift; sourceTree = "<group>"; };
 		1AC275252F6A9C820051D79D /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AC93DB42F73CE8F00772D41 /* ActitoTestRestApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoTestRestApiClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +104,19 @@
 		1AC275122F681B260051D79D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1AC275202F69C3660051D79D /* MockNotificationCenter.swift */,
+				1AC93DB32F73CE7300772D41 /* Network */,
 				1AC275072F680A2F0051D79D /* TestTraits */,
+				1AC275202F69C3660051D79D /* MockNotificationCenter.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		1AC93DB32F73CE7300772D41 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1AC93DB42F73CE8F00772D41 /* ActitoTestRestApiClient.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AC93DB52F73CE8F00772D41 /* ActitoTestRestApiClient.swift in Sources */,
 				1AC275082F680A2F0051D79D /* ActitoConfigurationTrait.swift in Sources */,
 				1AC275212F69C36C0051D79D /* MockNotificationCenter.swift in Sources */,
 			);
