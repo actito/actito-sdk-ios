@@ -28,10 +28,13 @@ internal struct InboxConcurrencyTests {
         Actito.shared.notificationCenter = MockNotificationCenter()
         Actito.shared.inbox().notificationCenter = MockNotificationCenter()
 
-        try await Actito.shared.events().logCustom("test_massive_open_operation")
+        let deviceId = try #require(Actito.shared.device().currentDevice?.id)
+
+        try await ActitoTestRestApiClient.sendPushNotification(deviceId: deviceId)
 
         while Actito.shared.inbox().items.isEmpty {
             try await Actito.shared.inbox().refresh()
+            try await Task.sleep(nanoseconds: 50_000_000)
         }
 
         let item = try #require(Actito.shared.inbox().items.first(where: { !$0.opened }))
