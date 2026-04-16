@@ -11,7 +11,7 @@ extension ActitoNotification {
         }
 
         switch type {
-        case .none, .passbook, .alert, .rate, .store, .urlScheme, .inAppBrowser:
+        case .none, .passbook, .alert, .rate, .store, .urlScheme, .inAppBrowser, .pass:
             return false
 
         case .urlResolver:

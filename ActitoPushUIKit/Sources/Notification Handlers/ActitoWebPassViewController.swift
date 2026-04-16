@@ -93,7 +93,6 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
 
     private func setupContent() {
         guard let content = notification.content.first,
-              let passUrlStr = content.data as? String,
               let host = Actito.shared.servicesInfo?.hosts.restApi
         else {
             DispatchQueue.main.async {
@@ -103,10 +102,22 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
             return
         }
 
-        let components = passUrlStr.components(separatedBy: "/")
-        let id = components[components.count - 1]
+        let id: String?
 
-        guard let url = URL(string: "\(host)/pass/web/\(id)?showWebVersion=1") else {
+        switch notification.type {
+        case ActitoNotification.NotificationType.passbook.rawValue:
+            id = extractPassBookId(from: content)
+
+        case ActitoNotification.NotificationType.pass.rawValue:
+            id = extractPassId(from: content)
+
+        default:
+            id = nil
+        }
+
+        guard let id,
+              let url = URL(string: "\(host)/pass/web/\(id)?showWebVersion=1")
+        else {
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
@@ -115,6 +126,37 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
         }
 
         webView.load(URLRequest(url: url))
+    }
+
+    private func extractPassBookId(from content: ActitoNotification.Content) -> String? {
+        guard content.type == "re.notifica.content.PKPass",
+              let passUrlStr = content.data as? String
+        else {
+            return nil
+        }
+
+        return passUrlStr.components(separatedBy: "/").last
+    }
+
+    private func extractPassId(from content: ActitoNotification.Content) -> String? {
+        guard content.type == "re.notifica.content.Pass",
+              let data = content.data as? [String: String]
+        else {
+            return nil
+        }
+
+        let serial = data["serial"]
+        let barcode = data["barcode"]
+
+        if let serial, !serial.isEmpty {
+            return serial
+        }
+
+        if let barcode, !barcode.isEmpty {
+            return barcode
+        }
+
+        return nil
     }
 }
 

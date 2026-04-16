@@ -120,7 +120,7 @@ public final class ActitoPushUI {
                         "notification": notification,
                     ]
 
-                    _ = try module.executeCommand("present", data: data)
+                    _ = try module.executeCommand("presentPassBook", data: data)
 
                     return
                 }
@@ -138,6 +138,32 @@ public final class ActitoPushUI {
 
         case .video:
             let notificationController = ActitoVideoViewController()
+            notificationController.notification = notification
+
+            latestPresentableNotificationHandler = notificationController
+
+        case .pass:
+            do {
+                if
+                    ActitoInternals.Module.loyalty.isAvailable,
+                    let module = ActitoInternals.Module.loyalty.klass?.instance,
+                    let canPresent = try module.executeCommand("canPresentPasses", data: nil) as? Bool,
+                    canPresent
+                {
+                    let data: [String: Any] = [
+                        "controller": controller,
+                        "notification": notification,
+                    ]
+
+                    _ = try module.executeCommand("presentPass", data: data)
+
+                    return
+                }
+            } catch {
+                logger.error("Error executing loyalty commands", error: error)
+            }
+
+            let notificationController = ActitoWebPassViewController()
             notificationController.notification = notification
 
             latestPresentableNotificationHandler = notificationController

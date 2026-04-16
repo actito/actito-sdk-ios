@@ -37,16 +37,28 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         case "canPresentPasses":
             return Actito.shared.loyalty().canPresentPasses
 
-        case "present":
+        case "presentPassBook":
             guard
                 let dict = data as? [String: Any],
                 let controller = dict["controller"] as? UIViewController,
                 let notification = dict["notification"] as? ActitoNotification
             else {
-                throw ActitoError.invalidArgument(message: "Invalid data for present command")
+                throw ActitoError.invalidArgument(message: "Invalid data for present pass book command")
             }
 
-            Actito.shared.loyalty().present(notification: notification, in: controller)
+            Actito.shared.loyalty().presentPassBook(notification: notification, in: controller)
+            return nil
+
+        case "presentPass":
+            guard
+                let dict = data as? [String: Any],
+                let controller = dict["controller"] as? UIViewController,
+                let notification = dict["notification"] as? ActitoNotification
+            else {
+                throw ActitoError.invalidArgument(message: "Invalid data for present pass command")
+            }
+
+            Actito.shared.loyalty().presentPass(notification: notification, in: controller)
             return nil
 
         default:
