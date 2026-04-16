@@ -107,42 +107,7 @@ public final class ActitoPushUI {
 
             latestPresentableNotificationHandler = notificationController
 
-        case .passbook:
-            do {
-                if
-                    ActitoInternals.Module.loyalty.isAvailable,
-                    let module = ActitoInternals.Module.loyalty.klass?.instance,
-                    let canPresent = try module.executeCommand("canPresentPasses", data: nil) as? Bool,
-                    canPresent
-                {
-                    let data: [String: Any] = [
-                        "controller": controller,
-                        "notification": notification,
-                    ]
-
-                    _ = try module.executeCommand("presentPassBook", data: data)
-
-                    return
-                }
-            } catch {
-                logger.error("Error executing loyalty commands", error: error)
-            }
-
-            let notificationController = ActitoWebPassViewController()
-            notificationController.notification = notification
-
-            latestPresentableNotificationHandler = notificationController
-
-        case .store:
-            latestPresentableNotificationHandler = ActitoStoreController(notification: notification)
-
-        case .video:
-            let notificationController = ActitoVideoViewController()
-            notificationController.notification = notification
-
-            latestPresentableNotificationHandler = notificationController
-
-        case .pass:
+        case .passbook, .pass:
             do {
                 if
                     ActitoInternals.Module.loyalty.isAvailable,
@@ -164,6 +129,15 @@ public final class ActitoPushUI {
             }
 
             let notificationController = ActitoWebPassViewController()
+            notificationController.notification = notification
+
+            latestPresentableNotificationHandler = notificationController
+
+        case .store:
+            latestPresentableNotificationHandler = ActitoStoreController(notification: notification)
+
+        case .video:
+            let notificationController = ActitoVideoViewController()
             notificationController.notification = notification
 
             latestPresentableNotificationHandler = notificationController

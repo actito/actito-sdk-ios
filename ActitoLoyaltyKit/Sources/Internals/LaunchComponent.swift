@@ -37,7 +37,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         case "canPresentPasses":
             return Actito.shared.loyalty().canPresentPasses
 
-        case "presentPassBook":
+        case "presentPass":
             guard
                 let dict = data as? [String: Any],
                 let controller = dict["controller"] as? UIViewController,
@@ -46,20 +46,22 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
                 throw ActitoError.invalidArgument(message: "Invalid data for present pass book command")
             }
 
-            Actito.shared.loyalty().presentPassBook(notification: notification, in: controller)
-            return nil
-
-        case "presentPass":
-            guard
-                let dict = data as? [String: Any],
-                let controller = dict["controller"] as? UIViewController,
-                let notification = dict["notification"] as? ActitoNotification
-            else {
-                throw ActitoError.invalidArgument(message: "Invalid data for present pass command")
+            guard let type = ActitoNotification.NotificationType(rawValue: notification.type) else {
+                throw ActitoError.invalidArgument(message: "Unhandled notification type '\(notification.type)'.")
             }
 
-            Actito.shared.loyalty().presentPass(notification: notification, in: controller)
-            return nil
+            switch type {
+            case .passbook:
+                Actito.shared.loyalty().presentPassBook(notification: notification, in: controller)
+                return nil
+
+            case .pass:
+                Actito.shared.loyalty().presentPass(notification: notification, in: controller)
+                return nil
+
+            default:
+                throw ActitoError.invalidArgument(message: "Wrong type for pass presentation: \(type)")
+            }
 
         default:
             throw ActitoError.unsupportedCommand(message: "Unsupported command: \(command)")
