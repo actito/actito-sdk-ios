@@ -37,7 +37,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         case "canPresentPasses":
             return Actito.shared.loyalty().canPresentPasses
 
-        case "presentPass":
+        case "present+Pass":
             guard
                 let dict = data as? [String: Any],
                 let controller = dict["controller"] as? UIViewController,
@@ -52,7 +52,7 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
 
             switch type {
             case .passbook:
-                Actito.shared.loyalty().presentPassBook(notification: notification, in: controller)
+                Actito.shared.loyalty().presentPassbook(notification: notification, in: controller)
                 return nil
 
             case .pass:
