@@ -103,30 +103,30 @@ public class ActitoWebPassViewController: ActitoBaseNotificationViewController {
             return
         }
 
-        let id: String?
+        let code: String?
 
         switch content.type {
         case "re.notifica.content.PKPass":
             let passUrl = content.data as? String
-            id = passUrl?.components(separatedBy: "/").last
+            code = passUrl?.components(separatedBy: "/").last
 
         case "re.notifica.content.Pass":
             let data = content.data as? [String: String]
 
             if let serial = data?["serial"], !serial.isEmpty {
-                id = serial
+                code = serial
             } else if let barcode = data?["barcode"], !barcode.isEmpty {
-                id = barcode
+                code = barcode
             } else {
-                id = nil
+                code = nil
             }
 
         default:
-            id = nil
+            code = nil
         }
 
-        guard let id,
-              let url = URL(string: "\(host)/pass/forapplication/\(application.id)/\(id)?showWebVersion=1")
+        guard let code,
+              let url = URL(string: "\(host)/pass/forapplication/\(application.id)/\(code)?showWebVersion=1")
         else {
             DispatchQueue.main.async {
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
