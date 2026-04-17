@@ -37,13 +37,13 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         case "canPresentPasses":
             return Actito.shared.loyalty().canPresentPasses
 
-        case "present+Pass":
+        case "presentPass":
             guard
                 let dict = data as? [String: Any],
                 let controller = dict["controller"] as? UIViewController,
                 let notification = dict["notification"] as? ActitoNotification
             else {
-                throw ActitoError.invalidArgument(message: "Invalid data for present pass book command")
+                throw ActitoError.invalidArgument(message: "Invalid data for present passbook command")
             }
 
             guard let type = ActitoNotification.NotificationType(rawValue: notification.type) else {
