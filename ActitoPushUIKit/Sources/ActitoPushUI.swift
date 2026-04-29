@@ -107,7 +107,7 @@ public final class ActitoPushUI {
 
             latestPresentableNotificationHandler = notificationController
 
-        case .passbook:
+        case .passbook, .pass:
             do {
                 if
                     ActitoInternals.Module.loyalty.isAvailable,
@@ -120,7 +120,7 @@ public final class ActitoPushUI {
                         "notification": notification,
                     ]
 
-                    _ = try module.executeCommand("present", data: data)
+                    _ = try module.executeCommand("presentPass", data: data)
 
                     return
                 }

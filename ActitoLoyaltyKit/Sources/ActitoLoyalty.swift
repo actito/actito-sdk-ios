@@ -113,7 +113,7 @@ public final class ActitoLoyalty {
         PKPassLibrary.isPassLibraryAvailable() && PKAddPassesViewController.canAddPasses()
     }
 
-    internal func present(notification: ActitoNotification, in viewController: UIViewController) {
+    internal func presentPassbook(notification: ActitoNotification, in viewController: UIViewController) {
         guard let content = notification.content.first(where: { $0.type == "re.notifica.content.PKPass" }),
               let urlStr = content.data as? String,
               let url = URL(string: urlStr)
@@ -128,6 +128,31 @@ public final class ActitoLoyalty {
                 present(pass, in: viewController)
             } catch {
                 logger.error("Failed to create PKPass from URL.", error: error)
+            }
+        }
+    }
+
+    internal func presentPass(notification: ActitoNotification, in viewController: UIViewController) {
+        guard let content = notification.content.first(where: { $0.type == "re.notifica.content.Pass" }),
+              let data = content.data as? [String: String]
+        else {
+            logger.warning("Missing Pass content for Pass type notification.")
+            return
+        }
+
+        Task {
+            do {
+                if let serial = data["serial"], !serial.isEmpty {
+                    let pass = try await fetchPass(serial: serial)
+                    present(pass: pass, in: viewController)
+                } else if let barcode = data["barcode"], !barcode.isEmpty {
+                    let pass = try await fetchPass(barcode: barcode)
+                    present(pass: pass, in: viewController)
+                } else {
+                    logger.error("Malformed Pass notification. No serial or barcode found.")
+                }
+            } catch {
+                logger.error("Failed to fetch Pass from serial or barcode.", error: error)
             }
         }
     }
