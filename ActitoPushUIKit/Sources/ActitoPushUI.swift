@@ -145,13 +145,15 @@ public final class ActitoPushUI {
         case .qualifio:
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willPresentNotification: notification)
 
-            do {
-                try QualifioIntegration.shared.handleCampaign(notification: notification)
+            Task {
+                do {
+                    try await QualifioIntegration.shared.handleCampaign(notification: notification)
 
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: notification)
-            } catch {
-                logger.error("The Qualifio campaign failed to present.", error: error)
-                Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: notification)
+                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: notification)
+                } catch {
+                    logger.error("The Qualifio campaign failed to present.", error: error)
+                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: notification)
+                }
             }
 
             return

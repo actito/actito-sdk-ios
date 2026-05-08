@@ -17,6 +17,8 @@
 		E5A878A92C23346100D53A91 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A878A82C23346100D53A91 /* URLExtensions.swift */; };
 		E5C7B2F82FA77A66009BE502 /* QualifioIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C7B2F72FA77A5D009BE502 /* QualifioIntegration.swift */; };
 		E5C7B2FA2FA78578009BE502 /* QualifioIntegrationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C7B2F92FA7856D009BE502 /* QualifioIntegrationError.swift */; };
+		E5FFB1242FAB8CF500D52C7A /* QualifioIntegrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = E5FFB1232FAB8CF500D52C7A /* QualifioIntegrationBridge.m */; };
+		E5FFB1252FAB8CF500D52C7A /* QualifioIntegrationBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = E5FFB1222FAB8CF500D52C7A /* QualifioIntegrationBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F216F0BC26A84B2100F9EF56 /* ActitoWebPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F216F0BB26A84B2100F9EF56 /* ActitoWebPassViewController.swift */; };
 		F21CBCB025AF1F5000495F7A /* ActitoStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21CBCAF25AF1F5000495F7A /* ActitoStoreController.swift */; };
 		F23ED157284E1B91007BE36C /* ActitoInAppBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23ED156284E1B91007BE36C /* ActitoInAppBrowserController.swift */; };
@@ -74,6 +76,8 @@
 		E5A878A82C23346100D53A91 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		E5C7B2F72FA77A5D009BE502 /* QualifioIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioIntegration.swift; sourceTree = "<group>"; };
 		E5C7B2F92FA7856D009BE502 /* QualifioIntegrationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioIntegrationError.swift; sourceTree = "<group>"; };
+		E5FFB1222FAB8CF500D52C7A /* QualifioIntegrationBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QualifioIntegrationBridge.h; sourceTree = "<group>"; };
+		E5FFB1232FAB8CF500D52C7A /* QualifioIntegrationBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QualifioIntegrationBridge.m; sourceTree = "<group>"; };
 		F216F0BB26A84B2100F9EF56 /* ActitoWebPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoWebPassViewController.swift; sourceTree = "<group>"; };
 		F21CBCAF25AF1F5000495F7A /* ActitoStoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoStoreController.swift; sourceTree = "<group>"; };
 		F23ED156284E1B91007BE36C /* ActitoInAppBrowserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInAppBrowserController.swift; sourceTree = "<group>"; };
@@ -144,6 +148,17 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		E5FFB1152FAB85C200D52C7A /* Qualifio */ = {
+			isa = PBXGroup;
+			children = (
+				E5FFB1222FAB8CF500D52C7A /* QualifioIntegrationBridge.h */,
+				E5FFB1232FAB8CF500D52C7A /* QualifioIntegrationBridge.m */,
+				E5C7B2F92FA7856D009BE502 /* QualifioIntegrationError.swift */,
+				E5C7B2F72FA77A5D009BE502 /* QualifioIntegration.swift */,
+			);
+			path = Qualifio;
+			sourceTree = "<group>";
+		};
 		F2770B38276266A000450FF8 /* View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,8 +195,7 @@
 		F293E2E42630488B008C2010 /* Internals */ = {
 			isa = PBXGroup;
 			children = (
-				E5C7B2F92FA7856D009BE502 /* QualifioIntegrationError.swift */,
-				E5C7B2F72FA77A5D009BE502 /* QualifioIntegration.swift */,
+				E5FFB1152FAB85C200D52C7A /* Qualifio */,
 				F28B54942C2D55D10074FFA9 /* Extensions */,
 				F293E2E5263048A1008C2010 /* LocalStorage.swift */,
 				F2DAB3A4271F14D3002B5F27 /* UIKitExtensions.swift */,
@@ -275,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F29B17DC25A48BF0007ED6F9 /* ActitoPushUIKit.h in Headers */,
+				E5FFB1252FAB8CF500D52C7A /* QualifioIntegrationBridge.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +347,7 @@
 				TargetAttributes = {
 					F29B17CA25A48BEF007ED6F9 = {
 						CreatedOnToolsVersion = 12.3;
-						LastSwiftMigration = 1230;
+						LastSwiftMigration = 2610;
 					};
 					F29B17D325A48BF0007ED6F9 = {
 						CreatedOnToolsVersion = 12.3;
@@ -406,6 +421,7 @@
 				F2E9D45825AE1D4500FF7827 /* ActitoUrlViewController.swift in Sources */,
 				F28B54962C2D55FA0074FFA9 /* String.swift in Sources */,
 				F289F52925B839B70091AB97 /* ActitoRateController.swift in Sources */,
+				E5FFB1242FAB8CF500D52C7A /* QualifioIntegrationBridge.m in Sources */,
 				E5C7B2FA2FA78578009BE502 /* QualifioIntegrationError.swift in Sources */,
 				F2B8C51725A5DD9400FFBE0C /* ActitoWebViewController.swift in Sources */,
 				F2DAB3A5271F14D3002B5F27 /* UIKitExtensions.swift in Sources */,
