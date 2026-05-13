@@ -142,6 +142,22 @@ public final class ActitoPushUI {
 
             latestPresentableNotificationHandler = notificationController
 
+        case .qualifio:
+            Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willPresentNotification: notification)
+
+            Task {
+                do {
+                    try await QualifioIntegration.shared.handleCampaign(notification: notification)
+
+                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: notification)
+                } catch {
+                    logger.error("The Qualifio campaign failed to present.", error: error)
+                    Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: notification)
+                }
+            }
+
+            return
+
         @unknown default:
             logger.warning("Unknown notification type '\(notification.type)'.")
             return
