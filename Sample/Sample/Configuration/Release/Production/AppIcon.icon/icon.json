@@ -9,18 +9,9 @@
     {
       "layers" : [
         {
-          "glass-specializations" : [
-            {
-              "appearance" : "dark",
-              "value" : false
-            },
-            {
-              "appearance" : "tinted",
-              "value" : false
-            }
-          ],
-          "image-name" : "iOS – App Icon - no bg (2).svg",
-          "name" : "iOS – App Icon - no bg (2)",
+          "glass" : false,
+          "image-name" : "ios – prod.svg",
+          "name" : "ios – prod",
           "position-specializations" : [
             {
               "idiom" : "square",
