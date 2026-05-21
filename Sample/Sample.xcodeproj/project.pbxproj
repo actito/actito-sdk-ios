@@ -10,6 +10,8 @@
 		1A8B59F62B72304F00ED46B1 /* ApplicationInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B59F52B72304F00ED46B1 /* ApplicationInfoSection.swift */; };
 		1A8B59F92B72843800ED46B1 /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8B59F82B72843800ED46B1 /* ApplicationInfo.swift */; };
 		1A8C31102BFF20DA0000BFA6 /* SampleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C310F2BFF20DA0000BFA6 /* SampleUser.swift */; };
+		1ABDDE692FB4BF43008A6505 /* AppIconTestDev.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE672FB4BE49008A6505 /* AppIconTestDev.icon */; };
+		1ABDDE6A2FB4BF43008A6505 /* AppIconTest.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE682FB4BEC2008A6505 /* AppIconTest.icon */; };
 		E514687829C9CC41005E057D /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E514687729C9CC41005E057D /* String+Localization.swift */; };
 		E51625DD2EBCB8DF006DF7C7 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = E51625DC2EBCB8DF006DF7C7 /* AppIcon.icon */; };
 		E51625DF2EBCB8FD006DF7C7 /* AppIconDev.icon in Resources */ = {isa = PBXBuildFile; fileRef = E51625DE2EBCB8FD006DF7C7 /* AppIconDev.icon */; };
@@ -153,6 +155,8 @@
 		1A8B59F52B72304F00ED46B1 /* ApplicationInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationInfoSection.swift; sourceTree = "<group>"; };
 		1A8B59F82B72843800ED46B1 /* ApplicationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationInfo.swift; sourceTree = "<group>"; };
 		1A8C310F2BFF20DA0000BFA6 /* SampleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUser.swift; sourceTree = "<group>"; };
+		1ABDDE672FB4BE49008A6505 /* AppIconTestDev.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconTestDev.icon; sourceTree = "<group>"; };
+		1ABDDE682FB4BEC2008A6505 /* AppIconTest.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconTest.icon; sourceTree = "<group>"; };
 		E514687729C9CC41005E057D /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		E51625DC2EBCB8DF006DF7C7 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		E51625DE2EBCB8FD006DF7C7 /* AppIconDev.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconDev.icon; sourceTree = "<group>"; };
@@ -438,7 +442,7 @@
 			isa = PBXGroup;
 			children = (
 				F236118E2C77581C0063C446 /* ActitoServices.plist */,
-				E51625DC2EBCB8DF006DF7C7 /* AppIcon.icon */,
+				E51625DE2EBCB8FD006DF7C7 /* AppIconDev.icon */,
 			);
 			path = Production;
 			sourceTree = "<group>";
@@ -446,6 +450,7 @@
 		F23611912C77581C0063C446 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				1ABDDE672FB4BE49008A6505 /* AppIconTestDev.icon */,
 				F23611902C77581C0063C446 /* ActitoServices.plist */,
 			);
 			path = Test;
@@ -463,8 +468,8 @@
 		F23611942C77581C0063C446 /* Production */ = {
 			isa = PBXGroup;
 			children = (
+				E51625DC2EBCB8DF006DF7C7 /* AppIcon.icon */,
 				F23611932C77581C0063C446 /* ActitoServices.plist */,
-				E51625DE2EBCB8FD006DF7C7 /* AppIconDev.icon */,
 			);
 			path = Production;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 		F23611962C77581C0063C446 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				1ABDDE682FB4BEC2008A6505 /* AppIconTest.icon */,
 				F23611952C77581C0063C446 /* ActitoServices.plist */,
 			);
 			path = Test;
@@ -740,6 +746,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ABDDE692FB4BF43008A6505 /* AppIconTestDev.icon in Resources */,
+				1ABDDE6A2FB4BF43008A6505 /* AppIconTest.icon in Resources */,
 				E51FD38C29D6F2D2000897D9 /* Localizable.strings in Resources */,
 				E51625DF2EBCB8FD006DF7C7 /* AppIconDev.icon in Resources */,
 				F29FD20124CB1FE3004B166D /* Assets.xcassets in Resources */,
@@ -1758,7 +1766,7 @@
 		F2D0E2872AF14E910019F061 /* Debug-Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestDev;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Sample/Sample.test.dev.entitlements;
@@ -1843,7 +1851,7 @@
 		F2EAF9172AF51D9400A2CC0C /* Release-Test */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTest;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Sample/Sample.test.entitlements;
