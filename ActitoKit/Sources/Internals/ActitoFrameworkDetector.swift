@@ -14,7 +14,7 @@ internal final class ActitoFrameworkDetector {
         }
 
         if isExpo() {
-            return FrameworkInfo(name: "Expo", version: nil)
+            return FrameworkInfo(name: "Expo(RN)", version: getReactNativeVersion())
         }
 
         if isReactNative() {
@@ -22,7 +22,7 @@ internal final class ActitoFrameworkDetector {
         }
 
         if isIonicNative() {
-            return FrameworkInfo(name: "Ionic Native", version: nil)
+            return FrameworkInfo(name: "Capacitor", version: nil)
         }
 
         if isCordova() {

@@ -16,8 +16,8 @@ extension ActitoInternals.PushAPI.Payloads {
         internal var deviceString: String
         internal var timeZoneOffset: Float
         internal var backgroundAppRefresh: Bool
-        internal var framework: String?
-        internal var frameworkVersion: String?
+        @EncodeNull internal var framework: String?
+        @EncodeNull internal var frameworkVersion: String?
     }
 
     internal struct UpdateDevice: Encodable {
@@ -30,8 +30,8 @@ extension ActitoInternals.PushAPI.Payloads {
         internal var deviceString: String
         internal var timeZoneOffset: Float
         internal var backgroundAppRefresh: Bool
-        internal var framework: String?
-        internal var frameworkVersion: String?
+        @EncodeNull internal var framework: String?
+        @EncodeNull internal var frameworkVersion: String?
     }
 
     internal struct UpdateDeviceUser: Encodable, Sendable {
