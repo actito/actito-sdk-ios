@@ -21,7 +21,7 @@ internal final class ActitoFrameworkDetector {
             return FrameworkInfo(name: "React Native", version: getReactNativeVersion())
         }
 
-        if isIonicNative() {
+        if isCapacitor() {
             return FrameworkInfo(name: "Capacitor", version: nil)
         }
 
@@ -50,8 +50,9 @@ internal final class ActitoFrameworkDetector {
         NSClassFromString("RCTRootView") != nil
     }
 
-    private func isIonicNative() -> Bool {
-        NSClassFromString("CAPBridgeViewController") != nil
+    private func isCapacitor() -> Bool {
+        NSClassFromString("CAPPlugin") != nil ||
+        NSClassFromString("CAPPluginCall") != nil
     }
 
     private func isCordova() -> Bool {
