@@ -613,6 +613,7 @@ public final class ActitoDeviceComponent {
 
     private func createDevice() async throws {
         let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
+        let frameworkInfo = ActitoFrameworkDetector().detect()
 
         let payload = ActitoInternals.PushAPI.Payloads.CreateDevice(
             language: getDeviceLanguage(),
@@ -623,7 +624,9 @@ public final class ActitoDeviceComponent {
             appVersion: Bundle.main.applicationVersion,
             deviceString: UIDevice.current.deviceString,
             timeZoneOffset: TimeZone.current.timeZoneOffset,
-            backgroundAppRefresh: backgroundRefreshStatus == .available
+            backgroundAppRefresh: backgroundRefreshStatus == .available,
+            framework: frameworkInfo?.name,
+            frameworkVersion: frameworkInfo?.version,
         )
 
         let response = try await ActitoRequest.Builder()
@@ -643,7 +646,9 @@ public final class ActitoDeviceComponent {
             region: payload.region,
             dnd: nil,
             userData: [:],
-            backgroundAppRefresh: backgroundRefreshStatus == .available
+            backgroundAppRefresh: backgroundRefreshStatus == .available,
+            framework: payload.framework,
+            frameworkVersion: payload.frameworkVersion,
         )
     }
 
@@ -653,6 +658,7 @@ public final class ActitoDeviceComponent {
         }
 
         let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
+        let frameworkInfo = ActitoFrameworkDetector().detect()
 
         let payload = ActitoInternals.PushAPI.Payloads.UpdateDevice(
             language: getDeviceLanguage(),
@@ -663,7 +669,9 @@ public final class ActitoDeviceComponent {
             appVersion: Bundle.main.applicationVersion,
             deviceString: UIDevice.current.deviceString,
             timeZoneOffset: TimeZone.current.timeZoneOffset,
-            backgroundAppRefresh: backgroundRefreshStatus == .available
+            backgroundAppRefresh: backgroundRefreshStatus == .available,
+            framework: frameworkInfo?.name,
+            frameworkVersion: frameworkInfo?.version,
         )
 
         try await ActitoRequest.Builder()
@@ -678,6 +686,8 @@ public final class ActitoDeviceComponent {
         device.deviceString = payload.deviceString
         device.timeZoneOffset = payload.timeZoneOffset
         device.backgroundAppRefresh = payload.backgroundAppRefresh
+        device.framework = payload.framework
+        device.frameworkVersion = payload.frameworkVersion
 
         self.storedDevice = device
     }
@@ -705,7 +715,9 @@ public final class ActitoDeviceComponent {
             appVersion: device.appVersion,
             deviceString: device.deviceString,
             timeZoneOffset: device.timeZoneOffset,
-            backgroundAppRefresh: device.backgroundAppRefresh
+            backgroundAppRefresh: device.backgroundAppRefresh,
+            framework: device.framework,
+            frameworkVersion: device.frameworkVersion,
         )
 
         let (response, data) = try await ActitoRequest.Builder()
@@ -738,7 +750,9 @@ public final class ActitoDeviceComponent {
             region: device.region,
             dnd: device.dnd,
             userData: device.userData,
-            backgroundAppRefresh: device.backgroundAppRefresh
+            backgroundAppRefresh: device.backgroundAppRefresh,
+            framework: device.framework,
+            frameworkVersion: device.frameworkVersion,
         )
     }
 

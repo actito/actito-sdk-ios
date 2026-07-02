@@ -19,6 +19,8 @@ internal struct StoredDevice: Codable {
     internal var dnd: ActitoDoNotDisturb?
     internal var userData: ActitoUserData
     internal var backgroundAppRefresh: Bool
+    internal var framework: String? = nil
+    internal var frameworkVersion: String? = nil
 
     internal var isLongLived: Bool {
         transport == nil
