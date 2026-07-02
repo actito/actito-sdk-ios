@@ -8,13 +8,13 @@ import Darwin
 private typealias RCTVersionFn = @convention(c) () -> NSDictionary
 
 internal final class ActitoFrameworkDetector {
-    internal func detect() -> FrameworkInfo {
+    internal func detect() -> FrameworkInfo? {
         if isFlutter() {
             return FrameworkInfo(name: "Flutter", version: nil)
         }
 
         if isExpo() {
-            return FrameworkInfo(name: "Expo(RN)", version: getReactNativeVersion())
+            return FrameworkInfo(name: "Expo (React Native)", version: getReactNativeVersion())
         }
 
         if isReactNative() {
@@ -33,7 +33,7 @@ internal final class ActitoFrameworkDetector {
             return FrameworkInfo(name: ".NET MAUI", version: nil)
         }
 
-        return FrameworkInfo(name: nil, version: nil)
+        return nil
     }
 
     private func isFlutter() -> Bool {
@@ -118,7 +118,7 @@ internal final class ActitoFrameworkDetector {
     }
 
     internal struct FrameworkInfo {
-        internal let name: String?
+        internal let name: String
         internal let version: String?
     }
 }

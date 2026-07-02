@@ -60,8 +60,8 @@ extension ActitoInternals.PushAPI.Payloads {
         internal let deviceString: String
         internal let timeZoneOffset: Float
         internal let backgroundAppRefresh: Bool
-        internal var framework: String?
-        internal var frameworkVersion: String?
+        @EncodeNull internal var framework: String?
+        @EncodeNull internal var frameworkVersion: String?
     }
 
     internal enum Device {

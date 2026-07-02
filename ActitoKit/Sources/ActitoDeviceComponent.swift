@@ -625,8 +625,8 @@ public final class ActitoDeviceComponent {
             deviceString: UIDevice.current.deviceString,
             timeZoneOffset: TimeZone.current.timeZoneOffset,
             backgroundAppRefresh: backgroundRefreshStatus == .available,
-            framework: frameworkInfo.name,
-            frameworkVersion: frameworkInfo.version,
+            framework: frameworkInfo?.name,
+            frameworkVersion: frameworkInfo?.version,
         )
 
         let response = try await ActitoRequest.Builder()
@@ -670,8 +670,8 @@ public final class ActitoDeviceComponent {
             deviceString: UIDevice.current.deviceString,
             timeZoneOffset: TimeZone.current.timeZoneOffset,
             backgroundAppRefresh: backgroundRefreshStatus == .available,
-            framework: frameworkInfo.name,
-            frameworkVersion: frameworkInfo.version,
+            framework: frameworkInfo?.name,
+            frameworkVersion: frameworkInfo?.version,
         )
 
         try await ActitoRequest.Builder()
