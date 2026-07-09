@@ -3,6 +3,7 @@
 //
 
 import ActitoKit
+import ActitoUtilitiesKit
 import Combine
 import UIKit
 
@@ -18,6 +19,8 @@ public final class ActitoInbox {
     internal lazy var database: InboxDatabase = {
         InboxDatabase(overrideDatabaseFileProtection: Actito.shared.options?.overrideDatabaseFileProtection ?? false)
     }()
+
+    internal lazy var notificationCenter: ActitoNotificationCenter = UNUserNotificationCenter.current()
 
     private var cachedItems: [LocalInboxItem] = []
 
@@ -513,7 +516,7 @@ public final class ActitoInbox {
 
     internal func clearNotificationCenter() {
         logger.debug("Removing all messages from the notification center.")
-        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        notificationCenter.removeAllDeliveredNotifications()
     }
 
     private func fetchRemoteInbox(for deviceId: String, since: Int64? = nil, skip: Int = 0, limit: Int = 100) async throws -> ActitoInternals.PushAPI.Responses.RemoteInbox {

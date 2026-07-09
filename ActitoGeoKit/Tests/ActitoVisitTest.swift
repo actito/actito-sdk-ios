@@ -14,7 +14,7 @@ internal struct ActitoVisitTest {
             latitude: 1.5,
             longitude: 1.5
         )
-        
+
         do {
             let convertedVisit = try ActitoVisit.fromJson(json: visit.toJson())
 

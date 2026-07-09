@@ -1,0 +1,105 @@
+{
+  "configurations" : [
+    {
+      "id" : "6E2C1CA7-6C2F-4113-8FB4-8638883174FC",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoAssetsKit\/ActitoAssetsKit.xcodeproj",
+        "identifier" : "F258DDC024BC4F09006F9ABD",
+        "name" : "ActitoAssetsKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoNotificationServiceExtensionKit\/ActitoNotificationServiceExtensionKit.xcodeproj",
+        "identifier" : "F258DDC024BC4F09006F9ABD",
+        "name" : "ActitoNotificationServiceExtensionKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoInboxKit\/ActitoInboxKit.xcodeproj",
+        "identifier" : "F289F53D25B85E020091AB97",
+        "name" : "ActitoInboxKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoPushUIKit\/ActitoPushUIKit.xcodeproj",
+        "identifier" : "F29B17D325A48BF0007ED6F9",
+        "name" : "ActitoPushUIKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoLoyaltyKit\/ActitoLoyaltyKit.xcodeproj",
+        "identifier" : "F258DDE424BC4F32006F9ABD",
+        "name" : "ActitoLoyaltyKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoInAppMessagingKit\/ActitoInAppMessagingKit.xcodeproj",
+        "identifier" : "F2E513FA28A2BB7C00D1E0BF",
+        "name" : "ActitoInAppMessagingKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoGeoKit\/ActitoGeoKit.xcodeproj",
+        "identifier" : "F258DD7824BC4E95006F9ABD",
+        "name" : "ActitoGeoKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoPushKit\/ActitoPushKit.xcodeproj",
+        "identifier" : "F258DD9C24BC4EE2006F9ABD",
+        "name" : "ActitoPushKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoUtilitiesKit\/ActitoUtilitiesKit.xcodeproj",
+        "identifier" : "1A0E1F4A2C982C3000E15FC7",
+        "name" : "ActitoUtilitiesKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoUserInboxKit\/ActitoUserInboxKit.xcodeproj",
+        "identifier" : "F2EA0711291E9BA7009DB7A0",
+        "name" : "ActitoUserInboxKitTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:..\/ActitoKit\/ActitoKit.xcodeproj",
+        "identifier" : "F258DD5424BC4DBC006F9ABD",
+        "name" : "ActitoKitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

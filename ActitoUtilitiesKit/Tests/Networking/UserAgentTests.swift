@@ -13,6 +13,7 @@ private class MockBundle: Bundle, @unchecked Sendable {
     }
 }
 
+@MainActor
 internal struct UIDeviceTests {
 
     @Test

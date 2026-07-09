@@ -17,6 +17,20 @@
 		1A52DE6E2CA44B3500B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE6D2CA44B3500B5F56C /* Logger.swift */; };
 		1AB27BA92E704528004F93B9 /* NotificareCoreDataEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB27BA62E704528004F93B9 /* NotificareCoreDataEvent.swift */; };
 		1AB27BAF2E740609004F93B9 /* ActitoServicesInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */; };
+		1AC273C12F5195830051D79D /* ActitoConfigureTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273C02F51957A0051D79D /* ActitoConfigureTest.swift */; };
+		1AC273C42F572E360051D79D /* ActitoNotificationFetchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273C32F572E2D0051D79D /* ActitoNotificationFetchTest.swift */; };
+		1AC273CF2F582E300051D79D /* ActitoDynamicLinkFetchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273CE2F582E2A0051D79D /* ActitoDynamicLinkFetchTest.swift */; };
+		1AC273D62F5980220051D79D /* ActitoDeviceDndTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273D52F5980160051D79D /* ActitoDeviceDndTest.swift */; };
+		1AC273D82F5ADB230051D79D /* ActitoDeviceTagsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273D72F5ADB150051D79D /* ActitoDeviceTagsTest.swift */; };
+		1AC273DA2F5B38A70051D79D /* ActitoDeviceLanguageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273D92F5B38A10051D79D /* ActitoDeviceLanguageTest.swift */; };
+		1AC273DC2F5F0D3E0051D79D /* ActitoDeviceUserDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273DB2F5F0D370051D79D /* ActitoDeviceUserDataTest.swift */; };
+		1AC273DE2F5F17280051D79D /* ActitoDeviceUserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273DD2F5F17210051D79D /* ActitoDeviceUserTest.swift */; };
+		1AC273E12F5F1DD30051D79D /* ActitoEventsComponentTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273E02F5F1DCB0051D79D /* ActitoEventsComponentTest.swift */; };
+		1AC273EB2F60422F0051D79D /* ActitoDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC273EA2F6042290051D79D /* ActitoDelegateTest.swift */; };
+		1AC2750F2F6815DA0051D79D /* ActitoTestSupportKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC2750E2F6815DA0051D79D /* ActitoTestSupportKit.framework */; };
+		1AC93DB02F72DFB600772D41 /* TestDeviceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC93DAF2F72DFA800772D41 /* TestDeviceResponse.swift */; };
+		1AC93DB22F72E45E00772D41 /* TestCustomEventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC93DB12F72E45600772D41 /* TestCustomEventsResponse.swift */; };
+		1AC93DB72F73CF2100772D41 /* ActitoTestRestApiClient+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC93DB62F73CF0200772D41 /* ActitoTestRestApiClient+Request.swift */; };
 		1AD52A222DE75AF7006C7D88 /* LocalEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */; };
 		1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */; };
 		1AD52A262DE75BAC006C7D88 /* CreateEventPayload+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */; };
@@ -91,6 +105,20 @@
 		1A52DE6D2CA44B3500B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1AB27BA62E704528004F93B9 /* NotificareCoreDataEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificareCoreDataEvent.swift; sourceTree = "<group>"; };
 		1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoServicesInfoTest.swift; sourceTree = "<group>"; };
+		1AC273C02F51957A0051D79D /* ActitoConfigureTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoConfigureTest.swift; sourceTree = "<group>"; };
+		1AC273C32F572E2D0051D79D /* ActitoNotificationFetchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoNotificationFetchTest.swift; sourceTree = "<group>"; };
+		1AC273CE2F582E2A0051D79D /* ActitoDynamicLinkFetchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDynamicLinkFetchTest.swift; sourceTree = "<group>"; };
+		1AC273D52F5980160051D79D /* ActitoDeviceDndTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDeviceDndTest.swift; sourceTree = "<group>"; };
+		1AC273D72F5ADB150051D79D /* ActitoDeviceTagsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDeviceTagsTest.swift; sourceTree = "<group>"; };
+		1AC273D92F5B38A10051D79D /* ActitoDeviceLanguageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDeviceLanguageTest.swift; sourceTree = "<group>"; };
+		1AC273DB2F5F0D370051D79D /* ActitoDeviceUserDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDeviceUserDataTest.swift; sourceTree = "<group>"; };
+		1AC273DD2F5F17210051D79D /* ActitoDeviceUserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDeviceUserTest.swift; sourceTree = "<group>"; };
+		1AC273E02F5F1DCB0051D79D /* ActitoEventsComponentTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoEventsComponentTest.swift; sourceTree = "<group>"; };
+		1AC273EA2F6042290051D79D /* ActitoDelegateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoDelegateTest.swift; sourceTree = "<group>"; };
+		1AC2750E2F6815DA0051D79D /* ActitoTestSupportKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoTestSupportKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AC93DAF2F72DFA800772D41 /* TestDeviceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDeviceResponse.swift; sourceTree = "<group>"; };
+		1AC93DB12F72E45600772D41 /* TestCustomEventsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCustomEventsResponse.swift; sourceTree = "<group>"; };
+		1AC93DB62F73CF0200772D41 /* ActitoTestRestApiClient+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoTestRestApiClient+Request.swift"; sourceTree = "<group>"; };
 		1AD52A212DE75AF3006C7D88 /* LocalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEvent.swift; sourceTree = "<group>"; };
 		1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalEvent+CoreData.swift"; sourceTree = "<group>"; };
 		1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateEventPayload+Local.swift"; sourceTree = "<group>"; };
@@ -162,12 +190,108 @@
 			buildActionMask = 2147483647;
 			files = (
 				F258DD5624BC4DBC006F9ABD /* ActitoKit.framework in Frameworks */,
+				1AC2750F2F6815DA0051D79D /* ActitoTestSupportKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1AC273C22F572E1C0051D79D /* E2E */ = {
+			isa = PBXGroup;
+			children = (
+				1AC273DF2F5F1DC10051D79D /* Events */,
+				1AC273D42F59800B0051D79D /* Device */,
+				1AC93DAD2F72DF6000772D41 /* Network */,
+				1AC273CE2F582E2A0051D79D /* ActitoDynamicLinkFetchTest.swift */,
+				1AC273C32F572E2D0051D79D /* ActitoNotificationFetchTest.swift */,
+			);
+			path = E2E;
+			sourceTree = "<group>";
+		};
+		1AC273D42F59800B0051D79D /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				1AC273DD2F5F17210051D79D /* ActitoDeviceUserTest.swift */,
+				1AC273DB2F5F0D370051D79D /* ActitoDeviceUserDataTest.swift */,
+				1AC273D92F5B38A10051D79D /* ActitoDeviceLanguageTest.swift */,
+				1AC273D72F5ADB150051D79D /* ActitoDeviceTagsTest.swift */,
+				1AC273D52F5980160051D79D /* ActitoDeviceDndTest.swift */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		1AC273DF2F5F1DC10051D79D /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				1AC273E02F5F1DCB0051D79D /* ActitoEventsComponentTest.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		1AC273E22F60269C0051D79D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */,
+				1A3274132C5A18C8002B78BA /* ActitoDeviceTest.swift */,
+				1A3274112C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift */,
+				1A32740D2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift */,
+				1A32740B2C5A0FBF002B78BA /* ActitoNotificationTest.swift */,
+				1A32740F2C5A158D002B78BA /* ActitoTimeTest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1AC273E32F6026C70051D79D /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				1AC273E42F6026CD0051D79D /* Network */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		1AC273E42F6026CD0051D79D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1AC273E52F6027240051D79D /* PushAPI */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1AC273E52F6027240051D79D /* PushAPI */ = {
+			isa = PBXGroup;
+			children = (
+				1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */,
+			);
+			path = PushAPI;
+			sourceTree = "<group>";
+		};
+		1AC273E92F60420A0051D79D /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				1AC273EA2F6042290051D79D /* ActitoDelegateTest.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		1AC93DAD2F72DF6000772D41 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1AC93DB62F73CF0200772D41 /* ActitoTestRestApiClient+Request.swift */,
+				1AC93DAE2F72DF9200772D41 /* Responses */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1AC93DAE2F72DF9200772D41 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				1AC93DB12F72E45600772D41 /* TestCustomEventsResponse.swift */,
+				1AC93DAF2F72DFA800772D41 /* TestDeviceResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
 		42A20D17A4EF88ED36EA223F /* AutoConfig */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,15 +381,13 @@
 		F258DD5924BC4DBC006F9ABD /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				F258DD5C24BC4DBC006F9ABD /* Info.plist */,
-				1A3274152C5A1B66002B78BA /* ActitoApplicationTest.swift */,
-				1A3274132C5A18C8002B78BA /* ActitoDeviceTest.swift */,
-				1A3274112C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift */,
-				1A32740D2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift */,
-				1A32740B2C5A0FBF002B78BA /* ActitoNotificationTest.swift */,
+				1AC273C22F572E1C0051D79D /* E2E */,
+				1AC273E92F60420A0051D79D /* Events */,
+				1AC273E32F6026C70051D79D /* Internal */,
+				1AC273E22F60269C0051D79D /* Models */,
+				1AC273C02F51957A0051D79D /* ActitoConfigureTest.swift */,
 				1AB27BAE2E7405FD004F93B9 /* ActitoServicesInfoTest.swift */,
-				1A32740F2C5A158D002B78BA /* ActitoTimeTest.swift */,
-				1A3274172C5A8F13002B78BA /* PushAPIModelsTest.swift */,
+				F258DD5C24BC4DBC006F9ABD /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -289,6 +411,7 @@
 		F289F5B325B860B60091AB97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1AC2750E2F6815DA0051D79D /* ActitoTestSupportKit.framework */,
 				E568CEBF2DB6B05C00EAF72F /* ActitoUtilitiesKit.framework */,
 			);
 			name = Frameworks;
@@ -557,13 +680,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3274142C5A18C8002B78BA /* ActitoDeviceTest.swift in Sources */,
+				1AC93DB72F73CF2100772D41 /* ActitoTestRestApiClient+Request.swift in Sources */,
+				1AC93DB02F72DFB600772D41 /* TestDeviceResponse.swift in Sources */,
+				1AC273DA2F5B38A70051D79D /* ActitoDeviceLanguageTest.swift in Sources */,
+				1AC273D82F5ADB230051D79D /* ActitoDeviceTagsTest.swift in Sources */,
 				1A3274122C5A17C6002B78BA /* ActitoDoNotDisturbTest.swift in Sources */,
+				1AC273D62F5980220051D79D /* ActitoDeviceDndTest.swift in Sources */,
 				1A3274102C5A158D002B78BA /* ActitoTimeTest.swift in Sources */,
+				1AC273DC2F5F0D3E0051D79D /* ActitoDeviceUserDataTest.swift in Sources */,
 				1AB27BAF2E740609004F93B9 /* ActitoServicesInfoTest.swift in Sources */,
+				1AC273DE2F5F17280051D79D /* ActitoDeviceUserTest.swift in Sources */,
+				1AC93DB22F72E45E00772D41 /* TestCustomEventsResponse.swift in Sources */,
 				1A32740C2C5A0FBF002B78BA /* ActitoNotificationTest.swift in Sources */,
 				1A3274182C5A8F13002B78BA /* PushAPIModelsTest.swift in Sources */,
+				1AC273E12F5F1DD30051D79D /* ActitoEventsComponentTest.swift in Sources */,
+				1AC273EB2F60422F0051D79D /* ActitoDelegateTest.swift in Sources */,
+				1AC273C42F572E360051D79D /* ActitoNotificationFetchTest.swift in Sources */,
 				1A3274162C5A1B66002B78BA /* ActitoApplicationTest.swift in Sources */,
+				1AC273CF2F582E300051D79D /* ActitoDynamicLinkFetchTest.swift in Sources */,
 				1A32740E2C5A14FD002B78BA /* ActitoDynamicLinkTest.swift in Sources */,
+				1AC273C12F5195830051D79D /* ActitoConfigureTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

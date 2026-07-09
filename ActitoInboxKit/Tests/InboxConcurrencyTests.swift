@@ -2,17 +2,18 @@
 // Copyright (c) 2025 Actito. All rights reserved.
 //
 
-import Testing
-import ActitoKit
+import UserNotifications
+@testable import ActitoKit
 @testable import ActitoInboxKit
+import ActitoTestSupportKit
+import Testing
 
 @MainActor
+@Suite(.serialized, ActitoConfigurationTrait(workflow: .launch, mode: .perSuite))
 internal struct InboxConcurrencyTests {
 
     @Test
     internal func testMassiveRefreshOperations() async throws {
-        try await setupActito()
-
         await withThrowingTaskGroup(of: Void.self) { group in
             for _ in 0...10 {
                 group.addTask {
@@ -24,7 +25,17 @@ internal struct InboxConcurrencyTests {
 
     @Test
     internal func testMassiveOpenOperations() async throws {
-        try await setupActito()
+        Actito.shared.notificationCenter = MockNotificationCenter()
+        Actito.shared.inbox().notificationCenter = MockNotificationCenter()
+
+        let deviceId = try #require(Actito.shared.device().currentDevice?.id)
+
+        try await ActitoTestRestApiClient.sendPushNotification(deviceId: deviceId)
+
+        while Actito.shared.inbox().items.isEmpty {
+            try await Actito.shared.inbox().refresh()
+            try await Task.sleep(nanoseconds: 50_000_000)
+        }
 
         let item = try #require(Actito.shared.inbox().items.first(where: { !$0.opened }))
 
@@ -38,19 +49,5 @@ internal struct InboxConcurrencyTests {
 
         let updatedItem = try #require(Actito.shared.inbox().items.first(where: { $0.id == item.id }))
         #expect(updatedItem.opened == true)
-    }
-
-    private func setupActito() async throws {
-        Actito.shared.configure(
-            servicesInfo: ActitoServicesInfo(
-                applicationKey: "",
-                applicationSecret: ""
-            ),
-            options: ActitoOptions(
-                debugLoggingEnabled: true
-            )
-        )
-
-        try await Actito.shared.launch()
     }
 }

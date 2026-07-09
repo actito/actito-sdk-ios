@@ -49,6 +49,8 @@ public final class Actito {
     /// such as sdk ready for use, and unlaunched.
     public weak var delegate: ActitoDelegate?
 
+    internal lazy var notificationCenter: ActitoNotificationCenter = UNUserNotificationCenter.current()
+
     private nonisolated init() {}
 
     // MARK: - Public API
@@ -643,7 +645,7 @@ public final class Actito {
     ///   - notificationId: The ID of the notification to remove.
     public func removeNotificationFromNotificationCenter(_ notificationId: String) {
         logger.debug("Removing notification '\(notificationId)' from the notification center.")
-        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notificationId])
+        notificationCenter.removeDeliveredNotifications(withIdentifiers: [notificationId])
     }
 
     /// Handles a URL by validating it and registering the current device as a test device for Actito Services.
