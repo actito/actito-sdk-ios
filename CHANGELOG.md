@@ -3,6 +3,7 @@
 ## Upcoming release
 
 - Add integration with Qualifio SDK
+- Fix preferred language update when only region or language value is changed
 
 
 ## 5.0.0
