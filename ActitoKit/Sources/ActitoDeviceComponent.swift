@@ -149,11 +149,6 @@ public final class ActitoDeviceComponent {
             let language = parts[0]
             let region = parts[1]
 
-            // Only update if the value is not the same.
-            guard language != LocalStorage.preferredLanguage, region != LocalStorage.preferredRegion else {
-                return
-            }
-
             try await updateLanguage(language, region: region)
 
             LocalStorage.preferredLanguage = language
