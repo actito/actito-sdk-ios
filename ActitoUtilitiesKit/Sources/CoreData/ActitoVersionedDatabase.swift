@@ -110,7 +110,7 @@ public final class ActitoVersionedDatabase {
         let context = self.backgroundContext
         let hasLoadedPersistentStores = self.hasLoadedPersistentStores
 
-        await context.performCompat {
+        await context.perform {
             guard context.hasChanges else {
                 return
             }

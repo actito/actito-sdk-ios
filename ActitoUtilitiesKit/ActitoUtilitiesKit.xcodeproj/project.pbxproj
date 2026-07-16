@@ -54,7 +54,6 @@
 		F27621E12E96796F006F752C /* ActitoExtraDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27621E02E967955006F752C /* ActitoExtraDictionary.swift */; };
 		F27621E52E96AD43006F752C /* ExtraDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27621E42E96AD43006F752C /* ExtraDictionaryTests.swift */; };
 		F27621EA2E990B80006F752C /* ActitoOptionalCodingWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27621E92E990B80006F752C /* ActitoOptionalCodingWrapper.swift */; };
-		F27FD2682D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FD2672D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +115,6 @@
 		F27621E02E967955006F752C /* ActitoExtraDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoExtraDictionary.swift; sourceTree = "<group>"; };
 		F27621E42E96AD43006F752C /* ExtraDictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraDictionaryTests.swift; sourceTree = "<group>"; };
 		F27621E92E990B80006F752C /* ActitoOptionalCodingWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoOptionalCodingWrapper.swift; sourceTree = "<group>"; };
-		F27FD2672D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+SwiftConcurrency.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -492,7 +490,6 @@
 			children = (
 				E57F4B8D2E8AC46000EE5E0D /* ActitoDatabaseActor.swift */,
 				E57F4B8B2E86DFB300EE5E0D /* ActitoVersionedDatabase.swift */,
-				F27FD2672D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -621,7 +618,6 @@
 				1A52DE8D2CA4684700B5F56C /* Bundle+Application.swift in Sources */,
 				1A0E1F942C9B1C8E00E15FC7 /* ActitoAnyEncodable.swift in Sources */,
 				E57F4B8C2E86DFB900EE5E0D /* ActitoVersionedDatabase.swift in Sources */,
-				F27FD2682D7A3A4400ED26AD /* NSManagedObjectContext+SwiftConcurrency.swift in Sources */,
 				1A52DE6B2CA413B700B5F56C /* UserAgent.swift in Sources */,
 				1A0E1F692C982E8000E15FC7 /* ActitoExtraEquatable.swift in Sources */,
 				1A52DE612CA1A63D00B5F56C /* ActitoLogger.swift in Sources */,

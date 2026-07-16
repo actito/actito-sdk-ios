@@ -34,7 +34,7 @@ internal final class ActitoDatabase {
 
         let context = database.backgroundContext
 
-        return try await context.performCompat {
+        return try await context.perform {
             let request = NSFetchRequest<NotificareCoreDataEvent>(entityName: "NotificareCoreDataEvent")
             let events = try context.fetch(request)
             return events.compactMap { event in
@@ -54,7 +54,7 @@ internal final class ActitoDatabase {
 
         let context = database.backgroundContext
 
-        let objectID = try await context.performCompat {
+        let objectID = try await context.perform {
             let entity = try NotificareCoreDataEvent(from: event, context: context)
             return entity.objectID
         }
@@ -73,7 +73,7 @@ internal final class ActitoDatabase {
 
         let context = database.backgroundContext
 
-        try await context.performCompat {
+        try await context.perform {
             let entity = try context.existingObject(with: id) as! NotificareCoreDataEvent
             entity.retries = event.retries
         }
@@ -90,7 +90,7 @@ internal final class ActitoDatabase {
 
         let context = database.backgroundContext
 
-        await context.performCompat {
+        await context.perform {
             let entity: NSManagedObject
 
             do {
@@ -116,7 +116,7 @@ internal final class ActitoDatabase {
         let context = database.backgroundContext
         let persistentContainer = database.persistentContainer
 
-        try await context.performCompat {
+        try await context.perform {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "NotificareCoreDataEvent")
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
 
