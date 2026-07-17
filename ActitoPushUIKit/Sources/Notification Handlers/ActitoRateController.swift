@@ -22,13 +22,12 @@ internal class ActitoRateController: ActitoNotificationPresenter {
         // Rate action
         alert.addAction(UIAlertAction(title: ActitoLocalizable.string(resource: .rateAlertYesButton), style: .default, handler: { _ in
             if !LocalStorage.hasReviewedCurrentVersion {
-                //                if #available(iOS 14.0, *), let scene = scene {
-                //                    SKStoreReviewController.requestReview(in: scene)
-                //                } else {
-                SKStoreReviewController.requestReview()
-                //                }
-
-                LocalStorage.hasReviewedCurrentVersion = true
+                if let scene = controller.view.window?.windowScene {
+                    SKStoreReviewController.requestReview(in: scene)
+                    LocalStorage.hasReviewedCurrentVersion = true
+                } else {
+                    logger.warning("Cannot request review because no UIWindowScene is available.")
+                }
             } else {
                 // Go to the Store instead
                 if

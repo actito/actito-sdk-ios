@@ -25,15 +25,11 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
     private let fakeBeaconUUID = UUID()
 
     private var hasReducedAccuracy: Bool {
-        if #available(iOS 14.0, *) {
-            return locationManager.accuracyAuthorization == .reducedAccuracy
-        }
-
-        return false
+        return locationManager.accuracyAuthorization == .reducedAccuracy
     }
 
     private var authorizationMode: AuthorizationMode {
-        let status = CLLocationManager.authorizationStatus()
+        let status = locationManager.authorizationStatus
 
         switch status {
         case .authorizedAlways:
@@ -157,7 +153,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             // Keep track of the location services status.
             LocalStorage.locationServicesEnabled = true
 
-            let status = CLLocationManager.authorizationStatus()
+            let status = locationManager.authorizationStatus
 
             switch status {
             case .notDetermined:
@@ -288,14 +284,12 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         Task {
             await saveLocation(location)
 
-            if #available(iOS 14.0, *) {
-                // Do not monitor regions unless we have full accuracy and always auth.
-                guard self.locationManager.accuracyAuthorization == .fullAccuracy, self.locationManager.authorizationStatus == .authorizedAlways else {
-                    // Unlock location updates.
-                    self.processingLocationUpdate = false
+            // Do not monitor regions unless we have full accuracy and always auth.
+            guard self.locationManager.accuracyAuthorization == .fullAccuracy, self.locationManager.authorizationStatus == .authorizedAlways else {
+                // Unlock location updates.
+                self.processingLocationUpdate = false
 
-                    return
-                }
+                return
             }
 
             // Load the nearest regions.
@@ -340,10 +334,8 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
         // Update the location when we can monitor geofences but no fences were loaded yet.
         // This typically happens when tracking the user's location and later upgrading to background permission.
-        if #available(iOS 14.0, *) {
-            if locationManager.authorizationStatus == .authorizedAlways, locationManager.accuracyAuthorization == .fullAccuracy, LocalStorage.monitoredRegions.isEmpty {
-                return true
-            }
+        if locationManager.authorizationStatus == .authorizedAlways, locationManager.accuracyAuthorization == .fullAccuracy, LocalStorage.monitoredRegions.isEmpty {
+            return true
         }
 
         return false
@@ -1207,7 +1199,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         // Request user location when we're only authorized while in use
         // or when the background updates are not available.
         if
-            CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+            locationManager.authorizationStatus == .authorizedWhenInUse ||
                 UIApplication.shared.backgroundRefreshStatus == .denied ||
                 UIApplication.shared.backgroundRefreshStatus == .restricted ||
                 !CLLocationManager.significantLocationChangeMonitoringAvailable()
@@ -1221,7 +1213,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             locationManager.startUpdatingHeading()
         }
 
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
+        if locationManager.authorizationStatus == .authorizedWhenInUse || locationManager.authorizationStatus == .authorizedAlways {
             checkBluetoothEnabled()
         }
     }
@@ -1246,7 +1238,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
     // Prior to iOS 14, this delegate gets called instead
     public func locationManager(_: CLLocationManager, didChangeAuthorization _: CLAuthorizationStatus) {
-        if CLLocationManager.authorizationStatus() == .denied || CLLocationManager.authorizationStatus() == .restricted {
+        if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
             handleLocationServicesUnauthorized()
         }
     }

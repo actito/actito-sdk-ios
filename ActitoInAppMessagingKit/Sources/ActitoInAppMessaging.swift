@@ -198,21 +198,12 @@ public final class ActitoInAppMessaging {
             return nil
         }
 
-        if #available(iOS 15.0, *) {
-            guard let keyWindow = scene.keyWindow else {
-                logger.debug("Unable to acquire the key window.")
-                return nil
-            }
-
-            window = keyWindow
-        } else {
-            guard let keyWindow = scene.windows.first(where: { $0.isKeyWindow }) else {
-                logger.debug("Unable to acquire the key window.")
-                return nil
-            }
-
-            window = keyWindow
+        guard let keyWindow = scene.keyWindow else {
+            logger.debug("Unable to acquire the key window.")
+            return nil
         }
+
+        window = keyWindow
 
         guard let rootViewController = window.rootViewController else {
             logger.debug("Unable to acquire the root view controller.")

@@ -22,11 +22,7 @@ internal class HomeViewModel: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     private var requestedPermission: LocationPermissionGroup?
     private var authorizationStatus: CLAuthorizationStatus {
-        if #available(iOS 14.0, *) {
-            return locationManager.authorizationStatus
-        } else {
-            return CLLocationManager.authorizationStatus()
-        }
+        return locationManager.authorizationStatus
     }
 
     @Published internal  private(set) var viewState: ViewState = .isNotReady

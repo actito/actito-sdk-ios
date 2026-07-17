@@ -145,9 +145,9 @@ public class ActitoInAppMessagingBannerView: UIView, ActitoInAppMessagingView {
 
         addSubview(cardView)
         NSLayoutConstraint.activate([
-            cardView.leadingAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.leadingAnchor, constant: 16),
-            cardView.trailingAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.trailingAnchor, constant: -16),
-            cardView.topAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.topAnchor, constant: 16),
+            cardView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            cardView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            cardView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
         ])
 
         //

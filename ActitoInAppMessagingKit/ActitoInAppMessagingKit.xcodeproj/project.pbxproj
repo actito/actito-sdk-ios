@@ -14,7 +14,6 @@
 		E5E5EB6A2DC1212900B00B6A /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB682DC1212900B00B6A /* ActitoKit.framework */; };
 		E5E5EB6C2DC1212900B00B6A /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB692DC1212900B00B6A /* ActitoUtilitiesKit.framework */; };
 		F206D6ED28A53E3500A35E60 /* ActitoInAppMessagingBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F206D6EC28A53E3500A35E60 /* ActitoInAppMessagingBannerView.swift */; };
-		F206D6F028A5427800A35E60 /* UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F206D6EF28A5427800A35E60 /* UIKit.swift */; };
 		F206D6F428A65F3D00A35E60 /* ActitoInAppMessagingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F206D6F328A65F3D00A35E60 /* ActitoInAppMessagingCardView.swift */; };
 		F206D6F828AD532800A35E60 /* ActitoInAppMessagingFullscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F206D6F728AD532800A35E60 /* ActitoInAppMessagingFullscreenView.swift */; };
 		F225AC9328AFA24E00E4446A /* ActitoInAppMessaging+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = F225AC9228AFA24E00E4446A /* ActitoInAppMessaging+Events.swift */; };
@@ -51,7 +50,6 @@
 		E5E5EB682DC1212900B00B6A /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5E5EB692DC1212900B00B6A /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F206D6EC28A53E3500A35E60 /* ActitoInAppMessagingBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInAppMessagingBannerView.swift; sourceTree = "<group>"; };
-		F206D6EF28A5427800A35E60 /* UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKit.swift; sourceTree = "<group>"; };
 		F206D6F328A65F3D00A35E60 /* ActitoInAppMessagingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInAppMessagingCardView.swift; sourceTree = "<group>"; };
 		F206D6F728AD532800A35E60 /* ActitoInAppMessagingFullscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInAppMessagingFullscreenView.swift; sourceTree = "<group>"; };
 		F225AC9228AFA24E00E4446A /* ActitoInAppMessaging+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActitoInAppMessaging+Events.swift"; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				F23D9E8A28B537FC009675DE /* String+Utilities.swift */,
-				F206D6EF28A5427800A35E60 /* UIKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -328,7 +325,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F206D6F028A5427800A35E60 /* UIKit.swift in Sources */,
 				F286CF1D2C1C3765005DF265 /* ActitoImageCache.swift in Sources */,
 				1AD52A5A2DFFFB81006C7D88 /* LaunchComponent.swift in Sources */,
 				F2E5141A28A50C6800D1E0BF /* ActitoInAppMessage.swift in Sources */,
