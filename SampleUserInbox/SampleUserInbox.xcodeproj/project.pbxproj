@@ -454,7 +454,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 2610;
+				LastUpgradeCheck = 2700;
 				ORGANIZATIONNAME = Actito;
 				TargetAttributes = {
 					F29FD1F324CB1FE1004B166D = {
