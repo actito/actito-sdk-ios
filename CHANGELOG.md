@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 5.2.0
+
+- Add framework detection
+- Add new Pass notification type (`re.notifica.notification.Pass`)
+- Add integration with Qualifio SDK
+- Fix preferred language update when only region or language value is changed
+
+## 5.1.0
+
+- Skipped to get version parity with the Android SDK. 
+
 ## 5.0.0
 
 Prior to upgrading to v5.x, consult the [Migration Guide](./MIGRATION.md), which outlines all necessary changes and procedures to ensure a smooth migration.

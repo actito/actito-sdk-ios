@@ -21,6 +21,7 @@
 		1AD52A242DE75B3F006C7D88 /* LocalEvent+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */; };
 		1AD52A262DE75BAC006C7D88 /* CreateEventPayload+Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */; };
 		1AD52A562DFFF75F006C7D88 /* ActitoLaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */; };
+		1AD74BAD2FA0A2880044A79A /* ActitoFrameworkDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD74BAC2FA0A2770044A79A /* ActitoFrameworkDetector.swift */; };
 		42A2011DB7750225B7C9D3E2 /* ActitoBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A205DF5970468FB18808F5 /* ActitoBootstrap.m */; };
 		42A201A3F80D5668FF5D6759 /* ActitoBootstrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A20450A15AAC914DBC800F /* ActitoBootstrap.h */; };
 		42A20330821EAB78A0A5EB13 /* URLSession+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A20F817E5D783B690400CF /* URLSession+Retry.swift */; };
@@ -94,6 +95,7 @@
 		1AD52A232DE75B37006C7D88 /* LocalEvent+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalEvent+CoreData.swift"; sourceTree = "<group>"; };
 		1AD52A252DE75BA5006C7D88 /* CreateEventPayload+Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateEventPayload+Local.swift"; sourceTree = "<group>"; };
 		1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoLaunchComponent.swift; sourceTree = "<group>"; };
+		1AD74BAC2FA0A2770044A79A /* ActitoFrameworkDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoFrameworkDetector.swift; sourceTree = "<group>"; };
 		42A20228EB70EA83D835BF01 /* ActitoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActitoError.swift; sourceTree = "<group>"; };
 		42A20450A15AAC914DBC800F /* ActitoBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActitoBootstrap.h; sourceTree = "<group>"; };
 		42A205DF5970468FB18808F5 /* ActitoBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActitoBootstrap.m; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				F2E4DBC82525EC6F003FE29B /* Storage */,
 				F293E29026302CAD008C2010 /* Swizzling */,
 				F2E801E8269F021800582DB8 /* ActitoInternals.swift */,
+				1AD74BAC2FA0A2770044A79A /* ActitoFrameworkDetector.swift */,
 				1AD52A552DFFF757006C7D88 /* ActitoLaunchComponent.swift */,
 				42A20C54DCF5011314943FAD /* ActitoLaunchState.swift */,
 				F293E28926302C76008C2010 /* ActitoLocalizable.swift */,
@@ -536,6 +539,7 @@
 				42A20AD28857EBCB0A86A104 /* ActitoLaunchState.swift in Sources */,
 				42A20BCDB5A9B47688D37655 /* URLRequest+Extensions.swift in Sources */,
 				42A20330821EAB78A0A5EB13 /* URLSession+Retry.swift in Sources */,
+				1AD74BAD2FA0A2880044A79A /* ActitoFrameworkDetector.swift in Sources */,
 				F286051E262D9A4300F6D582 /* ActitoRequest.swift in Sources */,
 				F25A5A3527E89773004556E6 /* Version.swift in Sources */,
 				F293E28A26302C76008C2010 /* ActitoLocalizable.swift in Sources */,
@@ -745,7 +749,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.2.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
@@ -790,7 +794,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.2.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
@@ -939,7 +943,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.2.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
@@ -1071,7 +1075,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.2.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
@@ -1197,7 +1201,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.2.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito;
@@ -1322,7 +1326,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = "5.0.0";
+				MARKETING_VERSION = 5.2.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				PRODUCT_BUNDLE_IDENTIFIER = com.actito;

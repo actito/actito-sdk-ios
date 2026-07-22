@@ -37,17 +37,31 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         case "canPresentPasses":
             return Actito.shared.loyalty().canPresentPasses
 
-        case "present":
+        case "presentPass":
             guard
                 let dict = data as? [String: Any],
                 let controller = dict["controller"] as? UIViewController,
                 let notification = dict["notification"] as? ActitoNotification
             else {
-                throw ActitoError.invalidArgument(message: "Invalid data for present command")
+                throw ActitoError.invalidArgument(message: "Invalid data for present passbook command")
             }
 
-            Actito.shared.loyalty().present(notification: notification, in: controller)
-            return nil
+            guard let type = ActitoNotification.NotificationType(rawValue: notification.type) else {
+                throw ActitoError.invalidArgument(message: "Unhandled notification type '\(notification.type)'.")
+            }
+
+            switch type {
+            case .passbook:
+                Actito.shared.loyalty().presentPassbook(notification: notification, in: controller)
+                return nil
+
+            case .pass:
+                Actito.shared.loyalty().presentPass(notification: notification, in: controller)
+                return nil
+
+            default:
+                throw ActitoError.invalidArgument(message: "Wrong type for pass presentation: \(type)")
+            }
 
         default:
             throw ActitoError.unsupportedCommand(message: "Unsupported command: \(command)")

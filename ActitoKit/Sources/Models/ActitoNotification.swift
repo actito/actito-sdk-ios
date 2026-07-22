@@ -108,6 +108,12 @@ public struct ActitoNotification: Codable, Equatable, Sendable {
 
         /// Opens an application store page.
         case store = "re.notifica.notification.Store"
+
+        /// Displays a Apple Wallet compatible card created on Actito.
+        case pass = "re.notifica.notification.Pass"
+
+        /// Displays a Qualifio campaign via the Qualifio SDK, if available.
+        case qualifio = "re.notifica.notification.qualifio.Campaign"
     }
 
     /// Represents a structured content element within a notification.
