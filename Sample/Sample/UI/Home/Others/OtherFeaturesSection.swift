@@ -11,12 +11,12 @@ internal struct OtherFeaturesSection: View {
                 AssetsView()
             } label: {
                 Label {
-                    Text(String(localized: "home_assets"))
+                    Text(String(localized: "home_other_features_assets"))
                 } icon: {
                     ListIconView(
                         icon: "folder.fill",
                         foregroundColor: .white,
-                        backgroundColor: Color(.systemIndigo)
+                        backgroundColor: .yellow
                     )
                 }
             }
@@ -25,23 +25,25 @@ internal struct OtherFeaturesSection: View {
                 EventsView()
             } label: {
                 Label {
-                    Text(String(localized: "home_custom_events"))
+                    Text(String(localized: "home_other_features_custom_events"))
                 } icon: {
                     ListIconView(
                         icon: "light.beacon.max",
                         foregroundColor: .white,
-                        backgroundColor: .red
+                        backgroundColor: .green
                     )
                 }
             }
         } header: {
-            Text(String(localized: "home_other_features"))
+            Text(String(localized: "home_other_features_header"))
         }
     }
 }
 
 internal struct OtherFeaturesSection_Previews: PreviewProvider {
     internal static var previews: some View {
-        OtherFeaturesSection()
+        List {
+            OtherFeaturesSection()
+        }
     }
 }

@@ -13,14 +13,16 @@ internal struct AssetsView: View {
             Section {
                 TextField(String(localized: "assets_group_input"), text: $viewModel.assetsGroup)
                     .disabled(viewModel.viewState.isLoading)
+                    .disableAutocorrection(true)
+                    .autocapitalization(.none)
 
-                Button(String(localized: "button_search")) {
+                Button(String(localized: "assets_search_button")) {
                     viewModel.fetchAssets()
                 }
                 .frame(maxWidth: .infinity)
                 .disabled(!viewModel.isSearchAllowed)
             } header: {
-                Text(String(localized: "assets_fetch"))
+                Text(String(localized: "assets_header"))
             }
 
             switch viewModel.viewState {
@@ -72,7 +74,7 @@ private struct SearchResultView: View {
                 }
             }
         } header: {
-            Text(String(localized: "result"))
+            Text(String(localized: "assets_result_header"))
         }
     }
 }

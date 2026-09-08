@@ -9,16 +9,25 @@ internal struct BeaconsView: View {
 
     internal var body: some View {
         List {
-            Section {
-                if viewModel.rangedBeacons.isEmpty {
-                    Label(String(localized: "beacons_not_found"), systemImage: "info.circle.fill")
-                } else {
-                    ForEach(viewModel.rangedBeacons) { beacon in
-                        BeaconRow(beacon: beacon)
+            if let rangedBeacons = viewModel.rangedBeacons {
+                Section {
+                    if rangedBeacons.beacons.isEmpty {
+                        Label(String(localized: "beacons_not_found"), systemImage: "info.circle.fill")
+                    } else {
+                        ForEach(rangedBeacons.beacons) { beacon in
+                            BeaconRow(
+                                region: rangedBeacons.region,
+                                beacon: beacon
+                            )
+                        }
+                    }
+                } header: {
+                    HStack {
+                        Text(String(localized: "beacons_header"))
+
+                        ChipView(text: String(describing: rangedBeacons.beacons.count))
                     }
                 }
-            } header: {
-                Text(String(localized: "beacons_ranged"))
             }
         }
         .navigationTitle(String(localized: "beacons_title"))
