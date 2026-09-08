@@ -217,6 +217,11 @@ extension AppDelegate: ActitoInboxDelegate {
 extension AppDelegate: ActitoGeoDelegate {
     internal func actito(_: ActitoGeo, didUpdateLocations locations: [ActitoLocation]) {
         Logger.main.info("Locations updated = \(locations)")
+
+        NotificationCenter.default.post(
+            name: .locationUpdated,
+            object: nil,
+        )
     }
 
     internal func actito(_: ActitoGeo, didFailWith error: Error) {
@@ -269,6 +274,11 @@ extension AppDelegate: ActitoGeoDelegate {
 
     internal func actito(_: ActitoGeo, didEnter region: ActitoRegion) {
         Logger.main.info("On region enter = \(region.name)")
+
+        NotificationCenter.default.post(
+            name: .regionEntered,
+            object: nil,
+        )
     }
 
     internal func actito(_: ActitoGeo, didEnter beacon: ActitoBeacon) {
@@ -277,6 +287,11 @@ extension AppDelegate: ActitoGeoDelegate {
 
     internal func actito(_: ActitoGeo, didExit region: ActitoRegion) {
         Logger.main.info("On region exit = \(region.name)")
+
+        NotificationCenter.default.post(
+            name: .regionExited,
+            object: nil,
+        )
     }
 
     internal func actito(_: ActitoGeo, didExit beacon: ActitoBeacon) {

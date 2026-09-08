@@ -10,7 +10,7 @@ internal struct EventsView: View {
     internal var body: some View {
         List {
             Section {
-                TextField(String(localized: "event_name"), text: $viewModel.eventName)
+                TextField(String(localized: "events_event_name"), text: $viewModel.eventName)
                     .disabled(viewModel.viewState.isLoading)
 
                 if !viewModel.viewState.isLoading {
@@ -19,14 +19,14 @@ internal struct EventsView: View {
                     }
                 }
 
-                Button(String(localized: "button_register")) {
+                Button(String(localized: "events_register_button")) {
                     viewModel.registerEvent()
                 }
                 .frame(maxWidth: .infinity)
                 .disabled(!viewModel.isRegisterEventAllowed)
             } header: {
                 HStack {
-                    Text(String(localized: "event_register"))
+                    Text(String(localized: "events_header"))
                 }
             }
 
@@ -62,7 +62,7 @@ internal struct EventsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button(String(localized: "event_add_field")) {
+                Button(String(localized: "events_add_field")) {
                     viewModel.addEventField()
                 }
             }
@@ -75,10 +75,10 @@ private struct EventFieldView: View {
 
     var body: some View {
         HStack {
-            TextField(String(localized: "event_key"), text: $field.key)
+            TextField(String(localized: "events_key"), text: $field.key)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
-            TextField(String(localized: "event_value"), text: $field.value)
+            TextField(String(localized: "events_value"), text: $field.value)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }
