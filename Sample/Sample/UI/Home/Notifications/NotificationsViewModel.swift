@@ -102,6 +102,8 @@ internal class NotificationsViewModel: NSObject, ObservableObject {
                         userMessages.append(
                             UserMessage(variant: .requestNotificationsPermissionFailure)
                         )
+
+                        return
                     }
                 }
 

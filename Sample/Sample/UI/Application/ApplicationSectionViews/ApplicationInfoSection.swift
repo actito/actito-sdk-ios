@@ -10,52 +10,54 @@ internal struct ApplicationInfoSection: View {
 
     internal var body: some View {
         Section {
-            HStack {
-                Text(String(localized: "application_application_info_id"))
+            if let application {
+                HStack {
+                    Text(String(localized: "application_application_info_id"))
 
-                Spacer()
+                    Spacer()
 
-                Text(verbatim: application!.id)
-            }
+                    Text(verbatim: application.id)
+                }
 
-            HStack {
-                Text(String(localized: "application_application_info_name"))
+                HStack {
+                    Text(String(localized: "application_application_info_name"))
 
-                Spacer()
+                    Spacer()
 
-                Text(verbatim: application!.name)
-            }
+                    Text(verbatim: application.name)
+                }
 
-            HStack {
-                Text(String(localized: "application_application_info_category"))
+                HStack {
+                    Text(String(localized: "application_application_info_category"))
 
-                Spacer()
+                    Spacer()
 
-                Text(verbatim: application!.category)
-            }
+                    Text(verbatim: application.category)
+                }
 
-            HStack {
-                Text(String(localized: "application_application_info_enforce_size_limit"))
+                HStack {
+                    Text(String(localized: "application_application_info_enforce_size_limit"))
 
-                Spacer()
+                    Spacer()
 
-                Text(String(describing: application!.enforceSizeLimit!))
-            }
+                    Text(String(describing: application.enforceSizeLimit!))
+                }
 
-            HStack {
-                Text(String(localized: "application_application_info_enforce_tag_restrictions"))
+                HStack {
+                    Text(String(localized: "application_application_info_enforce_tag_restrictions"))
 
-                Spacer()
+                    Spacer()
 
-                Text(String(describing: application!.enforceTagRestrictions!))
-            }
+                    Text(String(describing: application.enforceTagRestrictions!))
+                }
 
-            HStack {
-                Text(String(localized: "application_application_info_enforce_event_name_restrictions"))
+                HStack {
+                    Text(String(localized: "application_application_info_enforce_event_name_restrictions"))
 
-                Spacer()
+                    Spacer()
 
-                Text(String(describing: application!.enforceEventNameRestrictions!))
+                    Text(String(describing: application.enforceEventNameRestrictions!))
+                }
             }
         } header: {
             Text(String(localized: "application_application_info_header"))

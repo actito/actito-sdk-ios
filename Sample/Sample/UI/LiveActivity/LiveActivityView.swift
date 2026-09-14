@@ -10,7 +10,7 @@ internal struct LiveActivityView: View {
         List {
             Section {
                 if #available(iOS 16.1, *) {
-                                        Button(String(localized: "live_activity_grind_button")) {
+                    Button(String(localized: "live_activity_grind_button")) {
                         LiveActivitiesController.shared.createCoffeeBrewerLiveActivity()
                     }
                     .frame(maxWidth: .infinity)

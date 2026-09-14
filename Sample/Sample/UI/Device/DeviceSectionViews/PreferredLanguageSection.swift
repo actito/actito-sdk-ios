@@ -19,6 +19,7 @@ internal struct PreferredLanguageSection: View {
 
             Button(String(localized: "device_preferred_language_button")) {
                 updatePreferredLanguage(language)
+                language = ""
             }
             .frame(maxWidth: .infinity)
             .disabled(language.isEmpty)

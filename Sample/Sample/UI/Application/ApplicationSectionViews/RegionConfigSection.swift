@@ -10,12 +10,14 @@ internal struct RegionConfigSection: View {
 
     internal var body: some View {
         Section {
-            HStack {
-                Text(String(localized: "application_region_config_proximity_uuid"))
+            if let regionConfig {
+                HStack {
+                    Text(String(localized: "application_region_config_proximity_uuid"))
 
-                Spacer()
+                    Spacer()
 
-                Text(String(describing: regionConfig!.proximityUUID!))
+                    Text(String(describing: regionConfig.proximityUUID!))
+                }
             }
         } header: {
             Text(String(localized: "application_region_config_header"))

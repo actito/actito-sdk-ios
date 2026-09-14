@@ -20,7 +20,7 @@
 		1A59F525304A15B2002A457D /* UserDataFieldsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F524304A15AA002A457D /* UserDataFieldsSection.swift */; };
 		1A59F527304A1BCF002A457D /* ActionCategoriesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F526304A1BC6002A457D /* ActionCategoriesSection.swift */; };
 		1A59F52A304AC310002A457D /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F529304AC30F002A457D /* DeviceView.swift */; };
-		1A59F52D304AC377002A457D /* CurrentDeviceSection().swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F52C304AC370002A457D /* CurrentDeviceSection().swift */; };
+		1A59F52D304AC377002A457D /* CurrentDeviceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F52C304AC370002A457D /* CurrentDeviceSection.swift */; };
 		1A59F52F304AC4D6002A457D /* DeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F52E304AC4D0002A457D /* DeviceViewModel.swift */; };
 		1A59F531304AD048002A457D /* DoNotDisturbSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F530304AD042002A457D /* DoNotDisturbSection.swift */; };
 		1A59F533304AFB44002A457D /* RegisterUserSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F532304AFB3C002A457D /* RegisterUserSection.swift */; };
@@ -185,7 +185,7 @@
 		1A59F524304A15AA002A457D /* UserDataFieldsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataFieldsSection.swift; sourceTree = "<group>"; };
 		1A59F526304A1BC6002A457D /* ActionCategoriesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCategoriesSection.swift; sourceTree = "<group>"; };
 		1A59F529304AC30F002A457D /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
-		1A59F52C304AC370002A457D /* CurrentDeviceSection().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentDeviceSection().swift"; sourceTree = "<group>"; };
+		1A59F52C304AC370002A457D /* CurrentDeviceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDeviceSection.swift; sourceTree = "<group>"; };
 		1A59F52E304AC4D0002A457D /* DeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewModel.swift; sourceTree = "<group>"; };
 		1A59F530304AD042002A457D /* DoNotDisturbSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoNotDisturbSection.swift; sourceTree = "<group>"; };
 		1A59F532304AFB3C002A457D /* RegisterUserSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserSection.swift; sourceTree = "<group>"; };
@@ -415,7 +415,7 @@
 				1A59F534304B0705002A457D /* PreferredLanguageSection.swift */,
 				1A59F532304AFB3C002A457D /* RegisterUserSection.swift */,
 				1A59F530304AD042002A457D /* DoNotDisturbSection.swift */,
-				1A59F52C304AC370002A457D /* CurrentDeviceSection().swift */,
+				1A59F52C304AC370002A457D /* CurrentDeviceSection.swift */,
 			);
 			path = DeviceSectionViews;
 			sourceTree = "<group>";
@@ -957,7 +957,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A59F52D304AC377002A457D /* CurrentDeviceSection().swift in Sources */,
+				1A59F52D304AC377002A457D /* CurrentDeviceSection.swift in Sources */,
 				1A59F51C3049C651002A457D /* ApplicationInfoSection.swift in Sources */,
 				E5C78F0929BBA15B006BF1F6 /* Logger.swift in Sources */,
 				E5590E3529C4760E006E593B /* EventsViewModel.swift in Sources */,

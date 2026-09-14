@@ -10,13 +10,15 @@ internal struct ServicesSection: View {
 
     internal var body: some View {
         Section {
-            ForEach(Array(services!.keys), id: \.self) { service in
-                HStack {
-                    Text(verbatim: service)
+            if let services {
+                ForEach(Array(services.keys), id: \.self) { service in
+                    HStack {
+                        Text(verbatim: service)
 
-                    Spacer()
+                        Spacer()
 
-                    Text(String(describing: services![service]!))
+                        Text(String(describing: services[service]!))
+                    }
                 }
             }
         } header: {

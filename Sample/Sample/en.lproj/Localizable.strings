@@ -134,7 +134,7 @@
 "home_location" = "Location";
 "home_location_enabled" = "Enabled";
 "home_location_bluetooth_enabled" = "Bluetooth Enabled";
-"home_location_permission" = "Bluetooth Permission";
+"home_location_permission" = "Permission";
 "home_location_regions" = "Regions";
 "home_location_regions_entered_chip" = "Entered: %d";
 "home_location_regions_monitored_chip" = "Monitored: %d";

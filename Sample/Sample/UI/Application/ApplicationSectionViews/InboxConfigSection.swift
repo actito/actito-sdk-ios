@@ -10,28 +10,30 @@ internal struct InboxConfigSection: View {
 
     internal var body: some View {
         Section {
-            HStack {
-                Text(String(localized: "application_inbox_config_use_inbox"))
+            if let inboxConfig {
+                HStack {
+                    Text(String(localized: "application_inbox_config_use_inbox"))
 
-                Spacer()
+                    Spacer()
 
-                Text(String(describing: inboxConfig!.useInbox))
-            }
+                    Text(String(describing: inboxConfig.useInbox))
+                }
 
-            HStack {
-                Text(String(localized: "application_inbox_config_use_user_inbox"))
+                HStack {
+                    Text(String(localized: "application_inbox_config_use_user_inbox"))
 
-                Spacer()
+                    Spacer()
 
-                Text(String(describing: inboxConfig!.useUserInbox))
-            }
+                    Text(String(describing: inboxConfig.useUserInbox))
+                }
 
-            HStack {
-                Text(String(localized: "application_inbox_config_auto_badge"))
+                HStack {
+                    Text(String(localized: "application_inbox_config_auto_badge"))
 
-                Spacer()
+                    Spacer()
 
-                Text(String(describing: inboxConfig!.autoBadge))
+                    Text(String(describing: inboxConfig.autoBadge))
+                }
             }
         } header: {
             Text(String(localized: "application_inbox_config_header"))
