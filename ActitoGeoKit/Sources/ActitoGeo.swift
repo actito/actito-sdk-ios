@@ -1236,14 +1236,6 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
     // MARK: - CLLocationManagerDelegate
 
-    // Prior to iOS 14, this delegate gets called instead
-    public func locationManager(_: CLLocationManager, didChangeAuthorization _: CLAuthorizationStatus) {
-        if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
-            handleLocationServicesUnauthorized()
-        }
-    }
-
-    @available(iOS 14.0, *)
     public func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus == .denied || manager.authorizationStatus == .restricted {
             handleLocationServicesUnauthorized()
