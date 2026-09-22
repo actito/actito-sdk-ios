@@ -481,7 +481,6 @@ extension HomeViewModel: @MainActor CLLocationManagerDelegate {
         onAuthorizationStatusChange(status)
     }
 
-    @available(iOS 14.0, *)
     internal func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         onAuthorizationStatusChange(manager.authorizationStatus)
     }
