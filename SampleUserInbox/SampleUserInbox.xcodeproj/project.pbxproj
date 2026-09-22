@@ -874,7 +874,7 @@
 			repositoryURL = "https://github.com/auth0/Auth0.swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.0;
+				minimumVersion = 3.0.0;
 			};
 		};
 		E5671F822CA2E9D50053AA7E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
