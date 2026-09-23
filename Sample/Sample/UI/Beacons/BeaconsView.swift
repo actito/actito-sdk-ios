@@ -9,24 +9,22 @@ internal struct BeaconsView: View {
 
     internal var body: some View {
         List {
-            if let rangedBeacons = viewModel.rangedBeacons {
-                Section {
-                    if rangedBeacons.beacons.isEmpty {
-                        Label(String(localized: "beacons_not_found"), systemImage: "info.circle.fill")
-                    } else {
-                        ForEach(rangedBeacons.beacons) { beacon in
-                            BeaconRow(
-                                region: rangedBeacons.region,
-                                beacon: beacon
-                            )
-                        }
+            Section {
+                if let rangedBeacons = viewModel.rangedBeacons, !rangedBeacons.beacons.isEmpty {
+                    ForEach(rangedBeacons.beacons) { beacon in
+                        BeaconRow(
+                            region: rangedBeacons.region,
+                            beacon: beacon
+                        )
                     }
-                } header: {
-                    HStack {
-                        Text(String(localized: "beacons_header"))
+                } else {
+                    Label(String(localized: "beacons_not_found"), systemImage: "info.circle.fill")
+                }
+            } header: {
+                HStack {
+                    Text(String(localized: "beacons_header"))
 
-                        ChipView(text: String(describing: rangedBeacons.beacons.count))
-                    }
+                    ChipView(text: String(describing: viewModel.rangedBeacons?.beacons.count ?? 0))
                 }
             }
         }

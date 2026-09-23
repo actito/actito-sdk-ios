@@ -69,7 +69,7 @@
 
 "beacons_title" = "Beacons";
 "beacons_header" = "Ranged Beacons";
-"beacons_not_found" = "No beacons nearby found!";
+"beacons_not_found" = "No beacons found nearby!";
 "beacons_beacon_major" = "Major: %d";
 "beacons_beacon_minor" = "Minor: %d";
 "beacons_beacon_proximity" = "Proximity: %@";
