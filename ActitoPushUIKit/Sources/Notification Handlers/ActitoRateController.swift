@@ -24,10 +24,12 @@ internal class ActitoRateController: ActitoNotificationPresenter {
             if !LocalStorage.hasReviewedCurrentVersion {
                 if let scene = controller.view.window?.windowScene {
                     SKStoreReviewController.requestReview(in: scene)
-                    LocalStorage.hasReviewedCurrentVersion = true
                 } else {
-                    logger.warning("Cannot request review because no UIWindowScene is available.")
+                    logger.warning("Unable to acquire current UIWindowScene. Presenting on keyWindow's UIWindowScene")
+                    SKStoreReviewController.requestReview()
                 }
+
+                LocalStorage.hasReviewedCurrentVersion = true
             } else {
                 // Go to the Store instead
                 if
