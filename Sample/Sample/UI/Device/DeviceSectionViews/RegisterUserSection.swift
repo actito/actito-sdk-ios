@@ -17,36 +17,61 @@ internal struct RegisterUserSection: View {
             TextField(String(localized: "device_register_user_id"), text: $userId)
                 .autocorrectionDisabled()
                 .autocapitalization(.none)
+                .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color(uiColor: .separator))
+                )
 
             TextField(String(localized: "device_register_user_name"), text: $userName)
                 .autocorrectionDisabled()
                 .autocapitalization(.none)
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color(uiColor: .separator))
+                )
 
-            Button(String(localized: "device_register_user_button")) {
+            Button {
                 registerUser(userId, userName)
                 userId = ""
                 userName = ""
+            } label: {
+                Text(String(localized: "device_register_user_button"))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
             }
-            .frame(maxWidth: .infinity)
+            .buttonStyle(.borderedProminent)
             .disabled(userId.isEmpty)
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
 
             HStack {
-                Button(String(localized: "device_register_user_anonymous_button")) {
+                Button {
                     registerAnonymousUser()
+                } label: {
+                    Text(String(localized: "device_register_user_anonymous_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .frame(maxWidth: .infinity)
-                .buttonStyle(.borderless)
+                .buttonStyle(.borderedProminent)
                 .disabled(!isDeviceRegistered)
 
-                Button(String(localized: "device_register_user_sample_button")) {
+                Button {
                     registerUser("sample.user@actito.com", "Sample User")
+                } label: {
+                    Text(String(localized: "device_register_user_sample_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .frame(maxWidth: .infinity)
-                .buttonStyle(.borderless)
+                .buttonStyle(.borderedProminent)
             }
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
         } header: {
             Text(String(localized: "device_register_user_header"))
         }
+        .listRowSeparator(.hidden)
     }
 }
 

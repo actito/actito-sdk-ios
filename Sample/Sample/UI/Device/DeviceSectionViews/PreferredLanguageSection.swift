@@ -16,31 +16,51 @@ internal struct PreferredLanguageSection: View {
             TextField(String(localized: "device_preferred_language_language"), text: $language)
                 .autocorrectionDisabled()
                 .autocapitalization(.none)
+                .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color(uiColor: .separator))
+                )
 
-            Button(String(localized: "device_preferred_language_button")) {
+            Button {
                 updatePreferredLanguage(language)
                 language = ""
+            } label: {
+                Text(String(localized: "device_preferred_language_button"))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
             }
-            .frame(maxWidth: .infinity)
+            .buttonStyle(.borderedProminent)
             .disabled(language.isEmpty)
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
 
             HStack {
-                Button(String(localized: "device_preferred_language_clear_button")) {
+                Button {
                     clearPreferredLanguage()
+                } label: {
+                    Text(String(localized: "device_preferred_language_clear_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .frame(maxWidth: .infinity)
-                .buttonStyle(.borderless)
+                .buttonStyle(.borderedProminent)
                 .disabled(!hasPreferredLanguage)
 
-                Button(String(localized: "device_preferred_language_sample_button")) {
+                Button {
                     updatePreferredLanguage("pt-PT")
+                } label: {
+                    Text(String(localized: "device_preferred_language_sample_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .frame(maxWidth: .infinity)
-                .buttonStyle(.borderless)
+                .buttonStyle(.borderedProminent)
             }
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
+
         } header: {
             Text(String(localized: "device_preferred_language_header"))
         }
+        .listRowSeparator(.hidden)
     }
 }
 

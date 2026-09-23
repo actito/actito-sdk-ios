@@ -15,15 +15,27 @@ internal struct AssetsView: View {
                     .disabled(viewModel.viewState.isLoading)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
+                    .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(uiColor: .separator))
+                    )
 
-                Button(String(localized: "assets_search_button")) {
+                Button {
                     viewModel.fetchAssets()
+                } label: {
+                    Text(String(localized: "assets_search_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .frame(maxWidth: .infinity)
+                .buttonStyle(.borderedProminent)
                 .disabled(!viewModel.isSearchAllowed)
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
             } header: {
                 Text(String(localized: "assets_header"))
             }
+            .listRowSeparator(.hidden)
 
             switch viewModel.viewState {
             case .idle:

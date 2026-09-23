@@ -247,19 +247,32 @@ private struct SelectableTagsSectionView: View {
                 }
             }
 
-            HStack {
+            VStack {
                 Text(String(localized: "tags_manual_input"))
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 TextField("Tag", text: $input)
                     .frame(maxWidth: .infinity)
+                    .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(uiColor: .separator))
+                    )
             }
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
 
-            Button(String(localized: "tags_add_button")) {
+            Button {
                 onSaveClicked()
+            } label: {
+                Text(String(localized: "tags_add_button"))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
             }
-            .frame(maxWidth: .infinity)
+            .buttonStyle(.borderedProminent)
             .disabled(!isSaveAllowed)
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
+            .listRowSeparator(.hidden)
         } header: {
             Text(String(localized: "tags_quick_fill"))
         }

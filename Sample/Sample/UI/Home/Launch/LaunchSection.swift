@@ -32,22 +32,27 @@ internal struct LaunchSection: View {
             }
 
             HStack {
-                Button(String(localized: "home_unlaunch_button")) {
+                Button {
                     viewModel.actitoUnlaunch()
+                } label: {
+                    Text(String(localized: "home_unlaunch_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .buttonStyle(BorderlessButtonStyle())
-                .frame(maxWidth: .infinity)
+                .buttonStyle(.borderedProminent)
                 .disabled(!viewModel.isReady)
 
-                Divider()
-
-                Button(String(localized: "home_launch_button")) {
+                Button {
                     viewModel.actitoLaunch()
+                } label: {
+                    Text(String(localized: "home_launch_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .buttonStyle(BorderlessButtonStyle())
-                .frame(maxWidth: .infinity)
+                .buttonStyle(.borderedProminent)
                 .disabled(viewModel.isReady)
             }
+            .listRowSeparator(.hidden)
         } header: {
             Text(String(localized: "home_launch_header"))
         }

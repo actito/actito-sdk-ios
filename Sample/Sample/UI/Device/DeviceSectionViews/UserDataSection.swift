@@ -41,40 +41,65 @@ internal struct UserDataSection: View {
             TextField(String(localized: "device_user_data_first_name"), text: $firstName)
                 .autocorrectionDisabled()
                 .autocapitalization(.none)
+                .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color(uiColor: .separator))
+                )
 
             TextField(String(localized: "device_user_data_last_name"), text: $lastName)
                 .autocorrectionDisabled()
                 .autocapitalization(.none)
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color(uiColor: .separator))
+                )
 
-            Button(String(localized: "device_user_data_button")) {
+            Button {
                 let data = ["firstName": firstName, "lastName": lastName]
                     .filter{ !$0.value.isEmpty }
                 updateUserData(data)
+            } label: {
+                Text(String(localized: "device_user_data_button"))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
             }
-            .frame(maxWidth: .infinity)
+            .buttonStyle(.borderedProminent)
             .disabled(firstName.isEmpty && lastName.isEmpty)
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
 
             HStack {
-                Button(String(localized: "device_user_data_remove_last_name_button")) {
+                Button {
                     let data = ["firstName": firstName, "lastName": nil]
                         .filter{ $0.value?.isEmpty != true }
                     updateUserData(data)
+                } label: {
+                    Text(String(localized: "device_user_data_remove_last_name_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
+                .buttonStyle(.borderedProminent)
                 .disabled(userData?["lastName"] == nil)
-                .frame(maxWidth: .infinity)
-                .buttonStyle(.borderless)
 
-                Button(String(localized: "device_user_data_quick_update_button")) {
+                Button {
                     updateUserData(sampleUserData)
+                } label: {
+                    Text(String(localized: "device_user_data_quick_update_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .frame(maxWidth: .infinity)
-                .buttonStyle(.borderless)
+                .buttonStyle(.borderedProminent)
             }
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
         } header: {
             if !hasUserData {
                 userDataHeader
             }
         }
+        .listRowSeparator(.hidden)
     }
 
     private var userDataHeader: some View {

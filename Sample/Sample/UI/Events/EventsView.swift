@@ -12,6 +12,12 @@ internal struct EventsView: View {
             Section {
                 TextField(String(localized: "events_event_name"), text: $viewModel.eventName)
                     .disabled(viewModel.viewState.isLoading)
+                    .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(uiColor: .separator))
+                    )
 
                 if !viewModel.viewState.isLoading {
                     ForEach($viewModel.eventFields) { $field in
@@ -19,16 +25,22 @@ internal struct EventsView: View {
                     }
                 }
 
-                Button(String(localized: "events_register_button")) {
+                Button {
                     viewModel.registerEvent()
+                } label: {
+                    Text(String(localized: "events_register_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .frame(maxWidth: .infinity)
+                .buttonStyle(.borderedProminent)
                 .disabled(!viewModel.isRegisterEventAllowed)
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
             } header: {
                 HStack {
                     Text(String(localized: "events_header"))
                 }
             }
+            .listRowSeparator(.hidden)
 
             ZStack {
                 switch viewModel.viewState {
@@ -76,10 +88,20 @@ private struct EventFieldView: View {
     var body: some View {
         HStack {
             TextField(String(localized: "events_key"), text: $field.key)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color(uiColor: .separator))
+                )
 
             TextField(String(localized: "events_value"), text: $field.value)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color(uiColor: .separator))
+                )
         }
     }
 }
