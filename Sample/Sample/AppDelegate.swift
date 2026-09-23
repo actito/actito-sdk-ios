@@ -230,6 +230,11 @@ extension AppDelegate: ActitoGeoDelegate {
 
     internal func actito(_: ActitoGeo, didStartMonitoringFor region: ActitoRegion) {
         Logger.main.info("Started monitoring region = \(region.name)")
+
+        NotificationCenter.default.post(
+            name: .regionMonitored,
+            object: nil,
+        )
     }
 
     internal func actito(_: ActitoGeo, didStartMonitoringFor beacon: ActitoBeacon) {

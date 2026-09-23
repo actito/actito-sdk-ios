@@ -16,7 +16,7 @@ internal class RegionsViewModel: ObservableObject {
 
     internal init() {
         NotificationCenter.default
-            .publisher(for: .locationUpdated)
+            .publisher(for: .regionMonitored)
             .sink { [weak self] _ in
                 self?.monitoredRegions = Actito.shared.geo().monitoredRegions
             }

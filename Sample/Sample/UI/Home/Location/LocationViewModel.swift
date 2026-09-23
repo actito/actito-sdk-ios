@@ -39,7 +39,7 @@ internal class LocationViewModel: NSObject, ObservableObject, @MainActor CLLocat
         locationManager.delegate = self
 
         NotificationCenter.default
-            .publisher(for: .locationUpdated)
+            .publisher(for: .regionMonitored)
             .sink { [weak self] _ in
                 self?.monitoredRegions = Actito.shared.geo().monitoredRegions
             }

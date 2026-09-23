@@ -37,7 +37,7 @@ internal struct RegionsView: View {
                 HStack {
                     Text(String(localized: "regions_monitored_header"))
 
-                    ChipView(text: String(describing: viewModel.enteredRegions.count))
+                    ChipView(text: String(describing: viewModel.monitoredRegions.count))
                 }
             }
         }
