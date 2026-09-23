@@ -191,19 +191,15 @@ public final class ActitoInAppMessaging {
     }
 
     private func findParentView() -> UIView? {
-        let window: UIWindow
-
         guard let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first else {
             logger.debug("Unable to acquire the first UIWindowScene.")
             return nil
         }
 
-        guard let keyWindow = scene.keyWindow else {
+        guard let window = scene.keyWindow else {
             logger.debug("Unable to acquire the key window.")
             return nil
         }
-
-        window = keyWindow
 
         guard let rootViewController = window.rootViewController else {
             logger.debug("Unable to acquire the root view controller.")
