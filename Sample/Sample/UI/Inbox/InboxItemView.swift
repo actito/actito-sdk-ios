@@ -22,8 +22,13 @@ internal struct InboxItemView: View {
     }()
 
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    @Environment(\.presentationMode) internal var presentationMode
 
     internal let item: ActitoInboxItem
+    internal let onPresent: () -> Void
+    internal let onMarkAsRead: () -> Void
+    internal let onRemove: () -> Void
+    @State internal var showOptionsMenu = false
 
     internal var body: some View {
         HStack(alignment: .top, spacing: 16) {
@@ -68,6 +73,31 @@ internal struct InboxItemView: View {
 
                 Text(verbatim: formattedTime)
                     .font(.footnote)
+            }
+        }
+        .contentShape(Rectangle())
+        .onLongPressGesture {
+            showOptionsMenu = true
+        }
+        .onTapGesture {
+            if item.notification.type == ActitoNotification.NotificationType.urlScheme.rawValue {
+                presentationMode.wrappedValue.dismiss()
+            }
+
+           onPresent()
+        }
+        .confirmationDialog(
+            String(localized: "inbox_sheet_select_option"),
+            isPresented: $showOptionsMenu
+        ) {
+            Button(String(localized: "inbox_sheet_open")) {
+                onPresent()
+            }
+            Button(String(localized: "inbox_sheet_mark_as_read")) {
+                onMarkAsRead()
+            }
+            Button(String(localized: "inbox_sheet_remove"), role: .destructive) {
+                onRemove()
             }
         }
     }
@@ -121,11 +151,21 @@ internal struct InboxItemView_Previews: PreviewProvider {
         )
 
         List {
-            InboxItemView(item: item)
+            InboxItemView(
+                item: item,
+                onPresent: {},
+                onMarkAsRead: {},
+                onRemove: {}
+            )
         }
 
         List {
-            InboxItemView(item: item)
+            InboxItemView(
+                item: item,
+                onPresent: {},
+                onMarkAsRead: {},
+                onRemove: {}
+            )
         }
         .preferredColorScheme(.dark)
     }

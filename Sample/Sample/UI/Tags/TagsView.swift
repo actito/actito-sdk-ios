@@ -39,7 +39,7 @@ internal  struct TagsView: View {
                 }
             }
         }
-        .navigationTitle("Tags")
+        .navigationTitle(String(localized: "tags_title"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -192,7 +192,7 @@ private struct DeviceTagsSectionView: View {
 
                         Spacer()
 
-                        Button(String(localized: "button_remove")) {
+                        Button(String(localized: "tags_remove_button")) {
                             onRemoveClicked(tag)
                         }
                     }
@@ -216,7 +216,7 @@ private struct SelectableTagsSectionView: View {
                     Text(String(localized: "tags_select_tag"))
 
                     HStack {
-                        ForEach($tags) { $tag in
+                        ForEach($tags[0..<3]) { $tag in
                             SelectableChipView(
                                 text: tag.tag,
                                 isSelected: $tag.isSelected
@@ -224,23 +224,55 @@ private struct SelectableTagsSectionView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.bottom)
+
+                    HStack {
+                        ForEach($tags[3..<5]) { $tag in
+                            SelectableChipView(
+                                text: tag.tag,
+                                isSelected: $tag.isSelected
+                            )
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+
+                    HStack {
+                        ForEach($tags[5..<7]) { $tag in
+                            SelectableChipView(
+                                text: tag.tag,
+                                isSelected: $tag.isSelected
+                            )
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
                 }
             }
 
-            HStack {
+            VStack {
                 Text(String(localized: "tags_manual_input"))
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 TextField("Tag", text: $input)
                     .frame(maxWidth: .infinity)
+                    .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(uiColor: .separator))
+                    )
             }
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
 
-            Button(String(localized: "button_add")) {
+            Button {
                 onSaveClicked()
+            } label: {
+                Text(String(localized: "tags_add_button"))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
             }
-            .frame(maxWidth: .infinity)
+            .buttonStyle(.borderedProminent)
             .disabled(!isSaveAllowed)
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
+            .listRowSeparator(.hidden)
         } header: {
             Text(String(localized: "tags_quick_fill"))
         }

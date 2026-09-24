@@ -3,7 +3,6 @@
 //
 
 import ActitoAssetsKit
-import ActitoKit
 import SwiftUI
 
 internal struct AssetItemView: View {

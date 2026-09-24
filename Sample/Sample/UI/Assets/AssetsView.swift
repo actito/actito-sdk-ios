@@ -13,15 +13,29 @@ internal struct AssetsView: View {
             Section {
                 TextField(String(localized: "assets_group_input"), text: $viewModel.assetsGroup)
                     .disabled(viewModel.viewState.isLoading)
+                    .disableAutocorrection(true)
+                    .autocapitalization(.none)
+                    .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(uiColor: .separator))
+                    )
 
-                Button(String(localized: "button_search")) {
+                Button {
                     viewModel.fetchAssets()
+                } label: {
+                    Text(String(localized: "assets_search_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
                 }
-                .frame(maxWidth: .infinity)
+                .buttonStyle(.borderedProminent)
                 .disabled(!viewModel.isSearchAllowed)
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
             } header: {
-                Text(String(localized: "assets_fetch"))
+                Text(String(localized: "assets_header"))
             }
+            .listRowSeparator(.hidden)
 
             switch viewModel.viewState {
             case .idle:
@@ -72,7 +86,7 @@ private struct SearchResultView: View {
                 }
             }
         } header: {
-            Text(String(localized: "result"))
+            Text(String(localized: "assets_result_header"))
         }
     }
 }

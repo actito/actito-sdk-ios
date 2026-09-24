@@ -7,7 +7,7 @@ import Foundation
 import OSLog
 import SwiftUI
 
-private let DEFAULT_TAGS = ["Kotlin", "Java", "Swift"]
+private let DEFAULT_TAGS = ["Android", "iOS", "Flutter", "React Native", "Capacitor", "Cordova", ".NET"]
 
 @MainActor
 internal class TagsViewModel: ObservableObject {
@@ -34,7 +34,6 @@ internal class TagsViewModel: ObservableObject {
             let tags = try await Actito.shared.device().fetchTags()
 
             selectableTags = DEFAULT_TAGS
-                .filter { !tags.contains($0) }
                 .map { SelectableTag(tag: $0, isSelected: false) }
 
             deviceTags = tags
