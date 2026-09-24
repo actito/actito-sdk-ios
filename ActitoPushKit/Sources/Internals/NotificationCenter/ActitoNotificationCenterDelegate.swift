@@ -148,11 +148,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
 
         // Check if we should force-set the presentation options.
         if let presentation = userInfo["presentation"] as? Bool, presentation {
-            if #available(iOS 14.0, *) {
-                return [.banner, .badge, .sound]
-            } else {
-                return [.alert, .badge, .sound]
-            }
+            return [.banner, .badge, .sound]
         }
 
         return Actito.shared.push().presentationOptions

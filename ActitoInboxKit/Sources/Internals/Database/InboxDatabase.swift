@@ -36,7 +36,7 @@ internal final class InboxDatabase {
 
         let context = database.backgroundContext
 
-        return try await context.performCompat {
+        return try await context.perform {
             let request = NSFetchRequest<InboxItemEntity>(entityName: "InboxItemEntity")
 
             // NOTE: Make sure the cached items are always sorted by date descending.
@@ -63,7 +63,7 @@ internal final class InboxDatabase {
 
         let context = database.backgroundContext
 
-        let objectID = try await context.performCompat {
+        let objectID = try await context.perform {
             let entity = try InboxItemEntity(from: item, context: context)
             return entity.objectID
         }
@@ -78,7 +78,7 @@ internal final class InboxDatabase {
 
         let context = database.backgroundContext
 
-        try await context.performCompat {
+        try await context.perform {
             let request = NSFetchRequest<InboxItemEntity>(entityName: "InboxItemEntity")
             request.predicate = NSPredicate(format: "id = %@", item.id)
             request.fetchLimit = 1
@@ -99,7 +99,7 @@ internal final class InboxDatabase {
 
         let context = database.backgroundContext
 
-        try await context.performCompat {
+        try await context.perform {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "InboxItemEntity")
             request.predicate = NSPredicate(format: "id = %@", id)
 
@@ -116,7 +116,7 @@ internal final class InboxDatabase {
 
         let context = database.backgroundContext
 
-        try await context.performCompat {
+        try await context.perform {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "InboxItemEntity")
             request.predicate = NSPredicate(format: "notificationId = %@", notificationId)
 
@@ -134,7 +134,7 @@ internal final class InboxDatabase {
         let context = database.backgroundContext
         let persistentContainer = database.persistentContainer
 
-        try await context.performCompat {
+        try await context.perform {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "InboxItemEntity")
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 

@@ -60,7 +60,6 @@ public struct ActitoBeacon: Codable, Hashable, Equatable, Sendable {
 }
 
 // Identifiable: ActitoBeacon
-@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension ActitoBeacon: Identifiable {}
 
 // JSON: ActitoBeacon

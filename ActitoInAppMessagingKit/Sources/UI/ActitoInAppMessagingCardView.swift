@@ -56,10 +56,12 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
     }()
 
     private lazy var closeButton: UIButton = {
-        let view = UIButton()
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = ActitoLocalizable.image(resource: .closeCircle)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
+
+        let view = UIButton(configuration: configuration)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.imageEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-        view.setImage(ActitoLocalizable.image(resource: .closeCircle), for: .normal)
 
         return view
     }()
@@ -102,17 +104,21 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
     }()
 
     private lazy var primaryActionButton: UIButton = {
-        let view = UIButton()
+        var configuration = UIButton.Configuration.plain()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+
+        let view = UIButton(configuration: configuration)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
         return view
     }()
 
     private lazy var secondaryActionButton: UIButton = {
-        let view = UIButton()
+        var configuration = UIButton.Configuration.plain()
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+
+        let view = UIButton(configuration: configuration)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
         return view
     }()
@@ -250,10 +256,10 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
 
         addSubview(scrollView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
 
         //
