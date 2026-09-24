@@ -9,20 +9,13 @@ public final class ActitoLogger: Sendable {
 
     public init(subsystem: String = "com.actito", category: String = "Actito", labelIgnoreList: [String] = []) {
         self.labelIgnoreList = labelIgnoreList
-        self.osLog = OSLog(subsystem: subsystem, category: category)
-
-        if #available(iOS 14, *) {
-            self.logger = Logger(subsystem: subsystem, category: category)
-        } else {
-            self.logger = nil
-        }
+        self.logger = Logger(subsystem: subsystem, category: category)
     }
 
     public nonisolated(unsafe) var hasDebugLoggingEnabled: Bool = false
 
     private let labelIgnoreList: [String]
-    private let osLog: OSLog
-    private let logger: (any Sendable)?
+    private let logger: Logger
 
     public func debug(_ message: String, error: Error? = nil, file: String = #file) {
         log(level: .debug, message: message, error: error, file: file)
@@ -75,13 +68,7 @@ public final class ActitoLogger: Sendable {
             }
         }
 
-        if #available(iOS 14, *) {
-            if let logger = self.logger as? Logger {
-                logger.log(level: level.toOSLogType(), "\(combined, privacy: .public)")
-            }
-        } else {
-            os_log("%{public}s", log: osLog, type: level.toOSLogType(), combined)
-        }
+        logger.log(level: level.toOSLogType(), "\(combined, privacy: .public)")
     }
 }
 

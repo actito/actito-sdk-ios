@@ -7,7 +7,7 @@ import ActitoUtilitiesKit
 import AVFoundation
 import CoreGraphics
 import CoreMedia
-import MobileCoreServices
+import UniformTypeIdentifiers
 import UIKit
 
 public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
@@ -170,7 +170,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         imagePickerController.sourceType = sourceType
 
         if sourceType == .camera {
-            imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+            imagePickerController.mediaTypes = [UTType.image.identifier, UTType.movie.identifier]
             imagePickerController.videoMaximumDuration = 10
         }
 
@@ -275,7 +275,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
 
 extension ActitoCallbackActionHandler: UIImagePickerControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if info[.mediaType] as? String == kUTTypeImage as String {
+        if info[.mediaType] as? String == UTType.image.identifier {
             if let image = info[.editedImage] as? UIImage {
                 imageData = image.fixedOrientation()?.jpegData(compressionQuality: 0.9)
 
@@ -284,7 +284,7 @@ extension ActitoCallbackActionHandler: UIImagePickerControllerDelegate {
                     self.showMedia(thumbnail)
                 }
             }
-        } else if info[.mediaType] as? String == kUTTypeVideo as String || info[.mediaType] as? String == kUTTypeMovie as String {
+        } else if info[.mediaType] as? String == UTType.video.identifier || info[.mediaType] as? String == UTType.movie.identifier {
             if let url = info[.mediaURL] as? URL {
                 videoData = try? Data(contentsOf: url)
 

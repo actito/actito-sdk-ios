@@ -26,10 +26,12 @@ public class ActitoInAppMessagingFullscreenView: UIView, ActitoInAppMessagingVie
     }()
 
     private lazy var closeButton: UIButton = {
-        let view = UIButton()
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = ActitoLocalizable.image(resource: .closeCircle)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
+
+        let view = UIButton(configuration: configuration)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.imageEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-        view.setImage(ActitoLocalizable.image(resource: .closeCircle), for: .normal)
 
         return view
     }()
@@ -171,10 +173,10 @@ public class ActitoInAppMessagingFullscreenView: UIView, ActitoInAppMessagingVie
 
         addSubview(cardView)
         NSLayoutConstraint.activate([
-            cardView.topAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.topAnchor, constant: 16),
-            cardView.leadingAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.leadingAnchor, constant: 16),
-            cardView.trailingAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.trailingAnchor, constant: -16),
-            cardView.bottomAnchor.constraint(equalTo: ncSafeAreaLayoutGuide.bottomAnchor, constant: -16),
+            cardView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            cardView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            cardView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            cardView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
         ])
 
         //
