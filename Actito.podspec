@@ -16,7 +16,7 @@ For support please use: mobile@actito.com
   spec.swift_version      = "6.0"
 
   # Supported deployment targets
-  spec.ios.deployment_target  = "13.0"
+  spec.ios.deployment_target  = "15.0"
 
   # Subspecs
 
