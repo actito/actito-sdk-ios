@@ -38,7 +38,7 @@ Table of contents
 
 ## Requirements
 
-* iOS 13 and above
+* iOS 15 and above
 
 
 ## Getting Started
