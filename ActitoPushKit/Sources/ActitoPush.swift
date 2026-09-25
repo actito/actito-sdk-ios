@@ -5,8 +5,8 @@
 import ActitoKit
 import Combine
 import Foundation
-import MobileCoreServices
 import UIKit
+import UniformTypeIdentifiers
 import UserNotifications
 
 @MainActor
@@ -39,13 +39,7 @@ public final class ActitoPush {
     public var categoryOptions: UNNotificationCategoryOptions = [.customDismissAction, .hiddenPreviewsShowTitle]
 
     /// Defines the presentation options for displaying notifications while the app is in the foreground.
-    public var presentationOptions: UNNotificationPresentationOptions = {
-        if #available(iOS 14.0, *) {
-            return [.banner, .badge, .sound]
-        } else {
-            return [.alert, .badge, .sound]
-        }
-    }()
+    public var presentationOptions: UNNotificationPresentationOptions = [.banner, .badge, .sound]
 
     /// Indicates whether remote notifications are enabled.
     ///
@@ -403,7 +397,7 @@ public final class ActitoPush {
     }
 
     private func buildNotificationAction(_ action: ActitoNotification.Action, options: UNNotificationActionOptions) -> UNNotificationAction {
-        if #available(iOS 15.0, *), let icon = action.icon?.ios {
+        if let icon = action.icon?.ios {
             return UNNotificationAction(
                 identifier: action.label,
                 title: ActitoLocalizable.string(resource: action.label, fallback: action.label),
@@ -420,7 +414,7 @@ public final class ActitoPush {
     }
 
     private func buildTextInputNotificationAction(_ action: ActitoNotification.Action, options: UNNotificationActionOptions) -> UNTextInputNotificationAction {
-        if #available(iOS 15.0, *), let icon = action.icon?.ios {
+        if let icon = action.icon?.ios {
             return UNTextInputNotificationAction(
                 identifier: action.label,
                 title: ActitoLocalizable.string(resource: action.label, fallback: action.label),
@@ -494,9 +488,9 @@ public final class ActitoPush {
 
                 if
                     let mimeType = response.mimeType,
-                    let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, mimeType as CFString, nil)
+                    let type = UTType(mimeType: mimeType)
                 {
-                    options[UNNotificationAttachmentOptionsTypeHintKey] = uti.takeRetainedValue()
+                    options[UNNotificationAttachmentOptionsTypeHintKey] = type.identifier
                 }
 
                 let attachment = try UNNotificationAttachment(identifier: "file_\(fileName)", url: filePath, options: options)

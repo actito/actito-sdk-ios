@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 5.3.0
+
+- Bump minimum deployment target to iOS 15 for XCode 27 compatibility
+- Fix Expo framework detection
+
 ## 5.2.0
 
 - Add framework detection

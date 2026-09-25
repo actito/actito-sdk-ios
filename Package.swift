@@ -52,58 +52,58 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "ActitoKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito.zip",
-            checksum: "ac99a9bac475205e319abeeb1e656b6c104fdac9bbc923a5b58ed9e4d80187c7"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito.zip",
+            checksum: "c00edfc8406d240d0ff3022cb2b760d1f0f8628a42d6b9fdacc464579aaf3404"
         ),
         .binaryTarget(
             name: "ActitoAssetsKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-assets.zip",
-            checksum: "05fef3701bf891ce8db298b798a5bca88833557659bf9a8d1bf53a04454d8018"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-assets.zip",
+            checksum: "bbb874e57beb29ed30a7840469cef72bf6b97a63a9714584e25c725219491dc0"
         ),
         .binaryTarget(
             name: "ActitoGeoKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-geo.zip",
-            checksum: "7484ed902e4c2aca2f8d088e43b62e1b2d3ac7dc1b44796bf8b51bacc36e1939"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-geo.zip",
+            checksum: "92ada5e31095a56c863d184d7471d4574ed7e608deb88e09dd8d5170b025c882"
         ),
         .binaryTarget(
             name: "ActitoInAppMessagingKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-in-app-messaging.zip",
-            checksum: "be3c5d2a6efdd03e00788cd0cc93a735d6bf75a8098304d9d1506bbf49d95231"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-in-app-messaging.zip",
+            checksum: "f86c60185e0eb024889de9a8db0682436b1f2c2fc933f43df989b76a183db2b8"
         ),
         .binaryTarget(
             name: "ActitoInboxKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-inbox.zip",
-            checksum: "98bf4ec706ae026383b0b68ddc479a4bd59b5b8f98015b3db66587c55ebb3c41"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-inbox.zip",
+            checksum: "db98de7d8c0031445fb015fb5162102af7272b2283cb5a58bb2a9a8f859286a4"
         ),
         .binaryTarget(
             name: "ActitoLoyaltyKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-loyalty.zip",
-            checksum: "6110784fc27836728d905445e2091379a7561d64dc8d11f360d29f6167ce401c"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-loyalty.zip",
+            checksum: "8c649890b6e3ac6eb1efad58878533ed716cba05a7cc678c5f777a3f4ad0b8fd"
         ),
         .binaryTarget(
             name: "ActitoPushKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-push.zip",
-            checksum: "3ee3db725cdc2aa798f62c1f08819db9cb24d8f101c303daa5549ba0cc8ed3d0"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-push.zip",
+            checksum: "ef2a715c62c913fb37c01cb6d85de76b46dd78b51a74ec28e25714d5a5b929a5"
         ),
         .binaryTarget(
             name: "ActitoNotificationServiceExtensionKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-notification-service-extension.zip",
-            checksum: "bef4a7972fc4ecfa69cf422158d4c0b0d3ae3cfadb0abb1721c00105fc2b288b"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-notification-service-extension.zip",
+            checksum: "ab2416e19310e02056479cc908bb2ff32fecab8185141f8fd0c7c565a6d50e0a"
         ),
         .binaryTarget(
             name: "ActitoPushUIKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-push-ui.zip",
-            checksum: "e3b8d79db9356249b329fdcf9d11e7d062c96298231c825932c59d2f19284b67"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-push-ui.zip",
+            checksum: "c6e039a9175e22abb183dd5d7f6fcad41689978b5a7c01e355b67c1f4d1cdf33"
         ),
         .binaryTarget(
             name: "ActitoUserInboxKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-user-inbox.zip",
-            checksum: "930a611fc465bc2b90e1060ae0259cf50256652805034ea7c39c8bfe3ca046a3"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-user-inbox.zip",
+            checksum: "ba9c4582e708890279cc624a370dee38bd7b675e52cbae755f1b250839d4c651"
         ),
         .binaryTarget(
             name: "ActitoUtilitiesKit",
-            url: "https://cdn-mobile.actito.com/libs/ios/5.2.0/spm-actito-utilities.zip",
-            checksum: "78bd4542708162e443e7ee723f90246ec2959aae445adac278b95cac8682410a"
+            url: "https://cdn-mobile.actito.com/libs/ios/5.3.0/spm-actito-utilities.zip",
+            checksum: "8b632d1512dc1feb501755034b48203c6934510723456500b1b3abd89a68aca7"
         ),
     ]
 )

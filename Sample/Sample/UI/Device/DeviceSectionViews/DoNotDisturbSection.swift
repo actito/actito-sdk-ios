@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2025 Actito. All rights reserved.
+// Copyright (c) 2026 Actito. All rights reserved.
 //
 
 import ActitoKit
@@ -17,7 +17,7 @@ internal struct DoNotDisturbSection: View {
         Section {
             Toggle(isOn: $hasDndEnabled) {
                 Label {
-                    Text(String(localized: "home_do_not_disturb"))
+                    Text(String(localized: "device_do_not_disturb"))
                 } icon: {
                     ListIconView(
                         icon: "moon.fill",
@@ -32,7 +32,7 @@ internal struct DoNotDisturbSection: View {
 
             if hasDndEnabled {
                 DatePicker(
-                    String(localized: "home_do_not_disturb_start"),
+                    String(localized: "device_do_not_disturb_start"),
                     selection: $startTime,
                     displayedComponents: .hourAndMinute
                 )
@@ -41,7 +41,7 @@ internal struct DoNotDisturbSection: View {
                 }
 
                 DatePicker(
-                    String(localized: "home_do_not_disturb_end"),
+                    String(localized: "device_do_not_disturb_end"),
                     selection: $endTime,
                     displayedComponents: .hourAndMinute
                 )
@@ -55,15 +55,17 @@ internal struct DoNotDisturbSection: View {
 
 internal struct DoNotDisturbSection_Previews: PreviewProvider {
     internal static var previews: some View {
-        @State var hasDndEnabled = false
+        @State var hasDndEnabled = true
         @State var startTime = ActitoTime.defaultStart.date
         @State var endTime = ActitoTime.defaultEnd.date
-        DoNotDisturbSection(
-            hasDndEnabled: $hasDndEnabled,
-            startTime: $startTime,
-            endTime: $endTime,
-            updateDndStatus: { _ in },
-            updateDndTime: {}
-        )
+        List {
+            DoNotDisturbSection(
+                hasDndEnabled: $hasDndEnabled,
+                startTime: $startTime,
+                endTime: $endTime,
+                updateDndStatus: { _ in },
+                updateDndTime: {}
+            )
+        }
     }
 }

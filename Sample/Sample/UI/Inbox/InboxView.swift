@@ -9,9 +9,7 @@ import OSLog
 import SwiftUI
 
 internal struct InboxView: View {
-    @Environment(\.presentationMode) internal var presentationMode
     @StateObject private var viewModel = InboxViewModel()
-    @State private var actionableItem: ActitoInboxItem?
     @State private var presentedAlert: PresentedAlert?
     @State private var items: [ActitoInboxItem] = []
 
@@ -25,18 +23,12 @@ internal struct InboxView: View {
             } else {
                 List {
                     ForEach(items) { item in
-                        InboxItemView(item: item)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                if item.notification.type == ActitoNotification.NotificationType.urlScheme.rawValue {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-
-                                viewModel.presentInboxItem(item)
-                            }
-                            .onLongPressGesture {
-                                actionableItem = item
-                            }
+                        InboxItemView(
+                            item: item,
+                            onPresent: { viewModel.presentInboxItem(item) },
+                            onMarkAsRead: { viewModel.markItemAsRead(item) },
+                            onRemove: { viewModel.removeItem(item) }
+                        )
                     }
                 }
             }
@@ -58,24 +50,6 @@ internal struct InboxView: View {
                     }
                 }
             }
-        }
-        .actionSheet(item: $actionableItem) { item in
-            ActionSheet(
-                title: Text(String(localized: "inbox_sheet_select_option")),
-                message: Text(item.notification.message),
-                buttons: [
-                    .default(Text(String(localized: "inbox_sheet_open"))) {
-                        viewModel.presentInboxItem(item)
-                    },
-                    .default(Text(String(localized: "inbox_sheet_mark_as_read"))) {
-                        viewModel.markItemAsRead(item)
-                    },
-                    .destructive(Text(String(localized: "inbox_sheet_remove"))) {
-                        viewModel.removeItem(item)
-                    },
-                    .default(Text(String(localized: "inbox_sheet_cancel"))) {},
-                ]
-            )
         }
         .alert(item: $presentedAlert, content: createPresentedAlert)
         .onChange(of: viewModel.userMessages) { userMessages in

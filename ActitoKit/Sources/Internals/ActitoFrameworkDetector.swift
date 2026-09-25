@@ -41,8 +41,7 @@ internal final class ActitoFrameworkDetector {
     }
 
     private func isExpo() -> Bool {
-        NSClassFromString("ExpoAppDelegate") != nil ||
-        NSClassFromString("ExpoReactNativeFactoryDelegate") != nil
+        NSClassFromString("EXExpoAppDelegate") != nil
     }
 
     private func isReactNative() -> Bool {

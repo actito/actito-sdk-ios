@@ -326,8 +326,10 @@ extension HomeViewModel {
                 isLoggedIn = true
                 Logger.main.info("Login success.")
 
-                if !credentialsManager.store(credentials: credentials) {
-                    Logger.main.error("Failed to store credentials.")
+                do {
+                    try credentialsManager.store(credentials: credentials)
+                } catch {
+                    Logger.main.error("Failed to store credentials: \(error)")
                 }
 
                 try await registerDeviceWithUser(accessToken: credentials.accessToken)
@@ -351,8 +353,10 @@ extension HomeViewModel {
                 let accessToken = try await credentialsManager.credentials().accessToken
                 Logger.main.info("Successfully got token to register device as anonymous.")
 
-                if !credentialsManager.clear() {
-                    Logger.main.error("Failed to remove credentials. Skipping logout flow.")
+                do {
+                    try credentialsManager.clear()
+                } catch {
+                    Logger.main.error("Failed to remove credentials. Skipping logout flow: \(error)")
                     return
                 }
 
@@ -426,7 +430,7 @@ extension HomeViewModel {
     private func logoutWithBrowser() async throws {
         try await Auth0
             .webAuth()
-            .clearSession()
+            .logout()
     }
 
     private func registerDeviceWithUser(accessToken: String) async throws {
