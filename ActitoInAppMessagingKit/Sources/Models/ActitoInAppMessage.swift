@@ -12,6 +12,9 @@ public struct ActitoInAppMessage: Codable, Equatable, Sendable {
     /// Unique identifier of the in-app message.
     public let id: String
 
+    /// Inique interaction identifier of the in-app message.
+    public let trackerId: String?
+
     /// Human-readable name of the message.
     public let name: String
 
@@ -43,8 +46,9 @@ public struct ActitoInAppMessage: Codable, Equatable, Sendable {
     public let secondaryAction: Action?
 
     /// Constructor for ``ActitoInAppMessage``.
-    public init(id: String, name: String, type: String, context: [String], title: String?, message: String?, image: String?, landscapeImage: String?, delaySeconds: Int, primaryAction: ActitoInAppMessage.Action?, secondaryAction: ActitoInAppMessage.Action?) {
+    public init(id: String, trackerId: String?, name: String, type: String, context: [String], title: String?, message: String?, image: String?, landscapeImage: String?, delaySeconds: Int, primaryAction: ActitoInAppMessage.Action?, secondaryAction: ActitoInAppMessage.Action?) {
         self.id = id
+        self.trackerId = trackerId
         self.name = name
         self.type = type
         self.context = context
