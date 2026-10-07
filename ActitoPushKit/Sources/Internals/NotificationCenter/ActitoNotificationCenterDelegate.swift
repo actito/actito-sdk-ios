@@ -78,7 +78,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
         }
 
         do {
-            try await Actito.shared.events().logNotificationOpen(id)
+            try await Actito.shared.events().logNotificationOpen(id, notification.trackerId)
         } catch {
             logger.error("Failed to log the notification as open.", error: error)
             return
@@ -95,7 +95,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
                 }
 
                 do {
-                    try await Actito.shared.events().logNotificationInfluenced(id)
+                    try await Actito.shared.events().logNotificationInfluenced(id, notification.trackerId)
                 } catch {
                     logger.error("Failed to log the notification influenced open.", error: error)
                     return
@@ -114,7 +114,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
             InboxIntegration.refreshBadge()
         } else {
             do {
-                try await Actito.shared.events().logNotificationInfluenced(id)
+                try await Actito.shared.events().logNotificationInfluenced(id, notification.trackerId)
             } catch {
                 logger.error("Failed to log the notification influenced open.", error: error)
                 return
