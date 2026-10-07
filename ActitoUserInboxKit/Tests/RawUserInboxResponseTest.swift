@@ -14,6 +14,7 @@ internal struct RawUserInboxResponseTest {
             notification: ActitoNotification(
                 partial: true,
                 id: "testNotification",
+                trackerId: "testTrackerId",
                 type: "testType",
                 time: Date(timeIntervalSince1970: 1),
                 title: "testTitle",
@@ -39,6 +40,7 @@ internal struct RawUserInboxResponseTest {
             {
                 "_id": "testId",
                 "notification": "testNotification",
+                "trackerId": "testTrackerId",
                 "type": "testType",
                 "time": "1970-01-01T00:00:01.000+0000",
                 "title": "testTitle",
@@ -70,6 +72,7 @@ internal struct RawUserInboxResponseTest {
             notification: ActitoNotification(
                 partial: true,
                 id: "testNotification",
+                trackerId: nil,
                 type: "testType",
                 time: Date(timeIntervalSince1970: 1),
                 title: nil,
@@ -90,6 +93,7 @@ internal struct RawUserInboxResponseTest {
             {
                 "_id": "testId",
                 "notification": "testNotification",
+                "trackerId": null,
                 "type": "testType",
                 "time": "1970-01-01T00:00:01.000+0000",
                 "title": null,
