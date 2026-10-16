@@ -191,13 +191,15 @@ public final class ActitoInAppMessaging {
     }
 
     private func findParentView() -> UIView? {
-        guard let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first else {
-            logger.debug("Unable to acquire the first UIWindowScene.")
+        guard let scene = UIApplication.shared.focusedWindowScene else {
+            logger.debug("Unable to acquire the focused UIWindowScene.")
             return nil
         }
 
-        guard let window = scene.keyWindow else {
-            logger.debug("Unable to acquire the key window.")
+        guard let window = scene.windows.first(where: \.isKeyWindow)
+            ?? scene.windows.first(where: { $0.windowLevel == .normal && !$0.isHidden })
+        else {
+            logger.debug("Unable to acquire a window from the focused UIWindowScene.")
             return nil
         }
 
@@ -206,7 +208,7 @@ public final class ActitoInAppMessaging {
             return nil
         }
 
-        return rootViewController.view
+        return rootViewController.view.superview
     }
 
     private func createMessageView(for message: ActitoInAppMessage, cache: ActitoImageCache) -> ActitoInAppMessagingView? {
