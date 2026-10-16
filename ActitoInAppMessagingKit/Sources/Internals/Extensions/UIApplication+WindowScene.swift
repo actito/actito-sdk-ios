@@ -5,7 +5,7 @@
 import UIKit
 
 extension UIApplication {
-    var focusedWindowScene: UIWindowScene? {
+    internal var focusedWindowScene: UIWindowScene? {
         let scenes = connectedScenes.compactMap { $0 as? UIWindowScene }
         let active = scenes.filter { $0.activationState == .foregroundActive }
 
