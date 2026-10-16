@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Upcoming release
+
+- Fix callback action Liquid Glass UI when action requests keyboard and camera
+
 ## 5.3.0
 
 - Bump minimum deployment target to iOS 15 for XCode 27 compatibility
