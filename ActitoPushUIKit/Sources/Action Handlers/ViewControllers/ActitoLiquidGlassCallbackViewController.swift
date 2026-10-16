@@ -75,6 +75,8 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
         let view = UIVisualEffectView()
         view.contentView.addSubview(messageField)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.cornerConfiguration = .capsule()
+
         let glassEffect = UIGlassEffect()
         glassEffect.isInteractive = true
 
