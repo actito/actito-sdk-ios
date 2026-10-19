@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Upcoming release
+
+- Fix Card In-App Message dimensions for landspace orientations in large screens
+- Fix Fullscreen In-App Message gradient update when rotating device  
+
 ## 5.3.0
 
 - Bump minimum deployment target to iOS 15 for XCode 27 compatibility
