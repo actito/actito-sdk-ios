@@ -70,7 +70,7 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
-        view.alignment = .leading
+        view.alignment = .fill
         view.distribution = .fill
 
         return view
@@ -173,7 +173,11 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
 
         // When in landscape, define a constraint to limit the width of the card.
         // Otherwise, given the aspect ratio of the image, the card will grow too large.
-        let isLandscape = UIDevice.current.orientation.isLandscape
+
+        let isLandscape = (traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .compact)
+        || (traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular)
+
+        logger.info("Is landscape: \(isLandscape)")
         cardViewMaxWidthConstraints.forEach { $0.isActive = isLandscape }
         cardViewFullWidthConstraints.forEach { $0.isActive = !isLandscape }
 
