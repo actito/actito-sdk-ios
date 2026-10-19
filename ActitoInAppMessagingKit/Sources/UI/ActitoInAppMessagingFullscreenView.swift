@@ -118,7 +118,7 @@ public class ActitoInAppMessagingFullscreenView: UIView, ActitoInAppMessagingVie
 
         // NOTE: Forcing any pending layout updates otherwise the gradient layer
         // will render with an out-of-date frame.
-        layoutIfNeeded()
+        cardView.layoutIfNeeded()
     }
 
     override public func layoutSublayers(of layer: CALayer) {
