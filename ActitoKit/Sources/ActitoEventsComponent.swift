@@ -30,11 +30,12 @@ public final class ActitoEventsComponent {
     ///
     /// - Parameters:
     ///   - id: The unique identifier of the opened notification.
+    ///   - trackerId: The unique interaction identidier of the opened notification.
     ///   - completion: A callback that will be invoked with the result of the log notification open operation.
-    public func logNotificationOpen(_ id: String, _ completion: @escaping ActitoCallback<Void>) {
+    public func logNotificationOpen(_ id: String, _ trackerId: String?, _ completion: @escaping ActitoCallback<Void>) {
         Task {
             do {
-                try await logNotificationOpen(id)
+                try await logNotificationOpen(id, trackerId)
                 completion(.success(()))
             } catch {
                 completion(.failure(error))
@@ -47,9 +48,11 @@ public final class ActitoEventsComponent {
     /// This function logs in Actito the opening of a notification, enabling insight into user engagement with
     /// specific notifications.
     ///
-    /// - Parameter id: The unique identifier of the opened notification.
-    public func logNotificationOpen(_ id: String) async throws {
-        try await logInternalEvent("re.notifica.event.notification.Open", data: nil, notificationId: id)
+    /// - Parameters:
+    ///   -  id: The unique identifier of the opened notification.
+    ///   - trackerId: The unique interaction identidier of the opened notification.
+    public func logNotificationOpen(_ id: String, _ trackerId: String?) async throws {
+        try await logInternalEvent("re.notifica.event.notification.Open", data: ["trackerId": trackerId], notificationId: id)
     }
 
     /// Logs in Actito a custom event in the application, with a callback.

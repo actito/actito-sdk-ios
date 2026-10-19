@@ -118,7 +118,9 @@ internal final class ActitoPushAppDelegateInterceptor: NSObject, ActitoAppDelega
             return
         }
 
-        try? await Actito.shared.events().logNotificationReceived(notificationId)
+        let trackerId = userInfo["trackerId"] as? String
+
+        try? await Actito.shared.events().logNotificationReceived(notificationId, trackerId)
 
         let notification: ActitoNotification
         let deliveryMechanism: ActitoNotificationDeliveryMechanism = containsApsAlert(userInfo) ? .standard : .silent

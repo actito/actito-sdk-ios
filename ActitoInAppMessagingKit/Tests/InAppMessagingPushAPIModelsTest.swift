@@ -11,6 +11,7 @@ internal struct PushAPIModelsTest {
     internal func testMessageToModel() {
         let expectedMessage = ActitoInAppMessage(
             id: "testId",
+            trackerId: "testTrackerId",
             name: "testName",
             type: "testType",
             context: ["testContext"],
@@ -33,6 +34,7 @@ internal struct PushAPIModelsTest {
 
         let message = ActitoInternals.PushAPI.Models.Message(
             _id: "testId",
+            trackerId: "testTrackerId",
             name: "testName",
             type: "testType",
             context: ["testContext"],
@@ -60,6 +62,7 @@ internal struct PushAPIModelsTest {
     internal func testMessageWithNilPropsToModel() {
         let expectedMessage = ActitoInAppMessage(
             id: "testId",
+            trackerId: nil,
             name: "testName",
             type: "testType",
             context: [],
@@ -74,6 +77,7 @@ internal struct PushAPIModelsTest {
 
         let message = ActitoInternals.PushAPI.Models.Message(
             _id: "testId",
+            trackerId: nil,
             name: "testName",
             type: "testType",
             context: [],
