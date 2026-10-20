@@ -33,12 +33,14 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         if #available(iOS 26, *) {
             viewController = ActitoLiquidGlassCallbackViewController(
                 notification: notification,
+                action: action,
                 onClose: onCloseClicked,
                 onSend: onSendClicked
             )
         } else {
             viewController = ActitoLegacyCallbackViewController(
                 notification: notification,
+                action: action,
                 onClose: onCloseClicked,
                 onSend: onSendClicked
             )

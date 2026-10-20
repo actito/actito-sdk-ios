@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Upcoming release
+
+- Fix action replies sending an empty message
+
 ## 5.3.0
 
 - Bump minimum deployment target to iOS 15 for XCode 27 compatibility
