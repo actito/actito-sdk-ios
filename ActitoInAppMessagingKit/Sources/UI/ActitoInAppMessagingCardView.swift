@@ -173,7 +173,12 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
 
         // When in landscape, define a constraint to limit the width of the card.
         // Otherwise, given the aspect ratio of the image, the card will grow too large.
-
+        //
+        // Size classes are used instead of the device orientation, since orientation
+        // doesn't describe the space available to the view (e.g. on foldables, iPad
+        // multitasking, or when the device is face up).
+        // - compact/compact: smaller iPhones in landscape
+        // - regular/regular: iPads and large foldable displays
         let isLandscape = (traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .compact)
         || (traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular)
 
