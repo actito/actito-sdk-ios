@@ -106,7 +106,7 @@ public class ActitoInAppMessagingFullscreenView: UIView, ActitoInAppMessagingVie
     override public func layoutSubviews() {
         super.layoutSubviews()
 
-        imageView.image = cache.orientationConstrainedImage
+        imageView.image = cache.orientationConstrainedImage(landscape: isLandscape)
 
         footerView.isHidden = message.title == nil && message.message == nil
 
