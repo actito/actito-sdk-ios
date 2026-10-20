@@ -182,7 +182,6 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
         let isLandscape = (traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .compact)
         || (traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular)
 
-        logger.info("Is landscape: \(isLandscape)")
         cardViewMaxWidthConstraints.forEach { $0.isActive = isLandscape }
         cardViewFullWidthConstraints.forEach { $0.isActive = !isLandscape }
 
