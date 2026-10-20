@@ -11,6 +11,7 @@
 		1A3274212C5B3F51002B78BA /* InAppMessagingPushAPIModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3274202C5B3F51002B78BA /* InAppMessagingPushAPIModelsTest.swift */; };
 		1A52DE752CA460E300B5F56C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52DE742CA460E300B5F56C /* Logger.swift */; };
 		1AD52A5A2DFFFB81006C7D88 /* LaunchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD52A592DFFFB7D006C7D88 /* LaunchComponent.swift */; };
+		1AF149453087BE5C00EAEE61 /* UIView+Landscape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF149443087BE5400EAEE61 /* UIView+Landscape.swift */; };
 		E5E5EB6A2DC1212900B00B6A /* ActitoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB682DC1212900B00B6A /* ActitoKit.framework */; };
 		E5E5EB6C2DC1212900B00B6A /* ActitoUtilitiesKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5E5EB692DC1212900B00B6A /* ActitoUtilitiesKit.framework */; };
 		F206D6ED28A53E3500A35E60 /* ActitoInAppMessagingBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F206D6EC28A53E3500A35E60 /* ActitoInAppMessagingBannerView.swift */; };
@@ -47,6 +48,7 @@
 		1A3274202C5B3F51002B78BA /* InAppMessagingPushAPIModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppMessagingPushAPIModelsTest.swift; sourceTree = "<group>"; };
 		1A52DE742CA460E300B5F56C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		1AD52A592DFFFB7D006C7D88 /* LaunchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchComponent.swift; sourceTree = "<group>"; };
+		1AF149443087BE5400EAEE61 /* UIView+Landscape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Landscape.swift"; sourceTree = "<group>"; };
 		E5E5EB682DC1212900B00B6A /* ActitoKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5E5EB692DC1212900B00B6A /* ActitoUtilitiesKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActitoUtilitiesKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F206D6EC28A53E3500A35E60 /* ActitoInAppMessagingBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActitoInAppMessagingBannerView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		F206D6EE28A5426900A35E60 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1AF149443087BE5400EAEE61 /* UIView+Landscape.swift */,
 				F23D9E8A28B537FC009675DE /* String+Utilities.swift */,
 			);
 			path = Extensions;
@@ -338,6 +341,7 @@
 				F225AC9328AFA24E00E4446A /* ActitoInAppMessaging+Events.swift in Sources */,
 				F225AC9928B3746F00E4446A /* ActitoInAppMessagingView.swift in Sources */,
 				F206D6F428A65F3D00A35E60 /* ActitoInAppMessagingCardView.swift in Sources */,
+				1AF149453087BE5C00EAEE61 /* UIView+Landscape.swift in Sources */,
 				F2E5141C28A50E6D00D1E0BF /* ActitoInAppMessaging+Augment.swift in Sources */,
 				F2E5142028A50EB500D1E0BF /* PushAPI+Models.swift in Sources */,
 				F206D6F828AD532800A35E60 /* ActitoInAppMessagingFullscreenView.swift in Sources */,
