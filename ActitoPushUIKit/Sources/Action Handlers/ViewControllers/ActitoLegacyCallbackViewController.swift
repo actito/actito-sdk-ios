@@ -6,6 +6,7 @@ import UIKit
 import ActitoKit
 
 internal class ActitoLegacyCallbackViewController: UIViewController, ActitoCallbackViewController {
+    private let action: ActitoNotification.Action
     private var theme: ActitoOptions.Theme?
 
     private var onClose: () -> Void
@@ -16,7 +17,15 @@ internal class ActitoLegacyCallbackViewController: UIViewController, ActitoCallb
     private var sendButton: UIBarButtonItem!
 
     internal var message: String? {
-        return messageField.text ?? messageView.text
+        if action.camera, action.keyboard {
+            return messageField.text
+        }
+
+        if action.keyboard {
+            return messageView.text
+        }
+
+        return nil
     }
 
     // MARK: - UI Views
@@ -138,7 +147,8 @@ internal class ActitoLegacyCallbackViewController: UIViewController, ActitoCallb
 
     // MARK: - Constructors
 
-    public init(notification: ActitoNotification, onClose: @escaping () -> Void, onSend: @escaping () async -> Void) {
+    public init(notification: ActitoNotification, action: ActitoNotification.Action, onClose: @escaping () -> Void, onSend: @escaping () async -> Void) {
+        self.action = action
         self.onClose = onClose
         self.onSend = onSend
 

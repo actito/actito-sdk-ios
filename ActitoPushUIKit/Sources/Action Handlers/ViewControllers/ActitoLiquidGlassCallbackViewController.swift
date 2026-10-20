@@ -7,6 +7,7 @@ import ActitoKit
 
 @available(iOS 26.0, *)
 internal class ActitoLiquidGlassCallbackViewController: UIViewController, ActitoCallbackViewController {
+    private let action: ActitoNotification.Action
     private var theme: ActitoOptions.Theme?
 
     private var onClose: () -> Void
@@ -17,7 +18,15 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
     private var sendButton: UIButton!
 
     internal var message: String? {
-        return messageField.text ?? messageView.text
+        if action.camera, action.keyboard {
+            return messageField.text
+        }
+
+        if action.keyboard {
+            return messageView.text
+        }
+
+        return nil
     }
 
     // MARK: - UI Views
@@ -55,9 +64,6 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
         view.translatesAutoresizingMaskIntoConstraints = false
         view.placeholder = ActitoLocalizable.string(resource: .actionsInputPlaceholder)
         view.borderStyle = .none
-        if let colorStr = theme?.textFieldBackgroundColor {
-            view.backgroundColor = UIColor(hexString: colorStr)
-        }
         if let colorStr = theme?.textFieldTextColor {
             view.textColor = UIColor(hexString: colorStr)
         }
@@ -75,8 +81,14 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
         let view = UIVisualEffectView()
         view.contentView.addSubview(messageField)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.cornerConfiguration = .capsule()
+
         let glassEffect = UIGlassEffect()
         glassEffect.isInteractive = true
+
+        if let colorStr = theme?.textFieldBackgroundColor {
+            glassEffect.tintColor = UIColor(hexString: colorStr)
+        }
 
         UIView.animate {
             view.effect = glassEffect
@@ -139,7 +151,8 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
 
     // MARK: - Constructors
 
-    public init(notification: ActitoNotification, onClose: @escaping () -> Void, onSend: @escaping () async -> Void) {
+    public init(notification: ActitoNotification, action: ActitoNotification.Action, onClose: @escaping () -> Void, onSend: @escaping () async -> Void) {
+        self.action = action
         self.onClose = onClose
         self.onSend = onSend
 

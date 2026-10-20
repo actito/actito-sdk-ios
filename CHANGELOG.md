@@ -4,6 +4,8 @@
 
 - Fix Card In-App Message dimensions for landspace orientations in large screens
 - Fix Fullscreen In-App Message gradient update when rotating device  
+- Fix callback action Liquid Glass UI when action requests keyboard and camera
+- Fix action replies sending an empty message
 
 ## 5.3.0
 
