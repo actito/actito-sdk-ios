@@ -64,9 +64,6 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
         view.translatesAutoresizingMaskIntoConstraints = false
         view.placeholder = ActitoLocalizable.string(resource: .actionsInputPlaceholder)
         view.borderStyle = .none
-        if let colorStr = theme?.textFieldBackgroundColor {
-            view.backgroundColor = UIColor(hexString: colorStr)
-        }
         if let colorStr = theme?.textFieldTextColor {
             view.textColor = UIColor(hexString: colorStr)
         }
@@ -84,8 +81,14 @@ internal class ActitoLiquidGlassCallbackViewController: UIViewController, Actito
         let view = UIVisualEffectView()
         view.contentView.addSubview(messageField)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.cornerConfiguration = .capsule()
+
         let glassEffect = UIGlassEffect()
         glassEffect.isInteractive = true
+
+        if let colorStr = theme?.textFieldBackgroundColor {
+            glassEffect.tintColor = UIColor(hexString: colorStr)
+        }
 
         UIView.animate {
             view.effect = glassEffect

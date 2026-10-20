@@ -2,6 +2,7 @@
 
 ## Upcoming release
 
+- Fix callback action Liquid Glass UI when action requests keyboard and camera
 - Fix action replies sending an empty message
 
 ## 5.3.0
