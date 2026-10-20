@@ -196,7 +196,7 @@ public final class ActitoInAppMessaging {
             return nil
         }
 
-        guard let window = scene.windows.first(where: \.isKeyWindow)
+        guard let window = scene.keyWindow
             ?? scene.windows.first(where: { $0.windowLevel == .normal && !$0.isHidden })
         else {
             logger.debug("Unable to acquire a window from the focused UIWindowScene.")

@@ -10,10 +10,10 @@ extension UIApplication {
         let active = scenes.filter { $0.activationState == .foregroundActive }
 
         // An active scene hosting the app's key window is the one receiving input.
-        return active.first { $0.windows.contains(where: \.isKeyWindow) }
+        return active.first { $0.keyWindow != nil }
             // Otherwise, any active scene (e.g. mid-transition, no key window yet).
             ?? active.first
             // Last resort: whichever scene last held the key window.
-            ?? scenes.first { $0.windows.contains(where: \.isKeyWindow) }
+        ?? scenes.first { $0.keyWindow != nil }
     }
 }
