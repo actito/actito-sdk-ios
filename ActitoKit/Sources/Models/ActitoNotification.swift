@@ -56,7 +56,7 @@ public struct ActitoNotification: Codable, Equatable, Sendable {
     public let targetContentIdentifier: String?
 
     /// Constructor for ``ActitoNotification``.
-    public init(partial: Bool, id: String, trackerId: String?, type: String, time: Date, title: String?, subtitle: String?, message: String, content: [ActitoNotification.Content], actions: [ActitoNotification.Action], attachments: [ActitoNotification.Attachment], extra: [String: Any], targetContentIdentifier: String?) {
+    public init(partial: Bool, id: String, trackerId: String? = nil, type: String, time: Date, title: String?, subtitle: String?, message: String, content: [ActitoNotification.Content], actions: [ActitoNotification.Action], attachments: [ActitoNotification.Attachment], extra: [String: Any], targetContentIdentifier: String?) {
         self.partial = partial
         self.id = id
         self.trackerId = trackerId

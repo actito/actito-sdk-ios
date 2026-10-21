@@ -46,7 +46,7 @@ public struct ActitoInAppMessage: Codable, Equatable, Sendable {
     public let secondaryAction: Action?
 
     /// Constructor for ``ActitoInAppMessage``.
-    public init(id: String, trackerId: String?, name: String, type: String, context: [String], title: String?, message: String?, image: String?, landscapeImage: String?, delaySeconds: Int, primaryAction: ActitoInAppMessage.Action?, secondaryAction: ActitoInAppMessage.Action?) {
+    public init(id: String, trackerId: String? = nil, name: String, type: String, context: [String], title: String?, message: String?, image: String?, landscapeImage: String?, delaySeconds: Int, primaryAction: ActitoInAppMessage.Action?, secondaryAction: ActitoInAppMessage.Action?) {
         self.id = id
         self.trackerId = trackerId
         self.name = name
