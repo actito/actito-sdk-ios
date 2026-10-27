@@ -12,7 +12,7 @@ public struct ActitoInAppMessage: Codable, Equatable, Sendable {
     /// Unique identifier of the in-app message.
     public let id: String
 
-    /// Inique interaction identifier of the in-app message.
+    /// Unique interaction identifier of the in-app message.
     public let trackerId: String?
 
     /// Human-readable name of the message.
@@ -63,7 +63,7 @@ public struct ActitoInAppMessage: Codable, Equatable, Sendable {
 
     /// Represents an action associated with an in-app message.
     ///
-    /// An `Àction``defines a user interaction option for an in-app
+    /// An ``Action``defines a user interaction option for an in-app
     /// message, such as opening a URL or performing an operation.
     public struct Action: Codable, Equatable, Sendable {
         /// Optional label displayed for the action.
