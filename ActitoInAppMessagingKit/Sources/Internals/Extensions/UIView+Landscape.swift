@@ -13,7 +13,7 @@ extension UIView {
     ///
     /// A layout is landscape when:
     /// - compact/compact: smaller iPhones in landscape
-    /// - regular/compact: larger iPhones (i.e. Pro, Max, Pro Max) in landscape
+    /// - regular/compact: larger iPhones (i.e. Plus, Pro Max) in landscape
     /// - regular/regular: iPads and large foldable displays, depending on the view shape
     internal var isLandscape: Bool {
         let traits = traitCollection
