@@ -35,7 +35,7 @@ public final class ActitoEventsComponent {
     public func logNotificationOpen(_ id: String, trackerId: String? = nil, _ completion: @escaping ActitoCallback<Void>) {
         Task {
             do {
-                try await logNotificationOpen(id, trackerId)
+                try await logNotificationOpen(id, trackerId: trackerId)
                 completion(.success(()))
             } catch {
                 completion(.failure(error))
@@ -51,7 +51,7 @@ public final class ActitoEventsComponent {
     /// - Parameters:
     ///   -  id: The unique identifier of the opened notification.
     ///   - trackerId: The unique interaction identifer of the opened notification.
-    public func logNotificationOpen(_ id: String, _ trackerId: String? = nil) async throws {
+    public func logNotificationOpen(_ id: String, trackerId: String? = nil) async throws {
         try await logInternalEvent("re.notifica.event.notification.Open", data: ["trackerId": trackerId], notificationId: id)
     }
 

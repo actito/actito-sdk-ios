@@ -6,7 +6,7 @@ import ActitoKit
 import Foundation
 
 extension ActitoEventsComponent {
-    public func logNotificationReceived(_ id: String, _ trackerId: String? = nil) async throws {
+    public func logNotificationReceived(_ id: String, trackerId: String? = nil) async throws {
         try await logInternalEvent(
             "re.notifica.event.notification.Receive",
             data: ["trackerId": trackerId],
@@ -14,7 +14,7 @@ extension ActitoEventsComponent {
         )
     }
 
-    public func logNotificationInfluenced(_ id: String, _ trackerId: String? = nil) async throws {
+    public func logNotificationInfluenced(_ id: String, trackerId: String? = nil) async throws {
         try await logInternalEvent(
             "re.notifica.event.notification.Influenced",
             data: ["trackerId": trackerId],

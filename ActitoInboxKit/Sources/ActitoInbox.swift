@@ -238,7 +238,7 @@ public final class ActitoInbox {
 
         do {
             // Send an event to mark the notification as read in the remote inbox.
-            try await Actito.shared.events().logNotificationOpen(item.notification.id, item.notification.trackerId)
+            try await Actito.shared.events().logNotificationOpen(item.notification.id, trackerId: item.notification.trackerId)
 
             // Update the cache.
             if let index = self.cachedItems.firstIndex(where: { $0.id == item.id }) {
