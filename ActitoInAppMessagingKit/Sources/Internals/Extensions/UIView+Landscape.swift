@@ -16,12 +16,13 @@ extension UIView {
     /// - regular/compact: larger iPhones (i.e. Plus, Pro Max) in landscape
     /// - regular/regular: iPads and large foldable displays, depending on the view shape
     internal var isLandscape: Bool {
-        let traits = traitCollection
-
-        if traits.horizontalSizeClass == .regular && traits.verticalSizeClass == .regular {
+        switch (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
+        case (.compact, .regular):
+            return false
+        case (.regular, .regular), (.unspecified, .unspecified):
             return bounds.width > bounds.height
+        default:
+            return true
         }
-
-        return !(traits.horizontalSizeClass == .compact && traits.verticalSizeClass == .regular)
     }
 }

@@ -135,17 +135,21 @@ public class ActitoInAppMessagingCardView: UIView, ActitoInAppMessagingView {
     }()
 
     private lazy var cardViewFullWidthConstraints: [NSLayoutConstraint] = {
-        var constraints = [
+        var edgeConstraints = [
             cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             cardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
         ]
 
+        var widthConstraint = cardView.widthAnchor.constraint(lessThanOrEqualToConstant: 600)
+
         // Setting the priority to a lower value than the default (1000).
         // Otherwise, when rotating the device and toggling between the two sets of constraints,
         // it will trigger a temporary conflict between the two constraints.
-        constraints.forEach { $0.priority = UILayoutPriority(999) }
+        // Higher priority for width constraints so it wins on larger screens.
+        edgeConstraints.forEach { $0.priority = UILayoutPriority(998) }
+        widthConstraint.priority = UILayoutPriority(999)
 
-        return constraints
+        return edgeConstraints + [widthConstraint]
     }()
 
     private lazy var imageViewAspectRatioHeightConstraint: NSLayoutConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1 / 2)
