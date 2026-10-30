@@ -8,6 +8,7 @@ import Foundation
 extension ActitoInternals.PushAPI.Models {
     internal struct Message: Decodable, Equatable {
         internal let _id: String
+        internal let trackerId: String?
         internal let name: String
         internal let type: String
         internal let context: [String]?
@@ -28,6 +29,7 @@ extension ActitoInternals.PushAPI.Models {
         internal func toModel() -> ActitoInAppMessage {
             ActitoInAppMessage(
                 id: _id,
+                trackerId: trackerId,
                 name: name,
                 type: type,
                 context: context ?? [],

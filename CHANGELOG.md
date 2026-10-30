@@ -2,6 +2,7 @@
 
 ## Upcoming release
 
+- Add `trackerId` prop to `ActitoNotification` and `ActitoInAppMessage`
 - Fix In-App Message presentation view hierarchy
 - Fix callback action Liquid Glass UI when action requests keyboard and camera
 - Fix action replies sending an empty message

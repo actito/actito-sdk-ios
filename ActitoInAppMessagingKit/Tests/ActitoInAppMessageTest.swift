@@ -10,6 +10,7 @@ internal struct ActitoInAppMessageTest {
     internal func testActitoInAppMessageSerialization() {
         let message = ActitoInAppMessage(
             id: "testId",
+            trackerId: "testTrackerId",
             name: "testName",
             type: "testType",
             context: ["testContext"],
@@ -43,6 +44,7 @@ internal struct ActitoInAppMessageTest {
     internal func testActitoInAppMessageSerializationWithNilProps() {
         let message = ActitoInAppMessage(
             id: "testId",
+            trackerId: nil,
             name: "testName",
             type: "testType",
             context: [],
