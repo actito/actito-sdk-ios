@@ -118,7 +118,7 @@ public final class ActitoUserInbox {
     public func markAsRead(_ item: ActitoUserInboxItem) async throws {
         try checkPrerequisites()
 
-        try await Actito.shared.events().logNotificationOpen(item.notification.id, item.notification.trackerId)
+        try await Actito.shared.events().logNotificationOpen(item.notification.id, trackerId: item.notification.trackerId)
 
         Actito.shared.removeNotificationFromNotificationCenter(item.notification)
     }
