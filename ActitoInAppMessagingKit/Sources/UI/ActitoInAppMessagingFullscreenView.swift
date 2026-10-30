@@ -106,7 +106,7 @@ public class ActitoInAppMessagingFullscreenView: UIView, ActitoInAppMessagingVie
     override public func layoutSubviews() {
         super.layoutSubviews()
 
-        imageView.image = cache.orientationConstrainedImage
+        imageView.image = cache.orientationConstrainedImage(landscape: isLandscape)
 
         footerView.isHidden = message.title == nil && message.message == nil
 
@@ -118,7 +118,7 @@ public class ActitoInAppMessagingFullscreenView: UIView, ActitoInAppMessagingVie
 
         // NOTE: Forcing any pending layout updates otherwise the gradient layer
         // will render with an out-of-date frame.
-        layoutIfNeeded()
+        cardView.layoutIfNeeded()
     }
 
     override public func layoutSublayers(of layer: CALayer) {

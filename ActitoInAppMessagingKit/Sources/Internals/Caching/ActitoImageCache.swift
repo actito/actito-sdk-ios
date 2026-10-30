@@ -13,8 +13,8 @@ public final class ActitoImageCache {
     public private(set) var landscapeImage: UIImage?
 
     @MainActor
-    public var orientationConstrainedImage: UIImage? {
-        if UIDevice.current.orientation.isLandscape {
+    public func orientationConstrainedImage(landscape: Bool) -> UIImage? {
+        if landscape {
             return landscapeImage ?? portraitImage
         }
 
