@@ -128,6 +128,7 @@ internal struct InboxItemView_Previews: PreviewProvider {
             notification: ActitoNotification(
                 partial: false,
                 id: UUID().uuidString,
+                trackerId: UUID().uuidString,
                 type: "re.notifica.notification.Alert",
                 time: Date(),
                 title: "Hello world",

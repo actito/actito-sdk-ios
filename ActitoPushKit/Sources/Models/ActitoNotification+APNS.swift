@@ -16,6 +16,8 @@ extension ActitoNotification {
             return nil
         }
 
+        let trackerId = apnsDictionary["trackerId"] as? String
+
         let attachments: [ActitoNotification.Attachment]
         if let attachment = apnsDictionary["attachment"] as? [String: Any],
            let mimeType = attachment["mimeType"] as? String,
@@ -26,7 +28,7 @@ extension ActitoNotification {
             attachments = []
         }
 
-        let ignoreKeys = ["aps", "alert", "inboxItemId", "inboxItemVisible", "inboxItemExpires", "system", "systemType", "attachment", "notificationId", "notificationType", "id"]
+        let ignoreKeys = ["aps", "alert", "inboxItemId", "inboxItemVisible", "inboxItemExpires", "system", "systemType", "attachment", "notificationId", "trackerId", "notificationType", "id"]
         let extra = apnsDictionary
             .filter { $0.key is String }
             .mapKeys { $0 as! String }
@@ -35,6 +37,7 @@ extension ActitoNotification {
         self.init(
             partial: true,
             id: notificationId,
+            trackerId: trackerId,
             type: type,
             time: Date(),
             title: alert?["title"] as? String,

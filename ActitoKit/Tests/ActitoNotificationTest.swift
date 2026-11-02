@@ -11,6 +11,7 @@ internal struct ActitoNotificationTest {
         let notification = ActitoNotification(
             partial: true,
             id: "testId",
+            trackerId: "testTrackerId",
             type: "testType",
             time: Date(timeIntervalSince1970: 1),
             title: "testTitle",
@@ -60,6 +61,7 @@ internal struct ActitoNotificationTest {
         let notification = ActitoNotification(
             partial: true,
             id: "testId",
+            trackerId: nil,
             type: "testType",
             time: Date(timeIntervalSince1970: 1),
             title: nil,

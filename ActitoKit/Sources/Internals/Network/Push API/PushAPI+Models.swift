@@ -54,6 +54,7 @@ extension ActitoInternals.PushAPI.Models {
 
     public struct Notification: Decodable, Equatable, Sendable {
         public let _id: String
+        public let trackerId: String?
         public let type: String
         public let time: Date
         public let title: String?
@@ -93,6 +94,7 @@ extension ActitoInternals.PushAPI.Models {
             ActitoNotification(
                 partial: false,
                 id: _id,
+                trackerId: trackerId,
                 type: type,
                 time: time,
                 title: title,

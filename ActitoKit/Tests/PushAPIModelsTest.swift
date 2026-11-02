@@ -143,6 +143,7 @@ internal struct PushAPIModelsTest {
         let expectedNotification = ActitoNotification(
             partial: false,
             id: "testId",
+            trackerId: "testTrackerId",
             type: "testType",
             time: Date(timeIntervalSince1970: 1),
             title: "testTitle",
@@ -182,6 +183,7 @@ internal struct PushAPIModelsTest {
         let jsonStr = """
             {
                 "_id": "testId",
+                "trackerId": "testTrackerId",
                 "type": "testType",
                 "time": "1970-01-01T00:00:01.000+0000",
                 "title": "testTitle",
@@ -233,6 +235,7 @@ internal struct PushAPIModelsTest {
         let expectedNotification = ActitoNotification(
             partial: false,
             id: "testId",
+            trackerId: nil,
             type: "testType",
             time: Date(timeIntervalSince1970: 1),
             title: nil,

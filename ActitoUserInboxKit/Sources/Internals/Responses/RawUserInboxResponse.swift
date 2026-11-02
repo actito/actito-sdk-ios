@@ -13,6 +13,7 @@ internal struct RawUserInboxResponse: Decodable, Equatable {
 
     internal struct RawUserInboxItem: Decodable, Equatable {
         internal let _id: String
+        internal let trackerId: String?
         internal let notification: String
         internal let type: String
         internal let time: Date
@@ -30,6 +31,7 @@ internal struct RawUserInboxResponse: Decodable, Equatable {
                 notification: ActitoNotification(
                     partial: true,
                     id: notification,
+                    trackerId: trackerId,
                     type: type,
                     time: time,
                     title: title,

@@ -7,7 +7,13 @@ import Foundation
 
 extension ActitoEventsComponent {
     internal func logInAppMessageViewed(_ message: ActitoInAppMessage) async throws {
-        try await logInternalEvent("re.notifica.event.inappmessage.View", data: ["message": message.id])
+        try await logInternalEvent(
+            "re.notifica.event.inappmessage.View",
+            data: [
+                "message": message.id,
+                "trackerId": message.trackerId,
+            ]
+        )
     }
 
     internal func logInAppMessageActionClicked(_ message: ActitoInAppMessage, action: ActitoInAppMessage.ActionType) async throws {
@@ -15,6 +21,7 @@ extension ActitoEventsComponent {
             "re.notifica.event.inappmessage.Action",
             data: [
                 "message": message.id,
+                "trackerId": message.trackerId,
                 "action": action.rawValue,
             ]
         )

@@ -17,6 +17,7 @@ internal struct ActitoUserInboxResponseTest {
                 notification: ActitoNotification(
                     partial: true,
                     id: "testId",
+                    trackerId: "testTrackerId",
                     type: "testType",
                     time: Date(timeIntervalSince1970: 1),
                     title: "testTitle",
