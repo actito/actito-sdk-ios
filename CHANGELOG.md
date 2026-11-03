@@ -3,6 +3,8 @@
 ## Upcoming release
 
 - Add `trackerId` prop to `ActitoNotification` and `ActitoInAppMessage`
+- Fix Card In-App Message dimensions for landscape orientations in large screens
+- Fix Fullscreen In-App Message gradient update when rotating device  
 - Fix In-App Message presentation view hierarchy
 - Fix callback action Liquid Glass UI when action requests keyboard and camera
 - Fix action replies sending an empty message

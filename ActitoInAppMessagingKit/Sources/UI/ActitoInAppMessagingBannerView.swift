@@ -91,7 +91,7 @@ public class ActitoInAppMessagingBannerView: UIView, ActitoInAppMessagingView {
     override public func layoutSubviews() {
         super.layoutSubviews()
 
-        if let image = cache.orientationConstrainedImage {
+        if let image = cache.orientationConstrainedImage(landscape: isLandscape) {
             imageView.isHidden = false
             imageView.image = image
         } else {
