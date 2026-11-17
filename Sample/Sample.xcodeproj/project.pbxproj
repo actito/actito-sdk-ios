@@ -33,6 +33,7 @@
 		1A59F54B304F90C1002A457D /* RegionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F54A304F90B9002A457D /* RegionsViewModel.swift */; };
 		1A59F54D304F930C002A457D /* RegionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F54C304F9307002A457D /* RegionRow.swift */; };
 		1A8C31102BFF20DA0000BFA6 /* SampleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C310F2BFF20DA0000BFA6 /* SampleUser.swift */; };
+		1A95797830ACC4D200397971 /* QualifioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1A95797730ACC4D200397971 /* QualifioKit */; };
 		1ABDDE692FB4BF43008A6505 /* AppIconTestDev.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE672FB4BE49008A6505 /* AppIconTestDev.icon */; };
 		1ABDDE6A2FB4BF43008A6505 /* AppIconTest.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE682FB4BEC2008A6505 /* AppIconTest.icon */; };
 		E514687829C9CC41005E057D /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E514687729C9CC41005E057D /* String+Localization.swift */; };
@@ -317,6 +318,7 @@
 				E5E5249C2DBA743A0086A403 /* ActitoKit.framework in Frameworks */,
 				E5BF89EF2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Frameworks */,
 				E5BF8B242DCDF440008FD3DE /* ActitoLoyaltyKit.framework in Frameworks */,
+				1A95797830ACC4D200397971 /* QualifioKit in Frameworks */,
 				E5BF8B272DCE17DB008FD3DE /* ActitoGeoKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -823,6 +825,7 @@
 			);
 			name = Sample;
 			packageProductDependencies = (
+				1A95797730ACC4D200397971 /* QualifioKit */,
 			);
 			productName = Sample;
 			productReference = F29FD1F424CB1FE1004B166D /* Sample.app */;
@@ -861,6 +864,7 @@
 			mainGroup = F29FD1EB24CB1FE1004B166D;
 			packageReferences = (
 				1A8C30EF2BF639940000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				1A95797630ACC4D200397971 /* XCRemoteSwiftPackageReference "qualifio-sdk-ios" */,
 			);
 			productRefGroup = F29FD1F524CB1FE1004B166D /* Products */;
 			projectDirPath = "";
@@ -2107,6 +2111,14 @@
 				minimumVersion = 0.55.0;
 			};
 		};
+		1A95797630ACC4D200397971 /* XCRemoteSwiftPackageReference "qualifio-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/qualifio/qualifio-sdk-ios";
+			requirement = {
+				kind = exactVersion;
+				version = "1.0.0-beta.1";
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2114,6 +2126,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1A8C30EF2BF639940000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1A95797730ACC4D200397971 /* QualifioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A95797630ACC4D200397971 /* XCRemoteSwiftPackageReference "qualifio-sdk-ios" */;
+			productName = QualifioKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
