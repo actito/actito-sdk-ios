@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A01D89FD6A19D2765C1E7B0 /* QualifioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A80217298BCA350DD7BD4D2 /* QualifioViewModel.swift */; };
 		1A59F506304865DF002A457D /* CoreSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F505304865DA002A457D /* CoreSection.swift */; };
 		1A59F50B30486E7B002A457D /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F50A30486E77002A457D /* ChipView.swift */; };
 		1A59F50F30487680002A457D /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F50E3048766F002A457D /* LaunchViewModel.swift */; };
@@ -36,6 +37,8 @@
 		1A95797830ACC4D200397971 /* QualifioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1A95797730ACC4D200397971 /* QualifioKit */; };
 		1ABDDE692FB4BF43008A6505 /* AppIconTestDev.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE672FB4BE49008A6505 /* AppIconTestDev.icon */; };
 		1ABDDE6A2FB4BF43008A6505 /* AppIconTest.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE682FB4BEC2008A6505 /* AppIconTest.icon */; };
+		1AE31A013A267C05513E4909 /* QualifioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */; };
+		1AF76AD8E9958459B33C17B7 /* QualifioServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A37B8A1970CF070F76614B9 /* QualifioServices.plist */; };
 		E514687829C9CC41005E057D /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E514687729C9CC41005E057D /* String+Localization.swift */; };
 		E51625DD2EBCB8DF006DF7C7 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = E51625DC2EBCB8DF006DF7C7 /* AppIcon.icon */; };
 		E51625DF2EBCB8FD006DF7C7 /* AppIconDev.icon in Resources */ = {isa = PBXBuildFile; fileRef = E51625DE2EBCB8FD006DF7C7 /* AppIconDev.icon */; };
@@ -111,11 +114,8 @@
 		E5E5EB5C2DC10A9E00B00B6A /* AssetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB582DC10A9E00B00B6A /* AssetItemView.swift */; };
 		E5E5EB5D2DC10A9E00B00B6A /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB562DC10A9E00B00B6A /* AssetsView.swift */; };
 		E5E5EB5E2DC10A9E00B00B6A /* AssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB572DC10A9E00B00B6A /* AssetsViewModel.swift */; };
-		1AE31A013A267C05513E4909 /* QualifioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */; };
-		1A01D89FD6A19D2765C1E7B0 /* QualifioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A80217298BCA350DD7BD4D2 /* QualifioViewModel.swift */; };
 		E5E5EB602DC10B8A00B00B6A /* OtherFeaturesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E5EB5F2DC10B8A00B00B6A /* OtherFeaturesSection.swift */; };
 		F267DA4A273E7CA900448A8F /* ActitoOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = F267DA49273E7CA900448A8F /* ActitoOptions.plist */; };
-		1AF76AD8E9958459B33C17B7 /* QualifioServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A37B8A1970CF070F76614B9 /* QualifioServices.plist */; };
 		F27C2FCB2B04DA3F005564F4 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C2FCA2B04DA3F005564F4 /* BannerView.swift */; };
 		F27C2FD22B0518A5005564F4 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C2FD12B0518A5005564F4 /* BannerModifier.swift */; };
 		F27C2FD42B051DA0005564F4 /* Identifiables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27C2FD32B051DA0005564F4 /* Identifiables.swift */; };
@@ -176,6 +176,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A37B8A1970CF070F76614B9 /* QualifioServices.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QualifioServices.plist; sourceTree = "<group>"; };
 		1A59F505304865DA002A457D /* CoreSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreSection.swift; sourceTree = "<group>"; };
 		1A59F50A30486E77002A457D /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
 		1A59F50E3048766F002A457D /* LaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
@@ -201,7 +202,9 @@
 		1A59F544304F9062002A457D /* RegionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsView.swift; sourceTree = "<group>"; };
 		1A59F54A304F90B9002A457D /* RegionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsViewModel.swift; sourceTree = "<group>"; };
 		1A59F54C304F9307002A457D /* RegionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionRow.swift; sourceTree = "<group>"; };
+		1A80217298BCA350DD7BD4D2 /* QualifioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioViewModel.swift; sourceTree = "<group>"; };
 		1A8C310F2BFF20DA0000BFA6 /* SampleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUser.swift; sourceTree = "<group>"; };
+		1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioView.swift; sourceTree = "<group>"; };
 		1ABDDE672FB4BE49008A6505 /* AppIconTestDev.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconTestDev.icon; sourceTree = "<group>"; };
 		1ABDDE682FB4BEC2008A6505 /* AppIconTest.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconTest.icon; sourceTree = "<group>"; };
 		E514687729C9CC41005E057D /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
@@ -268,8 +271,6 @@
 		E5E5EB572DC10A9E00B00B6A /* AssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsViewModel.swift; sourceTree = "<group>"; };
 		E5E5EB582DC10A9E00B00B6A /* AssetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetItemView.swift; sourceTree = "<group>"; };
 		E5E5EB592DC10A9E00B00B6A /* AssetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailsView.swift; sourceTree = "<group>"; };
-		1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioView.swift; sourceTree = "<group>"; };
-		1A80217298BCA350DD7BD4D2 /* QualifioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioViewModel.swift; sourceTree = "<group>"; };
 		E5E5EB5F2DC10B8A00B00B6A /* OtherFeaturesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherFeaturesSection.swift; sourceTree = "<group>"; };
 		F22443D4286CBBBE0015CBD6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F236118E2C77581C0063C446 /* ActitoServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ActitoServices.plist; sourceTree = "<group>"; };
@@ -277,7 +278,6 @@
 		F23611932C77581C0063C446 /* ActitoServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ActitoServices.plist; sourceTree = "<group>"; };
 		F23611952C77581C0063C446 /* ActitoServices.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ActitoServices.plist; sourceTree = "<group>"; };
 		F267DA49273E7CA900448A8F /* ActitoOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ActitoOptions.plist; sourceTree = "<group>"; };
-		1A37B8A1970CF070F76614B9 /* QualifioServices.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QualifioServices.plist; sourceTree = "<group>"; };
 		F27C2FCA2B04DA3F005564F4 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F27C2FD12B0518A5005564F4 /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		F27C2FD32B051DA0005564F4 /* Identifiables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiables.swift; sourceTree = "<group>"; };
@@ -455,6 +455,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		1AE1D2F56043A5130DE7CD13 /* Qualifio */ = {
+			isa = PBXGroup;
+			children = (
+				1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */,
+				1A80217298BCA350DD7BD4D2 /* QualifioViewModel.swift */,
+			);
+			path = Qualifio;
+			sourceTree = "<group>";
+		};
 		E51FD35329D336A7000897D9 /* Badge */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,15 +480,6 @@
 				E5590DF729C2273A006E593B /* TagsViewModel.swift */,
 			);
 			path = Tags;
-			sourceTree = "<group>";
-		};
-		1AE1D2F56043A5130DE7CD13 /* Qualifio */ = {
-			isa = PBXGroup;
-			children = (
-				1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */,
-				1A80217298BCA350DD7BD4D2 /* QualifioViewModel.swift */,
-			);
-			path = Qualifio;
 			sourceTree = "<group>";
 		};
 		E5590E3129C474B5006E593B /* Events */ = {
@@ -856,7 +856,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 2700;
+				LastUpgradeCheck = 2710;
 				ORGANIZATIONNAME = Actito;
 				TargetAttributes = {
 					E5BF8A6F2DCA6056008FD3DE = {
