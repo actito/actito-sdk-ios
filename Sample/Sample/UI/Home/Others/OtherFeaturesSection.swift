@@ -34,6 +34,19 @@ internal struct OtherFeaturesSection: View {
                     )
                 }
             }
+            NavigationLink {
+                QualifioView()
+            } label: {
+                Label {
+                    Text(String(localized: "home_other_features_qualifio"))
+                } icon: {
+                    ListIconView(
+                        icon: "trophy.fill",
+                        foregroundColor: .white,
+                        backgroundColor: Color(.systemTeal)
+                    )
+                }
+            }
         } header: {
             Text(String(localized: "home_other_features_header"))
         }
