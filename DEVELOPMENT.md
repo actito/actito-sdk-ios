@@ -35,3 +35,20 @@ ruby scripts/qualifio.rb status
 The script looks for `qualifio-sdk-ios` next to this repository, in its grandparent folder, or in any folder inside the grandparent (e.g. `~/Developer/qualifio/qualifio-sdk-ios`). The local checkout must also point to a local build of the SDK. Run `ruby scripts/spm.rb local` in `qualifio-sdk-ios` first (see its `DEVELOPMENT.md`).
 
 Never commit the Sample project or `Package.resolved` while they point to a local checkout. Run `ruby scripts/qualifio.rb remote` first.
+
+#### Secure token
+
+The Sample app signs a Qualifio secure token that prefills the campaign form with sample data. To enable it, create a `QualifioSecrets.plist` on the Sample App directory with the property `secureTokenSecret`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>secureTokenSecret</key>
+	<string>your-secret</string>
+</dict>
+</plist>
+```
+
+Without it, campaigns load without a token.

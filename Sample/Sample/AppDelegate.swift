@@ -33,8 +33,7 @@ internal class AppDelegate: NSObject, UIApplicationDelegate {
         Actito.shared.geo().delegate = self
 
         Qualifio.shared.setSecureTokenProvider { campaign in
-            Logger.main.info("Providing a sample Qualifio secure token for campaign '\(campaign)'.")
-            return "actito-sample-secure-token"
+            QualifioSecureToken.generate(for: campaign)
         }
 
         Task {

@@ -37,6 +37,7 @@
 		1A95797830ACC4D200397971 /* QualifioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1A95797730ACC4D200397971 /* QualifioKit */; };
 		1ABDDE692FB4BF43008A6505 /* AppIconTestDev.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE672FB4BE49008A6505 /* AppIconTestDev.icon */; };
 		1ABDDE6A2FB4BF43008A6505 /* AppIconTest.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE682FB4BEC2008A6505 /* AppIconTest.icon */; };
+		1AC3A04EC67A08862AB889B1 /* QualifioSecureToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2EA89CE3251B8787EF3F49 /* QualifioSecureToken.swift */; };
 		1AE31A013A267C05513E4909 /* QualifioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */; };
 		1AF76AD8E9958459B33C17B7 /* QualifioServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A37B8A1970CF070F76614B9 /* QualifioServices.plist */; };
 		E514687829C9CC41005E057D /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E514687729C9CC41005E057D /* String+Localization.swift */; };
@@ -176,6 +177,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A2EA89CE3251B8787EF3F49 /* QualifioSecureToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioSecureToken.swift; sourceTree = "<group>"; };
 		1A37B8A1970CF070F76614B9 /* QualifioServices.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QualifioServices.plist; sourceTree = "<group>"; };
 		1A59F505304865DA002A457D /* CoreSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreSection.swift; sourceTree = "<group>"; };
 		1A59F50A30486E77002A457D /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
@@ -453,6 +455,14 @@
 				1A8C310F2BFF20DA0000BFA6 /* SampleUser.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1AD1D27CBB6C0761337F983F /* Qualifio */ = {
+			isa = PBXGroup;
+			children = (
+				1A2EA89CE3251B8787EF3F49 /* QualifioSecureToken.swift */,
+			);
+			path = Qualifio;
 			sourceTree = "<group>";
 		};
 		1AE1D2F56043A5130DE7CD13 /* Qualifio */ = {
@@ -766,6 +776,7 @@
 				F25B6DC825CAC58C007BC2C8 /* Extensions */,
 				E5BF8A632DCA5F02008FD3DE /* Live Activities */,
 				1A8B59F72B72842000ED46B1 /* Models */,
+				1AD1D27CBB6C0761337F983F /* Qualifio */,
 				F25B6DC125CABDBF007BC2C8 /* UI */,
 				F29FD1F724CB1FE1004B166D /* AppDelegate.swift */,
 				F29FD20024CB1FE3004B166D /* Assets.xcassets */,
@@ -827,6 +838,7 @@
 			buildConfigurationList = F29FD20824CB1FE3004B166D /* Build configuration list for PBXNativeTarget "Sample" */;
 			buildPhases = (
 				F2EAF9B02AF537F700A2CC0C /* Copy Actito configuration file */,
+				1AC1B5735E054A8705725779 /* Copy optional configuration files */,
 				F29FD1F024CB1FE1004B166D /* Sources */,
 				F29FD1F124CB1FE1004B166D /* Frameworks */,
 				F29FD1F224CB1FE1004B166D /* Resources */,
@@ -931,6 +943,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1AC1B5735E054A8705725779 /* Copy optional configuration files */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy optional configuration files";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CONFIGURATION_FILE_NAMES=\"SampleUser.plist QualifioSecrets.plist\"\nCONFIGURATION_FILE_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n\nfor CONFIGURATION_FILE_NAME in ${CONFIGURATION_FILE_NAMES}; do\n    CONFIGURATION_FILE=${PROJECT_DIR}/${TARGET_NAME}/${CONFIGURATION_FILE_NAME}\n\n    if [ -f \"${CONFIGURATION_FILE}\" ]; then\n        echo \"Copying ${CONFIGURATION_FILE_NAME} to final destination: ${CONFIGURATION_FILE_DESTINATION}\"\n        cp \"${CONFIGURATION_FILE}\" \"${CONFIGURATION_FILE_DESTINATION}\"\n    else\n        echo \"${CONFIGURATION_FILE_NAME} not found in ${CONFIGURATION_FILE}. Skipping.\"\n        rm -f \"${CONFIGURATION_FILE_DESTINATION}/${CONFIGURATION_FILE_NAME}\"\n    fi\ndone\n";
+		};
 		F2EAF9B02AF537F700A2CC0C /* Copy Actito configuration file */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -998,6 +1029,7 @@
 				1A59F533304AFB44002A457D /* RegisterUserSection.swift in Sources */,
 				1A59F531304AD048002A457D /* DoNotDisturbSection.swift in Sources */,
 				1A8C31102BFF20DA0000BFA6 /* SampleUser.swift in Sources */,
+				1AC3A04EC67A08862AB889B1 /* QualifioSecureToken.swift in Sources */,
 				1A59F537304C1BF9002A457D /* UserDataSection.swift in Sources */,
 				E5590E0C29C33586006E593B /* AsyncImageCompat+ImageLoader.swift in Sources */,
 				E5590E1429C359B9006E593B /* Notification.Name+Custom.swift in Sources */,
