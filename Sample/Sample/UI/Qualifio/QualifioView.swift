@@ -16,6 +16,12 @@ internal struct QualifioView: View {
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
                     .disabled(viewModel.launchState.isLoading)
+                    .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(uiColor: .separator))
+                    )
 
                 Button {
                     viewModel.launchCampaign()
@@ -39,8 +45,30 @@ internal struct QualifioView: View {
             } header: {
                 Text(String(localized: "qualifio_launch_campaign_header"))
             }
+            .listRowSeparator(.hidden)
 
             Section {
+                TextField(String(localized: "qualifio_inline_campaign_placeholder"), text: $viewModel.inlineCampaignInput)
+                    .keyboardType(.URL)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(uiColor: .separator))
+                    )
+
+                Button {
+                    viewModel.loadInlineCampaign()
+                } label: {
+                    Text(String(localized: "qualifio_inline_campaign_load_button"))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
+                }
+                .buttonStyle(.borderedProminent)
+                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+
                 if viewModel.isInlineCampaignVisible {
                     QualifioInlineCampaign(campaign: viewModel.inlineCampaign)
                         .frame(maxWidth: .infinity)
@@ -56,23 +84,10 @@ internal struct QualifioView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-
-                HStack(spacing: 8) {
-                    ForEach(viewModel.inlineCampaigns, id: \.self) { campaign in
-                        Button {
-                            viewModel.loadInlineCampaign(campaign)
-                        } label: {
-                            Text(String(localized: "qualifio_inline_campaign_load_button", campaign))
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 8)
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
-                }
-                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
             } header: {
                 Text(String(localized: "qualifio_inline_campaign_header"))
             }
+            .listRowSeparator(.hidden)
         }
         .navigationTitle(String(localized: "qualifio_title"))
         .navigationBarTitleDisplayMode(.inline)

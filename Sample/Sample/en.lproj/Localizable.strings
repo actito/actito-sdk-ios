@@ -165,12 +165,13 @@
 
 "qualifio_title" = "Qualifio";
 "qualifio_launch_campaign_header" = "Launch Campaign";
-"qualifio_campaign_placeholder" = "Campaign";
+"qualifio_campaign_placeholder" = "Campaign Path";
 "qualifio_launch_campaign_button" = "Launch Campaign";
 "qualifio_inline_campaign_header" = "Inline Campaign";
 "qualifio_inline_campaign_add_button" = "Add View";
 "qualifio_inline_campaign_remove_button" = "Remove View";
-"qualifio_inline_campaign_load_button" = "Load %@";
+"qualifio_inline_campaign_placeholder" = "Inline Campaign Path";
+"qualifio_inline_campaign_load_button" = "Load Inline Campaign";
 
 "regions_title" = "Regions";
 "regions_entered_header" = "Regions Entered";

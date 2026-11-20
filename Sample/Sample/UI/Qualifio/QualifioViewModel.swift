@@ -8,24 +8,21 @@ import QualifioKit
 
 @MainActor
 internal class QualifioViewModel: ObservableObject {
-    @Published internal var campaign = ""
+    internal static let sampleCampaign = "sdk-xmas"
+
+    @Published internal var campaign = QualifioViewModel.sampleCampaign
     @Published internal private(set) var launchState: LaunchState = .idle
-    @Published internal private(set) var inlineCampaign = Qualifio.DEFAULT_CAMPAIGN
+    @Published internal var inlineCampaignInput = QualifioViewModel.sampleCampaign
+    @Published internal private(set) var inlineCampaign = QualifioViewModel.sampleCampaign
     @Published internal var isInlineCampaignVisible = true
 
-    internal let inlineCampaigns = [Qualifio.DEFAULT_CAMPAIGN, "sdk-xmas"]
-
     internal func launchCampaign() {
-        let campaign = campaign.trimmingCharacters(in: .whitespacesAndNewlines)
+        let campaign = resolvedCampaign(campaign)
         launchState = .loading
 
         Task {
             do {
-                if campaign.isEmpty {
-                    try await Qualifio.shared.launchCampaign()
-                } else {
-                    try await Qualifio.shared.launchCampaign(campaign)
-                }
+                try await Qualifio.shared.launchCampaign(campaign)
 
                 Logger.main.info("Qualifio campaign launched")
                 launchState = .idle
@@ -36,8 +33,13 @@ internal class QualifioViewModel: ObservableObject {
         }
     }
 
-    internal func loadInlineCampaign(_ campaign: String) {
-        inlineCampaign = campaign
+    internal func loadInlineCampaign() {
+        inlineCampaign = resolvedCampaign(inlineCampaignInput)
+    }
+
+    private func resolvedCampaign(_ text: String) -> String {
+        let campaign = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        return campaign.isEmpty ? Self.sampleCampaign : campaign
     }
 
     internal enum LaunchState {
