@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A01D89FD6A19D2765C1E7B0 /* QualifioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A80217298BCA350DD7BD4D2 /* QualifioViewModel.swift */; };
 		1A59F506304865DF002A457D /* CoreSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F505304865DA002A457D /* CoreSection.swift */; };
 		1A59F50B30486E7B002A457D /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F50A30486E77002A457D /* ChipView.swift */; };
 		1A59F50F30487680002A457D /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F50E3048766F002A457D /* LaunchViewModel.swift */; };
@@ -33,8 +34,12 @@
 		1A59F54B304F90C1002A457D /* RegionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F54A304F90B9002A457D /* RegionsViewModel.swift */; };
 		1A59F54D304F930C002A457D /* RegionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A59F54C304F9307002A457D /* RegionRow.swift */; };
 		1A8C31102BFF20DA0000BFA6 /* SampleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C310F2BFF20DA0000BFA6 /* SampleUser.swift */; };
+		1A95797830ACC4D200397971 /* QualifioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1A95797730ACC4D200397971 /* QualifioKit */; };
 		1ABDDE692FB4BF43008A6505 /* AppIconTestDev.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE672FB4BE49008A6505 /* AppIconTestDev.icon */; };
 		1ABDDE6A2FB4BF43008A6505 /* AppIconTest.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDE682FB4BEC2008A6505 /* AppIconTest.icon */; };
+		1AC3A04EC67A08862AB889B1 /* QualifioSecureToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2EA89CE3251B8787EF3F49 /* QualifioSecureToken.swift */; };
+		1AE31A013A267C05513E4909 /* QualifioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */; };
+		1AF76AD8E9958459B33C17B7 /* QualifioServices.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A37B8A1970CF070F76614B9 /* QualifioServices.plist */; };
 		E514687829C9CC41005E057D /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E514687729C9CC41005E057D /* String+Localization.swift */; };
 		E51625DD2EBCB8DF006DF7C7 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = E51625DC2EBCB8DF006DF7C7 /* AppIcon.icon */; };
 		E51625DF2EBCB8FD006DF7C7 /* AppIconDev.icon in Resources */ = {isa = PBXBuildFile; fileRef = E51625DE2EBCB8FD006DF7C7 /* AppIconDev.icon */; };
@@ -172,6 +177,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A2EA89CE3251B8787EF3F49 /* QualifioSecureToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioSecureToken.swift; sourceTree = "<group>"; };
+		1A37B8A1970CF070F76614B9 /* QualifioServices.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QualifioServices.plist; sourceTree = "<group>"; };
 		1A59F505304865DA002A457D /* CoreSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreSection.swift; sourceTree = "<group>"; };
 		1A59F50A30486E77002A457D /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
 		1A59F50E3048766F002A457D /* LaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
@@ -197,7 +204,9 @@
 		1A59F544304F9062002A457D /* RegionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsView.swift; sourceTree = "<group>"; };
 		1A59F54A304F90B9002A457D /* RegionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsViewModel.swift; sourceTree = "<group>"; };
 		1A59F54C304F9307002A457D /* RegionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionRow.swift; sourceTree = "<group>"; };
+		1A80217298BCA350DD7BD4D2 /* QualifioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioViewModel.swift; sourceTree = "<group>"; };
 		1A8C310F2BFF20DA0000BFA6 /* SampleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUser.swift; sourceTree = "<group>"; };
+		1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualifioView.swift; sourceTree = "<group>"; };
 		1ABDDE672FB4BE49008A6505 /* AppIconTestDev.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconTestDev.icon; sourceTree = "<group>"; };
 		1ABDDE682FB4BEC2008A6505 /* AppIconTest.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIconTest.icon; sourceTree = "<group>"; };
 		E514687729C9CC41005E057D /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
@@ -317,6 +326,7 @@
 				E5E5249C2DBA743A0086A403 /* ActitoKit.framework in Frameworks */,
 				E5BF89EF2DC9FC93008FD3DE /* ActitoInAppMessagingKit.framework in Frameworks */,
 				E5BF8B242DCDF440008FD3DE /* ActitoLoyaltyKit.framework in Frameworks */,
+				1A95797830ACC4D200397971 /* QualifioKit in Frameworks */,
 				E5BF8B272DCE17DB008FD3DE /* ActitoGeoKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +455,23 @@
 				1A8C310F2BFF20DA0000BFA6 /* SampleUser.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1AD1D27CBB6C0761337F983F /* Qualifio */ = {
+			isa = PBXGroup;
+			children = (
+				1A2EA89CE3251B8787EF3F49 /* QualifioSecureToken.swift */,
+			);
+			path = Qualifio;
+			sourceTree = "<group>";
+		};
+		1AE1D2F56043A5130DE7CD13 /* Qualifio */ = {
+			isa = PBXGroup;
+			children = (
+				1A914EDD05154FEDA5BCCAB4 /* QualifioView.swift */,
+				1A80217298BCA350DD7BD4D2 /* QualifioViewModel.swift */,
+			);
+			path = Qualifio;
 			sourceTree = "<group>";
 		};
 		E51FD35329D336A7000897D9 /* Badge */ = {
@@ -677,6 +704,7 @@
 				E5C78F0329BB98D7006BF1F6 /* Home */,
 				E5BF8B1F2DCCF658008FD3DE /* Inbox */,
 				1A59F53A304ECBD7002A457D /* LiveActivity */,
+				1AE1D2F56043A5130DE7CD13 /* Qualifio */,
 				1A59F543304F2170002A457D /* Regions */,
 				E5590DF429C21EF2006E593B /* Tags */,
 				E5C78EFF29BB8904006BF1F6 /* LaunchScreen.storyboard */,
@@ -748,12 +776,14 @@
 				F25B6DC825CAC58C007BC2C8 /* Extensions */,
 				E5BF8A632DCA5F02008FD3DE /* Live Activities */,
 				1A8B59F72B72842000ED46B1 /* Models */,
+				1AD1D27CBB6C0761337F983F /* Qualifio */,
 				F25B6DC125CABDBF007BC2C8 /* UI */,
 				F29FD1F724CB1FE1004B166D /* AppDelegate.swift */,
 				F29FD20024CB1FE3004B166D /* Assets.xcassets */,
 				F29FD20524CB1FE3004B166D /* Info.plist */,
 				E51FD38A29D6F2D2000897D9 /* Localizable.strings */,
 				F267DA49273E7CA900448A8F /* ActitoOptions.plist */,
+				1A37B8A1970CF070F76614B9 /* QualifioServices.plist */,
 				F28553C7258BA18C006674C1 /* Sample.entitlements */,
 				F2E8CF622AFD3CA300D7F2A0 /* Sample.dev.entitlements */,
 				F2E8CF632AFD3CA300D7F2A0 /* Sample.test.dev.entitlements */,
@@ -808,6 +838,7 @@
 			buildConfigurationList = F29FD20824CB1FE3004B166D /* Build configuration list for PBXNativeTarget "Sample" */;
 			buildPhases = (
 				F2EAF9B02AF537F700A2CC0C /* Copy Actito configuration file */,
+				1AC1B5735E054A8705725779 /* Copy optional configuration files */,
 				F29FD1F024CB1FE1004B166D /* Sources */,
 				F29FD1F124CB1FE1004B166D /* Frameworks */,
 				F29FD1F224CB1FE1004B166D /* Resources */,
@@ -823,6 +854,7 @@
 			);
 			name = Sample;
 			packageProductDependencies = (
+				1A95797730ACC4D200397971 /* QualifioKit */,
 			);
 			productName = Sample;
 			productReference = F29FD1F424CB1FE1004B166D /* Sample.app */;
@@ -836,7 +868,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 2700;
+				LastUpgradeCheck = 2710;
 				ORGANIZATIONNAME = Actito;
 				TargetAttributes = {
 					E5BF8A6F2DCA6056008FD3DE = {
@@ -861,6 +893,7 @@
 			mainGroup = F29FD1EB24CB1FE1004B166D;
 			packageReferences = (
 				1A8C30EF2BF639940000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				1A95797630ACC4D200397971 /* XCRemoteSwiftPackageReference "qualifio-sdk-ios" */,
 			);
 			productRefGroup = F29FD1F524CB1FE1004B166D /* Products */;
 			projectDirPath = "";
@@ -901,6 +934,7 @@
 				E51625DF2EBCB8FD006DF7C7 /* AppIconDev.icon in Resources */,
 				F29FD20124CB1FE3004B166D /* Assets.xcassets in Resources */,
 				F267DA4A273E7CA900448A8F /* ActitoOptions.plist in Resources */,
+				1AF76AD8E9958459B33C17B7 /* QualifioServices.plist in Resources */,
 				E5C78F0229BB8905006BF1F6 /* LaunchScreen.storyboard in Resources */,
 				E51625DD2EBCB8DF006DF7C7 /* AppIcon.icon in Resources */,
 			);
@@ -909,6 +943,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1AC1B5735E054A8705725779 /* Copy optional configuration files */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy optional configuration files";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CONFIGURATION_FILE_NAMES=\"SampleUser.plist QualifioSecrets.plist\"\nCONFIGURATION_FILE_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\n\nfor CONFIGURATION_FILE_NAME in ${CONFIGURATION_FILE_NAMES}; do\n    CONFIGURATION_FILE=${PROJECT_DIR}/${TARGET_NAME}/${CONFIGURATION_FILE_NAME}\n\n    if [ -f \"${CONFIGURATION_FILE}\" ]; then\n        echo \"Copying ${CONFIGURATION_FILE_NAME} to final destination: ${CONFIGURATION_FILE_DESTINATION}\"\n        cp \"${CONFIGURATION_FILE}\" \"${CONFIGURATION_FILE_DESTINATION}\"\n    else\n        echo \"${CONFIGURATION_FILE_NAME} not found in ${CONFIGURATION_FILE}. Skipping.\"\n        rm -f \"${CONFIGURATION_FILE_DESTINATION}/${CONFIGURATION_FILE_NAME}\"\n    fi\ndone\n";
+		};
 		F2EAF9B02AF537F700A2CC0C /* Copy Actito configuration file */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -976,6 +1029,7 @@
 				1A59F533304AFB44002A457D /* RegisterUserSection.swift in Sources */,
 				1A59F531304AD048002A457D /* DoNotDisturbSection.swift in Sources */,
 				1A8C31102BFF20DA0000BFA6 /* SampleUser.swift in Sources */,
+				1AC3A04EC67A08862AB889B1 /* QualifioSecureToken.swift in Sources */,
 				1A59F537304C1BF9002A457D /* UserDataSection.swift in Sources */,
 				E5590E0C29C33586006E593B /* AsyncImageCompat+ImageLoader.swift in Sources */,
 				E5590E1429C359B9006E593B /* Notification.Name+Custom.swift in Sources */,
@@ -986,6 +1040,8 @@
 				1A59F53E304ECD53002A457D /* LiveActivityViewModel.swift in Sources */,
 				E5BF89F72DCA3C79008FD3DE /* UIApplication+Notifications.swift in Sources */,
 				E5E5EB602DC10B8A00B00B6A /* OtherFeaturesSection.swift in Sources */,
+				1AE31A013A267C05513E4909 /* QualifioView.swift in Sources */,
+				1A01D89FD6A19D2765C1E7B0 /* QualifioViewModel.swift in Sources */,
 				E5590E0629C33389006E593B /* Date+Utilities.swift in Sources */,
 				F29FD1F824CB1FE1004B166D /* AppDelegate.swift in Sources */,
 				E514687829C9CC41005E057D /* String+Localization.swift in Sources */,
@@ -2107,6 +2163,14 @@
 				minimumVersion = 0.55.0;
 			};
 		};
+		1A95797630ACC4D200397971 /* XCRemoteSwiftPackageReference "qualifio-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/qualifio/qualifio-sdk-ios";
+			requirement = {
+				kind = exactVersion;
+				version = "1.0.0-beta.1";
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2114,6 +2178,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1A8C30EF2BF639940000BFA6 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1A95797730ACC4D200397971 /* QualifioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A95797630ACC4D200397971 /* XCRemoteSwiftPackageReference "qualifio-sdk-ios" */;
+			productName = QualifioKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

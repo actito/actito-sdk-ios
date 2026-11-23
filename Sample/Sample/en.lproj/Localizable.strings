@@ -146,6 +146,7 @@
 "home_other_features_header" = "Other Features";
 "home_other_features_assets" = "Assets";
 "home_other_features_custom_events" = "Custom Events";
+"home_other_features_qualifio" = "Qualifio";
 
 "inbox_title" = "Inbox";
 "inbox_no_messages" = "No messages found!";
@@ -161,6 +162,16 @@
 "live_activity_brew_button" = "Start Brewing";
 "live_activity_serve_button" = "Serve The Coffee";
 "live_activity_cancel_button" = "Cancel";
+
+"qualifio_title" = "Qualifio";
+"qualifio_launch_campaign_header" = "Launch Campaign";
+"qualifio_campaign_placeholder" = "Campaign Path";
+"qualifio_launch_campaign_button" = "Launch Campaign";
+"qualifio_inline_campaign_header" = "Inline Campaign";
+"qualifio_inline_campaign_add_button" = "Add View";
+"qualifio_inline_campaign_remove_button" = "Remove View";
+"qualifio_inline_campaign_placeholder" = "Inline Campaign Path";
+"qualifio_inline_campaign_load_button" = "Load Inline Campaign";
 
 "regions_title" = "Regions";
 "regions_entered_header" = "Regions Entered";
@@ -196,6 +207,7 @@
 
 "error" = "Error";
 "error_message_assets_fetch" = "Failed to fetch assets";
+"error_message_qualifio_launch_campaign" = "Failed to launch the campaign";
 "error_message_device_update_dnd" = "Failed to update do not disturb";
 "error_message_device_clear_dnd" = "Failed to clear do not disturb";
 "error_message_device_update_user_data" = "Failed to update user data";

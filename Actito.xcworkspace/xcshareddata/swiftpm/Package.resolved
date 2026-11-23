@@ -1,5 +1,5 @@
 {
-  "originHash" : "8b3c7cb4cb6a91a8f8ac129fa1ee099a8d2a5ec04bc40ecb75057438a4ba6218",
+  "originHash" : "d05527d73b3a4f07490913c10c681f67c3ac9ff3e30a9233ce58bf157fcd76d6",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "c4e60d71afb09c1e7f8a11a7db629469da92630b",
         "version" : "4.0.0"
+      }
+    },
+    {
+      "identity" : "qualifio-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/qualifio/qualifio-sdk-ios",
+      "state" : {
+        "revision" : "b290d89d510ad0d9d2b0c0544d8aca5e6f2abe82",
+        "version" : "1.0.0-beta.1"
       }
     },
     {
