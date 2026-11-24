@@ -19,7 +19,7 @@ internal final class ActitoPushAppDelegateInterceptor: NSObject, ActitoAppDelega
 
         Actito.shared.push().pushTokenRequester.signalTokenRequestError(error)
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.push().delegate?.actito(Actito.shared.push(), didFailToRegisterForRemoteNotificationsWithError: error)
         }
     }
@@ -28,7 +28,7 @@ internal final class ActitoPushAppDelegateInterceptor: NSObject, ActitoAppDelega
         guard Actito.shared.push().isActitoNotification(userInfo) else {
             logger.info("Received an unknown notification from APNS.")
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.push().delegate?.actito(Actito.shared.push(), didReceiveUnknownNotification: userInfo)
             }
 
@@ -97,7 +97,7 @@ internal final class ActitoPushAppDelegateInterceptor: NSObject, ActitoAppDelega
 
         let notification = ActitoSystemNotification(userInfo: userInfo)
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.push().delegate?.actito(Actito.shared.push(), didReceiveSystemNotification: notification)
         }
     }
@@ -141,7 +141,7 @@ internal final class ActitoPushAppDelegateInterceptor: NSObject, ActitoAppDelega
         // Put the notification in the inbox, if appropriate.
         InboxIntegration.addItemToInbox(userInfo: userInfo, notification: notification)
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             // Notify the delegate.
             Actito.shared.push().delegate?.actito(Actito.shared.push(), didReceiveNotification: notification, deliveryMechanism: deliveryMechanism)
         }

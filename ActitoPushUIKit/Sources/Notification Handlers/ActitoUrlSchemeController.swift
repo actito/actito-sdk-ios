@@ -18,7 +18,7 @@ internal class ActitoUrlSchemeController: ActitoNotificationPresenter {
               let urlStr = content.data as? String,
               let url = URL(string: urlStr)
         else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
 
@@ -37,7 +37,7 @@ internal class ActitoUrlSchemeController: ActitoNotificationPresenter {
                 let link = try await Actito.shared.fetchDynamicLink(urlStr)
 
                 guard let url = URL(string: link.target) else {
-                    DispatchQueue.main.async {
+                    Task { @MainActor in
                         Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
                     }
 
@@ -46,7 +46,7 @@ internal class ActitoUrlSchemeController: ActitoNotificationPresenter {
 
                 self.presentDeepLink(url)
             } catch {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
                 }
             }
@@ -55,7 +55,7 @@ internal class ActitoUrlSchemeController: ActitoNotificationPresenter {
 
     private func presentDeepLink(_ url: URL) {
         guard let urlScheme = url.scheme else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
 
@@ -65,19 +65,19 @@ internal class ActitoUrlSchemeController: ActitoNotificationPresenter {
         guard Bundle.main.getSupportedUrlSchemes().contains(urlScheme) else {
             logger.warning("Cannot open a deep link that's not supported by the application.")
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
 
             return
         }
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
         }
 
         UIApplication.shared.open(url, options: [:]) { _ in
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
             }
         }

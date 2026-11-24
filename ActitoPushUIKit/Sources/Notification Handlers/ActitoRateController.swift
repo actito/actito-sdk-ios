@@ -42,7 +42,7 @@ internal class ActitoRateController: ActitoNotificationPresenter {
                 }
             }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
             }
         }))
@@ -52,14 +52,14 @@ internal class ActitoRateController: ActitoNotificationPresenter {
             UIAlertAction(title: ActitoLocalizable.string(resource: .rateAlertNoButton),
                           style: .default,
                           handler: { _ in
-                              DispatchQueue.main.async {
+                              Task { @MainActor in
                                   Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
                               }
                           })
         )
 
         controller.presentOrPush(alert) {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
             }
         }

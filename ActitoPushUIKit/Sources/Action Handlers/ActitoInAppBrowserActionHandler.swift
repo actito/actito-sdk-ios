@@ -22,7 +22,7 @@ public class ActitoInAppBrowserActionHandler: ActitoBaseActionHandler {
                 try? await Actito.shared.createNotificationReply(notification: notification, action: action)
             }
         } else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.invalidUrl)
             }
         }
@@ -32,11 +32,11 @@ public class ActitoInAppBrowserActionHandler: ActitoBaseActionHandler {
 extension ActitoInAppBrowserActionHandler: SFSafariViewControllerDelegate {
     public func safariViewController(_: SFSafariViewController, didCompleteInitialLoad successfully: Bool) {
         if successfully {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
             }
         } else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: nil)
             }
         }

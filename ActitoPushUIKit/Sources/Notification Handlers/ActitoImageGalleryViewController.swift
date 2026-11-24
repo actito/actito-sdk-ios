@@ -22,7 +22,7 @@ public class ActitoImageGalleryViewController: ActitoBaseNotificationViewControl
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
         }
     }
@@ -74,7 +74,7 @@ public class ActitoImageGalleryViewController: ActitoBaseNotificationViewControl
 
     private func setupContent() {
         guard !notification.content.isEmpty else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
 
@@ -88,7 +88,7 @@ public class ActitoImageGalleryViewController: ActitoBaseNotificationViewControl
             let url = URL(string: content.data as! String)!
             URLSession.shared.dataTask(with: url) { data, _, _ in
                 if let data = data {
-                    DispatchQueue.main.async {
+                    Task { @MainActor in
                         self.images[index] = UIImage(data: data)
                         self.collectionView.reloadData()
                     }
@@ -96,7 +96,7 @@ public class ActitoImageGalleryViewController: ActitoBaseNotificationViewControl
             }.resume()
         }
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
         }
     }

@@ -297,7 +297,7 @@ public final class ActitoPush {
     // MARK: Internal API
 
     internal func notifySubscriptionUpdated(_ subscription: ActitoPushSubscription?) {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.delegate?.actito(self, didChangeSubscription: subscription)
         }
 
@@ -305,7 +305,7 @@ public final class ActitoPush {
     }
 
     internal func notifyAllowedUIUpdated(_ allowedUI: Bool) {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.delegate?.actito(self, didChangeNotificationSettings: allowedUI)
         }
 

@@ -15,7 +15,7 @@ public class ActitoBrowserActionHandler: ActitoBaseActionHandler {
             Bundle.main.getSupportedUrlSchemes().contains(urlScheme) || UIApplication.shared.canOpenURL(url)
         {
             UIApplication.shared.open(url, options: [:]) { _ in
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
                 }
 
@@ -26,7 +26,7 @@ public class ActitoBrowserActionHandler: ActitoBaseActionHandler {
                 self.dismiss()
             }
         } else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.invalidUrl)
             }
         }

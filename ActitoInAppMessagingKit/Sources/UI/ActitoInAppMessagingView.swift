@@ -42,7 +42,7 @@ extension ActitoInAppMessagingView {
         parentView.layoutIfNeeded()
         animate(transition: .enter)
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.inAppMessaging().delegate?.actito(Actito.shared.inAppMessaging(), didPresentMessage: self.message)
         }
 
@@ -66,7 +66,7 @@ extension ActitoInAppMessagingView {
             self.removeFromSuperview()
             self.delegate?.onViewDismissed()
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.inAppMessaging().delegate?.actito(Actito.shared.inAppMessaging(), didFinishPresentingMessage: self.message)
             }
         }
@@ -105,20 +105,20 @@ extension ActitoInAppMessagingView {
                     if await UIApplication.shared.open(url, options: [:]) {
                         logger.info("In-app message action '\(actionType.rawValue)' successfully processed.")
 
-                        DispatchQueue.main.async {
+                        Task { @MainActor in
                             Actito.shared.inAppMessaging().delegate?.actito(Actito.shared.inAppMessaging(), didExecuteAction: action, for: self.message)
                         }
                     } else {
                         logger.warning("Unable to open the action's URL.")
 
-                        DispatchQueue.main.async {
+                        Task { @MainActor in
                             Actito.shared.inAppMessaging().delegate?.actito(Actito.shared.inAppMessaging(), didFailToExecuteAction: action, for: self.message, error: nil)
                         }
                     }
                 } else {
                     logger.warning("Unable to open the action's URL.")
 
-                    DispatchQueue.main.async {
+                    Task { @MainActor in
                         Actito.shared.inAppMessaging().delegate?.actito(Actito.shared.inAppMessaging(), didFailToExecuteAction: action, for: self.message, error: nil)
                     }
                 }

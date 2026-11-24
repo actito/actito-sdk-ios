@@ -387,7 +387,7 @@ public final class ActitoInbox {
     // MARK: - Internal API
 
     internal func notifyItemsUpdated(_ items: [ActitoInboxItem]) {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.delegate?.actito(self, didUpdateInbox: self.items)
         }
 
@@ -395,7 +395,7 @@ public final class ActitoInbox {
     }
 
     private func notifyBadgeUpdated(_ badge: Int) {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.delegate?.actito(self, didUpdateBadge: badge)
         }
 
