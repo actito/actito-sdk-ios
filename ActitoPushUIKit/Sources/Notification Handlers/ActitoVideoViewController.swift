@@ -23,7 +23,7 @@ public class ActitoVideoViewController: ActitoBaseNotificationViewController {
         // playing after dismissing the view controller.
         webView.load(URLRequest(url: URL(string: "about:blank")!))
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
         }
     }
@@ -58,7 +58,7 @@ public class ActitoVideoViewController: ActitoBaseNotificationViewController {
 
     private func setupContent() {
         guard let content = notification.content.first else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
 
@@ -76,14 +76,14 @@ public class ActitoVideoViewController: ActitoBaseNotificationViewController {
             renderHtml5Video(content.data as! String)
 
         default:
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
 
             return
         }
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
         }
     }
@@ -212,7 +212,7 @@ extension ActitoVideoViewController: WKNavigationDelegate, WKUIDelegate {
             let scheme = url.scheme,
             Actito.shared.options!.urlSchemes.contains(scheme)
         {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
             }
 
@@ -223,7 +223,7 @@ extension ActitoVideoViewController: WKNavigationDelegate, WKUIDelegate {
     }
 
     public func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
         }
     }

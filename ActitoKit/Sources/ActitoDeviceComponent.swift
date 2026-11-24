@@ -600,7 +600,7 @@ public final class ActitoDeviceComponent {
         if
             let storedDevice, hasPendingDeviceRegistrationEvent == true
         {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.delegate?.actito(Actito.shared, didRegisterDevice: storedDevice.asPublic())
             }
         }

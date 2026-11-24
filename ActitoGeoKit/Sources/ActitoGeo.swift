@@ -310,7 +310,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 startRegionSession(region)
                 startMonitoringBeacons(in: region)
 
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     self.delegate?.actito(self, didEnter: region)
                 }
             } else if hasEntered && !isInside {
@@ -318,7 +318,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 stopRegionSession(region)
                 stopMonitoringBeacons(in: region)
 
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     self.delegate?.actito(self, didExit: region)
                 }
             }
@@ -588,7 +588,9 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                     logger.debug("Triggered a region enter but we are not inside the polygon boundaries.")
                     locationManager.requestLocation()
 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    Task {
+                        try? await Task.sleep(nanoseconds: 3 * NSEC_PER_SEC)
+
                         logger.debug("Requesting state for polygon region.")
                         self.locationManager.requestState(for: clr)
                     }
@@ -604,7 +606,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
                 // Circular regions emit the didEnterRegion in the corresponding CLLocationManagerDelegate event.
                 if region.isPolygon {
-                    DispatchQueue.main.async {
+                    Task { @MainActor in
                         self.delegate?.actito(self, didEnter: region)
                     }
                 }
@@ -659,7 +661,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
                 // Circular regions emit the didExitRegion in the corresponding CLLocationManagerDelegate event.
                 if region.isPolygon {
-                    DispatchQueue.main.async {
+                    Task { @MainActor in
                         self.delegate?.actito(self, didExit: region)
                     }
                 }
@@ -1110,7 +1112,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 }
             }
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             // Notify the delegate.
             self.delegate?.actito(self, didRange: beacons, in: region)
         }
@@ -1123,7 +1125,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 return
             }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.delegate?.actito(self, didFailRangingFor: region, with: error)
             }
 
@@ -1250,7 +1252,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 // Notify the delegate regardless of the decision to process the location.
                 self.delegate?.actito(self, didUpdateLocations: locations.map { ActitoLocation(cl: $0) })
             }
@@ -1261,19 +1263,20 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         handlePolygonSessions(for: location)
         handleLocationUpdate(location)
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.delegate?.actito(self, didUpdateLocations: locations.map { ActitoLocation(cl: $0) })
         }
     }
 
     public func locationManager(_: CLLocationManager, didFailWithError error: Error) {
         if let error = error as? CLError, error.code == .locationUnknown || error.code == .network {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            Task {
+                try? await Task.sleep(nanoseconds: 1 * NSEC_PER_SEC)
                 self.enableLocationUpdates()
             }
         }
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.delegate?.actito(self, didFailWith: error)
         }
     }
@@ -1299,7 +1302,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 return
             }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.delegate?.actito(self, didStartMonitoringFor: beacon)
             }
         } else {
@@ -1308,7 +1311,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 return
             }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.delegate?.actito(self, didStartMonitoringFor: region)
             }
         }
@@ -1318,7 +1321,8 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         guard let clr = clr else { return }
 
         // Retry to monitor this region
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        Task {
+            try? await Task.sleep(nanoseconds: 2 * NSEC_PER_SEC)
             self.locationManager.startMonitoring(for: clr)
         }
 
@@ -1328,7 +1332,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 return
             }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.delegate?.actito(self, monitoringDidFailFor: beacon, with: error)
             }
         } else {
@@ -1337,7 +1341,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                 return
             }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.delegate?.actito(self, monitoringDidFailFor: region, with: error)
             }
         }
@@ -1353,7 +1357,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             // Prevent calling the delegate method for the main region.
             guard beacon.minor != nil else { return }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.delegate?.actito(self, didEnter: beacon)
             }
         } else {
@@ -1372,7 +1376,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             // Prevent the didEnterRegion for polygons.
             // Entering the circular region is no guarantee we entered the polygon.
             if !region.isPolygon {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     self.delegate?.actito(self, didEnter: region)
                 }
             }
@@ -1389,7 +1393,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             // Prevent calling the delegate method for the main region.
             guard beacon.minor != nil else { return }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.delegate?.actito(self, didExit: beacon)
             }
         } else {
@@ -1405,7 +1409,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             // Although leaving the circular region guarantees we exit the polygon, we don't want to emit multiple
             // events. A location update will process the exit event instead.
             if !region.isPolygon {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     self.delegate?.actito(self, didExit: region)
                 }
             }
@@ -1433,7 +1437,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             // Prevent calling the delegate method for the main region.
             guard beacon.minor != nil else { return }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.delegate?.actito(self, didDetermineState: state, for: beacon)
             }
         } else {
@@ -1448,14 +1452,14 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             {
                 let newState: CLRegionState = LocalStorage.enteredRegions.contains(region.id) ? .inside : .outside
 
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     self.delegate?.actito(self, didDetermineState: newState, for: region)
                 }
 
                 return
             }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.delegate?.actito(self, didDetermineState: state, for: region)
             }
         }
@@ -1500,7 +1504,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             }
         }
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.delegate?.actito(self, didVisit: visit)
         }
     }
@@ -1516,7 +1520,7 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
             timestamp: newHeading.timestamp
         )
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.delegate?.actito(self, didUpdateHeading: heading)
         }
     }

@@ -292,7 +292,7 @@ public final class Actito {
             state = .ready
             printLaunchSummary(application: application)
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 // We're done launching. Notify the delegate.
                 self.delegate?.actito(self, onReady: application)
             }
@@ -370,7 +370,7 @@ public final class Actito {
         logger.info("Un-launched Actito.")
         self.state = .configured
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.delegate?.actitoDidUnlaunch(self)
         }
     }
@@ -690,7 +690,7 @@ public final class Actito {
                     return
                 }
 
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     UIApplication.shared.open(targetUrl, options: [:]) { opened in
                         if !opened {
                             logger.warning("The dynamic link's target was not handled by the application.")

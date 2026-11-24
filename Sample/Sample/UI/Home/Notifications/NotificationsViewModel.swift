@@ -129,7 +129,13 @@ internal class NotificationsViewModel: NSObject, ObservableObject {
         } else {
             Task {
                 Logger.main.info("Disabling remote notifications")
-                try await Actito.shared.push().disableRemoteNotifications()
+
+                do {
+                    try await Actito.shared.push().disableRemoteNotifications()
+                    Logger.main.info("Successfully disabled remote notifications")
+                } catch {
+                    Logger.main.error("Failed to disable remote notifications: \(error)")
+                }
 
                 checkNotificationsStatus()
             }

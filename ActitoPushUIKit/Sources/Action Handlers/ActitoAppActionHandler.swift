@@ -11,7 +11,7 @@ public class ActitoAppActionHandler: ActitoBaseActionHandler {
         if let target = action.target, let url = URL(string: target), let urlScheme = url.scheme, Bundle.main.getSupportedUrlSchemes().contains(urlScheme) || UIApplication.shared.canOpenURL(url)
         {
             UIApplication.shared.open(url, options: [:]) { _ in
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
                 }
 
@@ -22,7 +22,7 @@ public class ActitoAppActionHandler: ActitoBaseActionHandler {
                 self.dismiss()
             }
         } else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: ActionError.unsupportedUrlScheme)
             }
         }

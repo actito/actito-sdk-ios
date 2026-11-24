@@ -22,7 +22,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
             if response.actionIdentifier != UNNotificationDefaultActionIdentifier {
                 let responseText = (response as? UNTextInputNotificationResponse)?.userText
 
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.push().delegate?.actito(
                         Actito.shared.push(),
                         didOpenUnknownAction: response.actionIdentifier,
@@ -31,7 +31,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
                     )
                 }
             } else {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.push().delegate?.actito(
                         Actito.shared.push(),
                         didOpenUnknownNotification: userInfo
@@ -103,7 +103,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
 
                 InboxIntegration.markItemAsRead(userInfo: userInfo)
 
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenAction: clickedAction, for: notification)
                 }
 
@@ -122,7 +122,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
 
             InboxIntegration.markItemAsRead(userInfo: userInfo)
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.push().delegate?.actito(Actito.shared.push(), didOpenNotification: notification)
             }
         }
@@ -156,7 +156,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
 
     internal func userNotificationCenter(_: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
         guard let notification = notification else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.push().delegate?.actito(Actito.shared.push(), shouldOpenSettings: nil)
             }
 
@@ -183,7 +183,7 @@ internal final class ActitoNotificationCenterDelegate: NSObject, UNUserNotificat
         Actito.shared.fetchNotification(id) { result in
             switch result {
             case let .success(notification):
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.push().delegate?.actito(Actito.shared.push(), shouldOpenSettings: notification)
                 }
             case .failure:

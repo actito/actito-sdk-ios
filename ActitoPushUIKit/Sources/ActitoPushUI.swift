@@ -163,7 +163,7 @@ public final class ActitoPushUI {
             return
         }
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willPresentNotification: notification)
         }
 
@@ -225,7 +225,7 @@ public final class ActitoPushUI {
             return
         }
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), willExecuteAction: action, for: notification)
         }
 

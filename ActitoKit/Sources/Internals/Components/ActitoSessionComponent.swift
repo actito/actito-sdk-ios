@@ -16,7 +16,7 @@ internal class ActitoSessionComponent {
     private var sessionStart: Date?
     private var sessionEnd: Date?
 
-    private var backgroundTask: DispatchWorkItem?
+    private var backgroundTask: Task<Void, Never>?
     private var backgroundTaskIdentifier: UIBackgroundTaskIdentifier = .invalid
 
     private let dateFormatter: DateFormatter = {
@@ -99,9 +99,20 @@ internal class ActitoSessionComponent {
 
         // Wait a few seconds before sending a close event.
         // This prevents quick app swaps, navigation pulls, etc.
-        let backgroundTask = createBackgroundTask()
-        self.backgroundTask = backgroundTask
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 10, execute: backgroundTask)
+        backgroundTask = Task {
+            do {
+                try await Task.sleep(nanoseconds: 10 * NSEC_PER_SEC)
+            } catch {
+                return
+            }
+
+            guard !Task.isCancelled else { return }
+
+            backgroundTask = nil
+
+            await stopSession()
+            cancelBackgroundTask()
+        }
 
         backgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(withName: SESSION_CLOSE_TASK_NAME) { [weak self] in
             logger.debug("Background task expiration handler triggered.")
@@ -123,13 +134,6 @@ internal class ActitoSessionComponent {
             try await Actito.shared.events().logApplicationOpen(sessionId: sessionId)
         } catch {
             logger.warning("Failed to process an application session start.", error: error)
-        }
-    }
-
-    private func stopSession(_ completion: @MainActor @escaping (Result<Void, Error>) -> Void) {
-        Task {
-            await stopSession()
-            completion(.success(()))
         }
     }
 
@@ -155,16 +159,6 @@ internal class ActitoSessionComponent {
             try await Actito.shared.events().logApplicationClose(sessionId: sessionId, sessionLength: length)
         } catch {
             logger.warning("Failed to process an application session stop.", error: error)
-        }
-    }
-
-    private nonisolated func createBackgroundTask() -> DispatchWorkItem {
-        DispatchWorkItem {
-            DispatchQueue.main.async {
-                self.stopSession { _ in
-                        self.cancelBackgroundTask()
-                }
-            }
         }
     }
 

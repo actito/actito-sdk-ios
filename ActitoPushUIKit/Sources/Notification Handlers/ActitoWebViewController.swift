@@ -24,7 +24,7 @@ public class ActitoWebViewController: ActitoBaseNotificationViewController {
         // playing after dismissing the view controller.
         webView.load(URLRequest(url: URL(string: "about:blank")!))
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
         }
     }
@@ -62,7 +62,7 @@ public class ActitoWebViewController: ActitoBaseNotificationViewController {
 
     private func setupContent() {
         guard let content = notification.content.first else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
 
@@ -77,7 +77,7 @@ public class ActitoWebViewController: ActitoBaseNotificationViewController {
             webView.loadHTMLString(html, baseURL: nil)
         }
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didPresentNotification: self.notification)
         }
 
@@ -90,7 +90,7 @@ public class ActitoWebViewController: ActitoBaseNotificationViewController {
 
 extension ActitoWebViewController: WKNavigationDelegate, WKUIDelegate {
     public func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
         }
     }
@@ -103,7 +103,7 @@ extension ActitoWebViewController: WKNavigationDelegate, WKUIDelegate {
         if let scheme = url.scheme, Actito.shared.options!.urlSchemes.contains(scheme) {
             handleActitoQueryParameters(for: url)
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didClickURL: url, in: self.notification)
             }
 

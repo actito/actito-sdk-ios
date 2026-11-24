@@ -74,7 +74,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
     }
 
     @objc private func onCloseClicked() {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
         }
 
@@ -91,7 +91,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
 
                 send()
             } catch {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
                 }
 
@@ -106,7 +106,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
 
                 send()
             } catch {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
                 }
 
@@ -140,7 +140,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
 
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { granted in
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     if granted {
                         self.presentImagePicker(sourceType: .camera)
                     } else {
@@ -202,7 +202,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         dismiss()
 
         guard let target = action.target, let url = URL(string: target), url.scheme != nil, url.host != nil else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
             }
 
@@ -238,7 +238,7 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
         do {
             data = try JSONEncoder.actito.encode(params)
         } catch {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
             }
 
@@ -253,16 +253,16 @@ public class ActitoCallbackActionHandler: ActitoBaseActionHandler {
             do {
                 _ = try await URLSession.shared.perform(request)
 
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didExecuteAction: self.action, for: self.notification)
                 }
             } catch {
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToExecuteAction: self.action, for: self.notification, error: error)
                 }
             }
 
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 self.logAction()
             }
         }
@@ -299,7 +299,7 @@ extension ActitoCallbackActionHandler: UIImagePickerControllerDelegate {
     }
 
     public func imagePickerControllerDidCancel(_: UIImagePickerController) {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
         }
 
@@ -309,7 +309,7 @@ extension ActitoCallbackActionHandler: UIImagePickerControllerDelegate {
 
 extension ActitoCallbackActionHandler: UIAdaptivePresentationControllerDelegate {
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        DispatchQueue.main.async {
+        Task { @MainActor in
             Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didNotExecuteAction: self.action, for: self.notification)
         }
 

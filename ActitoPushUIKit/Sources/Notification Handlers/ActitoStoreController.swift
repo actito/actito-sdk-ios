@@ -15,7 +15,7 @@ internal class ActitoStoreController: NSObject, ActitoNotificationPresenter {
 
     internal func present(in controller: UIViewController) {
         guard let content = notification.content.first, content.type == "re.notifica.content.AppStore" else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
 
@@ -23,7 +23,7 @@ internal class ActitoStoreController: NSObject, ActitoNotificationPresenter {
         }
 
         guard let data = content.data as? [String: Any], let identifier = data["identifier"] else {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
             }
 
@@ -52,7 +52,7 @@ internal class ActitoStoreController: NSObject, ActitoNotificationPresenter {
         }
 
         storeController.loadProduct(withParameters: parameters) { success, error in
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 if !success || error != nil {
                     Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFailToPresentNotification: self.notification)
                 } else {
@@ -68,7 +68,7 @@ internal class ActitoStoreController: NSObject, ActitoNotificationPresenter {
 extension ActitoStoreController: SKStoreProductViewControllerDelegate {
     public func productViewControllerDidFinish(_: SKStoreProductViewController) {
         UIApplication.shared.rootViewController?.dismiss(animated: true, completion: {
-            DispatchQueue.main.async {
+            Task { @MainActor in
                 Actito.shared.pushUI().delegate?.actito(Actito.shared.pushUI(), didFinishPresentingNotification: self.notification)
             }
         })
