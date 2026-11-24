@@ -12,7 +12,7 @@ public final class ActitoInAppMessaging {
 
     private var presentedView: ActitoInAppMessagingView?
     private var presentedViewBackgroundTimestamp: Date?
-    private var messageWorkItem: DispatchWorkItem?
+    private var delayedMessageTask: Task<Void, Never>?
 
     // MARK: - Public API
 
@@ -47,11 +47,11 @@ public final class ActitoInAppMessaging {
         hasMessagesSuppressed = suppressed
 
         if suppressed {
-            if messageWorkItem != nil {
+            if delayedMessageTask != nil {
                 logger.info("Clearing delayed in-app message from being presented when suppressed.")
 
-                messageWorkItem?.cancel()
-                messageWorkItem = nil
+                delayedMessageTask?.cancel()
+                delayedMessageTask = nil
             }
 
             return
@@ -94,16 +94,21 @@ public final class ActitoInAppMessaging {
         if message.delaySeconds > 0 {
             logger.debug("Waiting \(message.delaySeconds) seconds before presenting the in-app message.")
 
-            let workItem = DispatchWorkItem {
-                self.present(message)
-                self.messageWorkItem = nil
+            // Keep a reference to the task to cancel it when
+            // the app goes into the background.
+            delayedMessageTask = Task {
+                do {
+                    try await Task.sleep(nanoseconds: UInt64(message.delaySeconds) * NSEC_PER_SEC)
+                } catch {
+                    return
+                }
+
+                guard !Task.isCancelled else { return }
+
+                delayedMessageTask = nil
+                present(message)
             }
 
-            // Keep a reference to the work item to cancel it when
-            // the app goes into the background.
-            messageWorkItem = workItem
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(message.delaySeconds), execute: workItem)
             return
         }
 
@@ -266,10 +271,10 @@ public final class ActitoInAppMessaging {
     @objc internal func onApplicationBackground() {
         presentedViewBackgroundTimestamp = Date()
 
-        if messageWorkItem != nil {
+        if delayedMessageTask != nil {
             logger.info("Clearing delayed in-app message from being presented when going to the background.")
-            messageWorkItem?.cancel()
-            messageWorkItem = nil
+            delayedMessageTask?.cancel()
+            delayedMessageTask = nil
         }
     }
 }

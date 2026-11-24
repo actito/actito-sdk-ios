@@ -588,7 +588,9 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
                     logger.debug("Triggered a region enter but we are not inside the polygon boundaries.")
                     locationManager.requestLocation()
 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    Task {
+                        try? await Task.sleep(nanoseconds: 3 * NSEC_PER_SEC)
+
                         logger.debug("Requesting state for polygon region.")
                         self.locationManager.requestState(for: clr)
                     }
@@ -1268,7 +1270,8 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
 
     public func locationManager(_: CLLocationManager, didFailWithError error: Error) {
         if let error = error as? CLError, error.code == .locationUnknown || error.code == .network {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            Task {
+                try? await Task.sleep(nanoseconds: 1 * NSEC_PER_SEC)
                 self.enableLocationUpdates()
             }
         }
@@ -1318,7 +1321,8 @@ public final class ActitoGeo: NSObject, CLLocationManagerDelegate {
         guard let clr = clr else { return }
 
         // Retry to monitor this region
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        Task {
+            try? await Task.sleep(nanoseconds: 2 * NSEC_PER_SEC)
             self.locationManager.startMonitoring(for: clr)
         }
 

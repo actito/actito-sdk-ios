@@ -656,41 +656,40 @@ public final class ActitoInbox {
             return
         }
 
-        // Wait a bit before checking.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            Task {
-                // Clear expired items from the notification center.
-                self.removeExpiredItemsFromNotificationCenter()
+        Task {
+            try? await Task.sleep(nanoseconds: 1 * NSEC_PER_SEC)
 
-                guard let device = Actito.shared.device().currentDevice else {
-                    logger.warning("Actito has not been configured yet.")
-                    return
-                }
+            // Clear expired items from the notification center.
+            self.removeExpiredItemsFromNotificationCenter()
 
-                guard !self.cachedItems.isEmpty else {
-                    logger.debug("The inbox is empty. No need to do a full sync.")
-                    return
-                }
+            guard let device = Actito.shared.device().currentDevice else {
+                logger.warning("Actito has not been configured yet.")
+                return
+            }
 
-                do {
-                    let response = try await self.fetchRemoteInbox(for: device.id, skip: 0, limit: 1)
+            guard !self.cachedItems.isEmpty else {
+                logger.debug("The inbox is empty. No need to do a full sync.")
+                return
+            }
 
-                    let total = self.items.count
-                    let unread = self.items.filter { !$0.opened }.count
+            do {
+                let response = try await self.fetchRemoteInbox(for: device.id, skip: 0, limit: 1)
 
-                    if response.count != total || response.unread != unread {
-                        logger.debug("The inbox needs an update. The count/unread don't match with the local data.")
-                        do {
-                            try await self.reloadInbox()
-                        } catch {
-                            logger.error("Failed to reload the inbox.", error: error)
-                        }
-                    } else {
-                        logger.debug("The inbox doesn't need an update. Proceeding as is.")
+                let total = self.items.count
+                let unread = self.items.filter { !$0.opened }.count
+
+                if response.count != total || response.unread != unread {
+                    logger.debug("The inbox needs an update. The count/unread don't match with the local data.")
+                    do {
+                        try await self.reloadInbox()
+                    } catch {
+                        logger.error("Failed to reload the inbox.", error: error)
                     }
-                } catch {
-                    logger.error("Failed to compare the local and remote unread counts.", error: error)
+                } else {
+                    logger.debug("The inbox doesn't need an update. Proceeding as is.")
                 }
+            } catch {
+                logger.error("Failed to compare the local and remote unread counts.", error: error)
             }
         }
     }
