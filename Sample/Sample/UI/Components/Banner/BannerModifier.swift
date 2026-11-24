@@ -126,12 +126,14 @@ private struct BannerModifier<C: View>: ViewModifier {
                             .offset(x: 0, y: dragOffset.height)
                             .simultaneousGesture(dragGesture)
                             .transition(transistion.combined(with: .opacity))
-                            .onAppear {
+                            .task {
                                 switch autoDismiss {
                                 case let .after(delay):
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                                        isPresented = false
-                                    }
+                                    try? await Task.sleep(nanoseconds: UInt64(delay * Double(NSEC_PER_SEC)))
+
+                                    guard !Task.isCancelled else { return }
+
+                                    isPresented = false
                                 case .never:
                                     break
                                 }

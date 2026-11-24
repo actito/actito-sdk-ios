@@ -125,8 +125,9 @@ internal class LocationViewModel: NSObject, ObservableObject, @MainActor CLLocat
             }
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.checkLocationStatus()
+        Task {
+            try? await Task.sleep(nanoseconds: NSEC_PER_SEC)
+            checkLocationStatus()
         }
     }
 
@@ -242,8 +243,9 @@ internal class LocationViewModel: NSObject, ObservableObject, @MainActor CLLocat
             }
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.checkLocationStatus()
+        Task {
+            try? await Task.sleep(nanoseconds: NSEC_PER_SEC)
+            checkLocationStatus()
         }
     }
 }
