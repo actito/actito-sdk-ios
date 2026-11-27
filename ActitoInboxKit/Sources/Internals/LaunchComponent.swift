@@ -68,6 +68,11 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func launch() async throws {
+        guard Actito.shared.application?.hasInboxServiceEnabled == true else {
+            logger.warning("Actito inbox functionality is not enabled. Skipping the inbox sync.")
+            return
+        }
+
         Actito.shared.inbox().sync()
     }
 
