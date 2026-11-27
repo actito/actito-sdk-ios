@@ -80,6 +80,8 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         Actito.shared.push().subscription = nil
         Actito.shared.push().allowedUI = false
 
+        Actito.shared.push().clearNotificationCenter()
+
         Actito.shared.push().notifySubscriptionUpdated(nil)
         Actito.shared.push().notifyAllowedUIUpdated(false)
     }

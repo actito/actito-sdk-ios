@@ -77,8 +77,6 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
 
     internal func unlaunch() async throws {
         try await Actito.shared.inbox().clearLocalInbox()
-        Actito.shared.inbox().clearNotificationCenter()
-
         try await Actito.shared.inbox().clearRemoteInbox()
 
         Actito.shared.inbox().notifyItemsUpdated(Actito.shared.inbox().items)
