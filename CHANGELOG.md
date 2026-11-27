@@ -8,6 +8,7 @@
 - Fix In-App Message presentation view hierarchy
 - Fix callback action Liquid Glass UI when action requests keyboard and camera
 - Fix action replies sending an empty message
+- Fix notification center not being cleared on unlaunch when the inbox module is not used
 
 ## 5.3.0
 
