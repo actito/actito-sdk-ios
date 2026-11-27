@@ -68,6 +68,11 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
     }
 
     internal func launch() async throws {
+        guard Actito.shared.application?.hasInboxServiceEnabled == true else {
+            logger.warning("Actito inbox functionality is not enabled. Skipping the inbox sync.")
+            return
+        }
+
         Actito.shared.inbox().sync()
     }
 
@@ -82,7 +87,9 @@ internal final class LaunchComponent: NSObject, ActitoLaunchComponent {
         try await Actito.shared.inbox().clearRemoteInbox()
 
         Actito.shared.inbox().notifyItemsUpdated(Actito.shared.inbox().items)
-        _ = try? await Actito.shared.inbox().refreshBadge()
+        if Actito.shared.application?.hasInboxServiceEnabled == true {
+            Actito.shared.inbox().updateBadge(0)
+        }
     }
 
     internal func executeCommand(_ command: String, data: Any?) throws -> (any Sendable)? {

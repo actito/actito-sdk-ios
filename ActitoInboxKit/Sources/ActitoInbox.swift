@@ -140,19 +140,7 @@ public final class ActitoInbox {
 
         do {
             let response = try await fetchRemoteInbox(for: device.id, skip: 0, limit: 1)
-
-            // Keep a cached copy of the current badge.
-            LocalStorage.currentBadge = response.unread
-
-            // Notify the badge update
-            notifyBadgeUpdated(response.unread)
-
-            if Actito.shared.application?.inboxConfig?.autoBadge == true {
-                // Update the application badge.
-                setApplicationBadge(response.unread)
-            } else {
-                logger.debug("Actito auto badge functionality is not enabled. Skipping OS badge update...")
-            }
+            updateBadge(response.unread)
 
             return response.unread
         } catch {
@@ -402,6 +390,21 @@ public final class ActitoInbox {
         _badgeStream.value = badge
     }
 
+    internal func updateBadge(_ badge: Int) {
+        // Keep a cached copy of the current badge.
+        LocalStorage.currentBadge = badge
+
+        // Notify the badge update
+        notifyBadgeUpdated(badge)
+
+        if Actito.shared.application?.inboxConfig?.autoBadge == true {
+            // Update the application badge.
+            setApplicationBadge(badge)
+        } else {
+            logger.debug("Actito auto badge functionality is not enabled. Skipping OS badge update...")
+        }
+    }
+
     private func checkPrerequisites() throws {
         guard Actito.shared.isReady else {
             logger.warning("Actito is not ready yet.")
@@ -413,12 +416,7 @@ public final class ActitoInbox {
             throw ActitoError.applicationUnavailable
         }
 
-        guard application.services[ActitoApplication.ServiceKey.inbox.rawValue] == true else {
-            logger.warning("Actito inbox functionality is not enabled.")
-            throw ActitoError.serviceUnavailable(service: ActitoApplication.ServiceKey.inbox.rawValue)
-        }
-
-        guard application.inboxConfig?.useInbox == true else {
+        guard application.hasInboxServiceEnabled else {
             logger.warning("Actito inbox functionality is not enabled.")
             throw ActitoError.serviceUnavailable(service: ActitoApplication.ServiceKey.inbox.rawValue)
         }
