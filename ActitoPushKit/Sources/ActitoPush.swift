@@ -312,6 +312,11 @@ public final class ActitoPush {
         _allowedUIStream.value = allowedUI
     }
 
+    internal func clearNotificationCenter() {
+        logger.debug("Removing all messages from the notification center.")
+        notificationCenter.removeAllDeliveredNotifications()
+    }
+
     private func checkPrerequisites() throws {
         if !Actito.shared.isReady {
             logger.warning("Actito is not ready yet.")

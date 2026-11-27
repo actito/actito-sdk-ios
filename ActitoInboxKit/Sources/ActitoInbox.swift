@@ -511,7 +511,7 @@ public final class ActitoInbox {
         }
     }
 
-    internal func clearNotificationCenter() {
+    private func clearNotificationCenter() {
         logger.debug("Removing all messages from the notification center.")
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
